@@ -20,11 +20,13 @@ const Services = () => {
             <main className="ms-main">
                 <div className="ms-page-content">
                     <section className="ms-hero services">
-                        <div className="ms-parallax jarallax-img" data-speed="0.7" data-type="scroll">
-                            <div className="ms-hc">
-                                <div className="ms-hc--inner">
-                                    <h1 className="ms-hero-title">Services</h1>
-                                    <p className="ms-hero-subtitle">Distinctively revolutionize<br/> unique deliverables.</p>
+                        <div className="ms-parallax" data-speed="0.7" data-type="scroll">
+                            <div className="jarallax-img">
+                                <div className="ms-hc">
+                                    <div className="ms-hc--inner">
+                                        <h1 className="ms-hero-title">Services</h1>
+                                        <p className="ms-hero-subtitle">Distinctively revolutionize<br/> unique deliverables.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

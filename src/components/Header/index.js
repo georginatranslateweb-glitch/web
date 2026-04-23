@@ -3,8 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import MenuItems from './MenuItems';
 
-import Logo from "../../../public/images/logo/logo-dark.svg";
-import LogoLight from "../../../public/images/logo/logo-light.svg";
+import Logo from "../../../public/images/logo/logo-red.png";
+import LogoLight from "../../../public/images/logo/logo-red.png";
 
 const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,7 +23,7 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
   useEffect(() => {
     const handleResize = () => {
       const contentPart = document.querySelector('.ms-main');
-      const footer = document.querySelector('.ms-footer'); 
+      const footer = document.querySelector('.ms-footer');
       if (contentPart && footer) {
         contentPart.style.marginBottom = `${footer.offsetHeight}px`;
       }
@@ -42,7 +42,7 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
       <div className={`${headerClass || 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''}`}>
         <div className={`main-header__layout ${isVisible ? 'action' : 'top'}`}>
           <div className="main-header__inner">
-            
+
             {/* Logo */}
             <div className="main-header__logo">
               <div className="logo-dark">
@@ -69,11 +69,11 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
               <div className="ms_theme_mode">
                 <div className="ms_tm--inner">
                   <div className="theme-toggle" id="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
-                    <input 
-                      type="checkbox" 
-                      id="switcher" 
-                      className="check" 
-                      checked={darkMode} 
+                    <input
+                      type="checkbox"
+                      id="switcher"
+                      className="check"
+                      checked={darkMode}
                       onChange={() => setDarkMode(!darkMode)}
                     />
                     <svg className="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">

@@ -46,6 +46,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import "../assets/css/socicon.css";
 import "../assets/css/style.css";
+import "../assets/css/home-5-hero.css";
 
 
 SwiperCore.use([Navigation, Pagination, Parallax]);
@@ -111,9 +112,9 @@ function Layout({ children }) {
     return <ProductDetails />;
   } else if (router.pathname === '/contact') {
     return <Contact />;
-  }  else if (router.pathname === '/404') {
+  } else if (router.pathname === '/404') {
     return <ErrorPage />;
-  } 
+  }
 
   return <div>{children}</div>;
 }

@@ -67,7 +67,9 @@ function ProjectDetails() {
                     </div>
                 </div>
                 <section className="ms-hero project single">
-                    <div className="ms-parallax jarallax-img" data-speed="0.7" data-type="scroll"></div>
+                    <div className="ms-parallax" data-speed="0.7" data-type="scroll">
+                        <div className="jarallax-img"></div>
+                    </div>
                 </section>
                 <section className="project-single-wrap">
                     <div className="container">
