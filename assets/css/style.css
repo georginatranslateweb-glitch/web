@@ -6745,6 +6745,17 @@ Descr: Accessible website navigation
   z-index: 4;
   margin-left: 0;
 }
+.main-header__layout .main-header__inner .main-header__logo .ms-header-logo {
+  display: block;
+  position: relative;
+  height: 50px;
+  width: 160px;
+}
+.main-header__layout .main-header__inner .main-header__logo .ms-header-logo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
 .main-header__layout .main-header__inner .main-header__logo img {
   height: 50px;
 }

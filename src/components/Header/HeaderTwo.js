@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 import MenuItems from './MenuItems';
 
-import Logo from "../../../public/images/logo/logo-dark.svg";
-import LogoLight from "../../../public/images/logo/logo-light.svg";
+import Logo from "../../../public/images/logo/logo-red.png";
+import LogoLight from "../../../public/images/logo/logo-red.png";
 
 const HeaderTwo = (props) => {
   const { headerClass, parentMenu, headerLogo, headerLogoLight } = props;
@@ -43,7 +43,7 @@ const HeaderTwo = (props) => {
     // Adjust main content bottom margin based on footer height
     const handleResize = () => {
       const contentPart = document.querySelector('.ms-main');
-      const footer = document.querySelector('.ms-footer'); 
+      const footer = document.querySelector('.ms-footer');
       if (contentPart && footer) {
         contentPart.style.marginBottom = `${footer.offsetHeight}px`;
       }
@@ -68,12 +68,30 @@ const HeaderTwo = (props) => {
               <div className="main-header__logo">
                 <div className="logo-dark">
                   <Link href="/">
-                    <Image src={headerLogo ? headerLogo : LogoLight} alt="Most" />
+                    <span className="ms-header-logo">
+                      <Image
+                        src={headerLogo ? headerLogo : Logo}
+                        alt="Most"
+                        fill
+                        sizes="160px"
+                        priority
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </span>
                   </Link>
                 </div>
                 <div className="logo-light">
                   <Link href="/">
-                    <Image src={headerLogoLight ? headerLogoLight : Logo} alt="Most" />
+                    <span className="ms-header-logo">
+                      <Image
+                        src={headerLogoLight ? headerLogoLight : LogoLight}
+                        alt="Most"
+                        fill
+                        sizes="160px"
+                        priority
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </span>
                   </Link>
                 </div>
               </div>
@@ -83,7 +101,7 @@ const HeaderTwo = (props) => {
                   <MenuItems />
                 </ul>
               </nav>
-			  <div className='menuTrigger'></div>
+              <div className='menuTrigger'></div>
               <div className="main-header--widgets">
                 <div className="ms_theme_mode">
                   <div className="ms_tm--inner">
@@ -105,7 +123,7 @@ const HeaderTwo = (props) => {
                           <line x1="12" y1="1" x2="12" y2="3" />
                           <line x1="12" y1="21" x2="12" y2="23" />
                           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
                           <line x1="1" y1="12" x2="3" y2="12" />
                           <line x1="21" y1="12" x2="23" y2="12" />
                           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />

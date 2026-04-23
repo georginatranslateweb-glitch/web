@@ -46,10 +46,32 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
             {/* Logo */}
             <div className="main-header__logo">
               <div className="logo-dark">
-                <Link href="/"><Image src={headerLogo || Logo} alt="Most" /></Link>
+                <Link href="/">
+                  <span className="ms-header-logo">
+                    <Image
+                      src={headerLogo || Logo}
+                      alt="Most"
+                      fill
+                      sizes="160px"
+                      priority
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </span>
+                </Link>
               </div>
               <div className="logo-light">
-                <Link href="/"><Image src={headerLogoLight || LogoLight} alt="Most" /></Link>
+                <Link href="/">
+                  <span className="ms-header-logo">
+                    <Image
+                      src={headerLogoLight || LogoLight}
+                      alt="Most"
+                      fill
+                      sizes="160px"
+                      priority
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </span>
+                </Link>
               </div>
             </div>
 
