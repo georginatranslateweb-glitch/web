@@ -1,0 +1,31 @@
+/**
+ * Apple Garamond — archivos “Italic” del diseño, declarados como estilo normal
+ * para que todo el texto use esa forma sin poner font-style: italic en cada lado.
+ *
+ * - 400 / normal → cuerpo y titulares por defecto
+ * - 300 / normal → texto más fino si usás font-weight: 300
+ * - 400 / italic → <em>, énfasis (usa Light Italic para que se note del cuerpo)
+ */
+@font-face {
+  font-family: "Apple Garamond";
+  src: url("/fonts/AppleGaramond-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apple Garamond";
+  src: url("/fonts/AppleGaramond-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apple Garamond";
+  src: url("/fonts/AppleGaramond-LightItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}

@@ -45,6 +45,7 @@ import 'swiper/scss/parallax';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import "../assets/css/socicon.css";
+import "../assets/css/fonts-custom.css";
 import "../assets/css/style.css";
 import "../assets/css/home-5-hero.css";
 

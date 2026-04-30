@@ -1,6 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap");
 *, *::after, *::before {
   box-sizing: inherit;
 }
@@ -2064,8 +2062,8 @@ iframe {
   --font-primary-capital-letter: 1;
   --font-weight-light: 400;
   --font-weight-bold: 700;
-  --font-primary: "Plus Jakarta Sans", sans-serif;
-  --font-heading: "Plus Jakarta Sans", sans-serif;
+  --font-primary: "Apple Garamond", Georgia, "Times New Roman", serif;
+  --font-heading: "Apple Garamond", Georgia, "Times New Roman", serif;
 }
 
 @supports (--css: variables) {
@@ -2082,7 +2080,6 @@ body {
   height: 100vh;
   font-size: 16px;
   font-family: var(--font-primary);
-  font-family: "Plus Jakarta Sans", sans-serif;
   color: var(--color-contrast-higher);
   font-weight: 400;
   background-color: var(--color-bg);
@@ -2861,7 +2858,7 @@ blockquote.has-text-align-right {
   margin-bottom: 20px;
 }
 .ms-main .pricing-area-2 .heading-title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -3614,7 +3611,7 @@ body[data-theme=dark] .ms-footer .btn-wrap .btn .ms-btn--circle .circle-icon .ic
   margin-bottom: 20px;
 }
 .team-area.one .title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -4050,7 +4047,7 @@ body[data-theme=dark] .ms-footer .btn-wrap .btn .ms-btn--circle .circle-icon .ic
 }
 .ms-main .testimonial-area .heading-title {
   color: #262626;
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -4110,7 +4107,7 @@ body[data-theme=dark] .ms-footer .btn-wrap .btn .ms-btn--circle .circle-icon .ic
 }
 .ms-main .blog-area .heading-title {
   color: #262626;
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -7364,7 +7361,7 @@ Descr: Component used to navigate through pages of related content
 }
 .breadcrumb-area.breadcrumbs-2 .breadcrumb-1 .heading-title {
   color: #2B2B2B;
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 72px;
   font-weight: 900;
   text-transform: uppercase;
@@ -7406,13 +7403,13 @@ Descr: Component used to navigate through pages of related content
 }
 .breadcrumb-area .breadcrumb-1 .sub-title {
   color: #EF5D39;
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 24px;
   margin-bottom: 20px;
 }
 .breadcrumb-area .breadcrumb-1 .heading-title {
   color: #FFFFFF;
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 4vw;
   font-weight: 900;
   text-transform: uppercase;
@@ -9344,7 +9341,7 @@ body.index-two[data-footer-effect=on] {
   margin-bottom: 20px;
 }
 .ms-portfolio-filter-area.gallery .title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -9691,7 +9688,7 @@ body.index-two[data-footer-effect=on] {
   margin-right: 32px;
 }
 .ms-main .ms-page-content .services-area-2 .services-area-inner .left-side-content .heading-title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -9727,7 +9724,7 @@ body.index-two[data-footer-effect=on] {
   border-radius: 40px;
 }
 .ms-main .ms-page-content .services-area-2 .services-area-inner .services-bottom .heading-title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -9804,7 +9801,7 @@ body.index-two[data-footer-effect=on] {
   font-size: 20px;
 }
 .ms-main .ms-page-content .portfolio-area-2 .portfolio-area-inner .heading-title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -10159,7 +10156,7 @@ body.index-two[data-footer-effect=on] {
 }
 .ms-main.home-six .services-area.home-six .heading-title {
   color: #262626;
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -10228,7 +10225,7 @@ body.index-two[data-footer-effect=on] {
 }
 .ms-main.home-six .services-area.home-six .services-bottom .heading-title {
   color: #262626;
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -17644,7 +17641,7 @@ Clients logo
   color: #797979;
 }
 .team-rules-area .team-rules-area-inner .top .title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -17727,7 +17724,7 @@ Clients logo
   margin-bottom: 20px;
 }
 .team-area .team-area-inner .team-content .title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
@@ -17780,7 +17777,7 @@ Clients logo
   }
 }
 .contact-area .contact-area-inner .content .title {
-  font-family: "Manrope", Sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 900;
   line-height: 64px;
