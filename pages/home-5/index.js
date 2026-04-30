@@ -25,7 +25,7 @@ const HomeFive = () => {
                     <HomeFiveParallax>
                         <HomeFiveBanner />
                     </HomeFiveParallax>
-                    <HomeFiveService />
+
 
                 </div>
             </main>
