@@ -7,18 +7,15 @@ const HomeFiveBanner = () => {
                 <div className="container">
                     <div className="banner-inner">
                         <div className="row justify-content-center align-items-stretch gx-0 gy-4 gy-lg-0 home-five-banner-hero-row">
-                            <div className="col-lg-6">
+                            <div className="col-12 col-lg-6">
                                 <div className="left-side-content">
                                     <h2 className="heading-title home-five-banner-editorial__title">
                                         Where language becomes understanding.
                                     </h2>
                                 </div>
                             </div>
-                            <div className="col-lg-6">
-                                <div className="right-side-content home-five-bg-slot">
-                                    <div className="home-five-bg-slot__content">
-                                    </div>
-                                </div>
+                            <div className="col-lg-6 d-none d-lg-block">
+                                <div className="right-side-content home-five-bg-slot" />
                             </div>
                         </div>
 
@@ -26,28 +23,37 @@ const HomeFiveBanner = () => {
                             <div className="col-12 home-five-editorial-grid-col">
                                 <div className="home-five-editorial-grid">
                                     <div className="row home-five-editorial-split g-0 gx-md-3 gy-3 gy-md-0 align-items-start">
-                                        <div className="col-12 col-md-2 home-five-editorial-split__cell">
-                                            <div className="home-five-editorial-grid__item">
-                                                <div className="home-five-editorial-grid__label">Meaning</div>
-                                                <div className="home-five-editorial-grid__value">Random text</div>
+                                        <div className="col-12 col-md-6 home-five-editorial-split__group">
+                                            <div className="row g-0 gx-3 gy-0 align-items-start">
+                                                <div className="col-4 home-five-editorial-split__cell">
+                                                    <div className="home-five-editorial-grid__item">
+                                                        <div className="home-five-editorial-grid__label">Meaning</div>
+                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-8 home-five-editorial-split__cell">
+                                                    <div className="home-five-editorial-grid__item">
+                                                        <div className="home-five-editorial-grid__label">Clarity</div>
+                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="col-12 col-md-4 home-five-editorial-split__cell">
-                                            <div className="home-five-editorial-grid__item">
-                                                <div className="home-five-editorial-grid__label">Clarity</div>
-                                                <div className="home-five-editorial-grid__value">Random text</div>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-md-2 home-five-editorial-split__cell">
-                                            <div className="home-five-editorial-grid__item">
-                                                <div className="home-five-editorial-grid__label">Care</div>
-                                                <div className="home-five-editorial-grid__value">Random text</div>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-md-4 home-five-editorial-split__cell">
-                                            <div className="home-five-editorial-grid__item">
-                                                <div className="home-five-editorial-grid__label">Culture</div>
-                                                <div className="home-five-editorial-grid__value">Random text</div>
+
+                                        <div className="col-12 col-md-6 home-five-editorial-split__group">
+                                            <div className="row g-0 gx-3 gy-0 align-items-start">
+                                                <div className="col-4 home-five-editorial-split__cell">
+                                                    <div className="home-five-editorial-grid__item">
+                                                        <div className="home-five-editorial-grid__label">Care</div>
+                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-8 home-five-editorial-split__cell">
+                                                    <div className="home-five-editorial-grid__item">
+                                                        <div className="home-five-editorial-grid__label">Culture</div>
+                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

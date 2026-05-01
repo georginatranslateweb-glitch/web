@@ -7,7 +7,7 @@ export default function Document() {
         <title>Georgina Robledo - Translation Services </title>
         <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
       </Head>
-      <body data-theme="light" data-menu="fixed" data-footer-effect="on" data-footer-corners="on">
+      <body data-theme="light" data-menu="fixed" data-footer-effect="on">
         <Main />
         <NextScript />
       </body>

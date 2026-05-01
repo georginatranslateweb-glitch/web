@@ -49,7 +49,7 @@
   */
   margin-top: calc((var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px)) * -1);
   padding: 0;
-  border-radius: 3px;
+  border-radius: 0;
   overflow: hidden;
   isolation: isolate;
   background-color: transparent;
@@ -61,9 +61,13 @@
   background-attachment: fixed;
 }
 
-.ms-main .ms-page-content .home-five-hero .home-five-bg-slot__content {
-  padding: clamp(1rem, 2.5vw, 1.75rem);
-  padding-top: calc(clamp(1rem, 2.5vw, 1.75rem) + var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px));
+/* Antes: padding en .home-five-bg-slot__content (vacío). Solo desktop: compensa el margin-top negativo del slot */
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-bg-slot {
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+    padding-top: calc(clamp(1rem, 2.5vw, 1.75rem) + var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px));
+    box-sizing: border-box;
+  }
 }
 
 /* El banner queda sticky; alto fijo 100vh para que las dos filas sumen el viewport */
@@ -214,4 +218,40 @@
   position: relative;
   z-index: 1;
   background-color: #ffffff;
+}
+
+/*
+ * Móvil: columna imagen oculta (BannerSection d-none d-lg-block); la fila hero solo lleva el título.
+ */
+@media (max-width: 991.98px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: clamp(1rem, 5vw, 1.5rem) !important;
+    padding-right: clamp(1rem, 5vw, 1.5rem) !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.row {
+    width: 100%;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
+    flex: 0 1 auto;
+    max-height: none;
+    min-height: 0;
+    justify-content: center;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
+    flex: 0 0 auto;
+    max-height: none;
+    padding-top: 0;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .home-five-editorial-split {
+    justify-content: center;
+  }
 }
