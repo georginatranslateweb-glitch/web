@@ -297,6 +297,12 @@
     min-height: 0 !important;
   }
 
+  /* Scroll state (action): center hamburger vertically on mobile */
+  .main-header__layout.action .main-header__inner .menuTrigger {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   body[data-menu='fixed'] .main-header__layout,
   body[data-menu='sticky'] .main-header__layout,
   body.admin-bar[data-menu='fixed'] .main-header__layout,

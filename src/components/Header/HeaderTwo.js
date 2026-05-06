@@ -40,6 +40,15 @@ const HeaderTwo = (props) => {
   }, []);
 
   useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key !== 'Escape') return;
+      setMenuOpen(false);
+    };
+    if (menuOpen) window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen]);
+
+  useEffect(() => {
     // Adjust main content bottom margin based on footer height
     const handleResize = () => {
       const contentPart = document.querySelector('.ms-main');
@@ -99,6 +108,16 @@ const HeaderTwo = (props) => {
               <nav className={`main-header__nav js-main-header__nav main-header__default ${menuOpen ? 'is_mobile main-header__nav--is-visible' : ''}`} id="main-header-nav" aria-labelledby="primary-menu">
                 <ul id="primary-menu" className="navbar-nav">
                   <MenuItems />
+                  <li className="menu-item ms-mobile-only">
+                    <button
+                      type="button"
+                      className="ms-menu-close-item"
+                      aria-label="Close menu"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </li>
                 </ul>
               </nav>
               <div
@@ -182,16 +201,6 @@ const HeaderTwo = (props) => {
                 </div>
               </div>
 
-              <button
-                className="main-header__nav-trigger js-main-header__nav-trigger menu-default"
-                aria-label="Toggle menu"
-                aria-expanded={menuOpen ? 'true' : 'false'}
-                aria-controls="main-header-nav"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <span>Menu</span>
-                <i className="main-header__nav-trigger-icon" aria-hidden="true"></i>
-              </button>
             </div>
           </div>
         </div>
