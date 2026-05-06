@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -14,6 +14,7 @@ const HeaderTwo = (props) => {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const menuOpenRef = useRef(menuOpen);
 
   const [home, setHome] = useState(false);
   const [about, setAbout] = useState(false);
@@ -30,14 +31,33 @@ const HeaderTwo = (props) => {
   };
 
   useEffect(() => {
-    // Sticky header on scroll
+    menuOpenRef.current = menuOpen;
+  }, [menuOpen]);
+
+  useEffect(() => {
+    // Sticky header on scroll (freeze while mobile menu is open — ref avoids stale listener between renders)
     const toggleVisibility = () => {
+      if (menuOpenRef.current) return;
       setIsVisible(window.pageYOffset > 100);
     };
 
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
+
+  useEffect(() => {
+    if (menuOpen) return;
+    setIsVisible(window.pageYOffset > 100);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const onKeyDown = (e) => {
@@ -71,7 +91,7 @@ const HeaderTwo = (props) => {
   return (
     <>
       <header>
-        <div className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''}`}>
+        <div className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''}`}>
           <div className={`main-header__layout ${isVisible ? 'action' : 'top'}`}>
             <div className="main-header__inner">
               <div className="main-header__logo">
@@ -121,17 +141,21 @@ const HeaderTwo = (props) => {
                 </ul>
               </nav>
               <div
-                className="menuTrigger"
+                className={`menuTrigger${menuOpen ? ' menuTrigger--hidden-when-open' : ''}`}
                 role="button"
-                tabIndex={0}
+                tabIndex={menuOpen ? -1 : 0}
                 aria-label="Toggle menu"
                 aria-expanded={menuOpen ? 'true' : 'false'}
                 aria-controls="main-header-nav"
-                onClick={() => setMenuOpen(!menuOpen)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setMenuOpen((prev) => !prev);
+                }}
                 onKeyDown={(e) => {
                   if (e.key !== 'Enter' && e.key !== ' ') return;
                   e.preventDefault();
-                  setMenuOpen(!menuOpen);
+                  setMenuOpen((prev) => !prev);
                 }}
               />
               <div className="main-header--widgets">

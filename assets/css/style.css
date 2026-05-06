@@ -5871,6 +5871,25 @@ html:not(.js) .f-header__nav {
   transition-duration: 0.3s;
 }
 
+/* Drawer open: keep hamburger hidden even when header gets :hover (higher specificity than rule above) */
+.main-header__layout.action:hover .menuTrigger.menuTrigger--hidden-when-open {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.main-header__layout.action:hover .menuTrigger.menuTrigger--hidden-when-open::before,
+.main-header__layout.action:hover .menuTrigger.menuTrigger--hidden-when-open::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Mobile drawer: never apply desktop “slide nav up” transform to overlay links */
+.main-header__layout.action .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item,
+.main-header__layout.action:hover .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item {
+  transform: none !important;
+}
+
 .main-header__layout.action:hover .main-header__logo {
   transform: translateY(0);
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -5966,6 +5985,59 @@ html:not(.js) .f-header__nav {
 .main-header__layout.action:hover .main-header__cart:nth-child(12),
 .main-header__layout.action:hover .header__search-icon:nth-child(12) {
   transition-delay: 0.6s;
+}
+
+/*
+ * Drawer open (.ms-mobile-nav-open on .main-header).
+ * IMPORTANT: React uses .layout.top before scroll and .layout.action after — older rules
+ * only targeted .action, so at the hero (top) overrides never ran and .top .menuTrigger
+ * lines came back. Also the overlay sits below the header strip, so :hover on .layout
+ * is lost when the pointer is over the panel — desktop transforms must stay neutralized.
+ */
+.main-header.ms-mobile-nav-open .menuTrigger {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.main-header.ms-mobile-nav-open .menuTrigger::before,
+.main-header.ms-mobile-nav-open .menuTrigger::after {
+  content: none !important;
+  display: none !important;
+}
+
+.main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  z-index: 10050 !important;
+}
+
+.main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible li,
+.main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item {
+  transform: none !important;
+}
+
+/* Drawer open: keep logo + widgets (theme / search) visible — collapsed header uses translateY off-screen when .layout.action loses :hover */
+.main-header.ms-mobile-nav-open .main-header__layout.action .main-header__inner .main-header__logo,
+.main-header.ms-mobile-nav-open .main-header__layout.action:hover .main-header__inner .main-header__logo {
+  transform: none !important;
+}
+
+.main-header.ms-mobile-nav-open .main-header__layout.action .main-header__inner .ms_theme_mode,
+.main-header.ms-mobile-nav-open .main-header__layout.action .main-header__inner .header__search-icon,
+.main-header.ms-mobile-nav-open .main-header__layout.action .main-header__inner .main-header__cart,
+.main-header.ms-mobile-nav-open .main-header__layout.action:hover .main-header__inner .ms_theme_mode,
+.main-header.ms-mobile-nav-open .main-header__layout.action:hover .main-header__inner .header__search-icon,
+.main-header.ms-mobile-nav-open .main-header__layout.action:hover .main-header__inner .main-header__cart {
+  transform: none !important;
+}
+
+.main-header.ms-mobile-nav-open .main-header__layout.action .main-header__inner .main-header--widgets {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 @media only screen and (max-width: 1023px) {
@@ -6449,6 +6521,17 @@ body.masonry[data-theme=light] .main-header__nav-trigger {
     cursor: pointer;
     pointer-events: auto;
     z-index: 6;
+  }
+
+  .main-header__layout .main-header__inner .menuTrigger.menuTrigger--hidden-when-open {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .main-header__layout .main-header__inner .menuTrigger.menuTrigger--hidden-when-open::before,
+  .main-header__layout .main-header__inner .menuTrigger.menuTrigger--hidden-when-open::after {
+    content: none !important;
   }
 
   .main-header__nav {
