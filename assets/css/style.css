@@ -11412,6 +11412,8 @@ Descr: Contact block w/ info about how to get in touch
     -ms-overflow-style: none;
     /* for Internet Explorer, Edge */
     overflow-x: scroll;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
   }
   .ms-woocommerce-product-category .product-category {
     flex-shrink: 0;

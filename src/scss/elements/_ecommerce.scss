@@ -563,6 +563,8 @@
         margin-bottom: 1.5rem;
         -ms-overflow-style: none; /* for Internet Explorer, Edge */
         overflow-x: scroll;
+        scrollbar-width: none; /* Firefox */
+        scrollbar-color: transparent transparent; /* Firefox */
 
         .product-category {
             flex-shrink: 0;
