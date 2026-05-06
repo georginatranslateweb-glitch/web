@@ -2129,7 +2129,7 @@ body[data-theme=dark] .ms-footer {
 }
 
 body[data-theme=light] .ms-footer {
-  background-color: #f2f2f2;
+  background-color: #99301e;
 }
 
 iframe {
@@ -19504,7 +19504,7 @@ Descr: Sticky social sharing bar
 }
 
 .ms-footer {
-  background-color: #f7f7f7;
+  background-color: #99301e;
   padding-top: 40px;
 }
 
