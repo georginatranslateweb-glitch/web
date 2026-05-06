@@ -211,6 +211,28 @@
   color: rgba(43, 43, 43, 0.92);
 }
 
+/*
+ * Home 5: barra fija = .main-header__layout. Su ::before (del theme) anima opacity con fluidez;
+ * interpolar background-color en hsla() con variables suele verse a tirones en algunos navegadores.
+ */
+body.page-home-5[data-menu=fixed] .main-header {
+  background-color: transparent;
+}
+
+body.page-home-5[data-menu=fixed] .main-header .main-header__layout {
+  background-color: transparent;
+}
+
+body.page-home-5[data-menu=fixed] .main-header .main-header__layout::before {
+  background-color: var(--color-bg) !important;
+  opacity: 0.97 !important;
+  transition: opacity 0.35s ease !important;
+}
+
+body.page-home-5[data-menu=fixed] .main-header.show-bg .main-header__layout::before {
+  opacity: 0.82 !important;
+}
+
 /* After the hero, sections should be solid white (as before) */
 .ms-main .ms-page-content .services-area-2,
 .ms-main .ms-page-content .portfolio-area-2,
