@@ -1,0 +1,14 @@
+{
+  "homeFive": {
+    "banner": {
+      "title": "Donde el lenguaje se convierte en comprensión.",
+      "gridValue": "Texto de ejemplo",
+      "labels": {
+        "meaning": "Sentido",
+        "clarity": "Claridad",
+        "care": "Cuidado",
+        "culture": "Cultura"
+      }
+    }
+  }
+}

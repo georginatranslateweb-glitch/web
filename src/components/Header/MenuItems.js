@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 const MenuItems = (props) => {
     const { parentMenu } = props;
 
-    const location = useRouter();
+    const { pathname } = useRouter();
+    const { t } = useTranslation('navigation');
 
     const [home, setHome] = useState(false)
 	const [stories, setStories] = useState(false)
@@ -53,53 +55,53 @@ const MenuItems = (props) => {
 
     return (
         <>
-            <li className={parentMenu === 'home' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title="Home" onClick={() => { openMobileMenu('home'); }} className={home ? "active" : ""}><span>Home</span></Link>
+            <li className={parentMenu === 'home' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title={t('topLevel.home')} onClick={() => { openMobileMenu('home'); }} className={home ? "active" : ""}><span>{t('topLevel.home')}</span></Link>
                 <ul className={home ? "sub-menu sub-menu-open" : "sub-menu"}>
-                    <li className={location === "/home-2" ? "menu-item active" : "menu-item"}><Link href="/home-2">Home Portfolio</Link></li>
-                    <li className={location === "/" ? "menu-item active" : "menu-item"}><Link href="/">Full Page Slider</Link></li>
-                    <li className={location === "/home-3" ? "menu-item active" : "menu-item"}><Link href="/home-3">Personal Portfolio</Link></li>
-                    <li className={location === "/home-4" ? "menu-item active" : "menu-item"}><Link href="/home-4">Personal CV</Link></li>
-                    <li className={location === "/home-5" ? "menu-item active" : "menu-item"}><Link href="/home-5">Creative Agency</Link></li>
-                    <li className={location === "/home-6" ? "menu-item active" : "menu-item"}><Link href="/home-6">Business &amp; Corporate</Link></li>
+                    <li className={pathname === "/home-2" ? "menu-item active" : "menu-item"}><Link href="/home-2">{t('homeSub.portfolio')}</Link></li>
+                    <li className={pathname === "/" ? "menu-item active" : "menu-item"}><Link href="/">{t('homeSub.fullPageSlider')}</Link></li>
+                    <li className={pathname === "/home-3" ? "menu-item active" : "menu-item"}><Link href="/home-3">{t('homeSub.personalPortfolio')}</Link></li>
+                    <li className={pathname === "/home-4" ? "menu-item active" : "menu-item"}><Link href="/home-4">{t('homeSub.personalCv')}</Link></li>
+                    <li className={pathname === "/home-5" ? "menu-item active" : "menu-item"}><Link href="/home-5">{t('homeSub.creativeAgency')}</Link></li>
+                    <li className={pathname === "/home-6" ? "menu-item active" : "menu-item"}><Link href="/home-6">{t('homeSub.businessCorporate')}</Link></li>
                 </ul>
             </li>
-            <li className={parentMenu === 'stories' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title="Stories" onClick={() => { openMobileMenu('stories'); }} className={stories ? "active" : ""}><span>Stories</span></Link>
+            <li className={parentMenu === 'stories' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title={t('topLevel.stories')} onClick={() => { openMobileMenu('stories'); }} className={stories ? "active" : ""}><span>{t('topLevel.stories')}</span></Link>
                 <ul className={stories ? "sub-menu sub-menu-open" : "sub-menu"}>
-                    <li className={location === "/blog-right-sidebar" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-right-sidebar">Blog Right Sidebar</Link></li>
-                    <li className={location === "/blog" ? "menu-item active" : "menu-item"}><Link href="/blog">Blog Card</Link></li>
-                    <li className={location === "/blog/blog-left-thumb" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-left-thumb">Blog List Left Thumb</Link></li>
-                    <li className={location === "/blog/blog-random-thumb" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-random-thumb">Blog List Random Thumb</Link></li>
-                    <li className={location === "/blog/blog-right-thumb" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-right-thumb">Blog List Right Thumb</Link></li>
-                    <li className={location === "/blog/[]" ? "menu-item active" : "menu-item"}><Link href="/blog/ui-vs-ux-whats-the-difference">Blog Single</Link></li>
+                    <li className={pathname === "/blog/blog-right-sidebar" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-right-sidebar">{t('storiesSub.blogRightSidebar')}</Link></li>
+                    <li className={pathname === "/blog" ? "menu-item active" : "menu-item"}><Link href="/blog">{t('storiesSub.blogCard')}</Link></li>
+                    <li className={pathname === "/blog/blog-left-thumb" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-left-thumb">{t('storiesSub.blogListLeftThumb')}</Link></li>
+                    <li className={pathname === "/blog/blog-random-thumb" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-random-thumb">{t('storiesSub.blogListRandomThumb')}</Link></li>
+                    <li className={pathname === "/blog/blog-right-thumb" ? "menu-item active" : "menu-item"}><Link href="/blog/blog-right-thumb">{t('storiesSub.blogListRightThumb')}</Link></li>
+                    <li className={pathname === '/blog/ui-vs-ux-whats-the-difference' ? "menu-item active" : "menu-item"}><Link href="/blog/ui-vs-ux-whats-the-difference">{t('storiesSub.blogSingle')}</Link></li>
                 </ul>
             </li>
-            <li className={parentMenu === 'works' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title="Works" onClick={() => { openMobileMenu('works'); }} className={works ? "active" : ""}><span>Works</span></Link>
+            <li className={parentMenu === 'works' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title={t('topLevel.works')} onClick={() => { openMobileMenu('works'); }} className={works ? "active" : ""}><span>{t('topLevel.works')}</span></Link>
                 <ul className={works ? "sub-menu sub-menu-open" : "sub-menu"}>
-                    <li className={location === "/project" ? "menu-item active" : "menu-item"}><Link href="/project">List Style</Link></li>
-                    <li className={location === "/project/project-standard" ? "menu-item active" : "menu-item"}><Link href="/project/project-standard">Grid Standard</Link></li>
-                    <li className={location === "/project/project-grid" ? "menu-item active" : "menu-item"}><Link href="/project/project-grid">Grid Style 1</Link></li>
-                    <li className={location === "/project/project-grid-2" ? "menu-item active" : "menu-item"}><Link href="/project/project-grid-2">Grid Style 2</Link></li>
-                    <li className={location === "/project/project-masonary" ? "menu-item active" : "menu-item"}><Link href="/project/project-masonary">Grid Masonry</Link></li>
-                    <li className={location === "/project/project-details" ? "menu-item active" : "menu-item"}><Link href="/project/freezing-birthday">Project Single</Link></li>
+                    <li className={pathname === "/project" ? "menu-item active" : "menu-item"}><Link href="/project">{t('worksSub.listStyle')}</Link></li>
+                    <li className={pathname === "/project/project-standard" ? "menu-item active" : "menu-item"}><Link href="/project/project-standard">{t('worksSub.gridStandard')}</Link></li>
+                    <li className={pathname === "/project/project-grid" ? "menu-item active" : "menu-item"}><Link href="/project/project-grid">{t('worksSub.gridStyle1')}</Link></li>
+                    <li className={pathname === "/project/project-grid-2" ? "menu-item active" : "menu-item"}><Link href="/project/project-grid-2">{t('worksSub.gridStyle2')}</Link></li>
+                    <li className={pathname === "/project/project-masonary" ? "menu-item active" : "menu-item"}><Link href="/project/project-masonary">{t('worksSub.gridMasonry')}</Link></li>
+                    <li className={pathname === '/project/freezing-birthday' ? "menu-item active" : "menu-item"}><Link href="/project/freezing-birthday">{t('worksSub.projectSingle')}</Link></li>
                 </ul>
             </li>
-            <li className={parentMenu === 'page' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title="Page" onClick={() => { openMobileMenu('page'); }} className={page ? "active" : ""}><span>Page</span></Link>
+            <li className={parentMenu === 'page' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title={t('topLevel.page')} onClick={() => { openMobileMenu('page'); }} className={page ? "active" : ""}><span>{t('topLevel.page')}</span></Link>
                 <ul className={page ? "sub-menu sub-menu-open" : "sub-menu"}>
-                    <li className={location === "/about" ? "menu-item active" : "menu-item"}><Link href="/about">About Us</Link></li>
-                    <li className={location === "/team" ? "menu-item active" : "menu-item"}><Link href="/team">Team Page</Link></li>
-                    <li className={location === "/image-gallery" ? "menu-item active" : "menu-item"}><Link href="/image-gallery">Image Gallery</Link></li>
-                    <li className={location === "/services" ? "menu-item active" : "menu-item"}><Link href="/services">Services</Link></li>
-                    <li className={location === "/404" ? "menu-item active" : "menu-item"}><Link href="/404">Page 404</Link></li>
+                    <li className={pathname === "/about" ? "menu-item active" : "menu-item"}><Link href="/about">{t('pageSub.aboutUs')}</Link></li>
+                    <li className={pathname === "/team" ? "menu-item active" : "menu-item"}><Link href="/team">{t('pageSub.teamPage')}</Link></li>
+                    <li className={pathname === "/image-gallery" ? "menu-item active" : "menu-item"}><Link href="/image-gallery">{t('pageSub.imageGallery')}</Link></li>
+                    <li className={pathname === "/services" ? "menu-item active" : "menu-item"}><Link href="/services">{t('pageSub.services')}</Link></li>
+                    <li className={pathname === "/404" ? "menu-item active" : "menu-item"}><Link href="/404">{t('pageSub.page404')}</Link></li>
                 </ul>
             </li>
-            <li className={location === "/contact" ? "menu-item active" : "menu-item"}><Link href="/contact" title="Contact"><span>Contact</span></Link></li>
-            <li className={parentMenu === 'shop' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title="Shop" onClick={() => { openMobileMenu('shop'); }} className={shop ? "active" : ""}><span>Shop</span></Link>
+            <li className={pathname === "/contact" ? "menu-item active" : "menu-item"}><Link href="/contact" title={t('topLevel.contact')}><span>{t('topLevel.contact')}</span></Link></li>
+            <li className={parentMenu === 'shop' ? 'menu-item menu-item-has-children active' : 'menu-item menu-item-has-children'}><Link href="#" title={t('topLevel.shop')} onClick={() => { openMobileMenu('shop'); }} className={shop ? "active" : ""}><span>{t('topLevel.shop')}</span></Link>
                 <ul className={shop ? "sub-menu sub-menu-open" : "sub-menu"}>
-                    <li className={location === "/shop" ? "menu-item active" : "menu-item"}><Link href="/shop">Shop Page</Link></li>
-                    <li className={location === "/shop/[]" ? "menu-item active" : "menu-item"}><Link href="/shop/run-max-88">Single Product</Link></li>
-                    <li className={location === "/shop/cart" ? "menu-item active" : "menu-item"}><Link href="/shop/cart">Cart</Link></li>
-                    <li className={location === "/shop/checkout" ? "menu-item active" : "menu-item"}><Link href="/shop/checkout">Checkout</Link></li>
-                    <li className={location === "/shop/account" ? "menu-item active" : "menu-item"}><Link href="/shop/account">My Account</Link></li>
+                    <li className={pathname === "/shop" ? "menu-item active" : "menu-item"}><Link href="/shop">{t('shopSub.shopPage')}</Link></li>
+                    <li className={pathname === '/shop/run-max-88' ? "menu-item active" : "menu-item"}><Link href="/shop/run-max-88">{t('shopSub.singleProduct')}</Link></li>
+                    <li className={pathname === "/shop/cart" ? "menu-item active" : "menu-item"}><Link href="/shop/cart">{t('shopSub.cart')}</Link></li>
+                    <li className={pathname === "/shop/checkout" ? "menu-item active" : "menu-item"}><Link href="/shop/checkout">{t('shopSub.checkout')}</Link></li>
+                    <li className={pathname === "/shop/account" ? "menu-item active" : "menu-item"}><Link href="/shop/account">{t('shopSub.myAccount')}</Link></li>
                 </ul>
             </li>
         </>

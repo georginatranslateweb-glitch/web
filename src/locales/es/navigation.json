@@ -1,0 +1,48 @@
+{
+  "topLevel": {
+    "home": "Inicio",
+    "stories": "Historias",
+    "works": "Proyectos",
+    "page": "Página",
+    "contact": "Contacto",
+    "shop": "Tienda"
+  },
+  "homeSub": {
+    "portfolio": "Inicio portafolio",
+    "fullPageSlider": "Slider a página completa",
+    "personalPortfolio": "Portafolio personal",
+    "personalCv": "CV personal",
+    "creativeAgency": "Agencia creativa",
+    "businessCorporate": "Empresas y corporativo"
+  },
+  "storiesSub": {
+    "blogRightSidebar": "Blog barra lateral derecha",
+    "blogCard": "Blog en tarjetas",
+    "blogListLeftThumb": "Lista blog miniatura izquierda",
+    "blogListRandomThumb": "Lista blog miniatura aleatoria",
+    "blogListRightThumb": "Lista blog miniatura derecha",
+    "blogSingle": "Entrada individual"
+  },
+  "worksSub": {
+    "listStyle": "Estilo lista",
+    "gridStandard": "Cuadrícula estándar",
+    "gridStyle1": "Cuadrícula estilo 1",
+    "gridStyle2": "Cuadrícula estilo 2",
+    "gridMasonry": "Cuadrícula mosaico",
+    "projectSingle": "Proyecto individual"
+  },
+  "pageSub": {
+    "aboutUs": "Sobre nosotros",
+    "teamPage": "Equipo",
+    "imageGallery": "Galería de imágenes",
+    "services": "Servicios",
+    "page404": "Página 404"
+  },
+  "shopSub": {
+    "shopPage": "Tienda",
+    "singleProduct": "Producto individual",
+    "cart": "Carrito",
+    "checkout": "Pago",
+    "myAccount": "Mi cuenta"
+  }
+}

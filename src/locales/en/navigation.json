@@ -1,0 +1,48 @@
+{
+  "topLevel": {
+    "home": "Home",
+    "stories": "Stories",
+    "works": "Works",
+    "page": "Page",
+    "contact": "Contact",
+    "shop": "Shop"
+  },
+  "homeSub": {
+    "portfolio": "Home Portfolio",
+    "fullPageSlider": "Full Page Slider",
+    "personalPortfolio": "Personal Portfolio",
+    "personalCv": "Personal CV",
+    "creativeAgency": "Creative Agency",
+    "businessCorporate": "Business & Corporate"
+  },
+  "storiesSub": {
+    "blogRightSidebar": "Blog Right Sidebar",
+    "blogCard": "Blog Card",
+    "blogListLeftThumb": "Blog List Left Thumb",
+    "blogListRandomThumb": "Blog List Random Thumb",
+    "blogListRightThumb": "Blog List Right Thumb",
+    "blogSingle": "Blog Single"
+  },
+  "worksSub": {
+    "listStyle": "List Style",
+    "gridStandard": "Grid Standard",
+    "gridStyle1": "Grid Style 1",
+    "gridStyle2": "Grid Style 2",
+    "gridMasonry": "Grid Masonry",
+    "projectSingle": "Project Single"
+  },
+  "pageSub": {
+    "aboutUs": "About Us",
+    "teamPage": "Team Page",
+    "imageGallery": "Image Gallery",
+    "services": "Services",
+    "page404": "Page 404"
+  },
+  "shopSub": {
+    "shopPage": "Shop Page",
+    "singleProduct": "Single Product",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "myAccount": "My Account"
+  }
+}

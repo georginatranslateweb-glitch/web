@@ -1,0 +1,14 @@
+{
+  "homeFive": {
+    "banner": {
+      "title": "Where language becomes understanding.",
+      "gridValue": "Random text",
+      "labels": {
+        "meaning": "Meaning",
+        "clarity": "Clarity",
+        "care": "Care",
+        "culture": "Culture"
+      }
+    }
+  }
+}

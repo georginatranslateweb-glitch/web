@@ -1,0 +1,104 @@
+.ms-lang-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: 12px;
+}
+
+.ms-lang-dropdown__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  border: none;
+  background: transparent;
+  color: #3a4558;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ms-lang-dropdown__toggle:hover,
+.ms-lang-dropdown__toggle:focus-visible {
+  outline: none;
+  opacity: 0.85;
+}
+
+.ms-lang-dropdown__code {
+  text-transform: uppercase;
+}
+
+.ms-lang-dropdown__chevron {
+  flex-shrink: 0;
+  color: #b8956c;
+  transition: transform 0.2s ease;
+}
+
+.ms-lang-dropdown.is-open .ms-lang-dropdown__chevron {
+  transform: rotate(180deg);
+}
+
+.ms-lang-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  margin: 0;
+  padding: 6px 0;
+  min-width: 88px;
+  list-style: none;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(58, 69, 88, 0.12), 0 0 0 1px rgba(58, 69, 88, 0.06);
+  z-index: 120;
+}
+
+.ms-lang-dropdown__option {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #3a4558;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ms-lang-dropdown__option:hover,
+.ms-lang-dropdown__option:focus-visible {
+  background: rgba(58, 69, 88, 0.06);
+  outline: none;
+}
+
+.ms-lang-dropdown__option.is-active {
+  background: rgba(184, 149, 108, 0.12);
+  color: #3a4558;
+}
+
+body[data-theme='dark'] .ms-lang-dropdown__toggle {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+body[data-theme='dark'] .ms-lang-dropdown__menu {
+  background: #2a2f38;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+body[data-theme='dark'] .ms-lang-dropdown__option {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body[data-theme='dark'] .ms-lang-dropdown__option:hover,
+body[data-theme='dark'] .ms-lang-dropdown__option:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body[data-theme='dark'] .ms-lang-dropdown__option.is-active {
+  background: rgba(184, 149, 108, 0.2);
+}

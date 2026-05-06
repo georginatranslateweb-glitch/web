@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const HomeFiveBanner = () => {
+    const { t } = useTranslation('home');
+
     return (
         <>
             <div className="banner-area home-five-banner-editorial">
@@ -10,7 +13,7 @@ const HomeFiveBanner = () => {
                             <div className="col-12 col-lg-6">
                                 <div className="left-side-content">
                                     <h2 className="heading-title home-five-banner-editorial__title">
-                                        Where language becomes understanding.
+                                        {t('homeFive.banner.title')}
                                     </h2>
                                 </div>
                             </div>
@@ -27,14 +30,14 @@ const HomeFiveBanner = () => {
                                             <div className="row g-0 gx-3 gy-0 align-items-start">
                                                 <div className="col-4 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">Meaning</div>
-                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.meaning')}</div>
+                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-8 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">Clarity</div>
-                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.clarity')}</div>
+                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -44,14 +47,14 @@ const HomeFiveBanner = () => {
                                             <div className="row g-0 gx-3 gy-0 align-items-start">
                                                 <div className="col-4 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">Care</div>
-                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.care')}</div>
+                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-8 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">Culture</div>
-                                                        <div className="home-five-editorial-grid__value">Random text</div>
+                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.culture')}</div>
+                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
                                                     </div>
                                                 </div>
                                             </div>

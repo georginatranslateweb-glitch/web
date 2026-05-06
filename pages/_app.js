@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+
+import i18n from '../src/i18n';
 
 import SwiperCore, { Navigation, Pagination, Parallax } from 'swiper';
 
@@ -48,9 +51,23 @@ import "../assets/css/socicon.css";
 import "../assets/css/fonts-custom.css";
 import "../assets/css/style.css";
 import "../assets/css/home-5-hero.css";
+import "../assets/css/language-switcher.css";
 
 
 SwiperCore.use([Navigation, Pagination, Parallax]);
+
+function HtmlLangSync() {
+  useEffect(() => {
+    const sync = () => {
+      const code = (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0];
+      document.documentElement.setAttribute('lang', code);
+    };
+    sync();
+    i18n.on('languageChanged', sync);
+    return () => i18n.off('languageChanged', sync);
+  }, []);
+  return null;
+}
 
 function Layout({ children }) {
   const router = useRouter();
@@ -120,4 +137,11 @@ function Layout({ children }) {
   return <div>{children}</div>;
 }
 
-export default Layout;
+export default function App() {
+  return (
+    <>
+      <HtmlLangSync />
+      <Layout />
+    </>
+  );
+}
