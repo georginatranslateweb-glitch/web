@@ -14159,6 +14159,10 @@ Descr: Blog Sidebar style
   .ms_theme_mode .theme-toggle {
     --size: 48px;
   }
+  .ms_theme_mode .theme-toggle > svg {
+    inline-size: 24px;
+    block-size: 24px;
+  }
 }
 .ms_theme_mode .sun-and-moon {
   transition: transform 0.5s var(--ease-elastic-4);
