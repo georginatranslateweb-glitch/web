@@ -101,7 +101,20 @@ const HeaderTwo = (props) => {
                   <MenuItems />
                 </ul>
               </nav>
-              <div className='menuTrigger'></div>
+              <div
+                className="menuTrigger"
+                role="button"
+                tabIndex={0}
+                aria-label="Toggle menu"
+                aria-expanded={menuOpen ? 'true' : 'false'}
+                aria-controls="main-header-nav"
+                onClick={() => setMenuOpen(!menuOpen)}
+                onKeyDown={(e) => {
+                  if (e.key !== 'Enter' && e.key !== ' ') return;
+                  e.preventDefault();
+                  setMenuOpen(!menuOpen);
+                }}
+              />
               <div className="main-header--widgets">
                 <div className="ms_theme_mode">
                   <div className="ms_tm--inner">

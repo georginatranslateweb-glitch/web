@@ -5491,6 +5491,10 @@ body.masonry[data-theme=light] .main-header__nav-trigger {
     display: none;
   }
 
+  .main-header__layout .menuTrigger {
+    pointer-events: none;
+  }
+
   /* Mobile Submenu
   --------------------------------------------- */
   .main-header__layout .main-header__nav .navbar-nav .sub-menu {
@@ -5625,11 +5629,13 @@ body.masonry[data-theme=light] .main-header__nav-trigger {
   }
 
   .main-header__nav-trigger {
-    padding: 0;
-    border: none;
-    display: flex;
-    align-items: center;
-    background-color: transparent;
+    display: none !important;
+  }
+
+  .main-header__layout .main-header__inner .menuTrigger[role='button'] {
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 6;
   }
 
   .main-header__nav {

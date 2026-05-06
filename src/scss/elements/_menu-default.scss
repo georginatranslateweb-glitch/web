@@ -570,6 +570,10 @@ body[data-theme=light] .main-header__nav-trigger{
     .main-header__nav-trigger {
       display: none;
     }
+
+    .main-header__layout .menuTrigger {
+      pointer-events: none;
+    }
   }
 
 
@@ -738,10 +742,13 @@ body[data-theme=light] .main-header__nav-trigger{
     }
   }
   .main-header__nav-trigger {
-    border: none;
-    display: flex !important;
-    align-items: center;
-    background-color: transparent;
+    display: none !important;
+  }
+
+  .main-header__layout .main-header__inner .menuTrigger[role='button'] {
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 6;
   }
   .main-header__nav {
     margin-top: 15px;

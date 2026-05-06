@@ -72,7 +72,20 @@ const HeaderThree = ({ headerClass, headerLogo, headerLogoLight }) => {
               </ul>
             </nav>
 
-            <div className="menuTrigger"></div>
+            <div
+              className="menuTrigger"
+              role="button"
+              tabIndex={0}
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen ? 'true' : 'false'}
+              aria-controls="main-header-nav"
+              onClick={() => setMenuOpen(!menuOpen)}
+              onKeyDown={(e) => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                e.preventDefault();
+                setMenuOpen(!menuOpen);
+              }}
+            />
 
             {/* Widgets */}
             <div className="main-header--widgets">
