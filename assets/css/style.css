@@ -19525,6 +19525,7 @@ Descr: Sticky social sharing bar
   font-size: 72px;
   line-height: 1.4;
   letter-spacing: 1px;
+  font-weight: 400;
   color: #ede9db;
 }
 
@@ -19537,7 +19538,7 @@ Descr: Sticky social sharing bar
 .ms-footer .container .footer-title h1 .btn-footer {
   font-size: 22px;
   border: 1px solid;
-  border-radius: 40px;
+  border-radius: 0;
   font-weight: 400;
   position: relative;
   white-space: nowrap;

@@ -81,6 +81,7 @@
                 font-size: 72px;
                 line-height: 1.4;
                 letter-spacing: 1px;
+                font-weight: 400;
                 color: #ede9db;
                 @media(max-width:767px){
                     font-size: 32px;
@@ -88,7 +89,7 @@
                 .btn-footer{
                     font-size: 22px;
                     border: 1px solid;
-                    border-radius: 40px;
+                    border-radius: 0;
                     font-weight: 400;
                     position: relative;
                     white-space: nowrap;

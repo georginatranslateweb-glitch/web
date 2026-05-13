@@ -11,7 +11,7 @@ const Footer = (props) => {
             <footer className={footerClass ? footerClass : 'ms-footer ms-footer--template'}>
                 <section className="container footer-container" data-parallax="on">
                     <div className="footer-title text-center">
-                        <h1>Got a <strong>PROJECT</strong> <br/> <strong>IN MIND?</strong> <a href="#" className="btn-footer">Let's Talk <i className="fas fa-arrow-right"></i></a></h1>
+                        <h1>Need <span className="font-highlight">TRANSLATION <br /> SERVICES?</span> <a href="#" className="btn-footer">Let's Talk <i className="fas fa-arrow-right"></i></a></h1>
                     </div>
                     <div className="social-area">
                         <div className="row area-inner">
@@ -70,7 +70,7 @@ const Footer = (props) => {
                         </div>
                     </div>
                 </section>
-            </footer>
+            </footer >
             <ScrollToTop />
         </>
     );
