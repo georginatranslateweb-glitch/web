@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import i18n from '../src/i18n';
@@ -55,6 +55,21 @@ import "../assets/css/language-switcher.css";
 
 
 SwiperCore.use([Navigation, Pagination, Parallax]);
+
+function I18nPersistedLanguage() {
+  useLayoutEffect(() => {
+    try {
+      const raw = window.localStorage.getItem('i18nextLng');
+      const code = raw ? raw.split('-')[0] : '';
+      if (code && ['en', 'es'].includes(code) && code !== i18n.language) {
+        void i18n.changeLanguage(code);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+  return null;
+}
 
 function HtmlLangSync() {
   useEffect(() => {
@@ -140,6 +155,7 @@ function Layout({ children }) {
 export default function App() {
   return (
     <>
+      <I18nPersistedLanguage />
       <HtmlLangSync />
       <Layout />
     </>

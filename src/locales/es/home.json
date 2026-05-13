@@ -1,7 +1,7 @@
 {
   "homeFive": {
     "banner": {
-      "title": "Donde el lenguaje se convierte en comprensión.",
+      "title": "Donde el <highlight>lenguaje</highlight> se convierte en comprensión.",
       "gridValue": "Texto de ejemplo",
       "labels": {
         "meaning": "Sentido",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 const HomeFiveBanner = () => {
     const { t } = useTranslation('home');
@@ -13,7 +13,13 @@ const HomeFiveBanner = () => {
                             <div className="col-12 col-lg-6">
                                 <div className="left-side-content">
                                     <h2 className="heading-title home-five-banner-editorial__title">
-                                        {t('homeFive.banner.title')}
+                                        <Trans
+                                            ns="home"
+                                            i18nKey="homeFive.banner.title"
+                                            components={{
+                                                highlight: <span className="home-five-banner-editorial__title-highlight" />,
+                                            }}
+                                        />
                                     </h2>
                                 </div>
                             </div>

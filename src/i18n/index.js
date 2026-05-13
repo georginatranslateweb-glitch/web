@@ -28,13 +28,11 @@ const resources = {
 };
 
 if (!i18n.isInitialized) {
-  if (typeof window !== 'undefined') {
-    const LanguageDetector = require('i18next-browser-languagedetector').default;
-    i18n.use(LanguageDetector);
-  }
-
+  // Same initial language on server and first client render (avoids hydration mismatch).
+  // Persisted preference is applied in _app after mount (useLayoutEffect).
   i18n.use(initReactI18next).init({
     resources,
+    lng: 'en',
     fallbackLng: 'en',
     supportedLngs: ['en', 'es'],
     defaultNS: 'common',
@@ -45,16 +43,17 @@ if (!i18n.isInitialized) {
     react: {
       useSuspense: false,
     },
-    ...(typeof window !== 'undefined'
-      ? {
-          detection: {
-            order: ['localStorage'],
-            caches: ['localStorage'],
-            lookupLocalStorage: 'i18nextLng',
-          },
-        }
-      : {}),
   });
+
+  if (typeof window !== 'undefined') {
+    i18n.on('languageChanged', (lng) => {
+      try {
+        window.localStorage.setItem('i18nextLng', lng);
+      } catch {
+        /* ignore quota / private mode */
+      }
+    });
+  }
 }
 
 export default i18n;

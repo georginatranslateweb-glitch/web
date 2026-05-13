@@ -162,6 +162,10 @@
   line-height: 1.15;
 }
 
+.ms-main .ms-page-content .home-five-banner-editorial__title-highlight {
+  font-family: var(--font-highlight, "Apple Garamond", Georgia, "Times New Roman", serif);
+}
+
 .ms-main .ms-page-content .home-five-banner-editorial__caption {
   font-size: 0.875rem;
   line-height: 1.45;
