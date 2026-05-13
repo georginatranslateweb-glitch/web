@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
@@ -10,7 +9,16 @@ import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
 
 const HeaderTwo = (props) => {
-  const { headerClass, parentMenu, headerLogo, headerLogoLight, deferNavUntilScroll } = props;
+  const {
+    headerClass,
+    parentMenu,
+    headerLogo,
+    headerLogoLight,
+    deferNavUntilScroll,
+    chromePeek = false,
+    onChromePeekBridgeEnter,
+    onChromePeekBridgeLeave,
+  } = props;
   const { t } = useTranslation('header');
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -71,44 +79,78 @@ const HeaderTwo = (props) => {
   }, []);
 
   const navChromeDeferred =
-    deferNavUntilScroll && !isVisible && !menuOpen;
+    deferNavUntilScroll && !isVisible && !menuOpen && !chromePeek;
+
+  const peekBridgeActive =
+    deferNavUntilScroll && !isVisible && !menuOpen && (onChromePeekBridgeEnter || onChromePeekBridgeLeave);
+
+  const toggleNavFromLogo = () => {
+    if (typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches) {
+      return;
+    }
+    setMenuOpen((prev) => !prev);
+  };
+
+  const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
   return (
     <>
       <header>
         <div
           className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''} ${navChromeDeferred ? 'ms-header-chrome-deferred' : ''}`}
+          onMouseEnter={peekBridgeActive ? onChromePeekBridgeEnter : undefined}
+          onMouseLeave={peekBridgeActive ? onChromePeekBridgeLeave : undefined}
         >
           <div className={`main-header__layout ${isVisible ? 'action' : 'top'}`}>
             <div className="main-header__inner">
               <div className="main-header__logo">
                 <div className="logo-dark">
-                  <Link href="/">
+                  <button
+                    type="button"
+                    className="ms-header-logo-trigger"
+                    aria-label={logoToggleA11y}
+                    aria-expanded={menuOpen ? 'true' : 'false'}
+                    aria-controls="main-header-nav"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleNavFromLogo();
+                    }}
+                  >
                     <span className="ms-header-logo">
                       <Image
                         src={headerLogo ? headerLogo : Logo}
-                        alt={t('logoAlt')}
+                        alt=""
                         fill
                         sizes="160px"
                         priority
                         style={{ objectFit: 'contain' }}
                       />
                     </span>
-                  </Link>
+                  </button>
                 </div>
                 <div className="logo-light">
-                  <Link href="/">
+                  <button
+                    type="button"
+                    className="ms-header-logo-trigger"
+                    aria-label={logoToggleA11y}
+                    aria-expanded={menuOpen ? 'true' : 'false'}
+                    aria-controls="main-header-nav"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleNavFromLogo();
+                    }}
+                  >
                     <span className="ms-header-logo">
                       <Image
                         src={headerLogoLight ? headerLogoLight : LogoLight}
-                        alt={t('logoAlt')}
+                        alt=""
                         fill
                         sizes="160px"
                         priority
                         style={{ objectFit: 'contain' }}
                       />
                     </span>
-                  </Link>
+                  </button>
                 </div>
               </div>
 

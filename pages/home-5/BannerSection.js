@@ -1,5 +1,4 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
@@ -19,8 +18,9 @@ function homeFiveBannerDefaults(lang) {
     return bundle.homeFive.banner;
 }
 
-const HomeFiveBanner = () => {
+const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave }) => {
     const { t, i18n } = useTranslation('home');
+    const { t: tHeader } = useTranslation('header');
     const d = homeFiveBannerDefaults(i18n.resolvedLanguage || i18n.language);
     const titleLine1 = t('homeFive.banner.titleLine1', { defaultValue: d.titleLine1 });
     const titleLine2Raw = t('homeFive.banner.titleLine2', { defaultValue: d.titleLine2 || '' });
@@ -151,8 +151,8 @@ const HomeFiveBanner = () => {
                         </div>
                     </div>
                 </div>
-                <Link
-                    href="/"
+                <button
+                    type="button"
                     className={
                         verticalLogoPos != null
                             ? 'home-five-hero-vertical-logo home-five-hero-vertical-logo--placed'
@@ -166,18 +166,24 @@ const HomeFiveBanner = () => {
                               }
                             : undefined
                     }
-                    aria-label={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
+                    aria-label={`${t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })} — ${tHeader('toggleMenu')}`}
+                    onMouseEnter={onChromePeekEnter}
+                    onMouseLeave={onChromePeekLeave}
+                    onFocus={onChromePeekEnter}
+                    onBlur={onChromePeekLeave}
+                    onTouchStart={onChromePeekEnter}
+                    onTouchEnd={onChromePeekLeave}
                 >
                     <Image
                         className="home-five-hero-vertical-logo__img"
                         src="/images/logo/georgina-robledo-vertical.png"
                         width={1286}
                         height={4169}
-                        alt={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
+                        alt=""
                         sizes="(min-width: 1400px) 140px, (min-width: 992px) 12vw, 0px"
                         unoptimized
                     />
-                </Link>
+                </button>
             </div>
         </>
     );

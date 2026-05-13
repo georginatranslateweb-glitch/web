@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import MenuItems from './MenuItems';
@@ -34,6 +33,12 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const toggleNavFromLogo = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
+
   return (
     <header>
       <div className={`${headerClass || 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''}`}>
@@ -43,32 +48,52 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
             {/* Logo */}
             <div className="main-header__logo">
               <div className="logo-dark">
-                <Link href="/">
+                <button
+                  type="button"
+                  className="ms-header-logo-trigger"
+                  aria-label={logoToggleA11y}
+                  aria-expanded={menuOpen ? 'true' : 'false'}
+                  aria-controls="main-header-nav"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleNavFromLogo();
+                  }}
+                >
                   <span className="ms-header-logo">
                     <Image
                       src={headerLogo || Logo}
-                      alt={t('logoAlt')}
+                      alt=""
                       fill
                       sizes="160px"
                       priority
                       style={{ objectFit: 'contain' }}
                     />
                   </span>
-                </Link>
+                </button>
               </div>
               <div className="logo-light">
-                <Link href="/">
+                <button
+                  type="button"
+                  className="ms-header-logo-trigger"
+                  aria-label={logoToggleA11y}
+                  aria-expanded={menuOpen ? 'true' : 'false'}
+                  aria-controls="main-header-nav"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleNavFromLogo();
+                  }}
+                >
                   <span className="ms-header-logo">
                     <Image
                       src={headerLogoLight || LogoLight}
-                      alt={t('logoAlt')}
+                      alt=""
                       fill
                       sizes="160px"
                       priority
                       style={{ objectFit: 'contain' }}
                     />
                   </span>
-                </Link>
+                </button>
               </div>
             </div>
 
