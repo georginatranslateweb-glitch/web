@@ -8,7 +8,9 @@ import esHome from '../../src/locales/es/home.json';
 
 const HOME_FIVE_VERTICAL_LOGO_LG = 992;
 /** Espacio entre el borde derecho de la foto y el logo (px), fuera del contenedor / sin achicar la imagen */
-const HOME_FIVE_VERTICAL_LOGO_GAP_PX = 30;
+const HOME_FIVE_VERTICAL_LOGO_GAP_PX = 25;
+/** Misma distancia al borde superior del viewport que con `position: fixed` + top: 25px (safe-area vía CSS transform) */
+const HOME_FIVE_VERTICAL_LOGO_TOP_PX = 25;
 
 /** Fallback copy bundled so SSR / primera pintura coinciden aunque i18n tarde en marcar el ns como listo */
 function homeFiveBannerDefaults(lang) {
@@ -25,24 +27,38 @@ const HomeFiveBanner = () => {
     const titleLine2 = typeof titleLine2Raw === 'string' ? titleLine2Raw.trim() : '';
 
     const heroImageSlotRef = useRef(null);
-    const [verticalLogoLeftPx, setVerticalLogoLeftPx] = useState(null);
+    const [verticalLogoPos, setVerticalLogoPos] = useState(null);
 
     const updateVerticalLogoPosition = useCallback(() => {
         const el = heroImageSlotRef.current;
         if (typeof window === 'undefined' || !el) {
-            setVerticalLogoLeftPx(null);
+            setVerticalLogoPos(null);
             return;
         }
         if (window.innerWidth < HOME_FIVE_VERTICAL_LOGO_LG) {
-            setVerticalLogoLeftPx(null);
+            setVerticalLogoPos(null);
             return;
         }
-        const r = el.getBoundingClientRect();
-        if (r.width < 2 || r.height < 2) {
-            setVerticalLogoLeftPx(null);
+        const banner = el.closest('.banner-area');
+        if (!banner) {
+            setVerticalLogoPos(null);
             return;
         }
-        setVerticalLogoLeftPx(Math.round(r.right) + HOME_FIVE_VERTICAL_LOGO_GAP_PX);
+        const sr = el.getBoundingClientRect();
+        const br = banner.getBoundingClientRect();
+        if (sr.width < 2 || sr.height < 2) {
+            setVerticalLogoPos(null);
+            return;
+        }
+        /*
+         * Misma posición inicial que con fixed + left en viewport:
+         * viewportLeft = sr.right + GAP  =>  left_abs = viewportLeft - br.left
+         * viewportTop  = TOP_PX + safe   =>  top_abs  = viewportTop - br.top  (safe-area con transform en CSS)
+         */
+        setVerticalLogoPos({
+            left: Math.round(sr.right - br.left + HOME_FIVE_VERTICAL_LOGO_GAP_PX),
+            top: Math.round(HOME_FIVE_VERTICAL_LOGO_TOP_PX - br.top),
+        });
     }, []);
 
     useLayoutEffect(() => {
@@ -53,6 +69,10 @@ const HomeFiveBanner = () => {
         });
         if (el) {
             ro.observe(el);
+            const banner = el.closest('.banner-area');
+            if (banner) {
+                ro.observe(banner);
+            }
         }
         window.addEventListener('resize', updateVerticalLogoPosition);
         window.addEventListener('scroll', updateVerticalLogoPosition, { passive: true });
@@ -134,11 +154,18 @@ const HomeFiveBanner = () => {
                 <Link
                     href="/"
                     className={
-                        verticalLogoLeftPx != null
+                        verticalLogoPos != null
                             ? 'home-five-hero-vertical-logo home-five-hero-vertical-logo--placed'
                             : 'home-five-hero-vertical-logo'
                     }
-                    style={verticalLogoLeftPx != null ? { left: `${verticalLogoLeftPx}px` } : undefined}
+                    style={
+                        verticalLogoPos != null
+                            ? {
+                                  left: `${verticalLogoPos.left}px`,
+                                  top: `${verticalLogoPos.top}px`,
+                              }
+                            : undefined
+                    }
                     aria-label={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
                 >
                     <Image
@@ -147,7 +174,7 @@ const HomeFiveBanner = () => {
                         width={1286}
                         height={4169}
                         alt={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
-                        sizes="(min-width: 1400px) 120px, (min-width: 992px) 10vw, 0px"
+                        sizes="(min-width: 1400px) 140px, (min-width: 992px) 12vw, 0px"
                         unoptimized
                     />
                 </Link>

@@ -92,6 +92,7 @@
   align-items: stretch;
   margin: 0 !important;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area>.container {
@@ -159,13 +160,12 @@
 }
 
 /*
- * Logo vertical: fuera del .container, fixed al viewport (top 25px).
- * `left` lo define React según getBoundingClientRect().right + 30px del slot de la foto.
+ * Logo vertical: absolute en .banner-area; top/left en JS para igualar el fixed inicial
+ * y actualizar en scroll (sube con el hero). Safe-area como antes: translateY(env(...)).
  */
 .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo {
-  position: fixed;
-  top: calc(25px + env(safe-area-inset-top, 0px));
-  z-index: 1001;
+  position: absolute;
+  z-index: 5;
   line-height: 0;
   display: none;
   pointer-events: auto;
@@ -174,12 +174,13 @@
 
 .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo.home-five-hero-vertical-logo--placed {
   visibility: visible;
+  transform: translateY(env(safe-area-inset-top, 0px));
 }
 
 .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo__img {
-  width: clamp(2.85rem, 5.5vw, 5.75rem);
+  width: clamp(3.25rem, 6.25vw, 6.5rem);
   height: auto;
-  max-height: min(62vh, 34rem);
+  max-height: min(66vh, 38rem);
   object-fit: contain;
   display: block;
 }
