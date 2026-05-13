@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
 import enHome from '../../src/locales/en/home.json';
 import esHome from '../../src/locales/es/home.json';
+
+const HOME_FIVE_VERTICAL_LOGO_LG = 992;
+/** Espacio entre el borde derecho de la foto y el logo (px), fuera del contenedor / sin achicar la imagen */
+const HOME_FIVE_VERTICAL_LOGO_GAP_PX = 30;
 
 /** Fallback copy bundled so SSR / primera pintura coinciden aunque i18n tarde en marcar el ns como listo */
 function homeFiveBannerDefaults(lang) {
@@ -19,6 +23,45 @@ const HomeFiveBanner = () => {
     const titleLine1 = t('homeFive.banner.titleLine1', { defaultValue: d.titleLine1 });
     const titleLine2Raw = t('homeFive.banner.titleLine2', { defaultValue: d.titleLine2 || '' });
     const titleLine2 = typeof titleLine2Raw === 'string' ? titleLine2Raw.trim() : '';
+
+    const heroImageSlotRef = useRef(null);
+    const [verticalLogoLeftPx, setVerticalLogoLeftPx] = useState(null);
+
+    const updateVerticalLogoPosition = useCallback(() => {
+        const el = heroImageSlotRef.current;
+        if (typeof window === 'undefined' || !el) {
+            setVerticalLogoLeftPx(null);
+            return;
+        }
+        if (window.innerWidth < HOME_FIVE_VERTICAL_LOGO_LG) {
+            setVerticalLogoLeftPx(null);
+            return;
+        }
+        const r = el.getBoundingClientRect();
+        if (r.width < 2 || r.height < 2) {
+            setVerticalLogoLeftPx(null);
+            return;
+        }
+        setVerticalLogoLeftPx(Math.round(r.right) + HOME_FIVE_VERTICAL_LOGO_GAP_PX);
+    }, []);
+
+    useLayoutEffect(() => {
+        updateVerticalLogoPosition();
+        const el = heroImageSlotRef.current;
+        const ro = new ResizeObserver(() => {
+            window.requestAnimationFrame(updateVerticalLogoPosition);
+        });
+        if (el) {
+            ro.observe(el);
+        }
+        window.addEventListener('resize', updateVerticalLogoPosition);
+        window.addEventListener('scroll', updateVerticalLogoPosition, { passive: true });
+        return () => {
+            ro.disconnect();
+            window.removeEventListener('resize', updateVerticalLogoPosition);
+            window.removeEventListener('scroll', updateVerticalLogoPosition);
+        };
+    }, [updateVerticalLogoPosition, i18n.language, titleLine1, titleLine2]);
 
     return (
         <>
@@ -41,22 +84,10 @@ const HomeFiveBanner = () => {
                             </div>
                             <div className="col-lg-6 d-none d-lg-block">
                                 <div className="home-five-hero-image-column">
-                                    <div className="right-side-content home-five-bg-slot" />
-                                    <Link
-                                        href="/"
-                                        className="home-five-hero-vertical-logo"
-                                        aria-label={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
-                                    >
-                                        <Image
-                                            className="home-five-hero-vertical-logo__img"
-                                            src="/images/logo/georgina-robledo-vertical.png"
-                                            width={1286}
-                                            height={4169}
-                                            alt={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
-                                            sizes="(min-width: 1400px) 72px, (min-width: 992px) 6vw, 0px"
-                                            unoptimized
-                                        />
-                                    </Link>
+                                    <div
+                                        ref={heroImageSlotRef}
+                                        className="right-side-content home-five-bg-slot"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -100,6 +131,26 @@ const HomeFiveBanner = () => {
                         </div>
                     </div>
                 </div>
+                <Link
+                    href="/"
+                    className={
+                        verticalLogoLeftPx != null
+                            ? 'home-five-hero-vertical-logo home-five-hero-vertical-logo--placed'
+                            : 'home-five-hero-vertical-logo'
+                    }
+                    style={verticalLogoLeftPx != null ? { left: `${verticalLogoLeftPx}px` } : undefined}
+                    aria-label={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
+                >
+                    <Image
+                        className="home-five-hero-vertical-logo__img"
+                        src="/images/logo/georgina-robledo-vertical.png"
+                        width={1286}
+                        height={4169}
+                        alt={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
+                        sizes="(min-width: 1400px) 120px, (min-width: 992px) 10vw, 0px"
+                        unoptimized
+                    />
+                </Link>
             </div>
         </>
     );
