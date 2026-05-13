@@ -2345,8 +2345,9 @@ iframe {
   --font-primary-capital-letter: 1;
   --font-weight-light: 400;
   --font-weight-bold: 700;
-  --font-primary: "Apple Garamond", Georgia, "Times New Roman", serif;
-  --font-heading: "Apple Garamond", Georgia, "Times New Roman", serif;
+  --font-primary: "Red Hat Display", system-ui, -apple-system, sans-serif;
+  --font-heading: "Red Hat Display", system-ui, -apple-system, sans-serif;
+  --font-highlight: "Apple Garamond", Georgia, "Times New Roman", serif;
 }
 
 @supports (--css: variables) {

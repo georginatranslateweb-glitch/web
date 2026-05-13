@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+
 /**
- * Apple Garamond — archivos “Italic” del diseño, declarados como estilo normal
- * para que todo el texto use esa forma sin poner font-style: italic en cada lado.
+ * Red Hat Display — cuerpo y titulares (ver --font-primary / --font-heading en style.css).
  *
- * - 400 / normal → cuerpo y titulares por defecto
- * - 300 / normal → texto más fino si usás font-weight: 300
- * - 400 / italic → <em>, énfasis (usa Light Italic para que se note del cuerpo)
+ * Apple Garamond — solo resaltados: em, strong, mark y .font-highlight.
+ * Los archivos “Italic” del diseño se declaran como estilo normal donde aplica.
+ *
+ * - 300 / normal → Garamond más fino (font-weight: 300)
+ * - 400 / normal → Garamond “cursiva” como trazo normal
+ * - 400 / italic → <em> (Light Italic vía @font-face)
  */
 @font-face {
   font-family: "Apple Garamond";
@@ -28,4 +32,12 @@
   font-weight: 400;
   font-style: italic;
   font-display: swap;
+}
+
+/* Resaltados: Garamond sobre el cuerpo Red Hat Display (variable --font-highlight en :root de style.css) */
+em,
+strong,
+mark,
+.font-highlight {
+  font-family: var(--font-highlight, "Apple Garamond", Georgia, "Times New Roman", serif);
 }
