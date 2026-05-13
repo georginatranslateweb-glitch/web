@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
 import enHome from '../../src/locales/en/home.json';
@@ -38,7 +40,24 @@ const HomeFiveBanner = () => {
                                 </div>
                             </div>
                             <div className="col-lg-6 d-none d-lg-block">
-                                <div className="right-side-content home-five-bg-slot" />
+                                <div className="home-five-hero-image-column">
+                                    <div className="right-side-content home-five-bg-slot" />
+                                    <Link
+                                        href="/"
+                                        className="home-five-hero-vertical-logo"
+                                        aria-label={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
+                                    >
+                                        <Image
+                                            className="home-five-hero-vertical-logo__img"
+                                            src="/images/logo/georgina-robledo-vertical.png"
+                                            width={1286}
+                                            height={4169}
+                                            alt={t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })}
+                                            sizes="(min-width: 1400px) 72px, (min-width: 992px) 6vw, 0px"
+                                            unoptimized
+                                        />
+                                    </Link>
+                                </div>
                             </div>
                         </div>
 

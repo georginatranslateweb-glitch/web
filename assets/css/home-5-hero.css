@@ -70,7 +70,8 @@
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-bg-slot {
     /* Menos margen hacia la columna del título (izquierda); derecha/arriba/abajo algo más suaves */
     padding-left: 0;
-    padding-right: clamp(0.75rem, 2vw, 1.25rem);
+    /* El aire a la derecha de la foto lo marca el flex gap + padding de .home-five-hero-image-column (logo al costado) */
+    padding-right: 0;
     /* Pegado a la fila editorial (segunda row): sin banda bajo la foto */
     padding-bottom: 0;
     padding-top: calc(clamp(0.75rem, 2vw, 1.25rem) + var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px));
@@ -135,12 +136,65 @@
   min-height: 100%;
 }
 
-.ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-bg-slot {
+/*
+ * Columna imagen: fila [ foto | logo ], como mockup editorial (logo al costado, no superpuesto).
+ * gap + padding-inline-end con clamp() mantienen ritmo entre foto, logo y borde del contenedor.
+ */
+.ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-hero-image-column {
+  position: relative;
   flex: 1 1 auto;
   width: 100%;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  align-self: stretch;
+  overflow: visible;
+  gap: clamp(0.5rem, 1.65vw, 1.25rem);
+  padding-inline-end: clamp(0.35rem, 1.15vw, 1rem);
+  box-sizing: border-box;
+}
+
+.ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-bg-slot {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
   min-height: 100%;
   height: 100%;
   align-self: stretch;
+}
+
+/* Logo vertical: franja lateral; centrado en el eje vertical respecto al bloque de la foto */
+.ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  align-self: center;
+  line-height: 0;
+  display: none;
+  pointer-events: auto;
+}
+
+.ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo__img {
+  width: clamp(1.85rem, 3.15vw, 3.35rem);
+  height: auto;
+  max-height: min(48vh, 22rem);
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo {
+    display: block;
+  }
+}
+
+/* Móvil / layouts estrechos: sin logo aunque el markup exista en otras variantes */
+@media (max-width: 768px) {
+  .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo {
+    display: none !important;
+  }
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
@@ -295,4 +349,41 @@ body.page-home-5[data-menu=fixed] .main-header.show-bg .main-header__layout::bef
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .home-five-editorial-split {
     justify-content: center;
   }
+}
+
+/*
+ * Home-5 + HeaderTwo deferNavUntilScroll: el header completo (logo, menú,
+ * hamburger, idioma) no aparece hasta que haya scroll / aparezca el logo
+ * del hero. La página queda con el mismo cream del hero para que la franja
+ * superior se vea continua mientras el header está oculto.
+ */
+body.page-home-5 {
+  background-color: #ede9db;
+}
+
+body.page-home-5 .main-header {
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+body.page-home-5 .main-header.ms-header-chrome-deferred {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Logo fijo en la esquina superior izquierda del home-5 */
+.home-five-fixed-logo {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.home-five-fixed-logo img {
+  width: 120px;
+  height: auto;
+  display: block;
 }

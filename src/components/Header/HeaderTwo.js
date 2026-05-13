@@ -10,7 +10,7 @@ import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
 
 const HeaderTwo = (props) => {
-  const { headerClass, parentMenu, headerLogo, headerLogoLight } = props;
+  const { headerClass, parentMenu, headerLogo, headerLogoLight, deferNavUntilScroll } = props;
   const { t } = useTranslation('header');
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -70,10 +70,15 @@ const HeaderTwo = (props) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const navChromeDeferred =
+    deferNavUntilScroll && !isVisible && !menuOpen;
+
   return (
     <>
       <header>
-        <div className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''}`}>
+        <div
+          className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''} ${navChromeDeferred ? 'ms-header-chrome-deferred' : ''}`}
+        >
           <div className={`main-header__layout ${isVisible ? 'action' : 'top'}`}>
             <div className="main-header__inner">
               <div className="main-header__logo">
