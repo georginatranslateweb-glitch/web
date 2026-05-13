@@ -19570,8 +19570,8 @@ Descr: Sticky social sharing bar
 }
 
 .ms-footer .container .footer-title h1 .btn-footer:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: #C64227;
+  color: #C64227;
 }
 
 .ms-footer .container .social-area {
