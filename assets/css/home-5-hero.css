@@ -7,7 +7,7 @@
   min-height: 100vh;
   padding-bottom: 0;
   /* Área fuera del recuadro rojo (columna izquierda / márgenes) */
-  background-color: #f5f2eb;
+  background-color: #ede9db;
 }
 
 /*
@@ -164,7 +164,7 @@
 
 /* Ajustes editoriales de copy (tipografía mockup); no tocan el comportamiento de scroll */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .left-side-content .heading-title.home-five-banner-editorial__title {
-  color: #7c3d32;
+  color: #c64227;
   font-family: var(--font-highlight, "Apple Garamond", Georgia, "Times New Roman", serif);
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -220,7 +220,7 @@
   font-size: 0.9rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: rgba(80, 44, 38, 0.65);
+  color: #c64227;
   margin-bottom: 6px;
 }
 
