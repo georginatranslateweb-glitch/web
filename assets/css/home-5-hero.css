@@ -215,7 +215,9 @@
 }
 
 .ms-main .ms-page-content .home-five-editorial-grid__label {
-  font-size: 0.75rem;
+  font-family: var(--font-primary, "Red Hat Display", system-ui, -apple-system, sans-serif);
+  font-weight: 700;
+  font-size: 0.9rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: rgba(80, 44, 38, 0.65);
