@@ -1,13 +1,12 @@
 {
   "homeFive": {
     "banner": {
-      "title": "Donde el <highlight>lenguaje</highlight> se convierte en comprensión.",
-      "gridValue": "Texto de ejemplo",
+      "titleLine1": "Donde el lenguaje se convierte en comprensión.",
+      "titleLine2": "",
+      "gridValue": "Cada palabra que elegimos es una decisión cuidada: traducimos ideas, intenciones y matices para que tu mensaje llegue tan claro en otro idioma como en el original.",
       "labels": {
         "meaning": "Sentido",
-        "clarity": "Claridad",
-        "care": "Cuidado",
-        "culture": "Cultura"
+        "care": "Cuidado"
       }
     }
   }

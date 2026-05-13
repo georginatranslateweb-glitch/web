@@ -10,9 +10,12 @@
   background-color: #f5f2eb;
 }
 
-/* Espaciado vertical original del banner (style.css: 90px 0) */
+/*
+ * Espaciado vertical del banner (antes 90px como style.css).
+ * Un poco menos de “aire” arriba/abajo para acercar título, foto y fila editorial.
+ */
 .ms-main .ms-page-content .home-five-hero {
-  --home-five-banner-pad-y: 90px;
+  --home-five-banner-pad-y: 56px;
 }
 
 /* Capa del tema conservada; sin imagen full-bleed (la foto va solo en .home-five-bg-slot) */
@@ -54,8 +57,9 @@
   isolation: isolate;
   background-color: transparent;
   background-image: var(--home-five-hero-bg,
-      url(/images/bg/home-bg.jpeg));
-  background-position: center;
+      url(/images/bg/home-bg.jpg));
+  /* Un poco más arriba que center: recorta la franja plana celeste típica bajo el agua en esta foto */
+  background-position: center 38%;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -64,8 +68,12 @@
 /* Antes: padding en .home-five-bg-slot__content (vacío). Solo desktop: compensa el margin-top negativo del slot */
 @media (min-width: 992px) {
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-bg-slot {
-    padding: clamp(1rem, 2.5vw, 1.75rem);
-    padding-top: calc(clamp(1rem, 2.5vw, 1.75rem) + var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px));
+    /* Menos margen hacia la columna del título (izquierda); derecha/arriba/abajo algo más suaves */
+    padding-left: 0;
+    padding-right: clamp(0.75rem, 2vw, 1.25rem);
+    /* Pegado a la fila editorial (segunda row): sin banda bajo la foto */
+    padding-bottom: 0;
+    padding-top: calc(clamp(0.75rem, 2vw, 1.25rem) + var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px));
     box-sizing: border-box;
   }
 }
@@ -108,11 +116,11 @@
   box-sizing: border-box;
 }
 
-/* Reparto fijo del alto útil del banner: hero 80% · editorial 20% */
+/* Reparto fijo del alto útil del banner: hero un poco más bajo para menos banda celeste bajo la foto */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
-  flex: 0 0 80%;
+  flex: 0 0 74%;
   min-height: 0;
-  max-height: 80%;
+  max-height: 100%;
   align-items: stretch;
 }
 
@@ -122,7 +130,7 @@
   min-height: 0;
 }
 
-/* La foto ocupa todo el alto de la primera fila (como con min-height previo, pero acotada al 80%) */
+/* La foto ocupa todo el alto de la primera fila (acotada al % flex de .home-five-banner-hero-row) */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row>[class*="col-"]:last-child {
   min-height: 100%;
 }
@@ -136,11 +144,11 @@
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
-  flex: 0 0 20%;
+  flex: 0 0 26%;
   width: 100%;
   min-height: 0;
-  max-height: 20%;
-  padding-top: clamp(1.25rem, 3.5vw, 2.25rem);
+  max-height: 26%;
+  padding-top: 0;
   overflow-y: auto;
 }
 
@@ -155,15 +163,16 @@
 }
 
 /* Ajustes editoriales de copy (tipografía mockup); no tocan el comportamiento de scroll */
-.ms-main .ms-page-content .home-five-banner-editorial__title {
+.ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .left-side-content .heading-title.home-five-banner-editorial__title {
   color: #7c3d32;
+  font-family: var(--font-highlight, "Apple Garamond", Georgia, "Times New Roman", serif);
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.15;
-}
-
-.ms-main .ms-page-content .home-five-banner-editorial__title-highlight {
-  font-family: var(--font-highlight, "Apple Garamond", Georgia, "Times New Roman", serif);
+  white-space: pre-line;
+  /* Theme global usa padding-right: 30px en .heading-title — lo bajamos para acercar el texto a la imagen */
+  padding-right: 0.5rem;
+  margin-bottom: 0;
 }
 
 .ms-main .ms-page-content .home-five-banner-editorial__caption {
@@ -199,6 +208,10 @@
 
 .ms-main .ms-page-content .home-five-editorial-grid__item {
   padding-top: 6px;
+}
+
+.ms-main .ms-page-content .home-five-hero .home-five-editorial-grid__item {
+  padding-top: 2px;
 }
 
 .ms-main .ms-page-content .home-five-editorial-grid__label {

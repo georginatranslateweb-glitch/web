@@ -1,8 +1,22 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+
+import enHome from '../../src/locales/en/home.json';
+import esHome from '../../src/locales/es/home.json';
+
+/** Fallback copy bundled so SSR / primera pintura coinciden aunque i18n tarde en marcar el ns como listo */
+function homeFiveBannerDefaults(lang) {
+    const code = String(lang || 'en').toLowerCase().split('-')[0];
+    const bundle = code === 'es' ? esHome : enHome;
+    return bundle.homeFive.banner;
+}
 
 const HomeFiveBanner = () => {
-    const { t } = useTranslation('home');
+    const { t, i18n } = useTranslation('home');
+    const d = homeFiveBannerDefaults(i18n.resolvedLanguage || i18n.language);
+    const titleLine1 = t('homeFive.banner.titleLine1', { defaultValue: d.titleLine1 });
+    const titleLine2Raw = t('homeFive.banner.titleLine2', { defaultValue: d.titleLine2 || '' });
+    const titleLine2 = typeof titleLine2Raw === 'string' ? titleLine2Raw.trim() : '';
 
     return (
         <>
@@ -13,13 +27,13 @@ const HomeFiveBanner = () => {
                             <div className="col-12 col-lg-6">
                                 <div className="left-side-content">
                                     <h2 className="heading-title home-five-banner-editorial__title">
-                                        <Trans
-                                            ns="home"
-                                            i18nKey="homeFive.banner.title"
-                                            components={{
-                                                highlight: <span className="home-five-banner-editorial__title-highlight" />,
-                                            }}
-                                        />
+                                        {titleLine1}
+                                        {titleLine2 ? (
+                                            <>
+                                                <br />
+                                                {titleLine2}
+                                            </>
+                                        ) : null}
                                     </h2>
                                 </div>
                             </div>
@@ -36,14 +50,12 @@ const HomeFiveBanner = () => {
                                             <div className="row g-0 gx-3 gy-0 align-items-start">
                                                 <div className="col-4 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.meaning')}</div>
-                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
+                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.meaning', { defaultValue: d.labels.meaning })}</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-8 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.clarity')}</div>
-                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
+                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue', { defaultValue: d.gridValue })}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -53,14 +65,12 @@ const HomeFiveBanner = () => {
                                             <div className="row g-0 gx-3 gy-0 align-items-start">
                                                 <div className="col-4 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.care')}</div>
-                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
+                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.care', { defaultValue: d.labels.care })}</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-8 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.culture')}</div>
-                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue')}</div>
+                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue', { defaultValue: d.gridValue })}</div>
                                                     </div>
                                                 </div>
                                             </div>

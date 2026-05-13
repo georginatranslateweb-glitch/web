@@ -1,7 +1,7 @@
 import React from 'react';
 
 /** Solo columna derecha del hero (`home-five-bg-slot`); jarallax sin foto */
-const HOME_FIVE_HERO_BG = '/images/bg/home-bg.jpeg';
+const HOME_FIVE_HERO_BG = '/images/bg/home-bg.jpg';
 
 const HomeFiveParallax = ({ children }) => {
     return (

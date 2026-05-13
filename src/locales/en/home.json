@@ -1,13 +1,12 @@
 {
   "homeFive": {
     "banner": {
-      "title": "Where <highlight>language</highlight> becomes understanding.",
-      "gridValue": "Random text",
+      "titleLine1": "Where language",
+      "titleLine2": "becomes understanding.",
+      "gridValue": "Every word we choose is a careful decision: we translate ideas, intentions and nuance so your message lands as clearly in another language as it does in the original.",
       "labels": {
         "meaning": "Meaning",
-        "clarity": "Clarity",
-        "care": "Care",
-        "culture": "Culture"
+        "care": "Care"
       }
     }
   }

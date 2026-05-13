@@ -11025,6 +11025,7 @@ body.index-two[data-footer-effect=on] {
   font-size: 70px;
   font-weight: 700;
   line-height: 1;
+  padding-right: 30px;
 }
 
 @media (max-width: 1200px) and (min-width: 992px) {
