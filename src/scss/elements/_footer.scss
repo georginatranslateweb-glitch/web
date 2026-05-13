@@ -68,6 +68,7 @@
 
 .ms-footer {
     background-color: #f7f7f7;
+    color: #ede9db;
     padding-top: 40px;
     .container{
         .footer-title{
@@ -80,6 +81,7 @@
                 font-size: 72px;
                 line-height: 1.4;
                 letter-spacing: 1px;
+                color: #ede9db;
                 @media(max-width:767px){
                     font-size: 32px;
                 }
@@ -157,7 +159,7 @@
                         }
                     }
                     .link{
-                        color: #959595;
+                        color: #a9b2b4;
                         font-size: 14px;
                     }
                 }
@@ -176,7 +178,7 @@
                             transform: translateY(-5px);
                         }
                         i{
-                            color: #1c1c1c;
+                            color: #ede9db;
                             font-size: 20px;
                         }
                     }
@@ -193,7 +195,7 @@
                 text-align: center;
             }
             p{
-                color: #959595;
+                color: #ede9db;
                 font-size: 14px;
                 a{
                     font-weight: 800;

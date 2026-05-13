@@ -19506,6 +19506,7 @@ Descr: Sticky social sharing bar
 
 .ms-footer {
   background-color: #99301e;
+  color: #ede9db;
   padding-top: 40px;
 }
 
@@ -19524,6 +19525,7 @@ Descr: Sticky social sharing bar
   font-size: 72px;
   line-height: 1.4;
   letter-spacing: 1px;
+  color: #ede9db;
 }
 
 @media (max-width: 767px) {
@@ -19628,7 +19630,7 @@ Descr: Sticky social sharing bar
 }
 
 .ms-footer .container .social-area .social-wrapper .content .link {
-  color: #959595;
+  color: #a9b2b4;
   font-size: 14px;
 }
 
@@ -19649,7 +19651,7 @@ Descr: Sticky social sharing bar
 }
 
 .ms-footer .container .social-area .social-wrapper .social a i {
-  color: #1c1c1c;
+  color: #ede9db;
   font-size: 20px;
 }
 
@@ -19668,7 +19670,7 @@ Descr: Sticky social sharing bar
 }
 
 .ms-footer .container .copyright-area p {
-  color: #959595;
+  color: #ede9db;
   font-size: 14px;
 }
 
