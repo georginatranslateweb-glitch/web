@@ -49,30 +49,36 @@
 .ms-lang-dropdown__menu {
   position: absolute;
   top: calc(100% + 6px);
-  right: 0;
+  /* Centrado bajo el toggle; evita ancho 100% del padre (ul en bloque se estiraba) */
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   margin: 0;
   padding: 6px 0;
-  min-width: 88px;
+  width: max-content;
+  min-width: 0;
   list-style: none;
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 8px 24px rgba(58, 69, 88, 0.12), 0 0 0 1px rgba(58, 69, 88, 0.06);
   z-index: 120;
+  box-sizing: border-box;
 }
 
 .ms-lang-dropdown__option {
   display: block;
   width: 100%;
-  padding: 10px 16px;
+  padding: 10px 1.25rem;
   border: none;
   background: transparent;
-  text-align: left;
+  text-align: center;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: #3a4558;
   cursor: pointer;
   font-family: var(--font-highlight, Georgia, "Times New Roman", serif);
+  box-sizing: border-box;
 }
 
 .ms-lang-dropdown__option:hover,

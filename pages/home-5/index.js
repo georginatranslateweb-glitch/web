@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
@@ -48,7 +48,7 @@ const HomeFive = () => {
         }, LOGO_MIRROR_LEAVE_MS);
     }, [clearMirrorLeaveTimer]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         document.body.classList.add('page-home-5');
         window.scrollTo(0, 0);
         return () => {

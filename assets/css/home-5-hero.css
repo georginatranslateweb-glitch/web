@@ -138,7 +138,7 @@
   min-height: 100%;
 }
 
-/* Columna imagen: solo la foto. El logo vertical es hijo de .banner-area, fixed alineado al logo rojo (top: 25px). */
+/* Columna imagen: solo la foto. Marca vertical: hijo de .home-five-hero (evita stacking bajo .banner-area sticky z-index:1). */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-hero-image-column {
   position: relative;
   flex: 1 1 auto;
@@ -162,9 +162,11 @@
 }
 
 /*
- * Marca hero: fila superior (columna logo+hamburguesa + idioma a la derecha), mismo top que .home-five-fixed-logo.
+ * Marca hero: portal a body (body > …) + fallback en .home-five-hero (SSR / primer commit).
  */
-.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand {
+body > .home-five-hero-vertical-brand,
+body.page-home-5 > .home-five-hero-vertical-brand,
+.ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand {
   --home-five-vertical-logo-w: clamp(3.25rem, 6.25vw, 6.5rem);
   --home-five-hamburger-line-gap: 6px;
 
@@ -173,8 +175,8 @@
   top: 25px;
   right: auto;
   bottom: auto;
-  /* Por encima del contenido y del dropdown de idioma */
-  z-index: 1200;
+  /* Por encima del header fijo (theme ~9) y del logo fijo (1000); por debajo del drawer móvil (~10050) */
+  z-index: 10040;
   line-height: 0;
   display: none;
   pointer-events: auto;
@@ -182,7 +184,9 @@
   width: fit-content;
 }
 
-.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed {
+body > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
+body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
+.ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed {
   visibility: visible;
 }
 
@@ -221,9 +225,14 @@
 
 .home-five-hero-vertical-brand .home-five-hero-vertical-brand__lang.ms-lang-dropdown {
   position: absolute;
-  left: calc(50% + var(--home-five-vertical-logo-w) / 6 + var(--home-five-hero-controls-gap));
+  left: calc(50% + (var(--home-five-vertical-logo-w) / 6) + var(--home-five-hero-controls-gap));
   top: 50%;
+  /* Quitar right/top del theme (.ms-lang-dropdown) o el bloque se estira y rompe clics y el menú */
+  right: auto;
+  inset-inline-end: auto;
   transform: translateY(-50%);
+  width: max-content;
+  max-width: none;
   z-index: 2;
   margin-left: 0;
 }
@@ -309,7 +318,9 @@ button.home-five-hero-vertical-logo {
   position: relative;
 }
 
-.ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo__img {
+.ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo__img,
+body > .home-five-hero-vertical-brand .home-five-hero-vertical-logo__img,
+body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo__img {
   width: var(--home-five-vertical-logo-w, clamp(3.25rem, 6.25vw, 6.5rem));
   height: auto;
   max-height: min(66vh, 38rem);
@@ -318,7 +329,9 @@ button.home-five-hero-vertical-logo {
 }
 
 @media (min-width: 992px) {
-  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand {
+  body > .home-five-hero-vertical-brand,
+  body.page-home-5 > .home-five-hero-vertical-brand,
+  .ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand {
     display: block;
   }
 
@@ -336,7 +349,9 @@ button.home-five-hero-vertical-logo {
 
 /* Móvil / layouts estrechos: sin bloque aunque el markup exista en otras variantes */
 @media (max-width: 768px) {
-  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand {
+  body > .home-five-hero-vertical-brand,
+  body.page-home-5 > .home-five-hero-vertical-brand,
+  .ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand {
     display: none !important;
   }
 }
@@ -466,6 +481,26 @@ body.page-home-5[data-menu=fixed] .main-header__inner {
 body.page-home-5 .main-header .main-header__layout::after,
 body.page-home-5 .main-header.show-bg .main-header__layout::after {
   border-bottom: none !important;
+}
+
+/*
+ * Desktop: .main-header__layout es ancho completo pero .main-header__inner queda centrado (~1320px).
+ * Los márgenes laterales y la capa ::before seguían recibiendo hits y tapaban el idioma del hero
+ * (misma franja vertical que la barra).
+ */
+@media (min-width: 992px) {
+  body.page-home-5 .main-header .main-header__layout {
+    pointer-events: none;
+  }
+
+  body.page-home-5 .main-header .main-header__layout::before,
+  body.page-home-5 .main-header.show-bg .main-header__layout::before {
+    pointer-events: none !important;
+  }
+
+  body.page-home-5 .main-header .main-header__inner {
+    pointer-events: auto;
+  }
 }
 
 /*

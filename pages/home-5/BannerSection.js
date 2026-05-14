@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
@@ -32,6 +33,8 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
     const [verticalLogoLeft, setVerticalLogoLeft] = useState(null);
     const [verticalHeroInView, setVerticalHeroInView] = useState(true);
     const [isWideHeroChrome, setIsWideHeroChrome] = useState(false);
+    /** Tras hidratar: portal a body para clics/z-index fuera de #__next y capas sticky/transform */
+    const [verticalBrandPortalReady, setVerticalBrandPortalReady] = useState(false);
 
     const updateVerticalLogoLeft = useCallback(() => {
         const el = heroImageSlotRef.current;
@@ -94,6 +97,10 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
         return () => mq.removeEventListener('change', sync);
     }, []);
 
+    useLayoutEffect(() => {
+        setVerticalBrandPortalReady(true);
+    }, []);
+
     const verticalLogoPlaced = verticalLogoLeft != null && verticalHeroInView;
     const langDockedInHero = verticalLogoPlaced && isWideHeroChrome;
 
@@ -102,6 +109,59 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
         onLangHeroDockedChange(langDockedInHero);
         return undefined;
     }, [langDockedInHero, onLangHeroDockedChange]);
+
+    const verticalBrandNode = (
+        <div
+            className={
+                verticalLogoPlaced
+                    ? 'home-five-hero-vertical-brand home-five-hero-vertical-brand--placed'
+                    : 'home-five-hero-vertical-brand'
+            }
+            style={verticalLogoLeft != null ? { left: `${verticalLogoLeft}px` } : undefined}
+            onMouseEnter={onChromePeekEnter}
+            onMouseLeave={onChromePeekLeave}
+            onFocusCapture={onChromePeekEnter}
+            onBlurCapture={onChromePeekLeave}
+            onTouchStart={onChromePeekEnter}
+            onTouchEnd={onChromePeekLeave}
+        >
+            <div className="home-five-hero-vertical-brand__stack">
+                <div className="home-five-hero-vertical-brand__controls-row">
+                    <div className="home-five-hero-vertical-brand__chrome-hamburger">
+                        <button
+                            type="button"
+                            className="home-five-hero-desktop-hamburger"
+                            aria-label={tHeader('toggleMenu')}
+                        >
+                            <span className="home-five-hero-desktop-hamburger__lines" aria-hidden="true">
+                                <span className="home-five-hero-desktop-hamburger__line home-five-hero-desktop-hamburger__line--top" />
+                                <span className="home-five-hero-desktop-hamburger__line home-five-hero-desktop-hamburger__line--mid" />
+                                <span className="home-five-hero-desktop-hamburger__line home-five-hero-desktop-hamburger__line--bot" />
+                            </span>
+                        </button>
+                    </div>
+                    {langDockedInHero ? (
+                        <LanguageSwitcher className="home-five-hero-vertical-brand__lang" />
+                    ) : null}
+                </div>
+                <button
+                    type="button"
+                    className="home-five-hero-vertical-logo"
+                    aria-label={`${t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })} — ${tHeader('toggleMenu')}`}
+                >
+                    <Image
+                        className="home-five-hero-vertical-logo__img"
+                        src="/images/logo/georgina-robledo-vertical.png"
+                        width={1286}
+                        height={4169}
+                        alt=""
+                        sizes="(min-width: 1400px) 140px, (min-width: 992px) 12vw, 0px"
+                        unoptimized
+                    />
+                </button>
+            </div>
+        </div>
+    );
 
     return (
         <>
@@ -171,57 +231,10 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                         </div>
                     </div>
                 </div>
-                <div
-                    className={
-                        verticalLogoPlaced
-                            ? 'home-five-hero-vertical-brand home-five-hero-vertical-brand--placed'
-                            : 'home-five-hero-vertical-brand'
-                    }
-                    style={verticalLogoLeft != null ? { left: `${verticalLogoLeft}px` } : undefined}
-                    onMouseEnter={onChromePeekEnter}
-                    onMouseLeave={onChromePeekLeave}
-                    onFocusCapture={onChromePeekEnter}
-                    onBlurCapture={onChromePeekLeave}
-                    onTouchStart={onChromePeekEnter}
-                    onTouchEnd={onChromePeekLeave}
-                >
-                    <div className="home-five-hero-vertical-brand__stack">
-                        <div className="home-five-hero-vertical-brand__controls-row">
-                            <div className="home-five-hero-vertical-brand__chrome-hamburger">
-                                <button
-                                    type="button"
-                                    className="home-five-hero-desktop-hamburger"
-                                    aria-label={tHeader('toggleMenu')}
-                                >
-                                    <span className="home-five-hero-desktop-hamburger__lines" aria-hidden="true">
-                                        <span className="home-five-hero-desktop-hamburger__line home-five-hero-desktop-hamburger__line--top" />
-                                        <span className="home-five-hero-desktop-hamburger__line home-five-hero-desktop-hamburger__line--mid" />
-                                        <span className="home-five-hero-desktop-hamburger__line home-five-hero-desktop-hamburger__line--bot" />
-                                    </span>
-                                </button>
-                            </div>
-                            {langDockedInHero ? (
-                                <LanguageSwitcher className="home-five-hero-vertical-brand__lang" />
-                            ) : null}
-                        </div>
-                        <button
-                            type="button"
-                            className="home-five-hero-vertical-logo"
-                            aria-label={`${t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })} — ${tHeader('toggleMenu')}`}
-                        >
-                            <Image
-                                className="home-five-hero-vertical-logo__img"
-                                src="/images/logo/georgina-robledo-vertical.png"
-                                width={1286}
-                                height={4169}
-                                alt=""
-                                sizes="(min-width: 1400px) 140px, (min-width: 992px) 12vw, 0px"
-                                unoptimized
-                            />
-                        </button>
-                    </div>
-                </div>
             </div>
+            {verticalBrandPortalReady && typeof document !== 'undefined'
+                ? createPortal(verticalBrandNode, document.body)
+                : verticalBrandNode}
         </>
     );
 };
