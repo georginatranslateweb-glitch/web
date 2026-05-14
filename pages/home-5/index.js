@@ -12,76 +12,61 @@ import HomeFiveClient from './ClientSection';
 
 import Logo from '../../public/images/logo/logo-red.png';
 
-const PEEK_LEAVE_MS = 260;
+const LOGO_MIRROR_LEAVE_MS = 260;
 
 const HomeFive = () => {
     const { t } = useTranslation('header');
-    const [chromePeek, setChromePeek] = useState(false);
-    const peekLeaveTimerRef = useRef(null);
+    const [layoutHoverMirrorFromFixedLogo, setLayoutHoverMirrorFromFixedLogo] = useState(false);
+    const mirrorLeaveTimerRef = useRef(null);
 
-    const clearPeekLeaveTimer = useCallback(() => {
-        if (peekLeaveTimerRef.current != null) {
-            clearTimeout(peekLeaveTimerRef.current);
-            peekLeaveTimerRef.current = null;
+    const clearMirrorLeaveTimer = useCallback(() => {
+        if (mirrorLeaveTimerRef.current != null) {
+            clearTimeout(mirrorLeaveTimerRef.current);
+            mirrorLeaveTimerRef.current = null;
         }
     }, []);
 
-    const startChromePeek = useCallback(() => {
-        clearPeekLeaveTimer();
-        setChromePeek(true);
-    }, [clearPeekLeaveTimer]);
+    const startLogoNavMirror = useCallback(() => {
+        clearMirrorLeaveTimer();
+        setLayoutHoverMirrorFromFixedLogo(true);
+    }, [clearMirrorLeaveTimer]);
 
-    const scheduleEndChromePeek = useCallback(() => {
-        clearPeekLeaveTimer();
-        peekLeaveTimerRef.current = setTimeout(() => {
-            setChromePeek(false);
-            peekLeaveTimerRef.current = null;
-        }, PEEK_LEAVE_MS);
-    }, [clearPeekLeaveTimer]);
+    const scheduleEndLogoNavMirror = useCallback(() => {
+        clearMirrorLeaveTimer();
+        mirrorLeaveTimerRef.current = setTimeout(() => {
+            setLayoutHoverMirrorFromFixedLogo(false);
+            mirrorLeaveTimerRef.current = null;
+        }, LOGO_MIRROR_LEAVE_MS);
+    }, [clearMirrorLeaveTimer]);
 
     useEffect(() => {
         document.body.classList.add('page-home-5');
         window.scrollTo(0, 0);
         return () => {
-            document.body.classList.remove('page-home-5', 'page-home-5--header-active');
-            clearPeekLeaveTimer();
+            document.body.classList.remove('page-home-5');
+            clearMirrorLeaveTimer();
         };
-    }, [clearPeekLeaveTimer]);
-
-    useEffect(() => {
-        const setFromScroll = () => {
-            const active = window.pageYOffset > 100;
-            document.body.classList.toggle('page-home-5--header-active', active);
-        };
-        setFromScroll();
-        window.addEventListener('scroll', setFromScroll, { passive: true });
-        return () => {
-            window.removeEventListener('scroll', setFromScroll);
-            document.body.classList.remove('page-home-5--header-active');
-        };
-    }, []);
+    }, [clearMirrorLeaveTimer]);
 
     const fixedLogoLabel = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
     return (
         <>
             <HeaderTwo
-                deferNavUntilScroll
-                chromePeek={chromePeek}
-                onChromePeekBridgeEnter={startChromePeek}
-                onChromePeekBridgeLeave={scheduleEndChromePeek}
+                alwaysScrolled
+                layoutHoverMirrorFromFixedLogo={layoutHoverMirrorFromFixedLogo}
             />
 
             <button
                 type="button"
                 className="home-five-fixed-logo"
                 aria-label={fixedLogoLabel}
-                onMouseEnter={startChromePeek}
-                onMouseLeave={scheduleEndChromePeek}
-                onFocus={startChromePeek}
-                onBlur={scheduleEndChromePeek}
-                onTouchStart={startChromePeek}
-                onTouchEnd={scheduleEndChromePeek}
+                onMouseEnter={startLogoNavMirror}
+                onMouseLeave={scheduleEndLogoNavMirror}
+                onFocus={startLogoNavMirror}
+                onBlur={scheduleEndLogoNavMirror}
+                onTouchStart={startLogoNavMirror}
+                onTouchEnd={scheduleEndLogoNavMirror}
             >
                 <Image src={Logo} alt="" priority />
             </button>
@@ -90,8 +75,8 @@ const HomeFive = () => {
                 <div className="ms-page-content">
                     <HomeFiveParallax>
                         <HomeFiveBanner
-                            onChromePeekEnter={startChromePeek}
-                            onChromePeekLeave={scheduleEndChromePeek}
+                            onChromePeekEnter={startLogoNavMirror}
+                            onChromePeekLeave={scheduleEndLogoNavMirror}
                         />
                     </HomeFiveParallax>
 

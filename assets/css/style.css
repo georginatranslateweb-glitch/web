@@ -5886,8 +5886,8 @@ html:not(.js) .f-header__nav {
 }
 
 /* Mobile drawer: never apply desktop “slide nav up” transform to overlay links */
-.main-header__layout.action .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item,
-.main-header__layout.action:hover .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item {
+body:not(.page-home-5) .main-header__layout.action .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item,
+body:not(.page-home-5) .main-header__layout.action:hover .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item {
   transform: none !important;
 }
 
@@ -6015,8 +6015,8 @@ html:not(.js) .f-header__nav {
   z-index: 10050 !important;
 }
 
-.main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible li,
-.main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item {
+body:not(.page-home-5) .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible li,
+body:not(.page-home-5) .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .menu-item {
   transform: none !important;
 }
 

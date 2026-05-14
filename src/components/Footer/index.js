@@ -63,10 +63,10 @@ const Footer = (props) => {
                     </div>
                     <div className="copyright-area">
                         <div className="left-side">
-                            <p>©2023 <a href="#0" className="author">Reacthemes</a>, All Rights Reserved.</p>
+
                         </div>
                         <div className="right-side">
-                            <p>Themeforest Premium React Nextjs Template</p>
+                            <p>©2026 <a href="https://www.authenticwebstudio.com/" className="author">Authentic</a> Web Studio</p>
                         </div>
                     </div>
                 </section>
