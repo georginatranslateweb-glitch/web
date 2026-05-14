@@ -163,7 +163,7 @@
  * Logo vertical: fixed con mismo top que .home-five-fixed-logo (25px).
  * left en inline (viewport), solo resize/RO — sin scroll. Oculto si el hero no intersecta (JS --placed).
  */
-.ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo {
+.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo {
   position: fixed;
   top: 25px;
   right: auto;
@@ -175,7 +175,7 @@
   visibility: hidden;
 }
 
-.ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo.home-five-hero-vertical-logo--placed {
+.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo.home-five-hero-vertical-logo--placed {
   visibility: visible;
 }
 
@@ -200,14 +200,14 @@ button.home-five-hero-vertical-logo {
 }
 
 @media (min-width: 992px) {
-  .ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo {
+  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo {
     display: block;
   }
 }
 
 /* Móvil / layouts estrechos: sin logo aunque el markup exista en otras variantes */
 @media (max-width: 768px) {
-  .ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo {
+  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo {
     display: none !important;
   }
 }
@@ -392,6 +392,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .home-five-editorial-split {
     justify-content: center;
+    padding-top: clamp(6rem, 18vw, 9rem);
   }
 }
 
