@@ -30,6 +30,8 @@ const HeaderTwo = (props) => {
     layoutHoverMirrorFromFixedLogo = false,
     /** Home-5: mismo aspecto/comportamiento que el header “tras scroll”, sin listeners ni estado por scroll. */
     alwaysScrolled = false,
+    /** Home-5: el idioma vive junto a la hamburguesa del hero (evita solaparse con el logo vertical). */
+    hideLanguageSwitcher = false,
   } = props;
   const { t } = useTranslation('header');
 
@@ -230,8 +232,9 @@ const HeaderTwo = (props) => {
 
   const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
-  const logoDarkSrc = menuOpen ? LogoBeige : (headerLogo || Logo);
-  const logoLightSrc = menuOpen ? LogoBeige : (headerLogoLight || LogoLight);
+  const useBeigeMobileMenuLogo = menuOpen && isNarrowViewport;
+  const logoDarkSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogo || Logo);
+  const logoLightSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogoLight || LogoLight);
 
   return (
     <>
@@ -332,7 +335,7 @@ const HeaderTwo = (props) => {
                 }}
               />
               <div className="main-header--widgets">
-                <LanguageSwitcher />
+                {!hideLanguageSwitcher ? <LanguageSwitcher /> : null}
               </div>
 
             </div>

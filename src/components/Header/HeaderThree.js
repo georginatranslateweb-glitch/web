@@ -9,10 +9,22 @@ import Logo from "../../../public/images/logo/logo-dark.svg";
 import LogoLight from "../../../public/images/logo/logo-light.svg";
 import LogoBeige from "../../../public/images/logo/logo-beige.png";
 
+const MOBILE_HEADER_MQ = '(max-width: 1023px)';
+
 const HeaderThree = ({ headerClass, headerLogo, headerLogoLight }) => {
   const { t } = useTranslation('header');
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isNarrowViewport, setIsNarrowViewport] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const mq = window.matchMedia(MOBILE_HEADER_MQ);
+    const sync = () => setIsNarrowViewport(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   useEffect(() => {
     const toggleVisibility = () => setIsVisible(window.pageYOffset > 100);
@@ -33,8 +45,9 @@ const HeaderThree = ({ headerClass, headerLogo, headerLogoLight }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const logoDarkSrc = menuOpen ? LogoBeige : (headerLogo || LogoLight);
-  const logoLightSrc = menuOpen ? LogoBeige : (headerLogoLight || Logo);
+  const useBeigeMobileMenuLogo = menuOpen && isNarrowViewport;
+  const logoDarkSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogo || LogoLight);
+  const logoLightSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogoLight || Logo);
 
   return (
     <header>

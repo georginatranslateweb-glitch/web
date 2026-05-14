@@ -80,6 +80,8 @@
 
 /* El banner queda sticky; alto fijo 100vh para que las dos filas sumen el viewport */
 .ms-main .ms-page-content .home-five-hero .banner-area {
+  --home-five-banner-title-color: #c64227;
+
   position: sticky;
   top: 0;
   z-index: 1;
@@ -160,23 +162,138 @@
 }
 
 /*
- * Logo vertical: fixed con mismo top que .home-five-fixed-logo (25px).
- * left en inline (viewport), solo resize/RO — sin scroll. Oculto si el hero no intersecta (JS --placed).
+ * Marca hero: fila superior (columna logo+hamburguesa + idioma a la derecha), mismo top que .home-five-fixed-logo.
  */
-.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo {
+.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand {
+  --home-five-vertical-logo-w: clamp(3.25rem, 6.25vw, 6.5rem);
+  --home-five-hamburger-line-gap: 6px;
+
   position: fixed;
+  /* Misma referencia vertical que .home-five-fixed-logo (solo top, sin margin-top extra) */
   top: 25px;
   right: auto;
   bottom: auto;
-  z-index: 5;
+  /* Por encima del contenido y del dropdown de idioma */
+  z-index: 1200;
   line-height: 0;
   display: none;
   pointer-events: auto;
   visibility: hidden;
+  width: fit-content;
 }
 
-.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo.home-five-hero-vertical-logo--placed {
+.ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed {
   visibility: visible;
+}
+
+/* Columna: hamburguesa centrada encima del logo vertical (mismo ancho) */
+.home-five-hero-vertical-brand .home-five-hero-vertical-brand__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  width: var(--home-five-vertical-logo-w);
+  flex-shrink: 0;
+}
+
+/* Fila: hamburguesa centrada en el eje del logo vertical; idioma a la derecha con gap fijo (sin centrar el par) */
+.home-five-hero-vertical-brand .home-five-hero-vertical-brand__controls-row {
+  --home-five-hero-controls-gap: 0.75rem;
+
+  position: relative;
+  display: none;
+  width: 100%;
+  min-height: 2.75rem;
+}
+
+.home-five-hero-vertical-brand .home-five-hero-vertical-brand__chrome-hamburger {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  z-index: 2;
+}
+
+.home-five-hero-vertical-brand .home-five-hero-vertical-brand__lang.ms-lang-dropdown {
+  position: absolute;
+  left: calc(50% + var(--home-five-vertical-logo-w) / 6 + var(--home-five-hero-controls-gap));
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  margin-left: 0;
+}
+
+/* Menos padding vertical en el hero: el toggle global lleva 15px y baja el texto respecto a las rayas */
+.home-five-hero-vertical-brand .home-five-hero-vertical-brand__controls-row .home-five-hero-vertical-brand__lang .ms-lang-dropdown__toggle {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+@media (min-width: 992px) {
+  /* Sin LanguageSwitcher en el header: no reservar hueco en la fila del inner */
+  body.page-home-5 .main-header .main-header__inner > .main-header--widgets:empty {
+    display: none;
+  }
+}
+
+/* Hamburguesa desktop: encima del logo; rayas = ⅓ del ancho del logo; color título */
+.home-five-hero-vertical-brand .home-five-hero-desktop-hamburger {
+  position: relative;
+  flex-shrink: 0;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  line-height: 0;
+  display: none;
+}
+
+.home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__lines {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(3, auto);
+  row-gap: var(--home-five-hamburger-line-gap, 6px);
+  width: calc(var(--home-five-vertical-logo-w) / 3);
+  box-sizing: border-box;
+  line-height: 0;
+}
+
+.home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--home-five-banner-title-color, #c64227);
+  border-radius: 1.5px;
+  transition: transform 0.35s ease;
+}
+
+.home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line--mid {
+  transform: translateX(5px);
+}
+
+.home-five-hero-vertical-brand:hover .home-five-hero-desktop-hamburger__line--mid,
+.home-five-hero-vertical-brand:focus-within .home-five-hero-desktop-hamburger__line--mid {
+  transform: translateX(0);
+}
+
+/* Menú visible / abierto: raya central alineada aunque el cursor no esté sobre la marca */
+body.page-home-5:has(.main-header.ms-mobile-nav-open) .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line--mid,
+body.page-home-5:has(.main-header .main-header__layout.action:hover) .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line--mid,
+body.page-home-5:has(.main-header .main-header__layout.action:focus-within) .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line--mid,
+body.page-home-5:has(.main-header .main-header__layout.action.ms-home5-logo--layout-hover-mirror) .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line--mid,
+body.page-home-5:has(.main-header .main-header__layout.action.ms-home5-drawer--action-hover-mirror) .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line--mid {
+  transform: translateX(0);
 }
 
 button.home-five-hero-vertical-logo {
@@ -189,10 +306,11 @@ button.home-five-hero-vertical-logo {
   font: inherit;
   color: inherit;
   text-align: inherit;
+  position: relative;
 }
 
 .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo__img {
-  width: clamp(3.25rem, 6.25vw, 6.5rem);
+  width: var(--home-five-vertical-logo-w, clamp(3.25rem, 6.25vw, 6.5rem));
   height: auto;
   max-height: min(66vh, 38rem);
   object-fit: contain;
@@ -200,14 +318,25 @@ button.home-five-hero-vertical-logo {
 }
 
 @media (min-width: 992px) {
-  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo {
+  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand {
     display: block;
+  }
+
+  .home-five-hero-vertical-brand .home-five-hero-vertical-brand__controls-row {
+    display: block;
+  }
+
+  .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 }
 
-/* Móvil / layouts estrechos: sin logo aunque el markup exista en otras variantes */
+/* Móvil / layouts estrechos: sin bloque aunque el markup exista en otras variantes */
 @media (max-width: 768px) {
-  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-logo {
+  .ms-main .ms-page-content .home-five-hero .banner-area>.home-five-hero-vertical-brand {
     display: none !important;
   }
 }
@@ -233,7 +362,7 @@ button.home-five-hero-vertical-logo {
 
 /* Ajustes editoriales de copy (tipografía mockup); no tocan el comportamiento de scroll */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .left-side-content .heading-title.home-five-banner-editorial__title {
-  color: #c64227;
+  color: var(--home-five-banner-title-color);
   font-family: var(--font-highlight, "Apple Garamond", Georgia, "Times New Roman", serif);
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -440,8 +569,8 @@ body.page-home-5 .main-header.ms-mobile-nav-open .main-header__inner .main-heade
   }
 }
 
-/* Desktop home-5: menú solo vía logo/enlaces; ocultar las dos rayas (menuTrigger) */
-@media (min-width: 1024px) {
+/* Desktop home-5: menú vía logo / hamburguesa del hero; ocultar menuTrigger del header (desde 992, mismo breakpoint que el bloque vertical) */
+@media (min-width: 992px) {
   body.page-home-5 .main-header .main-header__inner .menuTrigger {
     display: none !important;
   }
@@ -780,11 +909,6 @@ button.home-five-fixed-logo {
   width: 120px;
   height: auto;
   display: block;
-}
-
-/* Barra siempre presente: no competir con el hover del menú en el logo vertical */
-body.page-home-5 .home-five-hero-vertical-logo {
-  pointer-events: none;
 }
 
 /* Móvil: logo fijo oculto salvo fase hero (layout .top); desktop: visible para hover espejo del nav */

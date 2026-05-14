@@ -8,10 +8,22 @@ import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
 import LogoBeige from "../../../public/images/logo/logo-beige.png";
 
+const MOBILE_HEADER_MQ = '(max-width: 1023px)';
+
 const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
   const { t } = useTranslation('header');
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isNarrowViewport, setIsNarrowViewport] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const mq = window.matchMedia(MOBILE_HEADER_MQ);
+    const sync = () => setIsNarrowViewport(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -40,8 +52,9 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
 
   const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
-  const logoDarkSrc = menuOpen ? LogoBeige : (headerLogo || Logo);
-  const logoLightSrc = menuOpen ? LogoBeige : (headerLogoLight || LogoLight);
+  const useBeigeMobileMenuLogo = menuOpen && isNarrowViewport;
+  const logoDarkSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogo || Logo);
+  const logoLightSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogoLight || LogoLight);
 
   return (
     <header>
