@@ -6623,6 +6623,44 @@ body.masonry[data-theme=light] .main-header__nav-trigger {
     display: none;
   }
 
+  /* Solo móvil: menú abierto — fondo rojo editorial (#c64227) con opacidad, ítems beige */
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible {
+    background-color: rgba(198, 66, 39, 0.9) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  [data-theme=dark] .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible {
+    background-color: rgba(198, 66, 39, 0.9) !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav a,
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav a span {
+    color: #f0e6d8 !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > .menu-item:hover > a,
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > .menu-item > a:hover {
+    color: #fff8ef !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav .sub-menu li > a {
+    color: #f0e6d8 !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav .sub-menu li > a:hover {
+    color: #fff8ef !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > li > .ms-menu-close-item {
+    color: #f0e6d8 !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > li > .ms-menu-close-item:hover,
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > li > .ms-menu-close-item:focus-visible {
+    color: #fff8ef !important;
+  }
+
   /* Center mobile menu items vertically when expanded */
   .main-header__nav.is_mobile.main-header__nav--is-visible {
     display: flex;
