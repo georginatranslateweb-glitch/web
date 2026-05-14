@@ -6639,25 +6639,25 @@ body.masonry[data-theme=light] .main-header__nav-trigger {
     color: #f0e6d8 !important;
   }
 
-  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > .menu-item:hover > a,
-  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > .menu-item > a:hover {
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav>.menu-item:hover>a,
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav>.menu-item>a:hover {
     color: #fff8ef !important;
   }
 
-  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav .sub-menu li > a {
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav .sub-menu li>a {
     color: #f0e6d8 !important;
   }
 
-  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav .sub-menu li > a:hover {
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav .sub-menu li>a:hover {
     color: #fff8ef !important;
   }
 
-  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > li > .ms-menu-close-item {
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav>li>.ms-menu-close-item {
     color: #f0e6d8 !important;
   }
 
-  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > li > .ms-menu-close-item:hover,
-  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav > li > .ms-menu-close-item:focus-visible {
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav>li>.ms-menu-close-item:hover,
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav>li>.ms-menu-close-item:focus-visible {
     color: #fff8ef !important;
   }
 
@@ -19637,7 +19637,9 @@ Descr: Sticky social sharing bar
 
 .ms-footer .container .footer-title {
   margin-bottom: 80px;
-  margin-top: 48px;
+  margin-top: 60px;
+  padding-top: 15px;
+  padding-bottom: 50px;
 }
 
 @media (max-width: 767px) {

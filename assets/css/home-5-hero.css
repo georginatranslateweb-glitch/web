@@ -136,7 +136,7 @@
   min-height: 100%;
 }
 
-/* Columna imagen: solo la foto (ancho completo de la columna). El logo vertical está fuera del .container y se posiciona con JS. */
+/* Columna imagen: solo la foto. El logo vertical es hijo de .banner-area, fixed alineado al logo rojo (top: 25px). */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-hero-image-column {
   position: relative;
   flex: 1 1 auto;
@@ -160,11 +160,14 @@
 }
 
 /*
- * Logo vertical: absolute en .banner-area; top/left en JS para igualar el fixed inicial
- * y actualizar en scroll (sube con el hero). Safe-area como antes: translateY(env(...)).
+ * Logo vertical: fixed con mismo top que .home-five-fixed-logo (25px).
+ * left en inline (viewport), solo resize/RO — sin scroll. Oculto si el hero no intersecta (JS --placed).
  */
-.ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo {
-  position: absolute;
+.ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo {
+  position: fixed;
+  top: 25px;
+  right: auto;
+  bottom: auto;
   z-index: 5;
   line-height: 0;
   display: none;
@@ -172,9 +175,8 @@
   visibility: hidden;
 }
 
-.ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo.home-five-hero-vertical-logo--placed {
+.ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo.home-five-hero-vertical-logo--placed {
   visibility: visible;
-  transform: translateY(env(safe-area-inset-top, 0px));
 }
 
 button.home-five-hero-vertical-logo {
@@ -198,14 +200,14 @@ button.home-five-hero-vertical-logo {
 }
 
 @media (min-width: 992px) {
-  .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo {
+  .ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo {
     display: block;
   }
 }
 
 /* Móvil / layouts estrechos: sin logo aunque el markup exista en otras variantes */
 @media (max-width: 768px) {
-  .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo {
+  .ms-main .ms-page-content .home-five-hero .banner-area > .home-five-hero-vertical-logo {
     display: none !important;
   }
 }

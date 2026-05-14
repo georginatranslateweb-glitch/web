@@ -6,10 +6,8 @@ import enHome from '../../src/locales/en/home.json';
 import esHome from '../../src/locales/es/home.json';
 
 const HOME_FIVE_VERTICAL_LOGO_LG = 992;
-/** Espacio entre el borde derecho de la foto y el logo (px), fuera del contenedor / sin achicar la imagen */
+/** Espacio entre el borde derecho de la foto y el logo (px), mismo criterio que antes */
 const HOME_FIVE_VERTICAL_LOGO_GAP_PX = 25;
-/** Misma distancia al borde superior del viewport que con `position: fixed` + top: 25px (safe-area vía CSS transform) */
-const HOME_FIVE_VERTICAL_LOGO_TOP_PX = 25;
 
 /** Fallback copy bundled so SSR / primera pintura coinciden aunque i18n tarde en marcar el ns como listo */
 function homeFiveBannerDefaults(lang) {
@@ -27,65 +25,67 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave }) => {
     const titleLine2 = typeof titleLine2Raw === 'string' ? titleLine2Raw.trim() : '';
 
     const heroImageSlotRef = useRef(null);
-    const [verticalLogoPos, setVerticalLogoPos] = useState(null);
+    const bannerAreaRef = useRef(null);
+    const [verticalLogoLeft, setVerticalLogoLeft] = useState(null);
+    const [verticalHeroInView, setVerticalHeroInView] = useState(true);
 
-    const updateVerticalLogoPosition = useCallback(() => {
+    const updateVerticalLogoLeft = useCallback(() => {
         const el = heroImageSlotRef.current;
         if (typeof window === 'undefined' || !el) {
-            setVerticalLogoPos(null);
+            setVerticalLogoLeft(null);
             return;
         }
         if (window.innerWidth < HOME_FIVE_VERTICAL_LOGO_LG) {
-            setVerticalLogoPos(null);
-            return;
-        }
-        const banner = el.closest('.banner-area');
-        if (!banner) {
-            setVerticalLogoPos(null);
+            setVerticalLogoLeft(null);
             return;
         }
         const sr = el.getBoundingClientRect();
-        const br = banner.getBoundingClientRect();
         if (sr.width < 2 || sr.height < 2) {
-            setVerticalLogoPos(null);
+            setVerticalLogoLeft(null);
             return;
         }
-        /*
-         * Misma posición inicial que con fixed + left en viewport:
-         * viewportLeft = sr.right + GAP  =>  left_abs = viewportLeft - br.left
-         * viewportTop  = TOP_PX + safe   =>  top_abs  = viewportTop - br.top  (safe-area con transform en CSS)
-         */
-        setVerticalLogoPos({
-            left: Math.round(sr.right - br.left + HOME_FIVE_VERTICAL_LOGO_GAP_PX),
-            top: Math.round(HOME_FIVE_VERTICAL_LOGO_TOP_PX - br.top),
-        });
+        setVerticalLogoLeft(Math.round(sr.right + HOME_FIVE_VERTICAL_LOGO_GAP_PX));
     }, []);
 
     useLayoutEffect(() => {
-        updateVerticalLogoPosition();
-        const el = heroImageSlotRef.current;
+        updateVerticalLogoLeft();
+        const slot = heroImageSlotRef.current;
+        const banner = bannerAreaRef.current;
         const ro = new ResizeObserver(() => {
-            window.requestAnimationFrame(updateVerticalLogoPosition);
+            window.requestAnimationFrame(updateVerticalLogoLeft);
         });
-        if (el) {
-            ro.observe(el);
-            const banner = el.closest('.banner-area');
-            if (banner) {
-                ro.observe(banner);
-            }
+        if (slot) {
+            ro.observe(slot);
         }
-        window.addEventListener('resize', updateVerticalLogoPosition);
-        window.addEventListener('scroll', updateVerticalLogoPosition, { passive: true });
+        if (banner) {
+            ro.observe(banner);
+        }
+        window.addEventListener('resize', updateVerticalLogoLeft);
+
+        const heroRoot = banner?.closest('.home-five-hero');
+        let io;
+        if (heroRoot) {
+            io = new IntersectionObserver(
+                ([entry]) => {
+                    setVerticalHeroInView(entry.isIntersecting);
+                },
+                { root: null, threshold: 0 },
+            );
+            io.observe(heroRoot);
+        }
+
         return () => {
             ro.disconnect();
-            window.removeEventListener('resize', updateVerticalLogoPosition);
-            window.removeEventListener('scroll', updateVerticalLogoPosition);
+            window.removeEventListener('resize', updateVerticalLogoLeft);
+            io?.disconnect();
         };
-    }, [updateVerticalLogoPosition, i18n.language, titleLine1, titleLine2]);
+    }, [updateVerticalLogoLeft, i18n.language, titleLine1, titleLine2]);
+
+    const verticalLogoPlaced = verticalLogoLeft != null && verticalHeroInView;
 
     return (
         <>
-            <div className="banner-area home-five-banner-editorial">
+            <div ref={bannerAreaRef} className="banner-area home-five-banner-editorial">
                 <div className="container">
                     <div className="banner-inner">
                         <div className="row justify-content-center align-items-stretch gx-0 gy-4 gy-lg-0 home-five-banner-hero-row">
@@ -154,18 +154,11 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave }) => {
                 <button
                     type="button"
                     className={
-                        verticalLogoPos != null
+                        verticalLogoPlaced
                             ? 'home-five-hero-vertical-logo home-five-hero-vertical-logo--placed'
                             : 'home-five-hero-vertical-logo'
                     }
-                    style={
-                        verticalLogoPos != null
-                            ? {
-                                  left: `${verticalLogoPos.left}px`,
-                                  top: `${verticalLogoPos.top}px`,
-                              }
-                            : undefined
-                    }
+                    style={verticalLogoLeft != null ? { left: `${verticalLogoLeft}px` } : undefined}
                     aria-label={`${t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })} — ${tHeader('toggleMenu')}`}
                     onMouseEnter={onChromePeekEnter}
                     onMouseLeave={onChromePeekLeave}
