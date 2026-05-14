@@ -119,7 +119,7 @@
 
 /* Reparto fijo del alto útil del banner: hero un poco más bajo para menos banda celeste bajo la foto */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
-  flex: 0 0 74%;
+  flex: 0 0 65%;
   min-height: 0;
   max-height: 100%;
   align-items: stretch;
@@ -211,11 +211,11 @@ button.home-five-hero-vertical-logo {
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
-  flex: 0 0 26%;
+  flex: 0 0 35%;
   width: 100%;
   min-height: 0;
   max-height: 26%;
-  padding-top: 0;
+  padding-top: 5rem;
   overflow-y: auto;
 }
 
@@ -793,6 +793,7 @@ body.page-home-5 .home-five-fixed-logo {
 }
 
 @media only screen and (max-width: 1023px) {
+
   /*
    * Geometría siempre “hero” en móvil Home-5: si solo se quita :has(.top) al pasar a .action,
    * el logo volvería un instante a left/top del bloque base (25px) durante el fade — salto a esquina.
