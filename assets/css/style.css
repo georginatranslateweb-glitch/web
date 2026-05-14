@@ -19660,6 +19660,14 @@ Descr: Sticky social sharing bar
   .ms-footer .container .footer-title h1 {
     font-size: 32px;
   }
+
+  .ms-footer .container .footer-title h1 .font-highlight {
+    font-size: 2rem;
+    font-size: clamp(2rem, 1.25rem + 5vw, 3rem);
+    line-height: 1.25;
+    display: inline-block;
+    padding-bottom: 1rem;
+  }
 }
 
 .ms-footer .container .footer-title h1 .btn-footer {
