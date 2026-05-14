@@ -337,6 +337,17 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
   border-bottom: none !important;
 }
 
+/*
+ * Móvil / ≤1023px: al pasar a layout .action aparecen las rayas del menú centrado.
+ * Fondo del mismo beige que el body/hero (#ede9db) con ligera transparencia.
+ */
+@media only screen and (max-width: 1023px) {
+  body.page-home-5 .main-header__layout.action .main-header__inner {
+    background-color: rgba(237, 233, 219, 0.88);
+    transition: background-color 0.35s ease;
+  }
+}
+
 /* After the hero, sections should be solid white (as before) */
 .ms-main .ms-page-content .services-area-2,
 .ms-main .ms-page-content .portfolio-area-2,
