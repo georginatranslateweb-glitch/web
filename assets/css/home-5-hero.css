@@ -773,12 +773,35 @@ body.page-home-5 .home-five-hero-vertical-logo {
   pointer-events: none;
 }
 
-/* Móvil: ocultar logo fijo para no tapar el menú; desktop: visible para hover espejo del nav */
+/* Móvil: logo fijo oculto salvo fase hero (layout .top); desktop: visible para hover espejo del nav */
 body.page-home-5 .home-five-fixed-logo {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+@media only screen and (max-width: 1023px) {
+  /*
+   * Geometría siempre “hero” en móvil Home-5: si solo se quita :has(.top) al pasar a .action,
+   * el logo volvería un instante a left/top del bloque base (25px) durante el fade — salto a esquina.
+   */
+  body.page-home-5 .home-five-fixed-logo {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem));
+  }
+
+  body.page-home-5 .home-five-fixed-logo img {
+    width: clamp(96px, 26vw, 120px);
+  }
+
+  body.page-home-5:has(.main-header__layout.top) .home-five-fixed-logo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
 
 @media (min-width: 1024px) {

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
-import HeaderTwo from '../../src/components/Header/HeaderTwo';
+import HeaderTwo, { MOST_HEADER_TWO_TOGGLE_MOBILE_NAV } from '../../src/components/Header/HeaderTwo';
 import Footer from '../../src/components/Footer';
 import HomeFiveBanner from './BannerSection';
 import HomeFiveParallax from './ParallaxSection';
@@ -67,6 +67,11 @@ const HomeFive = () => {
                 onBlur={scheduleEndLogoNavMirror}
                 onTouchStart={startLogoNavMirror}
                 onTouchEnd={scheduleEndLogoNavMirror}
+                onClick={() => {
+                    if (typeof window === 'undefined') return;
+                    if (!window.matchMedia('(max-width: 1023px)').matches) return;
+                    window.dispatchEvent(new CustomEvent(MOST_HEADER_TWO_TOGGLE_MOBILE_NAV));
+                }}
             >
                 <Image src={Logo} alt="" priority />
             </button>

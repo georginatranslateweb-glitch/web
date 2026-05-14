@@ -8,6 +8,11 @@ import LanguageSwitcher from '../LanguageSwitcher';
 import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
 
+/** Igual que breakpoints del menú móvil en style.css; Home-5 logo fijo dispara el mismo evento. */
+export const MOST_HEADER_TWO_TOGGLE_MOBILE_NAV = 'most:headerTwoToggleMobileNav';
+
+const NARROW_HEADER_MQ = '(max-width: 1023px)';
+
 const HeaderTwo = (props) => {
   const {
     headerClass,
@@ -30,13 +35,24 @@ const HeaderTwo = (props) => {
   const [homeFiveDrawerHoverMirror, setHomeFiveDrawerHoverMirror] = useState(false);
   /** Home-5 desktop + logo fijo: misma idea — sin 2×rAF el navegador a menudo no anima transform al añadir la clase en el mismo tick que React. */
   const [homeFiveLogoHoverMirrorApplied, setHomeFiveLogoHoverMirrorApplied] = useState(false);
+  /** ≤1023px: `alwaysScrolled` no fuerza layout compacto hasta hacer scroll (p. ej. Home-5 móvil). */
+  const [isNarrowViewport, setIsNarrowViewport] = useState(false);
   const menuOpenRef = useRef(menuOpen);
 
-  const scrolled = alwaysScrolled || isVisible;
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const mq = window.matchMedia(NARROW_HEADER_MQ);
+    const sync = () => setIsNarrowViewport(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   useEffect(() => {
     menuOpenRef.current = menuOpen;
   }, [menuOpen]);
+
+  const scrolled = (alwaysScrolled && !isNarrowViewport) || isVisible;
 
   useEffect(() => {
     if (!menuOpen) {
@@ -115,7 +131,7 @@ const HeaderTwo = (props) => {
   }, [layoutHoverMirrorFromFixedLogo, scrolled, alwaysScrolled, deferNavUntilScroll, chromePeek, menuOpen]);
 
   useEffect(() => {
-    if (alwaysScrolled) return undefined;
+    if (alwaysScrolled && !isNarrowViewport) return undefined;
     const toggleVisibility = () => {
       if (menuOpenRef.current) return;
       setIsVisible(window.pageYOffset > 100);
@@ -123,13 +139,21 @@ const HeaderTwo = (props) => {
 
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);
-  }, [alwaysScrolled]);
+  }, [alwaysScrolled, isNarrowViewport]);
 
   useEffect(() => {
-    if (alwaysScrolled) return;
+    if (alwaysScrolled && !isNarrowViewport) return;
     if (menuOpen) return;
     setIsVisible(window.pageYOffset > 100);
-  }, [menuOpen, alwaysScrolled]);
+  }, [menuOpen, alwaysScrolled, isNarrowViewport]);
+
+  useEffect(() => {
+    const onToggle = () => {
+      setMenuOpen((v) => !v);
+    };
+    window.addEventListener(MOST_HEADER_TWO_TOGGLE_MOBILE_NAV, onToggle);
+    return () => window.removeEventListener(MOST_HEADER_TWO_TOGGLE_MOBILE_NAV, onToggle);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return undefined;
@@ -182,7 +206,8 @@ const HeaderTwo = (props) => {
     window.matchMedia('(min-width: 1024px)').matches &&
     (!!chromePeek || !!layoutHoverMirrorFromFixedLogo);
 
-  const layoutIsAction = alwaysScrolled || isVisible || peekDesktopUsesActionLayout;
+  const layoutIsAction =
+    (alwaysScrolled && !isNarrowViewport) || isVisible || peekDesktopUsesActionLayout;
 
   const toggleNavFromLogo = () => {
     if (typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches) {
