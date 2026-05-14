@@ -5707,6 +5707,26 @@ html:not(.js) .f-header__nav {
     z-index: 8;
     margin: 0;
   }
+
+  /* Rayas del menú (móvil, todas las páginas): mismo rojo editorial #c64227 */
+  body .main-header .main-header__layout.top .menuTrigger::before,
+  body .main-header .main-header__layout.top .menuTrigger::after,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger::before,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger::after,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger::before,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger::after,
+  body .main-header .main-header__layout.action:hover .menuTrigger::before,
+  body .main-header .main-header__layout.action:hover .menuTrigger::after,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::before,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::after,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::before,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::after {
+    background: #c64227 !important;
+    background-color: #c64227 !important;
+    background-image: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
 }
 
 /* (moved below) */

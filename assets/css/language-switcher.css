@@ -102,3 +102,28 @@ body[data-theme='dark'] .ms-lang-dropdown__option:focus-visible {
 body[data-theme='dark'] .ms-lang-dropdown__option.is-active {
   background: rgba(184, 149, 108, 0.2);
 }
+
+/*
+ * Hamburger (.menuTrigger) — última hoja en _app: gana a style.css / home-5-hero.
+ * Mismo rojo editorial que el título Home 5 (#c64227); evita que filtros/capas lo dejen “negro”.
+ */
+@media only screen and (max-width: 1023px) {
+  body .main-header .main-header__layout.top .menuTrigger::before,
+  body .main-header .main-header__layout.top .menuTrigger::after,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger::before,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger::after,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger::before,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger::after,
+  body .main-header .main-header__layout.action:hover .menuTrigger::before,
+  body .main-header .main-header__layout.action:hover .menuTrigger::after,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::before,
+  body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::after,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::before,
+  body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::after {
+    background: #c64227 !important;
+    background-color: #c64227 !important;
+    background-image: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+}

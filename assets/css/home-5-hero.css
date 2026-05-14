@@ -617,7 +617,7 @@ body.page-home-5 .main-header.ms-mobile-nav-open .main-header__inner .main-heade
 
   body.page-home-5 .main-header .main-header__layout.action.ms-home5-logo--layout-hover-mirror .main-header__inner .menuTrigger::before,
   body.page-home-5 .main-header .main-header__layout.action.ms-home5-logo--layout-hover-mirror .main-header__inner .menuTrigger::after {
-    background-color: var(--color-contrast-high);
+    background-color: #c64227;
     content: "";
     display: block;
     height: 2px;
