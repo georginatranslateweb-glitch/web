@@ -12,7 +12,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 4px;
+  padding: 15px 20x;
   border: none;
   background: transparent;
   color: #3a4558;
@@ -108,6 +108,7 @@ body[data-theme='dark'] .ms-lang-dropdown__option.is-active {
  * Mismo rojo editorial que el título Home 5 (#c64227); evita que filtros/capas lo dejen “negro”.
  */
 @media only screen and (max-width: 1023px) {
+
   body .main-header .main-header__layout.top .menuTrigger::before,
   body .main-header .main-header__layout.top .menuTrigger::after,
   body .main-header .main-header__layout.top .main-header__inner .menuTrigger::before,

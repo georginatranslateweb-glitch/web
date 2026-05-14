@@ -5686,13 +5686,14 @@ html:not(.js) .f-header__nav {
   transition-delay: 0.2s;
 }
 
-/* Móvil: hero inicial — logo centrado, margen superior responsive; widgets al borde (desktop sin cambios) */
+/* Móvil: hero inicial — logo centrado; padding superior y derecho ×2; idioma alineado arriba con el logo (mismos inset que padding-top / right del inner) */
 @media only screen and (max-width: 1023px) {
   .main-header__layout.top .main-header__inner {
     position: relative;
     justify-content: center;
     align-items: center;
-    padding-top: max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem));
+    padding-top: calc(2 * max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem)));
+    padding-right: calc(2 * max(16px, calc(var(--bs-gutter-x, 24px) / 2)));
   }
 
   .main-header__layout.top .main-header__inner .main-header__logo {
@@ -5702,10 +5703,40 @@ html:not(.js) .f-header__nav {
 
   .main-header__layout.top .main-header__inner .main-header--widgets {
     position: absolute;
-    top: max(env(safe-area-inset-top, 0px), 0.5rem);
-    right: max(16px, calc(var(--bs-gutter-x, 24px) / 2));
+    top: calc(2 * max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem)));
+    right: calc(2 * max(16px, calc(var(--bs-gutter-x, 24px) / 2)));
+    transform: none;
     z-index: 8;
     margin: 0;
+    display: flex;
+    align-items: flex-start;
+    flex-grow: 0;
+    flex-basis: auto;
+  }
+
+  /* Mismo eje vertical que el hamburguesa (.menuTrigger usa 50% + translateY(-50%)) */
+  .main-header__layout.action .main-header__inner {
+    position: relative;
+  }
+
+  .main-header__layout.action .main-header__inner .main-header--widgets {
+    position: absolute;
+    top: 50%;
+    right: max(16px, calc(var(--bs-gutter-x, 24px) / 2));
+    transform: translateY(-50%);
+    z-index: 8;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    flex-basis: auto;
+  }
+
+  .main-header .main-header--widgets .ms-lang-dropdown {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
   }
 
   /* Rayas del menú (móvil, todas las páginas): mismo rojo editorial #c64227 */
