@@ -7,6 +7,7 @@ import LanguageSwitcher from '../LanguageSwitcher';
 
 import Logo from "../../../public/images/logo/logo-dark.svg";
 import LogoLight from "../../../public/images/logo/logo-light.svg";
+import LogoBeige from "../../../public/images/logo/logo-beige.png";
 
 const HeaderThree = ({ headerClass, headerLogo, headerLogoLight }) => {
   const { t } = useTranslation('header');
@@ -32,19 +33,22 @@ const HeaderThree = ({ headerClass, headerLogo, headerLogoLight }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const logoDarkSrc = menuOpen ? LogoBeige : (headerLogo || LogoLight);
+  const logoLightSrc = menuOpen ? LogoBeige : (headerLogoLight || Logo);
+
   return (
     <header>
-      <div className={`${headerClass || 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''}`}>
+      <div className={`${headerClass || 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''}`}>
         <div className={`main-header__layout ${isVisible ? 'action' : 'top'}`}>
           <div className="main-header__inner">
 
             {/* Logo */}
             <div className="main-header__logo">
               <div className="logo-dark">
-                <Link href="/"><Image src={headerLogo || LogoLight} alt={t('logoAlt')} width={150} height={50} /></Link>
+                <Link href="/"><Image src={logoDarkSrc} alt={t('logoAlt')} width={150} height={50} /></Link>
               </div>
               <div className="logo-light">
-                <Link href="/"><Image src={headerLogoLight || Logo} alt={t('logoAlt')} width={150} height={50} /></Link>
+                <Link href="/"><Image src={logoLightSrc} alt={t('logoAlt')} width={150} height={50} /></Link>
               </div>
             </div>
 

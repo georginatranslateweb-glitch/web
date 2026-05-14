@@ -792,7 +792,10 @@ body.page-home-5 .home-five-fixed-logo {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    top 0.35s ease;
 }
 
 @media only screen and (max-width: 1023px) {
@@ -816,6 +819,14 @@ body.page-home-5 .home-five-fixed-logo {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+  }
+
+  /* Drawer móvil: el logo fijo debe verse (y poder cerrar) aunque el header ya esté en .action por scroll */
+  body.page-home-5:has(.main-header.ms-mobile-nav-open) .home-five-fixed-logo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    top: max(env(safe-area-inset-top, 0px), clamp(2.75rem, 10vh, 5rem));
   }
 }
 

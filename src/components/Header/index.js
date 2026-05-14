@@ -6,6 +6,7 @@ import LanguageSwitcher from '../LanguageSwitcher';
 
 import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
+import LogoBeige from "../../../public/images/logo/logo-beige.png";
 
 const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
   const { t } = useTranslation('header');
@@ -39,9 +40,12 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
 
   const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
+  const logoDarkSrc = menuOpen ? LogoBeige : (headerLogo || Logo);
+  const logoLightSrc = menuOpen ? LogoBeige : (headerLogoLight || LogoLight);
+
   return (
     <header>
-      <div className={`${headerClass || 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''}`}>
+      <div className={`${headerClass || 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${isVisible ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''}`}>
         <div className={`main-header__layout ${isVisible ? 'action' : 'top'}`}>
           <div className="main-header__inner">
 
@@ -61,7 +65,7 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
                 >
                   <span className="ms-header-logo">
                     <Image
-                      src={headerLogo || Logo}
+                      src={logoDarkSrc}
                       alt=""
                       fill
                       sizes="160px"
@@ -85,7 +89,7 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
                 >
                   <span className="ms-header-logo">
                     <Image
-                      src={headerLogoLight || LogoLight}
+                      src={logoLightSrc}
                       alt=""
                       fill
                       sizes="160px"

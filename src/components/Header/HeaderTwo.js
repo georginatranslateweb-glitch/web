@@ -7,9 +7,13 @@ import LanguageSwitcher from '../LanguageSwitcher';
 
 import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
+import LogoBeige from "../../../public/images/logo/logo-beige.png";
 
 /** Igual que breakpoints del menú móvil en style.css; Home-5 logo fijo dispara el mismo evento. */
 export const MOST_HEADER_TWO_TOGGLE_MOBILE_NAV = 'most:headerTwoToggleMobileNav';
+
+/** Home-5 (logo fijo fuera del header): sincronizar asset beige / visibilidad con `menuOpen`. */
+export const MOST_HEADER_TWO_MOBILE_NAV_CHANGE = 'most:headerTwoMobileNavChange';
 
 const NARROW_HEADER_MQ = '(max-width: 1023px)';
 
@@ -50,6 +54,14 @@ const HeaderTwo = (props) => {
 
   useEffect(() => {
     menuOpenRef.current = menuOpen;
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    window.dispatchEvent(
+      new CustomEvent(MOST_HEADER_TWO_MOBILE_NAV_CHANGE, { detail: { open: menuOpen } }),
+    );
+    return undefined;
   }, [menuOpen]);
 
   const scrolled = (alwaysScrolled && !isNarrowViewport) || isVisible;
@@ -218,6 +230,9 @@ const HeaderTwo = (props) => {
 
   const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
+  const logoDarkSrc = menuOpen ? LogoBeige : (headerLogo || Logo);
+  const logoLightSrc = menuOpen ? LogoBeige : (headerLogoLight || LogoLight);
+
   return (
     <>
       <header>
@@ -247,7 +262,7 @@ const HeaderTwo = (props) => {
                   >
                     <span className="ms-header-logo">
                       <Image
-                        src={headerLogo ? headerLogo : Logo}
+                        src={logoDarkSrc}
                         alt=""
                         fill
                         sizes="160px"
@@ -271,7 +286,7 @@ const HeaderTwo = (props) => {
                   >
                     <span className="ms-header-logo">
                       <Image
-                        src={headerLogoLight ? headerLogoLight : LogoLight}
+                        src={logoLightSrc}
                         alt=""
                         fill
                         sizes="160px"
