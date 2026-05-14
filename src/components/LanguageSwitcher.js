@@ -57,7 +57,7 @@ const LanguageSwitcher = ({ className = '' }) => {
             d="M1 1.5l5 5 5-5"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="2.25"
             strokeLinecap="round"
             strokeLinejoin="round"
           />

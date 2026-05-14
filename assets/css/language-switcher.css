@@ -1,8 +1,11 @@
 .ms-lang-dropdown {
-  position: relative;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 130;
   display: inline-flex;
   align-items: center;
-  margin-inline-start: 12px;
+  margin-inline-start: 0;
 }
 
 .ms-lang-dropdown__toggle {
@@ -17,8 +20,9 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1;
+  text-transform: uppercase;
   cursor: pointer;
-  font-family: var(--font-highlight, Georgia, "Times New Roman", serif);
+  font-family: "Apple Garamond", var(--font-highlight, Georgia, "Times New Roman", serif);
 }
 
 .ms-lang-dropdown__toggle:hover,
@@ -27,13 +31,9 @@
   opacity: 0.85;
 }
 
-.ms-lang-dropdown__code {
-  text-transform: uppercase;
-}
-
 .ms-lang-dropdown__chevron {
   flex-shrink: 0;
-  color: #b8956c;
+  color: #c64227;
   transition: transform 0.2s ease;
 }
 
