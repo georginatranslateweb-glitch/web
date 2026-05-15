@@ -155,7 +155,7 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                         width={1286}
                         height={4169}
                         alt=""
-                        sizes="(min-width: 1400px) 140px, (min-width: 992px) 12vw, 0px"
+                            sizes="(min-width: 1400px) 92px, (min-width: 992px) 7vw, 0px"
                         unoptimized
                     />
                 </button>

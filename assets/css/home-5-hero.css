@@ -167,7 +167,8 @@
 body > .home-five-hero-vertical-brand,
 body.page-home-5 > .home-five-hero-vertical-brand,
 .ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand {
-  --home-five-vertical-logo-w: clamp(3.25rem, 6.25vw, 6.5rem);
+  /* Ancho del logo vertical (PNG); hamburguesa = ⅓ de este valor */
+  --home-five-vertical-logo-w: clamp(2.125rem, 4vw, 4.25rem);
   --home-five-hamburger-line-gap: 6px;
 
   position: fixed;
@@ -321,9 +322,9 @@ button.home-five-hero-vertical-logo {
 .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo__img,
 body > .home-five-hero-vertical-brand .home-five-hero-vertical-logo__img,
 body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo__img {
-  width: var(--home-five-vertical-logo-w, clamp(3.25rem, 6.25vw, 6.5rem));
+  width: var(--home-five-vertical-logo-w, clamp(2.125rem, 4vw, 4.25rem));
   height: auto;
-  max-height: min(66vh, 38rem);
+  max-height: min(44vh, 26rem);
   object-fit: contain;
   display: block;
 }
