@@ -7,7 +7,7 @@
   min-height: 100vh;
   padding-bottom: 0;
   /* Área fuera del recuadro rojo (columna izquierda / márgenes) */
-  background-color: #ede9db;
+  background-color: var(--color-bg);
 }
 
 /*
@@ -506,7 +506,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 
 /*
  * Móvil / ≤1023px: al pasar a layout .action aparecen las rayas del menú centrado.
- * Fondo del mismo beige que el body/hero (#ede9db) con ligera transparencia.
+ * Fondo del mismo beige que el body/hero (var(--color-bg)) con ligera transparencia.
  */
 @media only screen and (max-width: 1023px) {
   body.page-home-5 .main-header__layout.action .main-header__inner {
@@ -563,7 +563,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 
 /* Home-5: barra siempre en modo “compacto” (antes ligado al scroll); sin ms-header-chrome-deferred en la implementación actual. */
 body.page-home-5 {
-  background-color: #ede9db;
+  background-color: var(--color-bg);
 }
 
 body.page-home-5 .main-header {

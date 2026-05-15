@@ -111,7 +111,7 @@ const HomeCV = () => {
                                     </div>
                                 </div>
                                 <div className="pricing-area">
-                                    <h2 className="pricing-title">My Pricing</h2>
+                                    <h2 className="pricing-title">How it works? </h2>
                                     <div className="pricing-inner">
                                         <div className="row">
                                             <div className="col-lg-4 col-md-4 col-sm-4 inner">

@@ -58,7 +58,7 @@
   width: max-content;
   min-width: 0;
   list-style: none;
-  background: #fff;
+  background: var(--color-bg);
   border-radius: 6px;
   box-shadow: 0 8px 24px rgba(58, 69, 88, 0.12), 0 0 0 1px rgba(58, 69, 88, 0.06);
   z-index: 120;

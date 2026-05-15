@@ -10,7 +10,7 @@ const About = () => {
       <HeaderTwo />
 
       <main className="ms-main">
-        <div className="ms-page-content">
+        <div className="ms-page-content about-page">
           <HomeCV />
         </div>
       </main>

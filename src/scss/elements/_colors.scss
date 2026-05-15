@@ -34,16 +34,16 @@
   @include defineColorHSL(--color-error-light, 357, 91%, 61%);
   @include defineColorHSL(--color-error-lighter, 357, 91%, 67%);
 
-  // background
-  @include defineColorHSL(--color-bg-darker, 0, 0%, 89%);
-  @include defineColorHSL(--color-bg-dark, 0, 0%, 93%);
-  @include defineColorHSL(--color-bg, 0, 0%, 100%);
-  @include defineColorHSL(--color-bg-light, 0, 0%, 100%);
-  @include defineColorHSL(--color-bg-lighter, 0, 0%, 100%);
+  // background (warm beige aligned with about-page #ede9db)
+  @include defineColorHSL(--color-bg-darker, 48, 26%, 80%);
+  @include defineColorHSL(--color-bg-dark, 48, 30%, 85%);
+  @include defineColorHSL(--color-bg, 48, 33%, 89%);
+  @include defineColorHSL(--color-bg-light, 48, 28%, 93%);
+  @include defineColorHSL(--color-bg-lighter, 48, 24%, 97%);
 
   // color contrasts
-  @include defineColorHSL(--color-contrast-lower, 0, 0%, 97%);
-  @include defineColorHSL(--color-contrast-low, 0, 0%, 91%);
+  @include defineColorHSL(--color-contrast-lower, 48, 18%, 96%);
+  @include defineColorHSL(--color-contrast-low, 48, 15%, 91%);
   @include defineColorHSL(--color-contrast-medium, 0, 0%, 46%);
   @include defineColorHSL(--color-contrast-high, 0, 0%, 17%);
   @include defineColorHSL(--color-contrast-higher, 0, 0%, 0%);
