@@ -9,8 +9,10 @@ import enHeader from '../locales/en/header.json';
 import esHeader from '../locales/es/header.json';
 import enHome from '../locales/en/home.json';
 import esHome from '../locales/es/home.json';
+import enAbout from '../locales/en/about.json';
+import esAbout from '../locales/es/about.json';
 
-const namespaces = ['common', 'navigation', 'header', 'home'];
+const namespaces = ['common', 'navigation', 'header', 'home', 'about'];
 
 const resources = {
   en: {
@@ -18,12 +20,14 @@ const resources = {
     navigation: enNavigation,
     header: enHeader,
     home: enHome,
+    about: enAbout,
   },
   es: {
     common: esCommon,
     navigation: esNavigation,
     header: esHeader,
     home: esHome,
+    about: esAbout,
   },
 };
 

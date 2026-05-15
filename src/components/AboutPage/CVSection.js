@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useLayoutEffect, useState } from 'react';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 import CVImg from "../../../public/images/portfolio/personal-cv.jpg";
 import clientImg1 from "../../../public/images/clients/logo-partner-1.png";
@@ -19,6 +19,17 @@ import icon3 from "../../../public/images/services/icon/code-3.svg";
 import icon4 from "../../../public/images/services/icon/code-4.svg";
 
 const HomeCV = () => {
+    const { t, i18n } = useTranslation('about');
+    /** Hasta layout: forzar en (igual que SSR) para que el primer paint cliente coincida con el HTML del servidor. */
+    const [i18nLayoutReady, setI18nLayoutReady] = useState(false);
+    useLayoutEffect(() => {
+        setI18nLayoutReady(true);
+    }, []);
+    const lng = i18nLayoutReady
+        ? (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0]
+        : 'en';
+    const tx = (key) => t(key, { lng });
+
     return (
         <>
             <div className="container">
@@ -26,84 +37,76 @@ const HomeCV = () => {
                     <div className="row">
                         <div className="col-lg-5">
                             <div className="image-left-side">
-                                <Image src={CVImg} alt="image" />
+                                <Image src={CVImg} alt={tx('heroImageAlt')} />
                             </div>
                         </div>
                         <div className="col-lg-7">
                             <div className="right-side-content">
-                                <h1 className="heading-title">Mad Sparrow</h1>
+                                <h1 className="heading-title">{tx('heroName')}</h1>
                                 <p>
 
                                     <em>
-                                        <span className="cate-color">34 years &nbsp;</span>
+                                        <span className="cate-color">{tx('heroYears')}&nbsp;</span>
                                         <span> /</span>&nbsp; &nbsp;
-                                        <span className="cate-color">London &nbsp;</span> &nbsp;
+                                        <span className="cate-color">{tx('heroLocation')}&nbsp;</span> &nbsp;
                                         <span>/</span>&nbsp; &nbsp;
-                                        <span className="cate-color">Freelance</span>
+                                        <span className="cate-color">{tx('heroRole')}</span>
                                     </em>
                                 </p>
-                                <p className="desc">Credibly e-enable standards compliant users rather than front-end
-                                    solutions. Enthusiastically harness client-focused action items before corporate
-                                    intellectual capital. Uniquely repurpose world-class infrastructures through
-                                    client-centered collaboration and idea-sharing. Progressively mesh magnetic quality
-                                    vectors before dynamic markets. Competently leverage existing leading-edge
-                                    collaboration and idea-sharing with 2.0 total linkage.
-                                </p>
+                                <p className="desc">{tx('intro')}</p>
                                 <div className="services-area">
-                                    <h2 className="services-title">My Services</h2>
+                                    <h2 className="services-title">{tx('servicesTitle')}</h2>
                                     <div className="services-items">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon1} className="attachment-full size-full" alt="icon" />
+                                                        <Image src={icon1} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>Development</span>
+                                                            <span>{tx('service1Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">Create a platform with the best and
-                                                            coolest quality from us.
-                                                        </p>
+                                                        <p className="ms-sb--text">{tx('service1Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon2} className="attachment-full size-full" alt="icon" />
+                                                        <Image src={icon2} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>UI/UX Designer</span>
+                                                            <span>{tx('service2Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">We provide UI/UX Design services, and of course with the best quality</p>
+                                                        <p className="ms-sb--text">{tx('service2Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon3} className="attachment-full size-full" alt="icon" />
+                                                        <Image src={icon3} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>SEO Optimization</span>
+                                                            <span>{tx('service3Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">Create a platform with the best and coolest quality from us.</p>
+                                                        <p className="ms-sb--text">{tx('service3Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon4} className="attachment-full size-full" alt="icon" />
+                                                        <Image src={icon4} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>Consulting</span>
+                                                            <span>{tx('service4Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">We provide UI/UX Design services, and of course with the best quality</p>
+                                                        <p className="ms-sb--text">{tx('service4Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -111,7 +114,7 @@ const HomeCV = () => {
                                     </div>
                                 </div>
                                 <div className="pricing-area">
-                                    <h2 className="pricing-title">How it works? </h2>
+                                    <h2 className="pricing-title">{tx('pricingHowTitle')}</h2>
                                     <div className="pricing-inner">
                                         <div className="row">
                                             <div className="col-lg-4 col-md-4 col-sm-4 inner">
@@ -119,10 +122,10 @@ const HomeCV = () => {
                                                     <div className="ms-pt--price">
                                                     </div>
                                                     <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> Basic </h4>
+                                                        <h4 className="ms-pt--title"> {tx('planBasic')} </h4>
                                                         <span className="currency currency--before">$</span>
                                                         <span className="price">29</span>
-                                                        <span className="period">/ Hour</span>
+                                                        <span className="period">{tx('perHour')}</span>
                                                     </div>
                                                     <div className="ms-pt--content">
                                                         <ul>
@@ -134,7 +137,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Consulting </span>
+                                                                <span> {tx('featureConsulting')} </span>
                                                             </li>
                                                             <li className="active">
                                                                 <i className="icon-check">
@@ -144,7 +147,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Development </span>
+                                                                <span> {tx('featureDevelopment')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -154,7 +157,7 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Design </span>
+                                                                <span> {tx('featureDesign')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -164,14 +167,14 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> 24/7 Support </span>
+                                                                <span> {tx('featureSupport')} </span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div className="ms-pt--footer">
                                                         <a className="btn btn--ba btn--primary" role="button" href="#">
                                                             <div className="ms-btn__text">
-                                                                <span className="text--main">Choose Plan</span>
+                                                                <span className="text--main">{tx('choosePlan')}</span>
                                                             </div>
                                                             <span className="ms-btn--ripple"></span>
                                                         </a>
@@ -183,10 +186,10 @@ const HomeCV = () => {
                                                     <div className="ms-pt--price">
                                                     </div>
                                                     <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> Advanced </h4>
+                                                        <h4 className="ms-pt--title"> {tx('planAdvanced')} </h4>
                                                         <span className="currency currency--before">$</span>
                                                         <span className="price">39</span>
-                                                        <span className="period">/ Hour</span>
+                                                        <span className="period">{tx('perHour')}</span>
                                                     </div>
                                                     <div className="ms-pt--content">
                                                         <ul>
@@ -198,7 +201,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Consulting </span>
+                                                                <span> {tx('featureConsulting')} </span>
                                                             </li>
                                                             <li className="active">
                                                                 <i className="icon-check">
@@ -208,7 +211,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Development </span>
+                                                                <span> {tx('featureDevelopment')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -218,7 +221,7 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Design </span>
+                                                                <span> {tx('featureDesign')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -228,14 +231,14 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> 24/7 Support </span>
+                                                                <span> {tx('featureSupport')} </span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div className="ms-pt--footer">
                                                         <a className="btn btn--ba btn--primary" role="button" href="#">
                                                             <div className="ms-btn__text">
-                                                                <span className="text--main">Choose Plan</span>
+                                                                <span className="text--main">{tx('choosePlan')}</span>
                                                             </div>
                                                             <span className="ms-btn--ripple"></span>
                                                         </a>
@@ -247,10 +250,10 @@ const HomeCV = () => {
                                                     <div className="ms-pt--price">
                                                     </div>
                                                     <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> Premium </h4>
+                                                        <h4 className="ms-pt--title"> {tx('planPremium')} </h4>
                                                         <span className="currency currency--before">$</span>
                                                         <span className="price">99</span>
-                                                        <span className="period">/ Hour</span>
+                                                        <span className="period">{tx('perHour')}</span>
                                                     </div>
                                                     <div className="ms-pt--content">
                                                         <ul>
@@ -262,7 +265,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Consulting </span>
+                                                                <span> {tx('featureConsulting')} </span>
                                                             </li>
                                                             <li className="active">
                                                                 <i className="icon-check">
@@ -272,7 +275,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Development </span>
+                                                                <span> {tx('featureDevelopment')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -282,7 +285,7 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> Design </span>
+                                                                <span> {tx('featureDesign')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -292,14 +295,14 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> 24/7 Support </span>
+                                                                <span> {tx('featureSupport')} </span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div className="ms-pt--footer">
                                                         <a className="btn btn--ba btn--primary" role="button" href="#">
                                                             <div className="ms-btn__text">
-                                                                <span className="text--main">Choose Plan</span>
+                                                                <span className="text--main">{tx('choosePlan')}</span>
                                                             </div>
                                                             <span className="ms-btn--ripple"></span>
                                                         </a>
@@ -310,7 +313,7 @@ const HomeCV = () => {
                                     </div>
                                 </div>
                                 <div className="clients-area">
-                                    <h2 className="clients-title">My Clients</h2>
+                                    <h2 className="clients-title">{tx('clientsTitle')}</h2>
                                     <div className="clients-inner">
                                         <div id="gallery-1" className="gallery galleryid-1718 gallery-columns-5 gallery-size-medium">
                                             <figure className="gallery-item">
