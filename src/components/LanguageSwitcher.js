@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import {
+  SSR_I18N_LANG,
+  useHydrationSafeTranslation,
+} from '../i18n/useHydrationSafeTranslation';
 
 const LANGUAGES = [
   { code: 'en', label: 'EN' },
@@ -7,11 +10,13 @@ const LANGUAGES = [
 ];
 
 const LanguageSwitcher = ({ className = '' }) => {
-  const { i18n, t } = useTranslation('common');
+  const { t, i18n, hydrated } = useHydrationSafeTranslation('common');
   const [open, setOpen] = useState(false);
   const rootRef = useRef(null);
 
-  const resolved = (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0];
+  const resolved = hydrated
+    ? (i18n.resolvedLanguage || i18n.language || SSR_I18N_LANG).split('-')[0]
+    : SSR_I18N_LANG;
   const current = LANGUAGES.find((l) => l.code === resolved) || LANGUAGES[0];
 
   useEffect(() => {
@@ -45,7 +50,9 @@ const LanguageSwitcher = ({ className = '' }) => {
         aria-label={t('switchLanguage')}
         onClick={() => setOpen((v) => !v)}
       >
-        <span className="ms-lang-dropdown__code">{current.label}</span>
+        <span className="ms-lang-dropdown__code" suppressHydrationWarning>
+          {current.label}
+        </span>
         <svg
           className="ms-lang-dropdown__chevron"
           width="12"

@@ -8,6 +8,7 @@ import LanguageSwitcher from '../LanguageSwitcher';
 import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
 import LogoBeige from "../../../public/images/logo/logo-beige.png";
+import LogoSecondary from "../../../public/images/logo/logo-secundario.png";
 
 /** Igual que breakpoints del menú móvil en style.css; Home-5 logo fijo dispara el mismo evento. */
 export const MOST_HEADER_TWO_TOGGLE_MOBILE_NAV = 'most:headerTwoToggleMobileNav';
@@ -32,6 +33,8 @@ const HeaderTwo = (props) => {
     alwaysScrolled = false,
     /** Home-5: el idioma vive junto a la hamburguesa del hero (evita solaparse con el logo vertical). */
     hideLanguageSwitcher = false,
+    /** Páginas secundarias: logo más grande y posicionado como en Home-5. */
+    secondaryLogoAbsolute = false,
   } = props;
   const { t } = useHydrationSafeTranslation('header');
 
@@ -233,14 +236,15 @@ const HeaderTwo = (props) => {
   const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
   const useBeigeMobileMenuLogo = menuOpen && isNarrowViewport;
-  const logoDarkSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogo || Logo);
-  const logoLightSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogoLight || LogoLight);
-
+  const defaultLogoDark = secondaryLogoAbsolute ? LogoSecondary : Logo;
+  const defaultLogoLight = secondaryLogoAbsolute ? LogoSecondary : LogoLight;
+  const logoDarkSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogo || defaultLogoDark);
+  const logoLightSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogoLight || defaultLogoLight);
   return (
     <>
       <header>
         <div
-          className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${scrolled ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''} ${navChromeDeferred ? 'ms-header-chrome-deferred' : ''}`}
+          className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${scrolled ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''} ${navChromeDeferred ? 'ms-header-chrome-deferred' : ''} ${secondaryLogoAbsolute ? 'ms-header-two--secondary-logo-abs' : ''}`}
           onMouseEnter={peekBridgeActive ? onChromePeekBridgeEnter : undefined}
           onMouseLeave={peekBridgeActive ? onChromePeekBridgeLeave : undefined}
         >
@@ -250,6 +254,12 @@ const HeaderTwo = (props) => {
             }${homeFiveLogoHoverMirrorApplied ? ' ms-home5-logo--layout-hover-mirror' : ''}`}
           >
             <div className="main-header__inner">
+              {secondaryLogoAbsolute ? (
+              <div
+                className="main-header__logo ms-header-two-logo-spacer"
+                aria-hidden="true"
+              />
+              ) : (
               <div className="main-header__logo">
                 <div className="logo-dark">
                   <button
@@ -300,6 +310,7 @@ const HeaderTwo = (props) => {
                   </button>
                 </div>
               </div>
+              )}
 
               <nav className={`main-header__nav js-main-header__nav main-header__default ${menuOpen ? 'is_mobile main-header__nav--is-visible' : ''}`} id="main-header-nav" aria-labelledby="primary-menu">
                 <ul id="primary-menu" className="navbar-nav">

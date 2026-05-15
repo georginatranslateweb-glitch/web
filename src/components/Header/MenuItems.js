@@ -22,7 +22,7 @@ const MenuItems = () => {
         return (
           <li key={href} className={active ? 'menu-item active' : 'menu-item'}>
             <Link href={href} title={label}>
-              <span>{label}</span>
+              <span suppressHydrationWarning>{label}</span>
             </Link>
           </li>
         );

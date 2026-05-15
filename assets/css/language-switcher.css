@@ -1,6 +1,8 @@
 :root {
   /* Inset superior del bloque idioma (header); reutilizado p. ej. Home 5 hamburguesa desktop */
   --ms-lang-dropdown-offset-top: 10px;
+  /* Alineación óptica con las rayas del .menuTrigger en el header */
+  --ms-lang-header-widgets-padding-top: 8px;
 }
 
 .ms-lang-dropdown {
@@ -92,6 +94,57 @@
   color: #3a4558;
 }
 
+/*
+ * Header compacto (.action) y secondary-logo-abs recortan overflow/altura;
+ * sin esto el desplegable solo muestra el fondo (opciones EN/ES fuera de vista).
+ */
+.main-header__layout:has(.ms-lang-dropdown.is-open) {
+  overflow: visible;
+}
+
+.main-header__layout.action:has(.ms-lang-dropdown.is-open) {
+  height: auto !important;
+  min-height: 40px;
+}
+
+.main-header--widgets:has(.ms-lang-dropdown.is-open) {
+  overflow: visible;
+  z-index: 150;
+}
+
+.ms-lang-dropdown.is-open {
+  z-index: 150;
+}
+
+.ms-lang-dropdown.is-open .ms-lang-dropdown__menu {
+  z-index: 151;
+}
+
+/* Header: mismo eje vertical que el hamburguesa (evita absolute + top que lo sube en desktop) */
+.main-header .main-header--widgets .ms-lang-dropdown {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  padding-top: var(--ms-lang-header-widgets-padding-top);
+  align-self: center;
+}
+
+.main-header .main-header--widgets .ms-lang-dropdown__toggle {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main-header__layout.top .main-header__inner .main-header--widgets .ms-lang-dropdown {
+    padding-top: 10px;
+  }
+
+  .main-header__layout.action .main-header__inner .main-header--widgets .ms-lang-dropdown {
+    padding-top: 5px;
+  }
+}
+
 body[data-theme='dark'] .ms-lang-dropdown__toggle {
   color: rgba(255, 255, 255, 0.92);
 }
@@ -115,27 +168,37 @@ body[data-theme='dark'] .ms-lang-dropdown__option.is-active {
 }
 
 /*
- * Hamburger (.menuTrigger) — última hoja en _app: gana a style.css / home-5-hero.
- * Mismo rojo editorial que el título Home 5 (#c64227); evita que filtros/capas lo dejen “negro”.
+ * Hamburguesa (.menuTrigger) — todas las páginas y breakpoints.
+ * Última hoja en _app: gana a style.css / home-5-hero (#C64227 editorial).
  */
-@media only screen and (max-width: 1023px) {
+body .main-header .main-header__layout.top .menuTrigger::before,
+body .main-header .main-header__layout.top .menuTrigger::after,
+body .main-header .main-header__layout.top .main-header__inner .menuTrigger::before,
+body .main-header .main-header__layout.top .main-header__inner .menuTrigger::after,
+body .main-header .main-header__layout.action .main-header__inner .menuTrigger::before,
+body .main-header .main-header__layout.action .main-header__inner .menuTrigger::after,
+body .main-header .main-header__layout.action:hover .menuTrigger::before,
+body .main-header .main-header__layout.action:hover .menuTrigger::after,
+body .main-header .main-header__layout.action:hover .main-header__inner .menuTrigger::before,
+body .main-header .main-header__layout.action:hover .main-header__inner .menuTrigger::after,
+body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::before,
+body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::after,
+body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::before,
+body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::after,
+body.ms-header-two--secondary-logo-abs .main-header__layout.top .menuTrigger::before,
+body.ms-header-two--secondary-logo-abs .main-header__layout.top .menuTrigger::after,
+body.ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::before,
+body.ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::after,
+body.ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::before,
+body.ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::after {
+  background: #C64227 !important;
+  background-color: #C64227 !important;
+  background-image: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
 
-  body .main-header .main-header__layout.top .menuTrigger::before,
-  body .main-header .main-header__layout.top .menuTrigger::after,
-  body .main-header .main-header__layout.top .main-header__inner .menuTrigger::before,
-  body .main-header .main-header__layout.top .main-header__inner .menuTrigger::after,
-  body .main-header .main-header__layout.action .main-header__inner .menuTrigger::before,
-  body .main-header .main-header__layout.action .main-header__inner .menuTrigger::after,
-  body .main-header .main-header__layout.action:hover .menuTrigger::before,
-  body .main-header .main-header__layout.action:hover .menuTrigger::after,
-  body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::before,
-  body .main-header .main-header__layout.top .main-header__inner .menuTrigger[role='button']::after,
-  body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::before,
-  body .main-header .main-header__layout.action .main-header__inner .menuTrigger[role='button']::after {
-    background: #c64227 !important;
-    background-color: #c64227 !important;
-    background-image: none !important;
-    filter: none !important;
-    -webkit-filter: none !important;
-  }
+/* Home 5 hero: hamburguesa propia (no usa ::before/::after del theme) */
+body .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger__line {
+  background-color: #C64227 !important;
 }

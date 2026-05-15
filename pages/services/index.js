@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import HeaderTwo from '../../src/components/Header/HeaderTwo';
+import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
 import Footer from '../../src/components/Footer';
 
 import icon1 from "../../public/images/services/icon/code-1.svg";
@@ -15,7 +16,8 @@ import icon6 from "../../public/images/services/icon/code-6.svg";
 const Services = () => {
     return (
         <>
-            <HeaderTwo />
+            <HeaderTwo secondaryLogoAbsolute />
+            <SecondaryFixedLogo />
 
             <main className="ms-main">
                 <div className="ms-page-content">
