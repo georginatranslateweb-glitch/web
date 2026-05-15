@@ -2,21 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import CVImg from "../../public/images/portfolio/personal-cv.jpg";
-import clientImg1 from "../../public/images/clients/logo-partner-1.png";
-import clientImg2 from "../../public/images/clients/logo-partner-2.png";
-import clientImg3 from "../../public/images/clients/logo-partner-3.png";
-import clientImg4 from "../../public/images/clients/logo-partner-4.png";
-import clientImg5 from "../../public/images/clients/logo-partner-5.png";
-import clientImg6 from "../../public/images/clients/logo-partner-6.png";
-import clientImg7 from "../../public/images/clients/logo-partner-7.png";
-import clientImg8 from "../../public/images/clients/logo-partner-8.png";
-import clientImg9 from "../../public/images/clients/logo-partner-9.png";
+import CVImg from "../../../public/images/portfolio/personal-cv.jpg";
+import clientImg1 from "../../../public/images/clients/logo-partner-1.png";
+import clientImg2 from "../../../public/images/clients/logo-partner-2.png";
+import clientImg3 from "../../../public/images/clients/logo-partner-3.png";
+import clientImg4 from "../../../public/images/clients/logo-partner-4.png";
+import clientImg5 from "../../../public/images/clients/logo-partner-5.png";
+import clientImg6 from "../../../public/images/clients/logo-partner-6.png";
+import clientImg7 from "../../../public/images/clients/logo-partner-7.png";
+import clientImg8 from "../../../public/images/clients/logo-partner-8.png";
+import clientImg9 from "../../../public/images/clients/logo-partner-9.png";
 
-import icon1 from "../../public/images/services/icon/code-1.svg";
-import icon2 from "../../public/images/services/icon/code-2.svg";
-import icon3 from "../../public/images/services/icon/code-3.svg";
-import icon4 from "../../public/images/services/icon/code-4.svg";
+import icon1 from "../../../public/images/services/icon/code-1.svg";
+import icon2 from "../../../public/images/services/icon/code-2.svg";
+import icon3 from "../../../public/images/services/icon/code-3.svg";
+import icon4 from "../../../public/images/services/icon/code-4.svg";
 
 const HomeCV = () => {
     return (

@@ -1,4 +1,8 @@
 {
+  "mainNavHome": "Inicio",
+  "mainNavServices": "Servicios",
+  "mainNavAbout": "Acerca de",
+  "mainNavContact": "Contacto",
   "topLevel": {
     "home": "Inicio",
     "stories": "Historias",

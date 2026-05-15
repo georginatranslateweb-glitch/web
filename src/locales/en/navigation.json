@@ -1,4 +1,8 @@
 {
+  "mainNavHome": "Home",
+  "mainNavServices": "Services",
+  "mainNavAbout": "About",
+  "mainNavContact": "Contact",
   "topLevel": {
     "home": "Home",
     "stories": "Stories",

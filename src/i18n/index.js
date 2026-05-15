@@ -42,6 +42,10 @@ if (!i18n.isInitialized) {
     },
     react: {
       useSuspense: false,
+      // Sin esto, el primer paint puede quedar con las claves literales: useTranslation solo
+      // escuchaba `languageChanged` y no se re-renderiza al terminar `init` / `initialized`.
+      bindI18n: 'languageChanged initialized',
+      bindI18nStore: 'added removed',
     },
   });
 
