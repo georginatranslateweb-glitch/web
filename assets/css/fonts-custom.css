@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
 
 /**
- * Red Hat Display — cuerpo y titulares (ver --font-primary / --font-heading en style.css).
+ * Red Hat Display — cuerpo (ver --font-primary en style.css).
  *
- * Apple Garamond — solo resaltados: em, strong, mark y .font-highlight.
+ * Apple Garamond — titulares (h1–h6, --font-heading), resaltados (em, strong, mark, .font-highlight).
  * Los archivos “Italic” del diseño se declaran como estilo normal donde aplica.
  *
  * - 300 / normal → Garamond más fino (font-weight: 300)
@@ -34,7 +34,7 @@
   font-display: swap;
 }
 
-/* Resaltados: Garamond sobre el cuerpo Red Hat Display (variable --font-highlight en :root de style.css) */
+/* Apple Garamond: titulares y resaltados (variables --font-heading / --font-highlight en style.css) */
 em,
 strong,
 mark,

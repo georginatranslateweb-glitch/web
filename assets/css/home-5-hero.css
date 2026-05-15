@@ -80,7 +80,7 @@
 
 /* El banner queda sticky; alto fijo 100vh para que las dos filas sumen el viewport */
 .ms-main .ms-page-content .home-five-hero .banner-area {
-  --home-five-banner-title-color: #c64227;
+  --home-five-banner-title-color: var(--color-heading, #c64227);
 
   position: sticky;
   top: 0;
