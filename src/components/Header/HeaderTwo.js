@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
+import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 import MenuItems from './MenuItems';
 import LanguageSwitcher from '../LanguageSwitcher';
@@ -33,7 +33,7 @@ const HeaderTwo = (props) => {
     /** Home-5: el idioma vive junto a la hamburguesa del hero (evita solaparse con el logo vertical). */
     hideLanguageSwitcher = false,
   } = props;
-  const { t } = useTranslation('header');
+  const { t } = useHydrationSafeTranslation('header');
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);

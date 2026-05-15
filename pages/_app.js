@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import i18n from '../src/i18n';
@@ -56,7 +56,8 @@ import "../assets/css/language-switcher.css";
 SwiperCore.use([Navigation, Pagination, Parallax]);
 
 function I18nPersistedLanguage() {
-  useLayoutEffect(() => {
+  // useEffect (no useLayoutEffect): restaurar idioma tras hidratar para no desincronizar texto SSR/cliente.
+  useEffect(() => {
     try {
       const raw = window.localStorage.getItem('i18nextLng');
       const code = raw ? raw.split('-')[0] : '';

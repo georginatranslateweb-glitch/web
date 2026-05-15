@@ -1,6 +1,6 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
+import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 import CVImg from "../../../public/images/portfolio/personal-cv.jpg";
 import clientImg1 from "../../../public/images/clients/logo-partner-1.png";
@@ -19,16 +19,7 @@ import icon3 from "../../../public/images/services/icon/code-3.svg";
 import icon4 from "../../../public/images/services/icon/code-4.svg";
 
 const HomeCV = () => {
-    const { t, i18n } = useTranslation('about');
-    /** Hasta layout: forzar en (igual que SSR) para que el primer paint cliente coincida con el HTML del servidor. */
-    const [i18nLayoutReady, setI18nLayoutReady] = useState(false);
-    useLayoutEffect(() => {
-        setI18nLayoutReady(true);
-    }, []);
-    const lng = i18nLayoutReady
-        ? (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0]
-        : 'en';
-    const tx = (key) => t(key, { lng });
+    const { t } = useHydrationSafeTranslation('about');
 
     return (
         <>
@@ -37,76 +28,76 @@ const HomeCV = () => {
                     <div className="row">
                         <div className="col-lg-5">
                             <div className="image-left-side">
-                                <Image src={CVImg} alt={tx('heroImageAlt')} />
+                                <Image src={CVImg} alt={t('heroImageAlt')} />
                             </div>
                         </div>
                         <div className="col-lg-7">
                             <div className="right-side-content">
-                                <h1 className="heading-title">{tx('heroName')}</h1>
+                                <h1 className="heading-title">{t('heroName')}</h1>
                                 <p>
 
                                     <em>
-                                        <span className="cate-color">{tx('heroYears')}&nbsp;</span>
+                                        <span className="cate-color">{t('heroYears')}&nbsp;</span>
                                         <span> /</span>&nbsp; &nbsp;
-                                        <span className="cate-color">{tx('heroLocation')}&nbsp;</span> &nbsp;
+                                        <span className="cate-color">{t('heroLocation')}&nbsp;</span> &nbsp;
                                         <span>/</span>&nbsp; &nbsp;
-                                        <span className="cate-color">{tx('heroRole')}</span>
+                                        <span className="cate-color">{t('heroRole')}</span>
                                     </em>
                                 </p>
-                                <p className="desc">{tx('intro')}</p>
+                                <p className="desc">{t('intro')}</p>
                                 <div className="services-area">
-                                    <h2 className="services-title">{tx('servicesTitle')}</h2>
+                                    <h2 className="services-title">{t('servicesTitle')}</h2>
                                     <div className="services-items">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon1} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
+                                                        <Image src={icon1} className="attachment-full size-full" alt={t('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>{tx('service1Title')}</span>
+                                                            <span>{t('service1Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">{tx('service1Text')}</p>
+                                                        <p className="ms-sb--text">{t('service1Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon2} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
+                                                        <Image src={icon2} className="attachment-full size-full" alt={t('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>{tx('service2Title')}</span>
+                                                            <span>{t('service2Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">{tx('service2Text')}</p>
+                                                        <p className="ms-sb--text">{t('service2Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon3} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
+                                                        <Image src={icon3} className="attachment-full size-full" alt={t('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>{tx('service3Title')}</span>
+                                                            <span>{t('service3Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">{tx('service3Text')}</p>
+                                                        <p className="ms-sb--text">{t('service3Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb img-top">
                                                     <div className="ms-sb--img default">
-                                                        <Image src={icon4} className="attachment-full size-full" alt={tx('serviceIconAlt')} />
+                                                        <Image src={icon4} className="attachment-full size-full" alt={t('serviceIconAlt')} />
                                                     </div>
                                                     <div className="ms-sb--inner">
                                                         <h4 className="ms-sb--title">
-                                                            <span>{tx('service4Title')}</span>
+                                                            <span>{t('service4Title')}</span>
                                                         </h4>
-                                                        <p className="ms-sb--text">{tx('service4Text')}</p>
+                                                        <p className="ms-sb--text">{t('service4Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -114,7 +105,7 @@ const HomeCV = () => {
                                     </div>
                                 </div>
                                 <div className="pricing-area">
-                                    <h2 className="pricing-title">{tx('pricingHowTitle')}</h2>
+                                    <h2 className="pricing-title">{t('pricingHowTitle')}</h2>
                                     <div className="pricing-inner">
                                         <div className="row">
                                             <div className="col-lg-4 col-md-4 col-sm-4 inner">
@@ -122,10 +113,10 @@ const HomeCV = () => {
                                                     <div className="ms-pt--price">
                                                     </div>
                                                     <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> {tx('planBasic')} </h4>
+                                                        <h4 className="ms-pt--title"> {t('planBasic')} </h4>
                                                         <span className="currency currency--before">$</span>
                                                         <span className="price">29</span>
-                                                        <span className="period">{tx('perHour')}</span>
+                                                        <span className="period">{t('perHour')}</span>
                                                     </div>
                                                     <div className="ms-pt--content">
                                                         <ul>
@@ -137,7 +128,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureConsulting')} </span>
+                                                                <span> {t('featureConsulting')} </span>
                                                             </li>
                                                             <li className="active">
                                                                 <i className="icon-check">
@@ -147,7 +138,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureDevelopment')} </span>
+                                                                <span> {t('featureDevelopment')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -157,7 +148,7 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureDesign')} </span>
+                                                                <span> {t('featureDesign')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -167,14 +158,14 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureSupport')} </span>
+                                                                <span> {t('featureSupport')} </span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div className="ms-pt--footer">
                                                         <a className="btn btn--ba btn--primary" role="button" href="#">
                                                             <div className="ms-btn__text">
-                                                                <span className="text--main">{tx('choosePlan')}</span>
+                                                                <span className="text--main">{t('choosePlan')}</span>
                                                             </div>
                                                             <span className="ms-btn--ripple"></span>
                                                         </a>
@@ -186,10 +177,10 @@ const HomeCV = () => {
                                                     <div className="ms-pt--price">
                                                     </div>
                                                     <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> {tx('planAdvanced')} </h4>
+                                                        <h4 className="ms-pt--title"> {t('planAdvanced')} </h4>
                                                         <span className="currency currency--before">$</span>
                                                         <span className="price">39</span>
-                                                        <span className="period">{tx('perHour')}</span>
+                                                        <span className="period">{t('perHour')}</span>
                                                     </div>
                                                     <div className="ms-pt--content">
                                                         <ul>
@@ -201,7 +192,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureConsulting')} </span>
+                                                                <span> {t('featureConsulting')} </span>
                                                             </li>
                                                             <li className="active">
                                                                 <i className="icon-check">
@@ -211,7 +202,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureDevelopment')} </span>
+                                                                <span> {t('featureDevelopment')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -221,7 +212,7 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureDesign')} </span>
+                                                                <span> {t('featureDesign')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -231,14 +222,14 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureSupport')} </span>
+                                                                <span> {t('featureSupport')} </span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div className="ms-pt--footer">
                                                         <a className="btn btn--ba btn--primary" role="button" href="#">
                                                             <div className="ms-btn__text">
-                                                                <span className="text--main">{tx('choosePlan')}</span>
+                                                                <span className="text--main">{t('choosePlan')}</span>
                                                             </div>
                                                             <span className="ms-btn--ripple"></span>
                                                         </a>
@@ -250,10 +241,10 @@ const HomeCV = () => {
                                                     <div className="ms-pt--price">
                                                     </div>
                                                     <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> {tx('planPremium')} </h4>
+                                                        <h4 className="ms-pt--title"> {t('planPremium')} </h4>
                                                         <span className="currency currency--before">$</span>
                                                         <span className="price">99</span>
-                                                        <span className="period">{tx('perHour')}</span>
+                                                        <span className="period">{t('perHour')}</span>
                                                     </div>
                                                     <div className="ms-pt--content">
                                                         <ul>
@@ -265,7 +256,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureConsulting')} </span>
+                                                                <span> {t('featureConsulting')} </span>
                                                             </li>
                                                             <li className="active">
                                                                 <i className="icon-check">
@@ -275,7 +266,7 @@ const HomeCV = () => {
                                                                         <path d="M20 6L9 17l-5-5"></path>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureDevelopment')} </span>
+                                                                <span> {t('featureDevelopment')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -285,7 +276,7 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureDesign')} </span>
+                                                                <span> {t('featureDesign')} </span>
                                                             </li>
                                                             <li className="no-active">
                                                                 <i className="icon-check">
@@ -295,14 +286,14 @@ const HomeCV = () => {
                                                                         </g>
                                                                     </svg>
                                                                 </i>
-                                                                <span> {tx('featureSupport')} </span>
+                                                                <span> {t('featureSupport')} </span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div className="ms-pt--footer">
                                                         <a className="btn btn--ba btn--primary" role="button" href="#">
                                                             <div className="ms-btn__text">
-                                                                <span className="text--main">{tx('choosePlan')}</span>
+                                                                <span className="text--main">{t('choosePlan')}</span>
                                                             </div>
                                                             <span className="ms-btn--ripple"></span>
                                                         </a>
@@ -313,7 +304,7 @@ const HomeCV = () => {
                                     </div>
                                 </div>
                                 <div className="clients-area">
-                                    <h2 className="clients-title">{tx('clientsTitle')}</h2>
+                                    <h2 className="clients-title">{t('clientsTitle')}</h2>
                                     <div className="clients-inner">
                                         <div id="gallery-1" className="gallery galleryid-1718 gallery-columns-5 gallery-size-medium">
                                             <figure className="gallery-item">

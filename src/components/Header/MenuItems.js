@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
+import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 const NAV_LINKS = [
   { href: '/home-5', labelKey: 'mainNavHome' },
@@ -12,7 +12,7 @@ const NAV_LINKS = [
 
 const MenuItems = () => {
   const { pathname } = useRouter();
-  const { t } = useTranslation('navigation');
+  const { t } = useHydrationSafeTranslation('navigation');
 
   return (
     <>
