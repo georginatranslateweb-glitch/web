@@ -509,8 +509,12 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
  * Fondo del mismo beige que el body/hero (var(--color-bg)) con ligera transparencia.
  */
 @media only screen and (max-width: 1023px) {
+  body.page-home-5 .main-header:not(.ms-mobile-nav-open) .main-header__layout.top .main-header__inner {
+    transition: background-color 0.35s ease;
+  }
+
   body.page-home-5 .main-header__layout.action .main-header__inner {
-    background-color: rgba(237, 233, 219, 0.88);
+    background-color: var(--ms-header-scrolled-bg-color, rgba(237, 233, 219, 0.76));
     transition: background-color 0.35s ease;
   }
 }

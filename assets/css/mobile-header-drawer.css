@@ -151,9 +151,17 @@ body.page-home-5 .ms-mobile-drawer-logo {
     justify-content: center !important;
     align-items: center !important;
     box-sizing: border-box !important;
-    background-color: rgba(198, 66, 39, 0.92) !important;
+    background-color: rgba(198, 66, 39, var(--ms-mobile-drawer-overlay-alpha, 0.92)) !important;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
+  }
+
+  /* About / Services / Contact: mismo overlay opaco que home-05 */
+  .main-header.ms-header-two--secondary-logo-abs.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible,
+  body:not(.page-home-5) .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible {
+    background-color: rgba(198, 66, 39, var(--ms-mobile-drawer-overlay-alpha, 0.92)) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
   }
 
   .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav {
@@ -248,5 +256,37 @@ body.page-home-5 .ms-mobile-drawer-logo {
 
   body:not(.page-home-5) .ms-mobile-drawer-logo {
     display: none !important;
+  }
+}
+
+/*
+ * Header chrome (HeaderTwo CSS vars). Carga al final del bundle.
+ */
+@media only screen and (max-width: 1023px) {
+  /* Inicial — home-05 y secundarias (.layout.top, sin scroll) */
+  body.page-home-5 .main-header:not(.ms-header-two-scrolled):not(.ms-mobile-nav-open) .main-header__layout.top::before,
+  body.page-home-5 .main-header:not(.ms-header-two-scrolled):not(.ms-mobile-nav-open) .main-header__layout.top::after,
+  .main-header:not(.ms-header-two-scrolled):not(.ms-mobile-nav-open) .main-header__layout.top::before,
+  .main-header:not(.ms-header-two-scrolled):not(.ms-mobile-nav-open) .main-header__layout.top::after {
+    opacity: 1 !important;
+    background-color: var(--ms-header-top-bg-color, rgba(237, 233, 219, 0.65)) !important;
+  }
+
+  body.page-home-5 .main-header:not(.ms-mobile-nav-open) .main-header__layout.top .main-header__inner {
+    background-color: var(--ms-header-top-bg-color, rgba(237, 233, 219, 0.65)) !important;
+    padding-top: max(env(safe-area-inset-top, 0px), clamp(0.375rem, 1.5vw, 0.5625rem)) !important;
+    padding-bottom: clamp(0.3125rem, 1.25vw, 0.5rem) !important;
+  }
+
+  /* Tras scroll */
+  .main-header.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout::before,
+  .main-header.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout::after {
+    opacity: 1 !important;
+    background-color: var(--ms-header-scrolled-bg-color, rgba(237, 233, 219, 0.76)) !important;
+  }
+
+  body:not(.page-home-5) .main-header.ms-header-two-scrolled.ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.action .main-header__inner,
+  body:not(.page-home-5) .main-header.ms-header-two-scrolled.ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.action:hover .main-header__inner {
+    background-color: var(--ms-header-scrolled-bg-color, rgba(237, 233, 219, 0.76)) !important;
   }
 }

@@ -19,6 +19,13 @@ import LogoSecondary from "../../../public/images/logo/logo-secundario.png";
 
 const NARROW_HEADER_MQ = '(max-width: 1023px)';
 
+/** Opacidad del panel rojo del menú móvil (0–1). */
+const MOBILE_DRAWER_OVERLAY_ALPHA = 0.92;
+
+/** Fondo beige del header: inicial (arriba) y tras scroll. */
+const HEADER_TOP_BG_COLOR = 'rgba(237, 233, 219, 0.65)';
+const HEADER_SCROLLED_BG_COLOR = 'rgba(237, 233, 219, 0.76)';
+
 const HeaderTwo = (props) => {
   const {
     headerClass,
@@ -254,7 +261,12 @@ const HeaderTwo = (props) => {
     <>
       <header>
         <div
-          className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${scrolled ? 'show-bg' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''} ${navChromeDeferred ? 'ms-header-chrome-deferred' : ''} ${secondaryLogoAbsolute ? 'ms-header-two--secondary-logo-abs' : ''}`}
+          className={`${headerClass ? headerClass : 'main-header js-main-header auto-hide-header full-width menu-center header--sticky'} ${scrolled ? 'show-bg ms-header-two-scrolled' : ''} ${menuOpen ? 'ms-mobile-nav-open' : ''} ${navChromeDeferred ? 'ms-header-chrome-deferred' : ''} ${secondaryLogoAbsolute ? 'ms-header-two--secondary-logo-abs' : ''}`}
+          style={{
+            '--ms-mobile-drawer-overlay-alpha': String(MOBILE_DRAWER_OVERLAY_ALPHA),
+            '--ms-header-top-bg-color': HEADER_TOP_BG_COLOR,
+            '--ms-header-scrolled-bg-color': HEADER_SCROLLED_BG_COLOR,
+          }}
           onMouseEnter={peekBridgeActive ? onChromePeekBridgeEnter : undefined}
           onMouseLeave={peekBridgeActive ? onChromePeekBridgeLeave : undefined}
         >
