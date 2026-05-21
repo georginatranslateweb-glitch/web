@@ -1,10 +1,30 @@
 /**
- * Timeline “How it works” — cargado al final en _app para ganar especificidad.
+ * Timeline “How it works” + tipografía de cuerpo en About — cargado al final en _app.
  */
+.ms-main .ms-page-content .personal-cv-area {
+  --timeline-body: var(--color-contrast-high, #2b2b2b);
+  --timeline-title: var(--color-heading, #c64227);
+}
+
+.ms-main .ms-page-content .personal-cv-area .services-area .ms-sb--inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.2vw, 0.85rem);
+}
+
+.ms-main .ms-page-content .personal-cv-area .right-side-content > p,
+.ms-main .ms-page-content .personal-cv-area .right-side-content p.desc,
+.ms-main .ms-page-content .personal-cv-area .right-side-content .ms-sb--text {
+  font-family: var(--font-primary, 'Red Hat Display', system-ui, sans-serif);
+  font-size: clamp(0.88rem, 1.6vw, 1rem);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: var(--timeline-body);
+}
+
 .ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline {
   --timeline-number: color-mix(in srgb, var(--color-heading, #c64227) 70%, #3d3530);
-  --timeline-title: var(--color-heading, #c64227);
-  --timeline-body: var(--color-contrast-high, #2b2b2b);
   --timeline-line: var(--timeline-number);
 }
 
@@ -72,6 +92,7 @@
   }
 }
 
+.ms-main .ms-page-content .personal-cv-area .services-area h3.how-it-works-timeline__title,
 .ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline h3.how-it-works-timeline__title {
   width: 100%;
   font-family: 'Apple Garamond', var(--font-heading, Georgia, serif);
@@ -123,6 +144,7 @@
     align-self: start;
   }
 
+  .ms-main .ms-page-content .personal-cv-area .services-area h3.how-it-works-timeline__title,
   .ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline h3.how-it-works-timeline__title {
     padding-top: 0.15em;
   }

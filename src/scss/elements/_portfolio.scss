@@ -1266,7 +1266,6 @@ body.index-two[data-footer-effect=on] {
 
         .personal-cv-area {
             background: rgba(169, 178, 180, 0.22);
-            border-radius: 32px;
             padding: 15px;
             margin: 16vh 0 10vh 0;
 
@@ -1279,7 +1278,6 @@ body.index-two[data-footer-effect=on] {
 
                 img {
                     width: 100%;
-                    border-radius: 24px;
                     box-shadow: 0px 24px 50px 0px rgba(0, 0, 0, .28);
                 }
             }
@@ -1297,11 +1295,25 @@ body.index-two[data-footer-effect=on] {
 
                 p {
                     margin-bottom: 40px;
+                    font-family: var(--font-primary, 'Red Hat Display', system-ui, sans-serif);
+                    font-size: clamp(0.88rem, 1.6vw, 1rem);
+                    font-weight: 300;
+                    line-height: 1.75;
+                    letter-spacing: 0.01em;
+                    color: var(--color-contrast-high, #2b2b2b);
                 }
 
                 p.desc {
-                    line-height: 28px;
                     margin-bottom: 50px;
+                }
+
+                .services-items .ms-sb--text {
+                    font-family: var(--font-primary, 'Red Hat Display', system-ui, sans-serif);
+                    font-size: clamp(0.88rem, 1.6vw, 1rem);
+                    font-weight: 300;
+                    line-height: 1.75;
+                    letter-spacing: 0.01em;
+                    color: var(--color-contrast-high, #2b2b2b);
                 }
 
                 .cate-color {
@@ -1332,7 +1344,7 @@ body.index-two[data-footer-effect=on] {
                     padding: 50px 0;
                     border-top: 1px solid #0000000f;
 
-                    .pricing-title {
+                    .services-title {
                         font-weight: bold;
                         margin-bottom: 50px;
                     }
