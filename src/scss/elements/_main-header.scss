@@ -596,6 +596,7 @@ button.ms-header-two-fixed-logo {
   width: 130px;
   height: auto;
   display: block;
+  transition: width 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .ms-header-two--secondary-logo-abs .main-header__logo.ms-header-two-logo-spacer {
@@ -651,32 +652,33 @@ button.ms-header-two-fixed-logo {
   transform: translate(-50%, -60px);
 }
 
-/* Al hacer scroll (.action): centrar hamburguesa en la barra compacta (40px) */
-.ms-header-two--secondary-logo-abs .main-header__layout.action:not(:has(.ms-lang-dropdown.is-open)),
-.ms-header-two--secondary-logo-abs .main-header__layout.action:hover:not(:has(.ms-lang-dropdown.is-open)) {
-  overflow: hidden;
-}
+/* Desktop: al scroll, hamburguesa centrada en barra compacta */
+@media (min-width: 1024px) {
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:not(:has(.ms-lang-dropdown.is-open)),
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover:not(:has(.ms-lang-dropdown.is-open)) {
+    overflow: hidden;
+  }
 
-.ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner,
-.ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner {
-  position: relative;
-  min-height: 40px;
-}
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner {
+    position: relative;
+    min-height: 40px;
+  }
 
-.ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger {
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-/* Expandido (:hover) o menú abierto: rayas fuera con top:0 como el theme (centrado + -50px asoma) */
-.ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger {
-  top: 0;
-  transform: translateX(-50%);
-}
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger {
+    top: 0;
+    transform: translateX(-50%);
+  }
 
-.ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::before,
-.ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::after {
-  transform: translate(-50%, -60px);
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::before,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::after {
+    transform: translate(-50%, -60px);
+  }
 }
 
 /* Drawer abierto: ocultar hamburguesa por completo (p. ej. :hover al pulsar) */
@@ -717,20 +719,264 @@ button.ms-header-two-fixed-logo {
   }
 }
 
+/* Móvil secundarias: logo en el header, proporción intacta; la barra crece con padding */
 @media only screen and (max-width: 1023px) {
-  .ms-header-two-fixed-logo {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    top: max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem));
-
-    img {
-      width: clamp(96px, 26vw, 130px);
-    }
+  .ms-header-two--secondary-logo-abs {
+    /* Mismo tamaño que desktop (.ms-header-two-fixed-logo img → 130px) */
+    --ms-secondary-mobile-logo-width: 130px;
+    --ms-secondary-mobile-logo-width-scrolled: 88px;
+    --ms-secondary-mobile-logo-width-horizontal: min(82vw, 200px);
+    --ms-secondary-logo-horizontal-aspect: calc(1286 / 4169);
+    --ms-secondary-mobile-hamburger-h: 16px;
+    --ms-secondary-mobile-hamburger-w: 44px;
+    --ms-secondary-mobile-hamburger-line-w: 40px;
+    --ms-secondary-mobile-header-pad-y: clamp(0.5rem, 2.5vw, 0.875rem);
+    --ms-secondary-mobile-header-pad-y-scrolled: clamp(0.125rem, 0.75vw, 0.3125rem);
+    --ms-secondary-mobile-header-pad-bottom-scrolled: 0px;
+    --ms-secondary-mobile-header-pad-top: max(
+      env(safe-area-inset-top, 0px),
+      var(--ms-secondary-mobile-header-pad-y)
+    );
+    --ms-secondary-mobile-header-pad-top-scrolled: max(
+      env(safe-area-inset-top, 0px),
+      var(--ms-secondary-mobile-header-pad-y-scrolled)
+    );
+    --ms-secondary-mobile-header-gap: clamp(4px, 1.5vw, 8px);
+    --ms-secondary-mobile-header-gap-scrolled: 0px;
   }
 
-  body:has(.main-header.ms-mobile-nav-open) .ms-header-two-fixed-logo {
-    top: max(env(safe-area-inset-top, 0px), clamp(2.75rem, 10vh, 5rem));
+  .ms-header-two-fixed-logo:not(.ms-header-two-fixed-logo--in-header) {
+    display: none !important;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.top,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover {
+    height: auto !important;
+    min-height: 0;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.top:not(:has(.ms-lang-dropdown.is-open)),
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:not(:has(.ms-lang-dropdown.is-open)),
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover:not(:has(.ms-lang-dropdown.is-open)) {
+    overflow: visible;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner {
+    min-height: calc(
+      var(--ms-secondary-mobile-logo-width) * (1659 / 2520) + 2 * var(--ms-secondary-mobile-header-pad-y)
+    );
+    padding-top: var(--ms-secondary-mobile-header-pad-top);
+    padding-bottom: var(--ms-secondary-mobile-header-pad-y);
+    padding-left: max(16px, calc(var(--bs-gutter-x, 24px) / 2));
+    padding-right: max(16px, calc(var(--bs-gutter-x, 24px) / 2));
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Tras scroll: logo + hamburguesa centrados en la misma columna */
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0;
+    row-gap: var(--ms-secondary-mobile-header-gap-scrolled);
+    align-items: start;
+    justify-items: center;
+    min-height: 0;
+    padding-top: var(--ms-secondary-mobile-header-pad-top-scrolled);
+    padding-bottom: var(--ms-secondary-mobile-header-pad-bottom-scrolled);
+    padding-left: max(12px, calc(var(--bs-gutter-x, 24px) / 2));
+    padding-right: max(12px, calc(var(--bs-gutter-x, 24px) / 2));
+    box-sizing: border-box;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner .main-header--widgets {
+    position: absolute;
+    top: 50%;
+    right: max(16px, calc(var(--bs-gutter-x, 24px) / 2));
+    transform: translateY(-50%);
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .main-header--widgets,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .main-header--widgets {
+    position: relative;
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    justify-self: end;
+    top: auto;
+    right: auto;
+    transform: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .main-header--widgets .ms-lang-dropdown,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .main-header--widgets .ms-lang-dropdown {
+    padding-top: 0;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .main-header--widgets .ms-lang-dropdown__toggle,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .main-header--widgets .ms-lang-dropdown__toggle {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1;
+  }
+
+  /* Arriba del scroll: sin hamburguesa visible */
+  .ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner .menuTrigger {
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner .menuTrigger::before,
+  .ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner .menuTrigger::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__logo.ms-header-two-logo-mobile-slot {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    width: auto;
+    min-width: 0;
+    max-width: var(--ms-secondary-mobile-logo-width);
+    height: auto;
+    min-height: 0;
+    margin: 0 auto;
+    overflow: visible;
+    justify-self: center;
+  }
+
+  .ms-header-two-fixed-logo--in-header {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--ms-secondary-mobile-logo-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo:not(.ms-header-two-fixed-logo--horizontal) img {
+    width: var(--ms-secondary-mobile-logo-width) !important;
+    height: auto !important;
+    max-width: 100%;
+    object-fit: contain;
+    transition: width 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .ms-header-two-logo-mobile-slot,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .ms-header-two-logo-mobile-slot {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: var(--ms-secondary-mobile-logo-width-horizontal);
+    width: auto;
+    margin: 0;
+    justify-self: center;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo {
+    width: auto;
+    max-width: var(--ms-secondary-mobile-logo-width-horizontal);
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo--horizontal,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo--horizontal {
+    width: 100%;
+    max-width: var(--ms-secondary-mobile-logo-width-horizontal);
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo--horizontal img,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo--horizontal img {
+    width: var(--ms-secondary-mobile-logo-width-horizontal) !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Hamburguesa debajo del logo, misma columna centrada */
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    align-self: start;
+    flex-shrink: 0;
+    width: var(--ms-secondary-mobile-hamburger-w);
+    height: var(--ms-secondary-mobile-hamburger-h);
+    margin: 0;
+    margin-top: -6px;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::before,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::after,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::before,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::after {
+    height: 2px;
+    width: var(--ms-secondary-mobile-hamburger-line-w);
+    left: 50%;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::before,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::before {
+    top: 5px;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::after,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::after {
+    top: 12px;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .main-header__nav,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .main-header__nav {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+  }
+
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::before,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger::after,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::before,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger::after {
+    transform: translate(-50%, 0) !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.35s !important;
+  }
+
+  /* Theme colapsa .main-header__logo con translateY en .action */
+  .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .ms-header-two-logo-mobile-slot,
+  .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .ms-header-two-logo-mobile-slot {
+    transform: none !important;
   }
 }
 

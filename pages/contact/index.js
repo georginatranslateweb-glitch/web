@@ -10,7 +10,7 @@ const Contact = () => {
     return (
         <>
             <HeaderTwo secondaryLogoAbsolute />
-            <SecondaryFixedLogo />
+            <SecondaryFixedLogo placement="fixed" />
             <main className="ms-main">
                 <div className="ms-page-content">
                     <div className="contact-map-area">

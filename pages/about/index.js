@@ -9,7 +9,7 @@ const About = () => {
   return (
     <>
       <HeaderTwo secondaryLogoAbsolute />
-      <SecondaryFixedLogo />
+      <SecondaryFixedLogo placement="fixed" />
 
       <main className="ms-main">
         <div className="ms-page-content about-page">

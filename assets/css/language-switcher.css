@@ -107,6 +107,29 @@
   min-height: 40px;
 }
 
+@media only screen and (max-width: 1023px) {
+  body.ms-header-two--secondary-logo-abs .main-header__layout.action:has(.ms-lang-dropdown.is-open) {
+    min-height: calc(
+      var(--ms-secondary-mobile-logo-width-horizontal, min(82vw, 200px)) * var(--ms-secondary-logo-horizontal-aspect, 0.308467) +
+        var(--ms-secondary-mobile-hamburger-h, 16px) +
+        var(--ms-secondary-mobile-header-gap-scrolled, 0px) +
+        var(--ms-secondary-mobile-header-pad-top-scrolled, 0.3125rem) +
+        var(--ms-secondary-mobile-header-pad-bottom-scrolled, 0px)
+    );
+  }
+
+  /* Anula centrado vertical del theme en secundarias al scroll */
+  body.ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger {
+    top: auto !important;
+    transform: none !important;
+  }
+
+  .main-header.ms-mobile-nav-open.ms-header-two--secondary-logo-abs .main-header--widgets .ms-lang-dropdown__toggle,
+  .main-header.ms-mobile-nav-open .main-header--widgets .ms-lang-dropdown__toggle {
+    color: #f0e6d8 !important;
+  }
+}
+
 .main-header--widgets:has(.ms-lang-dropdown.is-open) {
   overflow: visible;
   z-index: 150;

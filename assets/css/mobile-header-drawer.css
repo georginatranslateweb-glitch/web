@@ -1,0 +1,252 @@
+/*
+ * Menú móvil unificado (misma UX que home-05) — HeaderTwo + .ms-mobile-drawer-logo.
+ * Cargar después de style.css y home-5-hero.css.
+ */
+
+/* --- Logo fijo del drawer (único control en móvil, todas las páginas) --- */
+body.page-home-5 .ms-mobile-drawer-logo {
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    top 0.35s ease;
+}
+
+.ms-mobile-drawer-logo {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  z-index: 10060;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 120px;
+  line-height: 0;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    top 0.35s ease;
+}
+
+/* Anular wrapper + img de next/image (evita 252px por width={252} en el componente) */
+.ms-mobile-drawer-logo > span,
+.ms-mobile-drawer-logo__img,
+.ms-mobile-drawer-logo img {
+  display: block !important;
+  width: 120px !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+@media only screen and (max-width: 1023px) {
+  .ms-mobile-drawer-logo {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem));
+  }
+
+  .ms-mobile-drawer-logo {
+    max-width: clamp(96px, 26vw, 120px);
+  }
+
+  .ms-mobile-drawer-logo > span,
+  .ms-mobile-drawer-logo__img,
+  .ms-mobile-drawer-logo img {
+    width: clamp(96px, 26vw, 120px) !important;
+  }
+
+  /* Secundarias: mismo tamaño que logo en header (130px vertical) */
+  body:not(.page-home-5):has(.main-header.ms-mobile-nav-open) .ms-mobile-drawer-logo {
+    max-width: var(--ms-secondary-mobile-logo-width, 130px);
+  }
+
+  body:not(.page-home-5):has(.main-header.ms-mobile-nav-open) .ms-mobile-drawer-logo > span,
+  body:not(.page-home-5):has(.main-header.ms-mobile-nav-open) .ms-mobile-drawer-logo__img,
+  body:not(.page-home-5):has(.main-header.ms-mobile-nav-open) .ms-mobile-drawer-logo img {
+    width: var(--ms-secondary-mobile-logo-width, 130px) !important;
+  }
+
+  /* Home-05: logo visible en fase hero (.top) y con menú abierto */
+  body.page-home-5:has(.main-header__layout.top) .ms-mobile-drawer-logo,
+  body.page-home-5:has(.main-header.ms-mobile-nav-open) .ms-mobile-drawer-logo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  body.page-home-5:has(.main-header.ms-mobile-nav-open) .ms-mobile-drawer-logo {
+    top: max(env(safe-area-inset-top, 0px), clamp(2.75rem, 10vh, 5rem));
+  }
+
+  /* Resto de páginas: logo fijo solo con menú abierto */
+  body:not(.page-home-5):has(.main-header.ms-mobile-nav-open) .ms-mobile-drawer-logo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    top: max(env(safe-area-inset-top, 0px), clamp(2.75rem, 10vh, 5rem));
+  }
+
+  /* Drawer: rojo a pantalla completa (sin franja beige; home-5 ya la ocultaba vía home-5-hero) */
+  .main-header.ms-mobile-nav-open .main-header__layout::before {
+    display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__logo,
+  .main-header.ms-mobile-nav-open .ms-header-two-logo-mobile-slot {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header--widgets {
+    position: fixed !important;
+    top: max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem)) !important;
+    right: max(12px, calc(var(--bs-gutter-x, 24px) / 2)) !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: 10060 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header--widgets .ms-lang-dropdown__toggle {
+    color: #f0e6d8 !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav {
+    background-color: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible {
+    overflow-y: auto !important;
+    top: 0 !important;
+    margin-top: 0 !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    padding-top: max(var(--main-header-height, var(--main-header-height-md)), env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    background-color: rgba(198, 66, 39, 0.92) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__nav.is_mobile.main-header__nav--is-visible .navbar-nav {
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 32rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__layout.action .main-header__inner,
+  .main-header.ms-mobile-nav-open .main-header__layout.top .main-header__inner {
+    background-color: transparent !important;
+    background: transparent !important;
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .main-header.ms-mobile-nav-open.ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner,
+  .main-header.ms-mobile-nav-open.ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner {
+    display: block !important;
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Animación de enlaces (.ms-home5-drawer--action-hover-mirror) */
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .menu-item,
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .ms_theme_mode,
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .main-header__cart,
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .header__search-icon,
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .menu-item,
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .ms_theme_mode,
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .main-header__cart,
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .header__search-icon {
+    transform: translateY(0%) !important;
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(1),
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(2),
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(3),
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(3) {
+    transition-delay: 0.15s;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(4),
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(4) {
+    transition-delay: 0.2s;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(5),
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(5) {
+    transition-delay: 0.25s;
+  }
+
+  .main-header.ms-mobile-nav-open .main-header__layout.action.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(6),
+  .main-header.ms-mobile-nav-open .main-header__layout.top.ms-home5-drawer--action-hover-mirror .menu-item:nth-child(6) {
+    transition-delay: 0.3s;
+  }
+}
+
+/* Home-5 desktop: logo fijo visible para hover espejo del nav */
+@media (min-width: 1024px) {
+  body.page-home-5 .ms-mobile-drawer-logo {
+    display: inline-flex;
+    left: 25px;
+    right: auto;
+    transform: none;
+    max-width: 120px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 1000;
+  }
+
+  body.page-home-5 .ms-mobile-drawer-logo > span,
+  body.page-home-5 .ms-mobile-drawer-logo__img,
+  body.page-home-5 .ms-mobile-drawer-logo img {
+    width: 120px !important;
+  }
+
+  body:not(.page-home-5) .ms-mobile-drawer-logo {
+    display: none !important;
+  }
+}

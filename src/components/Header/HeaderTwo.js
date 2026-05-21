@@ -4,17 +4,18 @@ import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslat
 
 import MenuItems from './MenuItems';
 import LanguageSwitcher from '../LanguageSwitcher';
+import SecondaryFixedLogo from './SecondaryFixedLogo';
+import MobileDrawerLogo from './MobileDrawerLogo';
+import {
+  MOST_HEADER_TWO_TOGGLE_MOBILE_NAV,
+  MOST_HEADER_TWO_MOBILE_NAV_CHANGE,
+} from './headerEvents';
+
+export { MOST_HEADER_TWO_TOGGLE_MOBILE_NAV, MOST_HEADER_TWO_MOBILE_NAV_CHANGE };
 
 import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
-import LogoBeige from "../../../public/images/logo/logo-beige.png";
 import LogoSecondary from "../../../public/images/logo/logo-secundario.png";
-
-/** Igual que breakpoints del menú móvil en style.css; Home-5 logo fijo dispara el mismo evento. */
-export const MOST_HEADER_TWO_TOGGLE_MOBILE_NAV = 'most:headerTwoToggleMobileNav';
-
-/** Home-5 (logo fijo fuera del header): sincronizar asset beige / visibilidad con `menuOpen`. */
-export const MOST_HEADER_TWO_MOBILE_NAV_CHANGE = 'most:headerTwoMobileNavChange';
 
 const NARROW_HEADER_MQ = '(max-width: 1023px)';
 
@@ -35,12 +36,17 @@ const HeaderTwo = (props) => {
     hideLanguageSwitcher = false,
     /** Páginas secundarias: logo más grande y posicionado como en Home-5. */
     secondaryLogoAbsolute = false,
+    /** Logo del drawer móvil cerrado (home-5: logo rojo). */
+    mobileDrawerLogoClosed,
+    /** Home-5 desktop: hover del logo fijo → espejo del nav. */
+    drawerLogoPeekEnter,
+    drawerLogoPeekLeave,
   } = props;
   const { t } = useHydrationSafeTranslation('header');
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  /** Home-5 móvil + .action: tras 2×rAF aplica la misma cascada que :hover en .layout (transiciones del theme, no keyframes). */
+  /** Móvil con menú abierto: tras 2×rAF aplica la cascada de enlaces (misma que home-05). */
   const [homeFiveDrawerHoverMirror, setHomeFiveDrawerHoverMirror] = useState(false);
   /** Home-5 desktop + logo fijo: misma idea — sin 2×rAF el navegador a menudo no anima transform al añadir la clase en el mismo tick que React. */
   const [homeFiveLogoHoverMirrorApplied, setHomeFiveLogoHoverMirrorApplied] = useState(false);
@@ -74,16 +80,16 @@ const HeaderTwo = (props) => {
   useEffect(() => {
     if (!menuOpen) {
       setHomeFiveDrawerHoverMirror(false);
-      return;
+      return undefined;
     }
-    if (typeof document === 'undefined' || !document.body.classList.contains('page-home-5')) {
+    if (typeof window === 'undefined') {
       setHomeFiveDrawerHoverMirror(false);
-      return;
+      return undefined;
     }
     const mq = window.matchMedia('(max-width: 1023px)');
-    if (!mq.matches || !scrolled) {
+    if (!mq.matches) {
       setHomeFiveDrawerHoverMirror(false);
-      return;
+      return undefined;
     }
     let canceled = false;
     let raf2 = null;
@@ -98,7 +104,7 @@ const HeaderTwo = (props) => {
       if (raf2 != null) cancelAnimationFrame(raf2);
       setHomeFiveDrawerHoverMirror(false);
     };
-  }, [menuOpen, scrolled]);
+  }, [menuOpen]);
 
   useLayoutEffect(() => {
     if (!layoutHoverMirrorFromFixedLogo) {
@@ -224,7 +230,10 @@ const HeaderTwo = (props) => {
     (!!chromePeek || !!layoutHoverMirrorFromFixedLogo);
 
   const layoutIsAction =
-    (alwaysScrolled && !isNarrowViewport) || isVisible || peekDesktopUsesActionLayout;
+    (alwaysScrolled && !isNarrowViewport) ||
+    isVisible ||
+    peekDesktopUsesActionLayout ||
+    (menuOpen && isNarrowViewport);
 
   const toggleNavFromLogo = () => {
     if (typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches) {
@@ -235,11 +244,12 @@ const HeaderTwo = (props) => {
 
   const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
 
-  const useBeigeMobileMenuLogo = menuOpen && isNarrowViewport;
   const defaultLogoDark = secondaryLogoAbsolute ? LogoSecondary : Logo;
   const defaultLogoLight = secondaryLogoAbsolute ? LogoSecondary : LogoLight;
-  const logoDarkSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogo || defaultLogoDark);
-  const logoLightSrc = useBeigeMobileMenuLogo ? LogoBeige : (headerLogoLight || defaultLogoLight);
+  const logoDarkSrc = headerLogo || defaultLogoDark;
+  const logoLightSrc = headerLogoLight || defaultLogoLight;
+  const drawerLogoClosed =
+    mobileDrawerLogoClosed ?? (secondaryLogoAbsolute ? LogoSecondary : Logo);
   return (
     <>
       <header>
@@ -255,10 +265,16 @@ const HeaderTwo = (props) => {
           >
             <div className="main-header__inner">
               {secondaryLogoAbsolute ? (
-              <div
-                className="main-header__logo ms-header-two-logo-spacer"
-                aria-hidden="true"
-              />
+                isNarrowViewport ? (
+                  <div className="main-header__logo ms-header-two-logo-mobile-slot">
+                    <SecondaryFixedLogo placement="inHeader" scrolled={scrolled} />
+                  </div>
+                ) : (
+                  <div
+                    className="main-header__logo ms-header-two-logo-spacer"
+                    aria-hidden="true"
+                  />
+                )
               ) : (
               <div className="main-header__logo">
                 <div className="logo-dark">
@@ -353,6 +369,14 @@ const HeaderTwo = (props) => {
           </div>
         </div>
       </header>
+      <MobileDrawerLogo
+        menuOpen={menuOpen}
+        logoClosed={drawerLogoClosed}
+        onToggle={() => setMenuOpen((prev) => !prev)}
+        onPeekEnter={drawerLogoPeekEnter}
+        onPeekLeave={drawerLogoPeekLeave}
+        priority={alwaysScrolled || secondaryLogoAbsolute}
+      />
     </>
   );
 };

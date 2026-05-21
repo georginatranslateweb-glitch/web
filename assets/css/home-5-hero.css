@@ -172,7 +172,7 @@ body.page-home-5 > .home-five-hero-vertical-brand,
   --home-five-hamburger-line-gap: 6px;
 
   position: fixed;
-  /* Misma referencia vertical que .home-five-fixed-logo (solo top, sin margin-top extra) */
+  /* Misma referencia vertical que .ms-mobile-drawer-logo (solo top, sin margin-top extra) */
   top: 25px;
   right: auto;
   bottom: auto;
@@ -919,81 +919,4 @@ body.page-home-5 .main-header.ms-mobile-nav-open .main-header__inner .main-heade
   }
 }
 
-/* Logo fijo en la esquina superior izquierda del home-5 */
-.home-five-fixed-logo {
-  position: fixed;
-  top: 25px;
-  left: 25px;
-  z-index: 1000;
-  display: inline-flex;
-  align-items: center;
-  line-height: 0;
-}
-
-button.home-five-fixed-logo {
-  appearance: none;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  font: inherit;
-  color: inherit;
-}
-
-.home-five-fixed-logo img {
-  width: 120px;
-  height: auto;
-  display: block;
-}
-
-/* Móvil: logo fijo oculto salvo fase hero (layout .top); desktop: visible para hover espejo del nav */
-body.page-home-5 .home-five-fixed-logo {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 0.35s ease,
-    visibility 0.35s ease,
-    top 0.35s ease;
-}
-
-@media only screen and (max-width: 1023px) {
-
-  /*
-   * Geometría siempre “hero” en móvil Home-5: si solo se quita :has(.top) al pasar a .action,
-   * el logo volvería un instante a left/top del bloque base (25px) durante el fade — salto a esquina.
-   */
-  body.page-home-5 .home-five-fixed-logo {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    top: max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem));
-  }
-
-  body.page-home-5 .home-five-fixed-logo img {
-    width: clamp(96px, 26vw, 120px);
-  }
-
-  body.page-home-5:has(.main-header__layout.top) .home-five-fixed-logo {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* Drawer móvil: el logo fijo debe verse (y poder cerrar) aunque el header ya esté en .action por scroll */
-  body.page-home-5:has(.main-header.ms-mobile-nav-open) .home-five-fixed-logo {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    top: max(env(safe-area-inset-top, 0px), clamp(2.75rem, 10vh, 5rem));
-  }
-}
-
-@media (min-width: 1024px) {
-  body.page-home-5 .home-five-fixed-logo {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-}
+/* Logo fijo home-5: ver mobile-header-drawer.css (.ms-mobile-drawer-logo) */

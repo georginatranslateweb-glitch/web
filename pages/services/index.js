@@ -17,7 +17,7 @@ const Services = () => {
     return (
         <>
             <HeaderTwo secondaryLogoAbsolute />
-            <SecondaryFixedLogo />
+            <SecondaryFixedLogo placement="fixed" />
 
             <main className="ms-main">
                 <div className="ms-page-content">
