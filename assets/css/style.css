@@ -11537,7 +11537,9 @@ body.index-two[data-footer-effect=on] {
 }
 
 .ms-main .ms-page-content .personal-cv-area .right-side-content .pricing-area .pricing-title {
-  font-weight: bold;
+  font-family: 'Apple Garamond', var(--font-heading, Georgia, serif);
+  font-weight: 300;
+  font-style: normal;
   margin-bottom: 50px;
 }
 

@@ -52,6 +52,8 @@ import "../assets/css/style.css";
 import "../assets/css/home-5-hero.css";
 import "../assets/css/language-switcher.css";
 import "../assets/css/mobile-header-drawer.css";
+import "../assets/css/tailwind.css";
+import "../assets/css/how-it-works-timeline.css";
 
 
 SwiperCore.use([Navigation, Pagination, Parallax]);

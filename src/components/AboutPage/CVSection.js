@@ -1,6 +1,12 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
+import { buildHowItWorksSteps } from './howItWorksSteps';
+
+const HowItWorksTimeline = dynamic(() => import('./HowItWorksTimeline'), {
+    ssr: false,
+});
 
 import CVImg from "../../../public/images/portfolio/personal-cv.jpg";
 import clientImg1 from "../../../public/images/clients/logo-partner-1.png";
@@ -20,6 +26,7 @@ import icon4 from "../../../public/images/services/icon/code-4.svg";
 
 const HomeCV = () => {
     const { t } = useHydrationSafeTranslation('about');
+    const howItWorksSteps = buildHowItWorksSteps(t);
 
     return (
         <>
@@ -106,255 +113,13 @@ const HomeCV = () => {
                                 </div>
                                 <div className="pricing-area">
                                     <h2 className="pricing-title">{t('pricingHowTitle')}</h2>
-                                    <div className="pricing-inner">
-                                        <div className="row">
-                                            <div className="col-lg-4 col-md-4 col-sm-4 inner">
-                                                <div className="ms-pt-block">
-                                                    <div className="ms-pt--price">
-                                                    </div>
-                                                    <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> {t('planBasic')} </h4>
-                                                        <span className="currency currency--before">$</span>
-                                                        <span className="price">29</span>
-                                                        <span className="period">{t('perHour')}</span>
-                                                    </div>
-                                                    <div className="ms-pt--content">
-                                                        <ul>
-                                                            <li className="active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 24 24" strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M20 6L9 17l-5-5"></path>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureConsulting')} </span>
-                                                            </li>
-                                                            <li className="active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 24 24" strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M20 6L9 17l-5-5"></path>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureDevelopment')} </span>
-                                                            </li>
-                                                            <li className="no-active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                                        <g>
-                                                                            <path className="cls-1" d="M7 7l18 18M7 25L25 7"></path>
-                                                                        </g>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureDesign')} </span>
-                                                            </li>
-                                                            <li className="no-active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                                        <g>
-                                                                            <path className="cls-1" d="M7 7l18 18M7 25L25 7"></path>
-                                                                        </g>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureSupport')} </span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="ms-pt--footer">
-                                                        <a className="btn btn--ba btn--primary" role="button" href="#">
-                                                            <div className="ms-btn__text">
-                                                                <span className="text--main">{t('choosePlan')}</span>
-                                                            </div>
-                                                            <span className="ms-btn--ripple"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-4 col-md-4 col-sm-4 inner">
-                                                <div className="ms-pt-block">
-                                                    <div className="ms-pt--price">
-                                                    </div>
-                                                    <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> {t('planAdvanced')} </h4>
-                                                        <span className="currency currency--before">$</span>
-                                                        <span className="price">39</span>
-                                                        <span className="period">{t('perHour')}</span>
-                                                    </div>
-                                                    <div className="ms-pt--content">
-                                                        <ul>
-                                                            <li className="active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 24 24" strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M20 6L9 17l-5-5"></path>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureConsulting')} </span>
-                                                            </li>
-                                                            <li className="active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 24 24" strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M20 6L9 17l-5-5"></path>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureDevelopment')} </span>
-                                                            </li>
-                                                            <li className="no-active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                                        <g>
-                                                                            <path className="cls-1" d="M7 7l18 18M7 25L25 7"></path>
-                                                                        </g>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureDesign')} </span>
-                                                            </li>
-                                                            <li className="no-active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                                        <g>
-                                                                            <path className="cls-1" d="M7 7l18 18M7 25L25 7"></path>
-                                                                        </g>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureSupport')} </span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="ms-pt--footer">
-                                                        <a className="btn btn--ba btn--primary" role="button" href="#">
-                                                            <div className="ms-btn__text">
-                                                                <span className="text--main">{t('choosePlan')}</span>
-                                                            </div>
-                                                            <span className="ms-btn--ripple"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-4 col-md-4 col-sm-4 inner">
-                                                <div className="ms-pt-block">
-                                                    <div className="ms-pt--price">
-                                                    </div>
-                                                    <div className="ms-pt--header top">
-                                                        <h4 className="ms-pt--title"> {t('planPremium')} </h4>
-                                                        <span className="currency currency--before">$</span>
-                                                        <span className="price">99</span>
-                                                        <span className="period">{t('perHour')}</span>
-                                                    </div>
-                                                    <div className="ms-pt--content">
-                                                        <ul>
-                                                            <li className="active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 24 24" strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M20 6L9 17l-5-5"></path>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureConsulting')} </span>
-                                                            </li>
-                                                            <li className="active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 24 24" strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M20 6L9 17l-5-5"></path>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureDevelopment')} </span>
-                                                            </li>
-                                                            <li className="no-active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                                        <g>
-                                                                            <path className="cls-1" d="M7 7l18 18M7 25L25 7"></path>
-                                                                        </g>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureDesign')} </span>
-                                                            </li>
-                                                            <li className="no-active">
-                                                                <i className="icon-check">
-                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                                        <g>
-                                                                            <path className="cls-1" d="M7 7l18 18M7 25L25 7"></path>
-                                                                        </g>
-                                                                    </svg>
-                                                                </i>
-                                                                <span> {t('featureSupport')} </span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="ms-pt--footer">
-                                                        <a className="btn btn--ba btn--primary" role="button" href="#">
-                                                            <div className="ms-btn__text">
-                                                                <span className="text--main">{t('choosePlan')}</span>
-                                                            </div>
-                                                            <span className="ms-btn--ripple"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <HowItWorksTimeline
+                                        steps={howItWorksSteps}
+                                        logoAlt={t('timelineLogoAlt')}
+                                    />
+
                                 </div>
-                                <div className="clients-area">
-                                    <h2 className="clients-title">{t('clientsTitle')}</h2>
-                                    <div className="clients-inner">
-                                        <div id="gallery-1" className="gallery galleryid-1718 gallery-columns-5 gallery-size-medium">
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg1} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg2} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg3} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg4} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg5} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg6} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg7} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg8} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                            <figure className="gallery-item">
-                                                <div className="gallery-icon landscape">
-                                                    <Image width="300" height="243" src={clientImg9} className="attachment-medium size-medium" alt="" decoding="async" loading="lazy" />
-                                                </div>
-                                            </figure>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
