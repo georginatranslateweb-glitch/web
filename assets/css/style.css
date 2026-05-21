@@ -8114,8 +8114,8 @@ button.ms-header-two-fixed-logo {
     --ms-secondary-mobile-hamburger-w: 44px;
     --ms-secondary-mobile-hamburger-line-w: 40px;
     --ms-secondary-mobile-header-pad-y: clamp(0.5rem, 2.5vw, 0.875rem);
-    --ms-secondary-mobile-header-pad-y-scrolled: clamp(0.125rem, 0.75vw, 0.3125rem);
-    --ms-secondary-mobile-header-pad-bottom-scrolled: 0px;
+    --ms-secondary-mobile-header-pad-y-scrolled: clamp(0.5rem, 2vw, 0.75rem);
+    --ms-secondary-mobile-header-pad-bottom-scrolled: clamp(0.375rem, 1.5vw, 0.625rem);
     --ms-secondary-mobile-header-pad-top: max(
       env(safe-area-inset-top, 0px),
       var(--ms-secondary-mobile-header-pad-y)
@@ -8125,7 +8125,7 @@ button.ms-header-two-fixed-logo {
       var(--ms-secondary-mobile-header-pad-y-scrolled)
     );
     --ms-secondary-mobile-header-gap: clamp(4px, 1.5vw, 8px);
-    --ms-secondary-mobile-header-gap-scrolled: 0px;
+    --ms-secondary-mobile-header-gap-scrolled: clamp(6px, 1.5vw, 10px);
   }
 
   .ms-header-two-fixed-logo:not(.ms-header-two-fixed-logo--in-header) {
@@ -8313,7 +8313,7 @@ button.ms-header-two-fixed-logo {
     width: var(--ms-secondary-mobile-hamburger-w);
     height: var(--ms-secondary-mobile-hamburger-h);
     margin: 0;
-    margin-top: -6px;
+    margin-top: 0;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
