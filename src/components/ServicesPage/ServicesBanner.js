@@ -4,7 +4,7 @@ import Link from 'next/link';
 const ServicesBanner = ({
     title = 'Our Services',
     description = 'Globally morph real-time e-business with optimal users. Dramatically extend high-payoff infomediaries through integrated experiences.',
-    ctaLabel = 'START PROJECT',
+    ctaLabel = 'Need a Translation',
     ctaHref = '/contact',
 }) => {
     return (
@@ -23,11 +23,8 @@ const ServicesBanner = ({
                             <div className="right-side-content">
                                 <p className="desc">{description}</p>
                                 <div className="bottom">
-                                    <Link
-                                        href={ctaHref}
-                                        className="btn btn-default btn--md btn--primary btn--full-width"
-                                    >
-                                        {ctaLabel}
+                                    <Link href={ctaHref} className="btn-footer">
+                                        {ctaLabel} <i className="fas fa-arrow-right"></i>
                                     </Link>
                                     <div className="ms-s-w">
                                         <a className="ms-s-i s-icon" href="#" aria-label="WordPress">
