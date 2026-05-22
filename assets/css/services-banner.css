@@ -1,0 +1,23 @@
+/* Services banner: espacio bajo header fijo (logo secundario en móvil) */
+
+@media only screen and (max-width: 1023px) {
+  .ms-main .ms-page-content .services-banner.banner-area {
+    --services-banner-mobile-gap: clamp(0.75rem, 3vw, 1.25rem);
+    --services-banner-mobile-logo-width: 130px;
+    --services-banner-mobile-header-pad-y: clamp(0.5rem, 2.5vw, 0.875rem);
+    --services-banner-mobile-header-pad-top: max(
+      env(safe-area-inset-top, 0px),
+      var(--services-banner-mobile-header-pad-y)
+    );
+    /* Misma altura que .ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner */
+    --services-banner-mobile-header-height: calc(
+      var(--services-banner-mobile-header-pad-top) + var(--services-banner-mobile-logo-width) * (1659 / 2520) +
+        var(--services-banner-mobile-header-pad-y)
+    );
+  }
+
+  .ms-main .ms-page-content .services-banner.banner-area .banner-inner {
+    padding-top: calc(var(--services-banner-mobile-header-height) + var(--services-banner-mobile-gap));
+    padding-bottom: clamp(2.5rem, 8vw, 4rem);
+  }
+}

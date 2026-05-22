@@ -56,6 +56,7 @@ import "../assets/css/tailwind.css";
 import "../assets/css/how-it-works-timeline.css";
 import "jarallax/dist/jarallax.min.css";
 import "../assets/css/project-single-hero.css";
+import "../assets/css/services-banner.css";
 
 
 SwiperCore.use([Navigation, Pagination, Parallax]);

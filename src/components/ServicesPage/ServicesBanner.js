@@ -8,7 +8,7 @@ const ServicesBanner = ({
     ctaHref = '/contact',
 }) => {
     return (
-        <div className="banner-area">
+        <div className="banner-area services-banner">
             <div className="container">
                 <div className="banner-inner">
                     <div className="row justify-content-center">
