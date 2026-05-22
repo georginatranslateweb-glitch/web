@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 
 import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
@@ -19,6 +19,11 @@ const NEXT_HIGHLIGHT = {
 };
 
 const Services = () => {
+    useLayoutEffect(() => {
+        document.body.classList.add('page-services');
+        return () => document.body.classList.remove('page-services');
+    }, []);
+
     return (
         <>
             <HeaderTwo secondaryLogoAbsolute />
@@ -26,8 +31,10 @@ const Services = () => {
 
             <main className="ms-main">
                 <div className="ms-page-content">
-                    <ServicesBanner title={SERVICE.title} description={SERVICE.description} />
-                    <MsHeroParallax className="project single" speed={0.7} type="scroll" />
+                    <div className="services-hero-block">
+                        <MsHeroParallax className="project single services-hero" speed={0.7} type="scroll" />
+                        <ServicesBanner title={SERVICE.title} description={SERVICE.description} />
+                    </div>
                     <div className="team-rules-area">
                         <div className="container">
                             <div className="team-rules-area-inner">
@@ -35,7 +42,7 @@ const Services = () => {
                                 <div className="top">
                                     <div className="row">
                                         <div className="col-lg-4 col-md-4">
-                                            <h4 className="heading-title"> Our Team Rules</h4>
+                                            <h4 className="heading-title"> Our Services</h4>
                                         </div>
                                         <div className="col-lg-8 col-md-8">
                                             <h1 className="title">Authoritatively seize web readiness. Completely benchmark partnerships. </h1>
@@ -49,7 +56,7 @@ const Services = () => {
                                             <div className="inner">
                                                 <div className="border-line"></div>
                                                 <div className="content">
-                                                    <p className="desc">Team Rule <br /> (No.01)</p>
+                                                    <p className="desc">Translation Service <br /> (No.01)</p>
                                                     <h2 className="sub-title">Love what de do</h2>
                                                     <p>Completely plagiarize intermandated services whereas multifunctional mindshare. Monotonectally mesh low-risk high-yield methods of empowerment after cross functional testing procedures.</p>
                                                 </div>
@@ -59,7 +66,7 @@ const Services = () => {
                                             <div className="inner">
                                                 <div className="border-line"></div>
                                                 <div className="content">
-                                                    <p className="desc">Team Rule <br /> (No.02)</p>
+                                                    <p className="desc">Translation Service <br /> (No.02)</p>
                                                     <h2 className="sub-title">Trust</h2>
                                                     <p>Dynamically maintain reliable e-services without prospective supply chains. Continually deploy cross-unit niches via seamless networks. Synergistically foster ubiquitous methods…</p>
                                                 </div>
@@ -73,7 +80,7 @@ const Services = () => {
                                             <div className="inner">
                                                 <div className="border-line"></div>
                                                 <div className="content">
-                                                    <p className="desc">Team Rule <br /> (No.03)</p>
+                                                    <p className="desc">Translation Service <br /> (No.03)</p>
                                                     <h2 className="sub-title">Communication</h2>
                                                     <p>Appropriately parallel task cutting-edge mindshare rather than B2B catalysts for change. Efficiently myocardinate collaborative niche markets without excellent web-readiness.</p>
                                                 </div>
@@ -83,7 +90,7 @@ const Services = () => {
                                             <div className="inner">
                                                 <div className="border-line"></div>
                                                 <div className="content">
-                                                    <p className="desc">Team Rule <br /> (No.04)</p>
+                                                    <p className="desc">Translation Service <br /> (No.04)</p>
                                                     <h2 className="sub-title">Honesty</h2>
                                                     <p>Monotonectally parallel task cross-unit e-tailers without performance based platforms. Phosfluorescently unleash market-driven niche markets via flexible functionalities.</p>
                                                 </div>

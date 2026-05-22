@@ -34,6 +34,7 @@
 @media (max-width: 768px) {
   .ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom .btn-footer {
     width: auto;
+    max-width: 100%;
     text-align: center;
   }
 }
@@ -70,11 +71,68 @@
   padding: 0;
 }
 
+/* Sin franja beige del spacer del header: el hero arranca en y=0 */
+body.page-services .main-header {
+  height: 0;
+  min-height: 0;
+  background-color: transparent;
+}
+
+body.page-services .main-header .main-header__layout::after {
+  border-bottom-color: transparent;
+}
+
+/* Services: texto sobre la imagen del hero */
+.ms-main .ms-page-content .services-hero-block {
+  position: relative;
+}
+
+.ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single {
+  background-color: transparent;
+}
+
+.ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single .jarallax-img {
+  background-image: url(/images/services/service-banner.jpg) !important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Mismo beige del sitio (--color-bg), semitransparente */
+.ms-main .ms-page-content .services-hero-block .services-banner.banner-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: hsla(48, 33%, 89%, 0.92);
+}
+
+/* Services banner: espacio superior del texto */
+.ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner {
+  padding-top: 140px;
+}
+
+/* Services: sin scroll horizontal por redes + jarallax */
+body.page-services {
+  overflow-x: clip;
+}
+
+body.page-services .ms-main,
+body.page-services .ms-page-content,
+body.page-services .services-hero-block {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single .jarallax-img {
+  border-radius: 0;
+}
+
 /* Services banner: espacio bajo header fijo (logo secundario en móvil) */
 
 @media only screen and (max-width: 1023px) {
-  .ms-main .ms-page-content .services-banner.banner-area {
-    --services-banner-mobile-gap: clamp(0.75rem, 3vw, 1.25rem);
+  .ms-main .ms-page-content .services-hero-block .services-banner.banner-area {
+    --services-banner-mobile-gap: clamp(1.25rem, 4vw, 2rem);
     --services-banner-mobile-logo-width: 130px;
     --services-banner-mobile-header-pad-y: clamp(0.5rem, 2.5vw, 0.875rem);
     --services-banner-mobile-header-pad-top: max(
@@ -88,8 +146,26 @@
     );
   }
 
-  .ms-main .ms-page-content .services-banner.banner-area .banner-inner {
+  .ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner {
     padding-top: calc(var(--services-banner-mobile-header-height) + var(--services-banner-mobile-gap));
     padding-bottom: clamp(2.5rem, 8vw, 4rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner .left-side-content .heading-title {
+    padding-right: 0;
+  }
+
+  .ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(1rem, 4vw, 1.5rem);
+    max-width: 100%;
+  }
+
+  .ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom .services-banner__social {
+    flex-wrap: wrap;
+    max-width: 100%;
   }
 }
