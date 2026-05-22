@@ -14,10 +14,10 @@ import projectImg2 from "../../public/images/slider/most_slide_sm2.jpg";
 import projectImg3 from "../../public/images/slider/most_slide_sm3.jpg";
 import projectImg4 from "../../public/images/slider/most_slide_sm4.jpg";
 
-function ProjectDetails({ slug: slugProp }) {
+function ProjectDetails() {
 
   const router = useRouter();
-    var slug = slugProp ?? router.query.slug;
+    var slug = router.query.slug;
     if (slug === undefined) {
         slug = 'freezing-birthday';
     }
