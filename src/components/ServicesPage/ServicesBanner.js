@@ -26,18 +26,18 @@ const ServicesBanner = ({
                                     <Link href={ctaHref} className="btn-footer">
                                         {ctaLabel} <i className="fas fa-arrow-right"></i>
                                     </Link>
-                                    <div className="ms-s-w">
-                                        <a className="ms-s-i s-icon" href="#" aria-label="WordPress">
-                                            <i className="socicon-wordpress"></i>
+                                    <div className="ms-s-w services-banner__social">
+                                        <a className="ms-s-i s-icon" href="#0" aria-label="Dribbble">
+                                            <i className="socicon-dribbble"></i>
                                         </a>
-                                        <a className="ms-s-i s-icon" href="#" aria-label="Amazon">
-                                            <i className="socicon-amazon"></i>
+                                        <a className="ms-s-i s-icon" href="#0" aria-label="Twitter">
+                                            <i className="socicon-twitter"></i>
                                         </a>
-                                        <a className="ms-s-i s-icon" href="#" aria-label="Pinterest">
-                                            <i className="socicon-pinterest"></i>
+                                        <a className="ms-s-i s-icon" href="#0" aria-label="Instagram">
+                                            <i className="socicon-instagram"></i>
                                         </a>
-                                        <a className="ms-s-i s-icon" href="#" aria-label="Apple">
-                                            <i className="socicon-apple"></i>
+                                        <a className="ms-s-i s-icon" href="#0" aria-label="Behance">
+                                            <i className="socicon-behance"></i>
                                         </a>
                                     </div>
                                 </div>

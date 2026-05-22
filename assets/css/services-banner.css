@@ -38,6 +38,38 @@
   }
 }
 
+/* Redes sociales — mismo estilo circular que el footer, color del título */
+.ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom .services-banner__social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom .services-banner__social .ms-s-i {
+  margin-bottom: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 45px;
+  display: block;
+  text-align: center;
+  background: rgba(198, 66, 39, 0.12);
+  border-radius: 50%;
+  transition: all 0.4s;
+  transform: translateY(0);
+}
+
+.ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom .services-banner__social .ms-s-i:hover {
+  transform: translateY(-5px);
+}
+
+.ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom .services-banner__social .ms-s-i i {
+  color: var(--color-heading, #c64227);
+  font-size: 20px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
 /* Services banner: espacio bajo header fijo (logo secundario en móvil) */
 
 @media only screen and (max-width: 1023px) {
