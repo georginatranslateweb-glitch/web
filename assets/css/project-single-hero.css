@@ -1,0 +1,28 @@
+/* Project / services hero: imagen de fondo en capa absoluta + parallax */
+
+.ms-main .ms-page-content .ms-hero.project.single {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.ms-main .ms-page-content .ms-hero.project.single .ms-parallax {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ms-main .ms-page-content .ms-hero.project.single .ms-parallax > .jarallax-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}

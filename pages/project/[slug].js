@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 
 import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import Footer from '../../src/components/Footer';
+import MsHeroParallax from '../../src/components/common/MsHeroParallax';
 
 import projects from '../../src/data/Projects.json';
 
@@ -13,10 +14,10 @@ import projectImg2 from "../../public/images/slider/most_slide_sm2.jpg";
 import projectImg3 from "../../public/images/slider/most_slide_sm3.jpg";
 import projectImg4 from "../../public/images/slider/most_slide_sm4.jpg";
 
-function ProjectDetails() {
+function ProjectDetails({ slug: slugProp }) {
 
   const router = useRouter();
-    var slug = router.query.slug;
+    var slug = slugProp ?? router.query.slug;
     if (slug === undefined) {
         slug = 'freezing-birthday';
     }
@@ -66,11 +67,7 @@ function ProjectDetails() {
                         </div>
                     </div>
                 </div>
-                <section className="ms-hero project single">
-                    <div className="ms-parallax" data-speed="0.7" data-type="scroll">
-                        <div className="jarallax-img"></div>
-                    </div>
-                </section>
+                <MsHeroParallax className="project single" speed={0.7} type="scroll" />
                 <section className="project-single-wrap">
                     <div className="container">
                         <div className="row">
