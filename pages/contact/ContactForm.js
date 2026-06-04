@@ -550,6 +550,7 @@ const ContactForm = () => {
             className={`btn-footer quote-form__submit${isLoading ? ' quote-form__submit--loading' : ''}`}
             type="submit"
             disabled={isLoading}
+            aria-busy={isLoading}
           >
             {isLoading ? (
               <>

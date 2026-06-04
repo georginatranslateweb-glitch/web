@@ -86,6 +86,6 @@
   },
   "submit": {
     "label": "Solicitar cotización",
-    "loading": "Enviando solicitud…"
+    "loading": "Enviando..."
   }
 }

@@ -21099,12 +21099,15 @@ Clients logo
 }
 
 .contact-area .contact-area-inner .contact-form.quote-form .quote-form__spinner {
+  display: inline-block;
+  flex-shrink: 0;
   width: 16px;
   height: 16px;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
+  box-sizing: border-box;
   border-radius: 50%;
-  animation: quote-form-spin 0.7s linear infinite;
+  border: 2px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-top-color: currentColor;
+  animation: quote-form-spin 0.65s linear infinite;
 }
 
 @keyframes quote-form-spin {

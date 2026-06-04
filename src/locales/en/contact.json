@@ -86,6 +86,6 @@
   },
   "submit": {
     "label": "Request quote",
-    "loading": "Sending request…"
+    "loading": "Sending..."
   }
 }
