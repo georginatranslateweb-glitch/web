@@ -226,16 +226,18 @@ const ContactForm = () => {
             <span className="quote-form__reference-label">{tx('success.referenceLabel')}</span>
             <strong>{referenceNumber}</strong>
           </p>
-          <button
-            type="button"
-            className="btn-footer quote-form__reset-btn"
-            onClick={() => {
-              setStatus('idle');
-              setReferenceNumber('');
-            }}
-          >
-            {tx('success.submitAnother')}
-          </button>
+          <div className="ms-cf--bottom">
+            <button
+              type="button"
+              className="btn-footer quote-form__reset-btn"
+              onClick={() => {
+                setStatus('idle');
+                setReferenceNumber('');
+              }}
+            >
+              {tx('success.submitAnother')}
+            </button>
+          </div>
         </div>
       </div>
     );
