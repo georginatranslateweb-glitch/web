@@ -221,7 +221,7 @@ const ContactForm = () => {
       <div className="contact-form quote-form">
         <div className="quote-form__success" role="status">
           <h3 className="quote-form__success-title">{tx('success.title')}</h3>
-          <p>{tx('success.message')}</p>
+          <p className="quote-form__success-message">{tx('success.message')}</p>
           <p className="quote-form__reference">
             <span className="quote-form__reference-label">{tx('success.referenceLabel')}</span>
             <strong>{referenceNumber}</strong>

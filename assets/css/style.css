@@ -21128,6 +21128,13 @@ Clients logo
   font-weight: 400;
 }
 
+.contact-area .contact-area-inner .contact-form.quote-form .quote-form__success-message {
+  color: var(--color-contrast-medium, #757575);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 4px;
+}
+
 .contact-area .contact-area-inner .contact-form.quote-form .quote-form__reference {
   margin: 20px 0;
   padding: 16px 20px;
