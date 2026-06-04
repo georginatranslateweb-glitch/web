@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
 import Footer from '../../src/components/Footer';
+import { contactDefaults, resolveContactDefault } from '../../src/i18n/contactDefaults';
 import ContactForm from './ContactForm';
 
 const Contact = () => {
+    const { t, i18n } = useTranslation('contact');
+    const defaults = useMemo(
+        () => contactDefaults(i18n.resolvedLanguage || i18n.language),
+        [i18n.resolvedLanguage, i18n.language],
+    );
+    const tx = useCallback(
+        (key, options) =>
+            t(key, {
+                ...options,
+                defaultValue: resolveContactDefault(defaults, key, options),
+            }),
+        [t, defaults],
+    );
 
     return (
         <>
@@ -19,17 +34,21 @@ const Contact = () => {
                                 <div className="row">
                                     <div className="col-lg-6">
                                         <div className="content">
-                                            <h2 className="title">Got A Project Or <br /> A Partnership In Mind?</h2>
-                                            <p className="desc">Holisticly leverage other’s user friendly platforms with progressive products. Proactively matrix exceptional content through B2C schemas. Seamlessly exploit cutting-edge niche markets rather than premium results. Collaboratively restore pandemic e-business and plug-and-play data. Conveniently target exceptional platforms whereas standards compliant data.</p>
+                                            <h2 className="title">
+                                                {tx('page.titleLine1')}
+                                                <br />
+                                                {tx('page.titleLine2')}
+                                            </h2>
+                                            <p className="desc">{tx('page.description')}</p>
                                         </div>
                                         <div className="row contact">
                                             <ul className="col-lg-6 phone">
-                                                <li className="tag">Phone:</li>
+                                                <li className="tag">{tx('page.phoneLabel')}</li>
                                                 <li>+99 (0)1047011888</li>
                                                 <li>+99 (0)1310011444</li>
                                             </ul>
                                             <ul className="col-lg-6 email">
-                                                <li className="tag">Email:</li>
+                                                <li className="tag">{tx('page.emailLabel')}</li>
                                                 <li>info@madsparrow.com</li>
                                                 <li>contact@most.com</li>
                                             </ul>
