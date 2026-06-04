@@ -11,8 +11,10 @@ import enHome from '../locales/en/home.json';
 import esHome from '../locales/es/home.json';
 import enAbout from '../locales/en/about.json';
 import esAbout from '../locales/es/about.json';
+import enContact from '../locales/en/contact.json';
+import esContact from '../locales/es/contact.json';
 
-const namespaces = ['common', 'navigation', 'header', 'home', 'about'];
+const namespaces = ['common', 'navigation', 'header', 'home', 'about', 'contact'];
 
 const resources = {
   en: {
@@ -21,6 +23,7 @@ const resources = {
     header: enHeader,
     home: enHome,
     about: enAbout,
+    contact: enContact,
   },
   es: {
     common: esCommon,
@@ -28,6 +31,7 @@ const resources = {
     header: esHeader,
     home: esHome,
     about: esAbout,
+    contact: esContact,
   },
 };
 

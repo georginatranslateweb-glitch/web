@@ -1,0 +1,91 @@
+{
+  "formAriaLabel": "Quote request form",
+  "success": {
+    "title": "Request submitted",
+    "message": "Thank you. We have received your quote request and will respond within one business day.",
+    "referenceLabel": "Reference number",
+    "submitAnother": "Submit another request"
+  },
+  "errors": {
+    "submitFailed": "Unable to submit your request.",
+    "networkError": "Network error. Please check your connection and try again."
+  },
+  "validation": {
+    "nameRequired": "Name is required (min. 2 characters).",
+    "emailInvalid": "Enter a valid email address.",
+    "phoneInvalid": "Enter a valid phone number.",
+    "serviceTypeRequired": "Select a service type.",
+    "documentTypeRequired": "Select a document type.",
+    "languageFromRequired": "Enter the source language.",
+    "languageToRequired": "Enter the target language.",
+    "languagesMustDiffer": "Source and target languages must be different.",
+    "urgencyRequired": "Select an urgency level.",
+    "commentsTooLong": "Comments must be 3000 characters or fewer.",
+    "maxFiles": "Maximum {{max}} files allowed.",
+    "fileTypeNotAllowed": "\"{{name}}\" is not an allowed file type. Use PDF, DOC, DOCX, JPG, PNG, or TIF.",
+    "fileFormatUnsupported": "\"{{name}}\" has an unsupported file format.",
+    "fileTooLarge": "\"{{name}}\" exceeds 4.5 MB.",
+    "fileDuplicate": "\"{{name}}\" is already added.",
+    "totalSizeExceeded": "Total size exceeds {{maxSize}}. Remove a file or choose smaller documents."
+  },
+  "sections": {
+    "personal": "Personal information",
+    "service": "Service details",
+    "documents": "Documents"
+  },
+  "fields": {
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "serviceType": "Service type",
+    "documentType": "Document type",
+    "languageFrom": "Language (from)",
+    "languageTo": "Language (to)",
+    "urgency": "Urgency",
+    "comments": "Additional comments",
+    "requiredMark": "*"
+  },
+  "placeholders": {
+    "name": "Your full name",
+    "email": "you@email.com",
+    "phone": "+61 ...",
+    "languageFrom": "e.g. Spanish",
+    "languageTo": "e.g. English",
+    "comments": "Deadline, certification requirements, context..."
+  },
+  "serviceType": {
+    "placeholder": "Select service",
+    "translation": "Translation",
+    "interpretation": "Interpretation",
+    "certification": "NAATI Certification"
+  },
+  "documentType": {
+    "placeholder": "Select document type",
+    "legal": "Legal",
+    "medical": "Medical",
+    "academic": "Academic",
+    "immigration": "Immigration",
+    "business": "Business",
+    "personal": "Personal",
+    "other": "Other"
+  },
+  "urgency": {
+    "placeholder": "Select urgency",
+    "standard": "Standard (5–7 business days)",
+    "urgent": "Urgent (2–3 business days)",
+    "express": "Express (24–48 hours)"
+  },
+  "files": {
+    "dropzoneTitle": "Drag & drop your files here",
+    "dropzoneHint": "PDF, DOC, DOCX, JPG, PNG, TIF — up to {{max}} files, {{maxSize}} total",
+    "dropzoneAria": "Upload documents. Drag and drop or click to browse.",
+    "listAria": "Selected files",
+    "removeFile": "Remove {{name}}",
+    "total_one": "{{count}} file · {{current}} of {{max}}",
+    "total_other": "{{count}} files · {{current}} of {{max}}"
+  },
+  "submit": {
+    "label": "Request quote",
+    "loading": "Sending request…"
+  }
+}
