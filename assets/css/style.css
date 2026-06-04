@@ -21094,6 +21094,7 @@ Clients logo
 }
 
 .contact-area .contact-area-inner .contact-form.quote-form .quote-form__submit--loading {
+  gap: 16px;
   opacity: 0.75;
   cursor: wait;
 }
