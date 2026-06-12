@@ -37,6 +37,14 @@ const Footer = (props) => {
     return (
         <>
             <footer className={footerClass ? footerClass : 'ms-footer ms-footer--template'}>
+                <div className="footer-logo-watermark" aria-hidden="true">
+                    <div className="footer-logo-watermark__pivot">
+                        <img
+                            src="/images/logo/logo-red-footer.png"
+                            alt=""
+                        />
+                    </div>
+                </div>
                 <section className="container footer-container" data-parallax="on">
                     <div className="footer-title text-center">
                         <h1>

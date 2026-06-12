@@ -20092,6 +20092,58 @@ Descr: Sticky social sharing bar
   background-color: #99301e;
   color: #ede9db;
   padding-top: 40px;
+  position: relative;
+  overflow: hidden;
+  /* Variables ajustables del logo watermark (anclado en esquina inferior derecha) */
+  --logo-shift-x: 370px;
+  /* Positivo = empuja hacia afuera (derecha), más cortado */
+  --logo-shift-y: 270px;
+  /* Positivo = empuja hacia afuera (abajo), más cortado */
+  --logo-height: 200%;
+  /* Alto del logo respecto al footer (ej. 80%) */
+  --logo-rotate: -100deg;
+  /* Rotación de100 logo (ej. -15deg, 45deg) */
+  --logo-origin-x: 50%;
+  /* Punto de rotación en X (50% = centro, 100% = esquina derecha) */
+  --logo-origin-y: 50%;
+  /* Punto de rotación en Y (50% = centro, 100% = borde inferior) */
+  --logo-opacity: 0.4;
+  /* Transparencia (0–1) */
+}
+
+/* Posición: wrapper. Rotación: pivot (centro fijo, no se mueve al girar). */
+.footer-logo-watermark {
+  position: absolute;
+  top: calc(100% - var(--logo-height));
+  bottom: 0;
+  right: 0;
+  width: 0;
+  transform: translate(var(--logo-shift-x), var(--logo-shift-y));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.footer-logo-watermark__pivot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: max-content;
+  transform: rotate(var(--logo-rotate));
+  transform-origin: var(--logo-origin-x) var(--logo-origin-y);
+}
+
+.footer-logo-watermark img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  opacity: var(--logo-opacity);
+}
+
+.ms-footer .footer-container {
+  position: relative;
+  z-index: 2;
 }
 
 .ms-footer .container .footer-title {
