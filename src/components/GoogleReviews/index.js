@@ -2,13 +2,14 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import fallbackData from '../../../data/google-reviews-fallback.json';
 import { filterAndSortReviews } from '../../../lib/google-reviews/normalize';
+import GoogleReviewsCarousel from './GoogleReviewsCarousel';
 import GoogleReviewsSkeleton from './GoogleReviewsSkeleton';
-import ReviewCard from './ReviewCard';
 
 const DEFAULT_AUTO_REFRESH = 5 * 60 * 1000;
+const DEFAULT_MAX_REVIEWS = 9;
 
 const GoogleReviews = ({
-  maxReviews = 6,
+  maxReviews = DEFAULT_MAX_REVIEWS,
   autoRefresh = DEFAULT_AUTO_REFRESH,
   showOnlyHighRated = true,
   className = '',
@@ -104,7 +105,7 @@ const GoogleReviews = ({
     return () => clearInterval(intervalId);
   }, [autoRefresh, fetchReviews, manualReviews]);
 
-  const skeletonCount = Math.min(maxReviews, 3);
+  const skeletonCount = 3;
 
   return (
     <>
@@ -139,21 +140,12 @@ const GoogleReviews = ({
           )}
 
           {!loading && reviews.length > 0 && (
-            <div className="testimonial-item google-reviews__grid">
-              <div className="row g-4 align-items-start">
-                {reviews.map((review, index) => (
-                  <div key={review.id} className="col-lg-4 col-md-6 col-12 d-flex">
-                    <ReviewCard
-                      review={review}
-                      index={index}
-                      privacyMode={privacyMode}
-                      readMoreLabel={readMoreLabel}
-                      showLessLabel={showLessLabel}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            <GoogleReviewsCarousel
+              reviews={reviews}
+              privacyMode={privacyMode}
+              readMoreLabel={readMoreLabel}
+              showLessLabel={showLessLabel}
+            />
           )}
         </div>
       </div>

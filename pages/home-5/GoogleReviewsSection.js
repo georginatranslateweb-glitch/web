@@ -33,7 +33,7 @@ const HomeFiveGoogleReviews = () => {
 
   return (
     <GoogleReviews
-      maxReviews={3}
+      maxReviews={9}
       showOnlyHighRated
       autoRefresh={5 * 60 * 1000}
       language={lang}

@@ -62,12 +62,109 @@ body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
   }
 }
 
-.google-reviews__grid .row {
+/* Carousel (ms-rb theme) */
+.google-reviews__carousel {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.google-reviews__swiper {
+  overflow: hidden;
+}
+
+.google-reviews__carousel .swiper-wrapper {
   align-items: flex-start;
 }
 
-.google-reviews__grid [class*='col-'] {
+.google-reviews__carousel .swiper-slide {
+  height: auto !important;
   display: flex;
+  align-self: flex-start;
+  box-sizing: border-box;
+}
+
+.google-reviews__carousel .swiper-slide .testimonial-wraper {
+  width: 100%;
+  overflow: visible;
+}
+
+.google-reviews__carousel .ms-rb-fr {
+  top: 42%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.google-reviews__carousel .ms-rb-btn-next,
+.google-reviews__carousel .ms-rb-btn-prev {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateX(0);
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.65);
+  transition: border-color 0.3s var(--ease-in-out, ease), background-color 0.3s var(--ease-in-out, ease);
+}
+
+.google-reviews__carousel .ms-rb-btn-next:hover,
+.google-reviews__carousel .ms-rb-btn-prev:hover {
+  border-color: #c64227;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.google-reviews__carousel .ms-rb-btn-next i,
+.google-reviews__carousel .ms-rb-btn-prev i {
+  font-size: 16px;
+  color: #262626;
+}
+
+.google-reviews__carousel .google-reviews__pagination {
+  position: relative;
+  bottom: 0;
+  margin-top: 2rem;
+  width: 100%;
+  left: auto !important;
+  transform: none !important;
+}
+
+.google-reviews__carousel .google-reviews__pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 6px !important;
+  background-color: #262626;
+  opacity: 0.25;
+  transition: opacity 0.3s var(--ease-in-out, ease), transform 0.3s var(--ease-in-out, ease);
+}
+
+.google-reviews__carousel .google-reviews__pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+  background-color: #c64227;
+  transform: scale(1.15);
+}
+
+.google-reviews__swiper-skeleton {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.google-reviews__swiper-skeleton-slide {
+  min-width: 0;
+}
+
+@media (max-width: 991.98px) {
+  .google-reviews__swiper-skeleton {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .google-reviews__swiper-skeleton {
+    grid-template-columns: 1fr;
+  }
+
+  .google-reviews__carousel .ms-rb-fr {
+    display: none;
+  }
 }
 
 .ms-main .google-reviews .testimonial-wraper.google-reviews__card {
@@ -75,15 +172,20 @@ body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
   flex-direction: column;
   width: 100%;
   height: auto;
-  min-height: 100%;
+  min-height: 0;
   margin-bottom: 0;
+  padding: 20px 24px;
   border-radius: 0;
   background: rgba(120, 120, 120, 0.1);
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 .ms-main .google-reviews .testimonial-wraper.google-reviews__card .content {
   flex: 1 1 auto;
+  min-height: 0;
   margin-bottom: 20px;
+  overflow: visible;
 }
 
 .google-reviews__card-stars {
@@ -110,16 +212,8 @@ body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
 .google-reviews__card-text {
   margin: 0;
   line-height: 1.7;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-  overflow: hidden;
-}
-
-.google-reviews__card--expanded .google-reviews__card-text {
-  display: block;
-  -webkit-line-clamp: unset;
   overflow: visible;
+  word-break: break-word;
 }
 
 .google-reviews__expand-btn {
@@ -139,14 +233,51 @@ body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
 }
 
 .google-reviews__card-author {
+  flex-shrink: 0;
   margin-top: auto;
 }
 
+.google-reviews__card-author--no-avatar {
+  gap: 0;
+}
+
+.ms-main .google-reviews .testimonial-wraper .author {
+  flex-shrink: 0;
+  align-items: center;
+  gap: 16px;
+}
+
+.ms-main .google-reviews .testimonial-wraper .author-image {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  padding-right: 0;
+}
+
 .ms-main .google-reviews .testimonial-wraper .author-image img {
+  display: block;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
+  font-size: 0;
+  color: transparent;
+}
+
+.ms-main .google-reviews .testimonial-wraper .author-details {
+  min-width: 0;
+}
+
+.ms-main .google-reviews .testimonial-wraper .author-details .name {
+  margin: 0 0 4px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.ms-main .google-reviews .testimonial-wraper .author-details .desc {
+  margin: 0;
+  line-height: 1.35;
 }
 
 .google-reviews__skeleton {

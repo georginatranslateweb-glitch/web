@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import testiImg1 from '../../../public/images/testimonial/avatar-1.png';
-import testiImg2 from '../../../public/images/testimonial/avatar-2.png';
-import testiImg3 from '../../../public/images/testimonial/avatar-3.png';
 import { formatReviewDate, getAuthorInitials } from '../../../lib/google-reviews/normalize';
 import StarRating from './StarRating';
 
-const FALLBACK_AVATARS = [testiImg1, testiImg2, testiImg3];
 const TEXT_TRUNCATE_LENGTH = 180;
 
-const ReviewCard = ({ review, index = 0, privacyMode = false, readMoreLabel = 'Read more', showLessLabel = 'Show less' }) => {
+const ReviewCard = ({ review, privacyMode = false, readMoreLabel = 'Read more', showLessLabel = 'Show less' }) => {
   const [expanded, setExpanded] = useState(false);
+  const [avatarFailed, setAvatarFailed] = useState(false);
 
   const displayName = privacyMode ? getAuthorInitials(review.authorName) : review.authorName;
   const shouldTruncate = review.text.length > TEXT_TRUNCATE_LENGTH;
@@ -20,7 +17,11 @@ const ReviewCard = ({ review, index = 0, privacyMode = false, readMoreLabel = 'R
     : `${review.text.slice(0, TEXT_TRUNCATE_LENGTH).trim()}…`;
 
   const formattedDate = review.relativeTime || formatReviewDate(review.time);
-  const fallbackAvatar = FALLBACK_AVATARS[index % FALLBACK_AVATARS.length];
+  const showAvatar = Boolean(review.authorPhotoUrl && !privacyMode && !avatarFailed);
+
+  useEffect(() => {
+    setAvatarFailed(false);
+  }, [review.authorPhotoUrl, review.id]);
 
   return (
     <div className={`testimonial-wraper google-reviews__card${expanded ? ' google-reviews__card--expanded' : ''}`}>
@@ -38,20 +39,19 @@ const ReviewCard = ({ review, index = 0, privacyMode = false, readMoreLabel = 'R
           </button>
         )}
       </div>
-      <div className="author google-reviews__card-author">
-        <div className="author-image">
-          {review.authorPhotoUrl && !privacyMode ? (
+      <div className={`author google-reviews__card-author${showAvatar ? '' : ' google-reviews__card-author--no-avatar'}`}>
+        {showAvatar && (
+          <div className="author-image">
             <Image
               src={review.authorPhotoUrl}
-              alt={displayName}
+              alt=""
               width={48}
               height={48}
               unoptimized
+              onError={() => setAvatarFailed(true)}
             />
-          ) : (
-            <Image src={fallbackAvatar} alt={displayName} />
-          )}
-        </div>
+          </div>
+        )}
         <div className="author-details">
           <h2 className="name">{displayName}</h2>
           {formattedDate && <p className="desc">{formattedDate}</p>}

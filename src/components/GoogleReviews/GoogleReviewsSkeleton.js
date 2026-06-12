@@ -1,11 +1,11 @@
 import React from 'react';
 
 const GoogleReviewsSkeleton = ({ count = 3 }) => (
-  <div className="testimonial-item google-reviews__grid">
-    <div className="row g-4 align-items-start">
+  <div className="testimonial-item google-reviews__carousel ms-rb google-reviews__carousel--loading" aria-hidden="true">
+    <div className="google-reviews__swiper-skeleton">
       {Array.from({ length: count }, (_, index) => (
-        <div key={`skeleton-${index}`} className="col-lg-4 col-md-6 col-12 d-flex">
-          <div className="testimonial-wraper google-reviews__skeleton-card" aria-hidden="true">
+        <div key={`skeleton-${index}`} className="google-reviews__swiper-skeleton-slide">
+          <div className="testimonial-wraper google-reviews__skeleton-card">
             <div className="content">
               <div className="google-reviews__skeleton google-reviews__skeleton--text" />
               <div className="google-reviews__skeleton google-reviews__skeleton--text" />
