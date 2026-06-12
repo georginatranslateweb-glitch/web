@@ -35,8 +35,8 @@ const Contact = () => {
                                     <div className="col-lg-6">
                                         <div className="content">
                                             <h2 className="title">
-                                                {tx('page.titleLine1')}
-                                                <br />
+                                                {tx('page.titleLine1')}{' '}
+                                                <br className="d-none d-lg-block" />
                                                 {tx('page.titleLine2')}
                                             </h2>
                                             <p className="desc">{tx('page.description')}</p>

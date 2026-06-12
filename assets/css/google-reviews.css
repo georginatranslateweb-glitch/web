@@ -347,8 +347,28 @@ body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
   margin-bottom: 12px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 991.98px) {
   body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
-    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: clamp(1rem, 5vw, 1.5rem);
+    padding-right: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .ms-main .google-reviews .google-reviews__label,
+  .ms-main .google-reviews .google-reviews__title,
+  .ms-main .google-reviews .google-reviews__title.heading-title {
+    text-align: left;
+  }
+
+  .ms-main .google-reviews .google-reviews__carousel {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .ms-main .google-reviews .google-reviews__swiper {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }

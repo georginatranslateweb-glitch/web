@@ -20810,6 +20810,25 @@ Clients logo
   padding-bottom: 80px;
 }
 
+/* Contact: espacio bajo header fijo (logo secundario en móvil) */
+@media only screen and (max-width: 1023px) {
+  .ms-main .ms-page-content .contact-area.contact {
+    --contact-mobile-gap: clamp(1.25rem, 4vw, 2rem);
+    --contact-mobile-logo-width: 130px;
+    --contact-mobile-header-pad-y: clamp(0.5rem, 2.5vw, 0.875rem);
+    --contact-mobile-header-pad-top: max(
+      env(safe-area-inset-top, 0px),
+      var(--contact-mobile-header-pad-y)
+    );
+    /* Misma altura que .ms-header-two--secondary-logo-abs .main-header__layout.top .main-header__inner */
+    --contact-mobile-header-height: calc(
+      var(--contact-mobile-header-pad-top) + var(--contact-mobile-logo-width) * (1659 / 2520) +
+        var(--contact-mobile-header-pad-y)
+    );
+    padding-top: calc(var(--contact-mobile-header-height) + var(--contact-mobile-gap));
+  }
+}
+
 .contact-area.contact .contact-area-inner .content .title {
   font-size: 42px;
   font-weight: 900;
