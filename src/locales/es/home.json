@@ -9,6 +9,14 @@
         "care": "Cuidado"
       },
       "verticalLogoAlt": "Georgina Robledo"
+    },
+    "reviews": {
+      "subTitle": "RESEÑAS EN GOOGLE",
+      "titleLine1": "Lo que dicen nuestros clientes",
+      "titleLine2": "",
+      "readMore": "Leer más",
+      "showLess": "Ver menos",
+      "retry": "Reintentar"
     }
   }
 }

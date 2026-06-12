@@ -7,6 +7,7 @@ import HomeFiveParallax from './ParallaxSection';
 import HomeFivePortfolio from './PortfolioSection';
 import HomeFiveService from './ServiceSection';
 import HomeFiveClient from './ClientSection';
+import HomeFiveGoogleReviews from './GoogleReviewsSection';
 
 import Logo from '../../public/images/logo/logo-red.png';
 
@@ -68,6 +69,7 @@ const HomeFive = () => {
                         />
                     </HomeFiveParallax>
 
+                    <HomeFiveGoogleReviews />
 
                 </div>
             </main>

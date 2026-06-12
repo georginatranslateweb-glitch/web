@@ -1,0 +1,61 @@
+{
+  "placeName": "NAATI Professional Translation",
+  "rating": 4.9,
+  "totalReviews": 48,
+  "reviews": [
+    {
+      "id": "fallback-1",
+      "authorName": "Maria Gonzalez",
+      "authorPhotoUrl": null,
+      "rating": 5,
+      "text": "Excellent service! They delivered my certified translation quickly and the quality was outstanding. Highly recommend for NAATI-certified documents.",
+      "relativeTime": "2 weeks ago",
+      "time": 1747267200
+    },
+    {
+      "id": "fallback-2",
+      "authorName": "James Chen",
+      "authorPhotoUrl": null,
+      "rating": 5,
+      "text": "Professional team, clear communication, and fast turnaround. My visa documents were translated perfectly and accepted without any issues.",
+      "relativeTime": "1 month ago",
+      "time": 1744675200
+    },
+    {
+      "id": "fallback-3",
+      "authorName": "Sofia Patel",
+      "authorPhotoUrl": null,
+      "rating": 4,
+      "text": "Very reliable translation service. The process was straightforward and the staff answered all my questions promptly.",
+      "relativeTime": "1 month ago",
+      "time": 1744588800
+    },
+    {
+      "id": "fallback-4",
+      "authorName": "David Miller",
+      "authorPhotoUrl": null,
+      "rating": 5,
+      "text": "I needed urgent certified translations and they exceeded my expectations. Accurate, professional, and delivered on time.",
+      "relativeTime": "2 months ago",
+      "time": 1741996800
+    },
+    {
+      "id": "fallback-5",
+      "authorName": "Ana Rodriguez",
+      "authorPhotoUrl": null,
+      "rating": 5,
+      "text": "Great experience from start to finish. Fair pricing and excellent attention to detail on my academic transcripts.",
+      "relativeTime": "2 months ago",
+      "time": 1741910400
+    },
+    {
+      "id": "fallback-6",
+      "authorName": "Thomas Wright",
+      "authorPhotoUrl": null,
+      "rating": 4,
+      "text": "Solid translation service with NAATI certification. Would use again for any official document needs.",
+      "relativeTime": "3 months ago",
+      "time": 1739318400
+    }
+  ]
+}
