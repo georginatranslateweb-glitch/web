@@ -20156,6 +20156,7 @@ Descr: Sticky social sharing bar
 @media (max-width: 767px) {
   .ms-footer .container .footer-title {
     margin-bottom: 20px;
+    padding-bottom: 0;
   }
 }
 
