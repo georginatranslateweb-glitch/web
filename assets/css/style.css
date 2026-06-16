@@ -8133,8 +8133,8 @@ button.ms-header-two-fixed-logo {
         var(--ms-secondary-mobile-header-pad-y));
     --ms-secondary-mobile-header-pad-top-scrolled: max(env(safe-area-inset-top, 0px),
         var(--ms-secondary-mobile-header-pad-y-scrolled));
-    --ms-secondary-mobile-header-gap: clamp(4px, 1.5vw, 8px);
-    --ms-secondary-mobile-header-gap-scrolled: clamp(3px, 1vw, 6px);
+    --ms-secondary-mobile-header-gap: clamp(2px, 0.75vw, 4px);
+    --ms-secondary-mobile-header-gap-scrolled: 0;
   }
 
   .ms-header-two-fixed-logo:not(.ms-header-two-fixed-logo--in-header) {
@@ -8312,6 +8312,11 @@ button.ms-header-two-fixed-logo {
     height: auto !important;
   }
 
+  .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer--vertical,
+  .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .ms-header-two-fixed-logo--in-header.ms-header-two-fixed-logo--horizontal .ms-header-two-fixed-logo__layer--horizontal {
+    align-items: flex-end;
+  }
+
   .ms-header-two--secondary-logo-abs .main-header__layout.action .main-header__inner .menuTrigger,
   .ms-header-two--secondary-logo-abs .main-header__layout.action:hover .main-header__inner .menuTrigger {
     position: relative !important;
@@ -8326,7 +8331,7 @@ button.ms-header-two-fixed-logo {
     width: var(--ms-secondary-mobile-hamburger-w);
     height: var(--ms-secondary-mobile-hamburger-h);
     margin: 0;
-    margin-top: 0;
+    margin-top: -2px;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;

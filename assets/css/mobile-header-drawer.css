@@ -327,7 +327,7 @@ body.page-home-5 .ms-mobile-drawer-logo {
 
   body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action .main-header__inner,
   body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action:hover .main-header__inner {
-    row-gap: var(--ms-secondary-mobile-header-gap-scrolled, clamp(3px, 1vw, 6px));
+    row-gap: var(--ms-secondary-mobile-header-gap-scrolled, 0);
     grid-template-rows: auto auto;
   }
 
@@ -366,7 +366,7 @@ body.page-home-5 .ms-mobile-drawer-logo {
 
   .ms-header-two-fixed-logo--in-header.ms-header-two-fixed-logo--horizontal {
     --ms-logo-w: var(--ms-secondary-mobile-logo-width-horizontal, 200px);
-    --ms-logo-h: 62px;
+    --ms-logo-h: calc(var(--ms-logo-w) * (129 / 417));
   }
 
   .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__stack {
@@ -418,6 +418,11 @@ body.page-home-5 .ms-mobile-drawer-logo {
     z-index: 2;
     opacity: 1;
     pointer-events: auto;
+    align-items: flex-end;
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer--vertical {
+    align-items: flex-end;
   }
 
   .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer img {
@@ -461,6 +466,7 @@ body.page-home-5 .ms-mobile-drawer-logo {
     opacity: 1 !important;
     pointer-events: auto !important;
     visibility: visible !important;
+    margin-top: -2px !important;
     transition:
       opacity var(--ms-header-morph-duration) var(--ms-header-morph-ease) 0.1s,
       visibility 0s linear 0s !important;
