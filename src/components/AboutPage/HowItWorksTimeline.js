@@ -68,7 +68,7 @@ function TimelineStepRow({ step, index, logoAlt, motionEnabled }) {
       initial={false}
       animate={motionEnabled ? (isInView ? 'visible' : 'hidden') : false}
       variants={fadeUpVariants}
-      className="group relative grid grid-cols-1 items-center gap-y-[clamp(1rem,3vw,1.5rem)] py-[clamp(2.5rem,6vw,4.5rem)] md:grid-cols-[1fr_auto_1fr] md:items-start md:gap-x-[clamp(1.5rem,4vw,3.5rem)]"
+      className="group how-it-works-timeline__step relative grid grid-cols-1 items-center gap-y-0 md:grid-cols-[1fr_auto_1fr] md:items-start md:gap-x-[clamp(1.5rem,4vw,3.5rem)] md:gap-y-[clamp(1rem,3vw,1.5rem)] md:py-[clamp(2.5rem,6vw,4.5rem)]"
     >
       <div className="order-1 flex justify-center md:col-start-2 md:row-start-1 md:self-start md:order-none">
         <TimelineMarker stepNumber={step.number} logoAlt={logoAlt} />
