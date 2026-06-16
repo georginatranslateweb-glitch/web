@@ -81,6 +81,7 @@
 /* El banner queda sticky; alto fijo 100vh para que las dos filas sumen el viewport */
 .ms-main .ms-page-content .home-five-hero .banner-area {
   --home-five-banner-title-color: var(--color-heading, #c64227);
+  --home-five-editorial-split-gap: clamp(1.25rem, 3vw, 2.5rem);
 
   position: sticky;
   top: 0;
@@ -381,12 +382,23 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
   color: var(--home-five-banner-title-color);
   font-family: var(--font-highlight, "Apple Garamond", Georgia, "Times New Roman", serif);
   font-weight: 400;
+  font-size: 60px;
   letter-spacing: -0.02em;
   line-height: 1.15;
   white-space: pre-line;
-  /* Theme global usa padding-right: 30px en .heading-title — lo bajamos para acercar el texto a la imagen */
-  padding-right: 0.5rem;
   margin-bottom: 0;
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .left-side-content .heading-title.home-five-banner-editorial__title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .left-side-content .heading-title.home-five-banner-editorial__title {
+    padding-right: var(--home-five-editorial-split-gap);
+  }
 }
 
 .ms-main .ms-page-content .home-five-banner-editorial__caption {
@@ -413,6 +425,16 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
 /* Hook para márgenes por celda */
 .ms-main .ms-page-content .home-five-editorial-split__cell {
   min-width: 0;
+}
+
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-editorial-split__group:first-child {
+    padding-right: var(--home-five-editorial-split-gap);
+  }
+
+  .ms-main .ms-page-content .home-five-editorial-split__group:last-child {
+    padding-left: var(--home-five-editorial-split-gap);
+  }
 }
 
 .ms-main .ms-page-content .home-five-editorial-grid-col {
