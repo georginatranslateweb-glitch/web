@@ -27,17 +27,17 @@ const ServicesBanner = ({
                                         {ctaLabel} <i className="fas fa-arrow-right"></i>
                                     </Link>
                                     <div className="ms-s-w services-banner__social">
-                                        <a className="ms-s-i s-icon" href="#0" aria-label="Dribbble">
-                                            <i className="socicon-dribbble"></i>
+                                        <a className="ms-s-i s-icon" href="mailto:hello@georginatranslates.com" aria-label="Email">
+                                            <i className="socicon-mail"></i>
                                         </a>
-                                        <a className="ms-s-i s-icon" href="#0" aria-label="Twitter">
-                                            <i className="socicon-twitter"></i>
+                                        <a className="ms-s-i s-icon" href="https://wa.me/61423915231" aria-label="WhatsApp">
+                                            <i className="socicon-whatsapp"></i>
                                         </a>
-                                        <a className="ms-s-i s-icon" href="#0" aria-label="Instagram">
+                                        <a className="ms-s-i s-icon" href="https://www.instagram.com/georginatranslates" aria-label="Instagram">
                                             <i className="socicon-instagram"></i>
                                         </a>
-                                        <a className="ms-s-i s-icon" href="#0" aria-label="Behance">
-                                            <i className="socicon-behance"></i>
+                                        <a className="ms-s-i s-icon" href="https://www.linkedin.com/in/georgina-robledo/" aria-label="LinkedIn">
+                                            <i className="socicon-linkedin"></i>
                                         </a>
                                     </div>
                                 </div>

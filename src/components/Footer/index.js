@@ -60,22 +60,22 @@ const Footer = (props) => {
                             <div className="col-lg-3 col-md-6 col-sm-2 col-2">
                                 <div className="social-wrapper">
                                     <div className="content">
-                                        <h3 className="platform">Dribble</h3>
-                                        <a href="#0" className="link">@madsparrow_dev</a>
+                                        <h3 className="platform">Email</h3>
+                                        <a href="mailto:hello@georginatranslates.com" className="link">hello@georginatranslates.com</a>
                                     </div>
                                     <div className="social">
-                                        <a href="#0" className="icon"><i className="socicon-dribbble"></i></a>
+                                        <a href="mailto:hello@georginatranslates.com" className="icon" aria-label="Email"><i className="socicon-mail"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 col-sm-2 col-2">
                                 <div className="social-wrapper">
                                     <div className="content">
-                                        <h3 className="platform">Twitter</h3>
-                                        <a href="#0" className="link">@madsparrow_dev</a>
+                                        <h3 className="platform">WhatsApp</h3>
+                                        <a href="https://wa.me/61423915231" className="link">61423915231</a>
                                     </div>
                                     <div className="social">
-                                        <a href="#0" className="icon"><i className="socicon-twitter"></i></a>
+                                        <a href="https://wa.me/61423915231" className="icon" aria-label="WhatsApp"><i className="socicon-whatsapp"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -83,21 +83,21 @@ const Footer = (props) => {
                                 <div className="social-wrapper">
                                     <div className="content">
                                         <h3 className="platform">Instagram</h3>
-                                        <a href="#0" className="link">@madsparrow_dev</a>
+                                        <a href="https://www.instagram.com/georginatranslates" className="link">@georginatranslates</a>
                                     </div>
                                     <div className="social">
-                                        <a href="#0" className="icon"><i className="socicon-instagram"></i></a>
+                                        <a href="https://www.instagram.com/georginatranslates" className="icon" aria-label="Instagram"><i className="socicon-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 col-sm-2 col-2">
                                 <div className="social-wrapper">
                                     <div className="content">
-                                        <h3 className="platform">Behance</h3>
-                                        <a href="#0" className="link">@madsparrow_dev</a>
+                                        <h3 className="platform">LinkedIn</h3>
+                                        <a href="https://www.linkedin.com/in/georgina-robledo/" className="link">Georgina Robledo</a>
                                     </div>
                                     <div className="social">
-                                        <a href="#0" className="icon"><i className="socicon-behance"></i></a>
+                                        <a href="https://www.linkedin.com/in/georgina-robledo/" className="icon" aria-label="LinkedIn"><i className="socicon-linkedin"></i></a>
                                     </div>
                                 </div>
                             </div>
