@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import MenuItems from './MenuItems';
 import LanguageSwitcher from '../LanguageSwitcher';
+import { HOME_LOGO_HREF } from './headerEvents';
 
 import Logo from "../../../public/images/logo/logo-dark.svg";
 import LogoLight from "../../../public/images/logo/logo-light.svg";
@@ -58,10 +59,10 @@ const HeaderThree = ({ headerClass, headerLogo, headerLogoLight }) => {
             {/* Logo */}
             <div className="main-header__logo">
               <div className="logo-dark">
-                <Link href="/"><Image src={logoDarkSrc} alt={t('logoAlt')} width={150} height={50} /></Link>
+                <Link href={HOME_LOGO_HREF}><Image src={logoDarkSrc} alt={t('logoAlt')} width={150} height={50} /></Link>
               </div>
               <div className="logo-light">
-                <Link href="/"><Image src={logoLightSrc} alt={t('logoAlt')} width={150} height={50} /></Link>
+                <Link href={HOME_LOGO_HREF}><Image src={logoLightSrc} alt={t('logoAlt')} width={150} height={50} /></Link>
               </div>
             </div>
 

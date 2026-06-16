@@ -6777,7 +6777,8 @@ body.masonry[data-theme=light] .main-header__nav-trigger {
   }
 
   .main-header__logo a,
-  .main-header__logo button.ms-header-logo-trigger {
+  .main-header__logo button.ms-header-logo-trigger,
+  .main-header__logo a.ms-header-logo-trigger {
     width: 100%;
   }
 
@@ -7933,7 +7934,8 @@ Descr: Accessible website navigation
   margin-left: 0;
 }
 
-.main-header__layout .main-header__inner .main-header__logo button.ms-header-logo-trigger {
+.main-header__layout .main-header__inner .main-header__logo button.ms-header-logo-trigger,
+.main-header__layout .main-header__inner .main-header__logo a.ms-header-logo-trigger {
   appearance: none;
   background: transparent;
   border: 0;
@@ -7943,6 +7945,7 @@ Descr: Accessible website navigation
   font: inherit;
   color: inherit;
   display: block;
+  text-decoration: none;
 }
 
 .main-header__layout .main-header__inner .main-header__logo .ms-header-logo {
@@ -7975,7 +7978,8 @@ Descr: Accessible website navigation
   line-height: 0;
 }
 
-button.ms-header-two-fixed-logo {
+button.ms-header-two-fixed-logo,
+a.ms-header-two-fixed-logo {
   appearance: none;
   background: transparent;
   border: 0;
@@ -7984,6 +7988,7 @@ button.ms-header-two-fixed-logo {
   cursor: pointer;
   font: inherit;
   color: inherit;
+  text-decoration: none;
 }
 
 .ms-header-two-fixed-logo img {

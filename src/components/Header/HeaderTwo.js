@@ -5,6 +5,7 @@ import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslat
 import MenuItems from './MenuItems';
 import LanguageSwitcher from '../LanguageSwitcher';
 import SecondaryFixedLogo from './SecondaryFixedLogo';
+import HeaderLogoLink from './HeaderLogoLink';
 import MobileDrawerLogo from './MobileDrawerLogo';
 import {
   MOST_HEADER_TWO_TOGGLE_MOBILE_NAV,
@@ -290,16 +291,13 @@ const HeaderTwo = (props) => {
               ) : (
               <div className="main-header__logo">
                 <div className="logo-dark">
-                  <button
-                    type="button"
+                  <HeaderLogoLink
+                    isNarrowViewport={isNarrowViewport}
                     className="ms-header-logo-trigger"
-                    aria-label={logoToggleA11y}
-                    aria-expanded={menuOpen ? 'true' : 'false'}
-                    aria-controls="main-header-nav"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleNavFromLogo();
-                    }}
+                    ariaLabel={logoToggleA11y}
+                    ariaExpanded={menuOpen ? 'true' : 'false'}
+                    ariaControls="main-header-nav"
+                    onMobileClick={toggleNavFromLogo}
                   >
                     <span className="ms-header-logo">
                       <Image
@@ -311,19 +309,16 @@ const HeaderTwo = (props) => {
                         style={{ objectFit: 'contain' }}
                       />
                     </span>
-                  </button>
+                  </HeaderLogoLink>
                 </div>
                 <div className="logo-light">
-                  <button
-                    type="button"
+                  <HeaderLogoLink
+                    isNarrowViewport={isNarrowViewport}
                     className="ms-header-logo-trigger"
-                    aria-label={logoToggleA11y}
-                    aria-expanded={menuOpen ? 'true' : 'false'}
-                    aria-controls="main-header-nav"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleNavFromLogo();
-                    }}
+                    ariaLabel={logoToggleA11y}
+                    ariaExpanded={menuOpen ? 'true' : 'false'}
+                    ariaControls="main-header-nav"
+                    onMobileClick={toggleNavFromLogo}
                   >
                     <span className="ms-header-logo">
                       <Image
@@ -335,7 +330,7 @@ const HeaderTwo = (props) => {
                         style={{ objectFit: 'contain' }}
                       />
                     </span>
-                  </button>
+                  </HeaderLogoLink>
                 </div>
               </div>
               )}

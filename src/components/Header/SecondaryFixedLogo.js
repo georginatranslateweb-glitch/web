@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 import LogoSecondary from '../../../public/images/logo/logo-secundario.png';
 import LogoHorizontalRed from '../../../public/images/logo/logo-horizontal-red.png';
 import {
+  HOME_LOGO_HREF,
   MOST_HEADER_TWO_MOBILE_NAV_CHANGE,
   MOST_HEADER_TWO_TOGGLE_MOBILE_NAV,
 } from './headerEvents';
@@ -110,13 +112,10 @@ const SecondaryFixedLogo = ({ placement = 'fixed', scrolled = false }) => {
   }
 
   return (
-    <button
-      type="button"
+    <Link
+      href={HOME_LOGO_HREF}
       className={buttonClassName}
       aria-label={logoToggleA11y}
-      aria-expanded={mobileNavOpen ? 'true' : 'false'}
-      aria-controls="main-header-nav"
-      onClick={toggleMobileNav}
     >
       <Image
         src={LogoSecondary}
@@ -131,7 +130,7 @@ const SecondaryFixedLogo = ({ placement = 'fixed', scrolled = false }) => {
           objectFit: 'contain',
         }}
       />
-    </button>
+    </Link>
   );
 };
 

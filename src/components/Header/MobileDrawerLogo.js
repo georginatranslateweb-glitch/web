@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 import LogoBeige from '../../../public/images/logo/logo-beige.png';
-import { MOST_HEADER_TWO_TOGGLE_MOBILE_NAV } from './headerEvents';
+import { HOME_LOGO_HREF, MOST_HEADER_TWO_TOGGLE_MOBILE_NAV } from './headerEvents';
 
 const NARROW_HEADER_MQ = '(max-width: 1023px)';
 
@@ -21,7 +22,17 @@ const MobileDrawerLogo = ({
   priority = false,
 }) => {
   const { t } = useHydrationSafeTranslation('header');
+  const [isNarrowViewport, setIsNarrowViewport] = useState(false);
   const label = `${t('logoAlt')} — ${t('toggleMenu')}`;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const mq = window.matchMedia(NARROW_HEADER_MQ);
+    const sync = () => setIsNarrowViewport(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   const handleToggle = () => {
     if (typeof onToggle === 'function') {
@@ -39,6 +50,33 @@ const MobileDrawerLogo = ({
     handleToggle();
   };
 
+  const logoImage = (
+    <Image
+      src={menuOpen ? logoOpen : logoClosed}
+      alt=""
+      priority={priority}
+      width={252}
+      height={166}
+      className="ms-mobile-drawer-logo__img"
+    />
+  );
+
+  if (!isNarrowViewport) {
+    return (
+      <Link
+        href={HOME_LOGO_HREF}
+        className="ms-mobile-drawer-logo"
+        aria-label={label}
+        onMouseEnter={onPeekEnter}
+        onMouseLeave={onPeekLeave}
+        onFocus={onPeekEnter}
+        onBlur={onPeekLeave}
+      >
+        {logoImage}
+      </Link>
+    );
+  }
+
   return (
     <button
       type="button"
@@ -54,14 +92,7 @@ const MobileDrawerLogo = ({
       onTouchEnd={onPeekLeave}
       onClick={handleClick}
     >
-      <Image
-        src={menuOpen ? logoOpen : logoClosed}
-        alt=""
-        priority={priority}
-        width={252}
-        height={166}
-        className="ms-mobile-drawer-logo__img"
-      />
+      {logoImage}
     </button>
   );
 };

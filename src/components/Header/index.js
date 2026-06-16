@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import MenuItems from './MenuItems';
 import LanguageSwitcher from '../LanguageSwitcher';
+import HeaderLogoLink from './HeaderLogoLink';
 
 import Logo from "../../../public/images/logo/logo-red.png";
 import LogoLight from "../../../public/images/logo/logo-red.png";
@@ -65,16 +66,13 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
             {/* Logo */}
             <div className="main-header__logo">
               <div className="logo-dark">
-                <button
-                  type="button"
+                <HeaderLogoLink
+                  isNarrowViewport={isNarrowViewport}
                   className="ms-header-logo-trigger"
-                  aria-label={logoToggleA11y}
-                  aria-expanded={menuOpen ? 'true' : 'false'}
-                  aria-controls="main-header-nav"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleNavFromLogo();
-                  }}
+                  ariaLabel={logoToggleA11y}
+                  ariaExpanded={menuOpen ? 'true' : 'false'}
+                  ariaControls="main-header-nav"
+                  onMobileClick={toggleNavFromLogo}
                 >
                   <span className="ms-header-logo">
                     <Image
@@ -86,19 +84,16 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
                       style={{ objectFit: 'contain' }}
                     />
                   </span>
-                </button>
+                </HeaderLogoLink>
               </div>
               <div className="logo-light">
-                <button
-                  type="button"
+                <HeaderLogoLink
+                  isNarrowViewport={isNarrowViewport}
                   className="ms-header-logo-trigger"
-                  aria-label={logoToggleA11y}
-                  aria-expanded={menuOpen ? 'true' : 'false'}
-                  aria-controls="main-header-nav"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleNavFromLogo();
-                  }}
+                  ariaLabel={logoToggleA11y}
+                  ariaExpanded={menuOpen ? 'true' : 'false'}
+                  ariaControls="main-header-nav"
+                  onMobileClick={toggleNavFromLogo}
                 >
                   <span className="ms-header-logo">
                     <Image
@@ -110,7 +105,7 @@ const Header = ({ headerClass, headerLogo, headerLogoLight }) => {
                       style={{ objectFit: 'contain' }}
                     />
                   </span>
-                </button>
+                </HeaderLogoLink>
               </div>
             </div>
 
