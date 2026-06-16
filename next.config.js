@@ -14,6 +14,11 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/home-4', destination: '/about', permanent: true },
+      { source: '/home-5', destination: '/', permanent: true },
+      { source: '/home-2', destination: '/', permanent: true },
+      { source: '/home-3', destination: '/', permanent: true },
+      { source: '/home-6', destination: '/', permanent: true },
+      { source: '/home', destination: '/', permanent: true },
     ];
   },
   async headers() {

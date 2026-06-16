@@ -5,7 +5,7 @@ import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
 import Footer from '../../src/components/Footer';
 import { contactDefaults, resolveContactDefault } from '../../src/i18n/contactDefaults';
-import ContactForm from './ContactForm';
+import ContactForm from '../../src/components/Contact/ContactForm';
 
 const Contact = () => {
     const { t, i18n } = useTranslation('contact');

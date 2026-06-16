@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { contactDefaults, resolveContactDefault } from '../../src/i18n/contactDefaults';
+import { contactDefaults, resolveContactDefault } from '../../i18n/contactDefaults';
 import {
   formatBytes,
   MAX_FILES,
@@ -9,7 +9,7 @@ import {
   validateField,
   validateFile,
   validateFileList,
-} from '../../lib/quote-request/clientValidation';
+} from '../../../lib/quote-request/clientValidation';
 
 const INITIAL_FORM = {
   name: '',

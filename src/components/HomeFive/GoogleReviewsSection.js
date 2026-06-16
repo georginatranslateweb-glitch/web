@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo } from 'react';
 
-import GoogleReviews from '../../src/components/GoogleReviews';
-import enHome from '../../src/locales/en/home.json';
-import esHome from '../../src/locales/es/home.json';
-import { SSR_I18N_LANG, useHydrationSafeTranslation } from '../../src/i18n/useHydrationSafeTranslation';
+import GoogleReviews from '../GoogleReviews';
+import enHome from '../../locales/en/home.json';
+import esHome from '../../locales/es/home.json';
+import { SSR_I18N_LANG, useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 const homeFiveReviewsDefaults = (lang) => {
   const code = String(lang || 'en').toLowerCase().split('-')[0];

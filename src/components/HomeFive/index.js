@@ -1,21 +1,17 @@
 import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
 
-import HeaderTwo from '../../src/components/Header/HeaderTwo';
-import Footer from '../../src/components/Footer';
+import HeaderTwo from '../Header/HeaderTwo';
+import Footer from '../Footer';
 import HomeFiveBanner from './BannerSection';
 import HomeFiveParallax from './ParallaxSection';
-import HomeFivePortfolio from './PortfolioSection';
-import HomeFiveService from './ServiceSection';
-import HomeFiveClient from './ClientSection';
 import HomeFiveGoogleReviews from './GoogleReviewsSection';
 
-import Logo from '../../public/images/logo/logo-red.png';
+import Logo from '../../../public/images/logo/logo-red.png';
 
 const LOGO_MIRROR_LEAVE_MS = 260;
 
 const HomeFive = () => {
     const [layoutHoverMirrorFromFixedLogo, setLayoutHoverMirrorFromFixedLogo] = useState(false);
-    /** ≥992px y logo vertical del hero visible: idioma renderizado junto a la hamburguesa, no en el header. */
     const [langDockedInHero, setLangDockedInHero] = useState(false);
     const mirrorLeaveTimerRef = useRef(null);
 
@@ -77,6 +73,6 @@ const HomeFive = () => {
             <Footer />
         </>
     );
-}
+};
 
 export default HomeFive;

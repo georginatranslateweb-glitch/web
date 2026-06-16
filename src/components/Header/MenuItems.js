@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 const NAV_LINKS = [
-  { href: '/home-5', labelKey: 'mainNavHome' },
+  { href: '/', labelKey: 'mainNavHome' },
   { href: '/services', labelKey: 'mainNavServices' },
   { href: '/about', labelKey: 'mainNavAbout' },
   { href: '/contact', labelKey: 'mainNavContact' },

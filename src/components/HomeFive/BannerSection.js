@@ -3,9 +3,9 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
-import LanguageSwitcher from '../../src/components/LanguageSwitcher';
-import enHome from '../../src/locales/en/home.json';
-import esHome from '../../src/locales/es/home.json';
+import LanguageSwitcher from '../LanguageSwitcher';
+import enHome from '../../locales/en/home.json';
+import esHome from '../../locales/es/home.json';
 
 const HOME_FIVE_VERTICAL_LOGO_LG = 992;
 /** Idioma junto a la hamburguesa del hero (mismo breakpoint que muestra el bloque vertical) */
