@@ -290,3 +290,211 @@ body.page-home-5 .ms-mobile-drawer-logo {
     background-color: var(--ms-header-scrolled-bg-color, rgba(237, 233, 219, 0.76)) !important;
   }
 }
+
+/*
+ * About / Services / Contact — header compacto al scroll (móvil).
+ * Un solo movimiento cohesionado: morph del slot + crossfade sutil del logo.
+ */
+@media only screen and (max-width: 1023px) {
+  .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) {
+    --ms-header-morph-duration: 0.42s;
+    --ms-header-morph-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --ms-logo-crossfade-duration: 0.38s;
+    --ms-logo-crossfade-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  /* Grilla estable: evita salto flex → grid */
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.top .main-header__inner,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.action .main-header__inner,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.action:hover .main-header__inner {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0;
+    align-items: start;
+    justify-items: center;
+    transition:
+      padding var(--ms-header-morph-duration) var(--ms-header-morph-ease),
+      min-height var(--ms-header-morph-duration) var(--ms-header-morph-ease),
+      background-color var(--ms-header-morph-duration) ease,
+      row-gap var(--ms-header-morph-duration) var(--ms-header-morph-ease);
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-header-two-scrolled):not(.ms-mobile-nav-open) .main-header__layout.top .main-header__inner {
+    row-gap: 0;
+    grid-template-rows: auto 0fr;
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action .main-header__inner,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action:hover .main-header__inner {
+    row-gap: var(--ms-secondary-mobile-header-gap-scrolled, clamp(3px, 1vw, 6px));
+    grid-template-rows: auto auto;
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .ms-header-two-logo-mobile-slot {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    width: auto;
+    overflow: visible;
+    transform: none !important;
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.top .main-header__inner .main-header--widgets,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.action .main-header__inner .main-header--widgets,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.action:hover .main-header__inner .main-header--widgets {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    justify-self: end;
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+  }
+
+  /* Slot del logo: dimensiones explícitas (evita colapso con hijos absolute) */
+  .ms-header-two-fixed-logo--in-header {
+    --ms-logo-w: var(--ms-secondary-mobile-logo-width, 130px);
+    --ms-logo-h: calc(var(--ms-secondary-mobile-logo-width, 130px) * (166 / 252));
+    display: block;
+    width: var(--ms-logo-w);
+    max-width: 100%;
+    margin: 0 auto;
+    transition: width var(--ms-header-morph-duration) var(--ms-header-morph-ease);
+  }
+
+  .ms-header-two-fixed-logo--in-header.ms-header-two-fixed-logo--horizontal {
+    --ms-logo-w: var(--ms-secondary-mobile-logo-width-horizontal, 200px);
+    --ms-logo-h: 62px;
+  }
+
+  .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__stack {
+    position: relative;
+    display: block;
+    width: var(--ms-logo-w);
+    height: var(--ms-logo-h);
+    transition:
+      width var(--ms-header-morph-duration) var(--ms-header-morph-ease),
+      height var(--ms-header-morph-duration) var(--ms-header-morph-ease);
+  }
+
+  .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    transition: opacity var(--ms-logo-crossfade-duration) var(--ms-logo-crossfade-ease);
+  }
+
+  .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer > span {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    line-height: 0;
+  }
+
+  .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer--vertical {
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .ms-header-two-fixed-logo--in-header.ms-header-two-fixed-logo--horizontal .ms-header-two-fixed-logo__layer--vertical {
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer--horizontal {
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ms-header-two-fixed-logo--in-header.ms-header-two-fixed-logo--horizontal .ms-header-two-fixed-logo__layer--horizontal {
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain;
+    display: block !important;
+  }
+
+  body:not(.page-home-5) .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer--vertical img {
+    width: var(--ms-secondary-mobile-logo-width, 130px) !important;
+    max-width: 100% !important;
+  }
+
+  body:not(.page-home-5) .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo--in-header.ms-header-two-fixed-logo--horizontal .ms-header-two-fixed-logo__layer--horizontal img {
+    width: var(--ms-secondary-mobile-logo-width-horizontal, 200px) !important;
+    max-width: 100% !important;
+  }
+
+  /* Hamburguesa: fade discreto, en sync con el header */
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout.top .main-header__inner .menuTrigger {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    align-self: start;
+    height: var(--ms-secondary-mobile-hamburger-h, 16px) !important;
+    width: var(--ms-secondary-mobile-hamburger-w, 44px) !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    overflow: hidden !important;
+    transition:
+      opacity var(--ms-header-morph-duration) var(--ms-header-morph-ease),
+      visibility 0s linear var(--ms-header-morph-duration) !important;
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action .main-header__inner .menuTrigger,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action:hover .main-header__inner .menuTrigger {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    transition:
+      opacity var(--ms-header-morph-duration) var(--ms-header-morph-ease) 0.1s,
+      visibility 0s linear 0s !important;
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs .main-header__layout::before,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs .main-header__layout::after,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs .main-header__layout .main-header__inner {
+    transition:
+      background-color var(--ms-header-morph-duration) ease,
+      -webkit-backdrop-filter var(--ms-header-morph-duration) ease,
+      backdrop-filter var(--ms-header-morph-duration) ease;
+  }
+
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action .main-header__inner,
+  body:not(.page-home-5) .ms-header-two--secondary-logo-abs.ms-header-two-scrolled:not(.ms-mobile-nav-open) .main-header__layout.action:hover .main-header__inner {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) {
+      --ms-header-morph-duration: 0.01ms;
+      --ms-logo-crossfade-duration: 0.01ms;
+    }
+
+    .ms-header-two--secondary-logo-abs:not(.ms-mobile-nav-open) .main-header__layout .main-header__inner,
+    .ms-header-two--secondary-logo-abs .ms-header-two-logo-mobile-slot,
+    .ms-header-two-fixed-logo--in-header,
+    .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__stack,
+    .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer,
+    .ms-header-two--secondary-logo-abs .main-header__layout .menuTrigger {
+      transition-duration: 0.01ms !important;
+      transition-delay: 0s !important;
+    }
+  }
+}

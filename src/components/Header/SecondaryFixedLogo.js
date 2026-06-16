@@ -40,37 +40,92 @@ const SecondaryFixedLogo = ({ placement = 'fixed', scrolled = false }) => {
   }, []);
 
   const logoToggleA11y = `${t('logoAlt')} — ${t('toggleMenu')}`;
-  const useHorizontalLogo =
+  const showHorizontal =
     placement === 'inHeader' &&
     isNarrowViewport &&
     scrolled &&
     !mobileNavOpen;
-  const logoSrc = useHorizontalLogo ? LogoHorizontalRed : LogoSecondary;
 
   if (placement === 'fixed' && isNarrowViewport) return null;
   if (placement === 'inHeader' && !isNarrowViewport) return null;
 
+  const buttonClassName = [
+    'ms-header-two-fixed-logo',
+    placement === 'inHeader' ? 'ms-header-two-fixed-logo--in-header' : '',
+    showHorizontal ? 'ms-header-two-fixed-logo--horizontal' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const toggleMobileNav = () => {
+    if (typeof window === 'undefined') return;
+    if (!window.matchMedia(NARROW_HEADER_MQ).matches) return;
+    window.dispatchEvent(new CustomEvent(MOST_HEADER_TWO_TOGGLE_MOBILE_NAV));
+  };
+
+  if (placement === 'inHeader') {
+    return (
+      <button
+        type="button"
+        className={buttonClassName}
+        aria-label={logoToggleA11y}
+        aria-expanded={mobileNavOpen ? 'true' : 'false'}
+        aria-controls="main-header-nav"
+        onClick={toggleMobileNav}
+      >
+        <span className="ms-header-two-fixed-logo__stack" aria-hidden="true">
+          <span className="ms-header-two-fixed-logo__layer ms-header-two-fixed-logo__layer--vertical">
+            <Image
+              src={LogoSecondary}
+              alt=""
+              priority
+              width={252}
+              height={166}
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: '100%',
+                objectFit: 'contain',
+              }}
+            />
+          </span>
+          <span className="ms-header-two-fixed-logo__layer ms-header-two-fixed-logo__layer--horizontal">
+            <Image
+              src={LogoHorizontalRed}
+              alt=""
+              priority
+              width={417}
+              height={129}
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: '100%',
+                objectFit: 'contain',
+              }}
+            />
+          </span>
+        </span>
+      </button>
+    );
+  }
+
   return (
     <button
       type="button"
-      className={`ms-header-two-fixed-logo${placement === 'inHeader' ? ' ms-header-two-fixed-logo--in-header' : ''}${useHorizontalLogo ? ' ms-header-two-fixed-logo--horizontal' : ''}`}
+      className={buttonClassName}
       aria-label={logoToggleA11y}
       aria-expanded={mobileNavOpen ? 'true' : 'false'}
       aria-controls="main-header-nav"
-      onClick={() => {
-        if (typeof window === 'undefined') return;
-        if (!window.matchMedia(NARROW_HEADER_MQ).matches) return;
-        window.dispatchEvent(new CustomEvent(MOST_HEADER_TWO_TOGGLE_MOBILE_NAV));
-      }}
+      onClick={toggleMobileNav}
     >
       <Image
-        src={logoSrc}
+        src={LogoSecondary}
         alt=""
         priority
-        width={useHorizontalLogo ? 417 : 252}
-        height={useHorizontalLogo ? 129 : 166}
+        width={252}
+        height={166}
         style={{
-          width: placement === 'fixed' ? 130 : '100%',
+          width: 130,
           height: 'auto',
           maxWidth: '100%',
           objectFit: 'contain',

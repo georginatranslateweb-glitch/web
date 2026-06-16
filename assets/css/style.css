@@ -8262,14 +8262,20 @@ button.ms-header-two-fixed-logo {
     right: auto;
     transform: none;
     z-index: 1;
-    width: auto;
-    max-width: var(--ms-secondary-mobile-logo-width);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: var(--ms-secondary-mobile-logo-width, 130px);
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
   }
 
-  .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo:not(.ms-header-two-fixed-logo--horizontal) img {
+  .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo--in-header .ms-header-two-fixed-logo__layer--vertical img {
+    width: var(--ms-secondary-mobile-logo-width) !important;
+    height: auto !important;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .ms-header-two-logo-mobile-slot .ms-header-two-fixed-logo:not(.ms-header-two-fixed-logo--horizontal):not(.ms-header-two-fixed-logo--in-header) img {
     width: var(--ms-secondary-mobile-logo-width) !important;
     height: auto !important;
     max-width: 100%;
