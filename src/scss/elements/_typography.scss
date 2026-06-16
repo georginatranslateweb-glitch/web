@@ -107,9 +107,10 @@ a, .link {
     color: var(--color-primary);
   }
 }
-.text-component a:not(.card__title)::after + img.alignnone {
-  border: solid 1px;
-}
+// Invalid selector for modern CSS parsers (pseudo-element + sibling); blog-only rule removed.
+// .text-component a:not(.card__title)::after + img.alignnone {
+//   border: solid 1px;
+// }
 
 .link a {
   display: inline-block;

@@ -1,0 +1,95 @@
+.ms-main {
+    .ms-page-content {
+        &.about-page {
+            background-color: var(--color-bg);
+        }
+
+        .personal-cv-area {
+            background: rgba(169, 178, 180, 0.22);
+            padding: 15px;
+            margin: 16vh 0 10vh 0;
+
+            .image-left-side {
+                margin: -85px 0 0 0;
+                padding: 10px;
+                position: sticky;
+                height: max-content;
+                top: 80px;
+
+                img {
+                    width: 100%;
+                    box-shadow: 0px 24px 50px 0px rgba(0, 0, 0, .28);
+                }
+            }
+
+            .right-side-content {
+                padding: 10px;
+                margin-top: 30px;
+
+                .heading-title {
+                    font-size: 52px;
+                    font-weight: 900;
+                    margin-bottom: 20px;
+                    line-height: 1;
+                }
+
+                p {
+                    margin-bottom: 40px;
+                    font-family: var(--font-primary, 'Red Hat Display', system-ui, sans-serif);
+                    font-size: clamp(0.88rem, 1.6vw, 1rem);
+                    font-weight: 300;
+                    line-height: 1.75;
+                    letter-spacing: 0.01em;
+                    color: var(--color-contrast-high, #2b2b2b);
+                }
+
+                p.desc {
+                    margin-bottom: 50px;
+                }
+
+                .services-items .ms-sb--text {
+                    font-family: var(--font-primary, 'Red Hat Display', system-ui, sans-serif);
+                    font-size: clamp(0.88rem, 1.6vw, 1rem);
+                    font-weight: 300;
+                    line-height: 1.75;
+                    letter-spacing: 0.01em;
+                    color: var(--color-contrast-high, #2b2b2b);
+                }
+
+                .cate-color {
+                    color: #ef5d39;
+                }
+
+                .services-area {
+                    padding-top: 50px;
+                    border-top: 1px solid #0000000f;
+
+                    .services-title {
+                        margin-bottom: 50px;
+                        font-weight: bold;
+                    }
+
+                    .services-items {
+                        .ms-sb {
+                            .ms-sb--inner {
+                                .ms-sb--title {
+                                    font-weight: 700;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .pricing-area {
+                    padding: 50px 0;
+                    border-top: 1px solid #0000000f;
+
+                    .services-title {
+                        font-weight: bold;
+                        margin-bottom: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
