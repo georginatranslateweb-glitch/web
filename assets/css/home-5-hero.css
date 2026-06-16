@@ -171,6 +171,7 @@ body.page-home-5 > .home-five-hero-vertical-brand,
   /* Ancho del logo vertical (PNG); hamburguesa = ⅓ de este valor */
   --home-five-vertical-logo-w: clamp(2.125rem, 4vw, 4.25rem);
   --home-five-hamburger-line-gap: 6px;
+  --home-five-vertical-logo-fade: 1;
 
   position: fixed;
   /* Misma referencia vertical que .ms-mobile-drawer-logo (solo top, sin margin-top extra) */
@@ -181,8 +182,12 @@ body.page-home-5 > .home-five-hero-vertical-brand,
   z-index: 10040;
   line-height: 0;
   display: none;
-  pointer-events: auto;
+  pointer-events: none;
   visibility: hidden;
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: visibility 0s linear 0.2s;
+  will-change: opacity, transform;
   width: fit-content;
 }
 
@@ -190,6 +195,7 @@ body > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
 body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
 .ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed {
   visibility: visible;
+  transition: visibility 0s linear 0s;
 }
 
 /* Columna: hamburguesa centrada encima del logo vertical (mismo ancho) */

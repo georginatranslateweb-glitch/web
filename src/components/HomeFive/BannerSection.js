@@ -12,6 +12,8 @@ const HOME_FIVE_VERTICAL_LOGO_LG = 992;
 const HOME_FIVE_HERO_CHROME_LANG_MQ = '(min-width: 992px)';
 /** Espacio entre el borde derecho de la foto y el logo (px), mismo criterio que antes */
 const HOME_FIVE_VERTICAL_LOGO_GAP_PX = 25;
+/** Suavizado del fade del logo vertical al salir del hero (desktop) */
+const HOME_FIVE_VERTICAL_LOGO_FADE_EASE = 0.72;
 
 /** Fallback copy bundled so SSR / primera pintura coinciden aunque i18n tarde en marcar el ns como listo */
 function homeFiveBannerDefaults(lang) {
@@ -31,7 +33,7 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
     const heroImageSlotRef = useRef(null);
     const bannerAreaRef = useRef(null);
     const [verticalLogoLeft, setVerticalLogoLeft] = useState(null);
-    const [verticalHeroInView, setVerticalHeroInView] = useState(true);
+    const [verticalLogoFade, setVerticalLogoFade] = useState(1);
     const [isWideHeroChrome, setIsWideHeroChrome] = useState(false);
     /** Tras hidratar: portal a body para clics/z-index fuera de #__next y capas sticky/transform */
     const [verticalBrandPortalReady, setVerticalBrandPortalReady] = useState(false);
@@ -54,12 +56,41 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
         setVerticalLogoLeft(Math.round(sr.right + HOME_FIVE_VERTICAL_LOGO_GAP_PX));
     }, []);
 
+    const updateVerticalLogoFade = useCallback(() => {
+        if (typeof window === 'undefined' || window.innerWidth < HOME_FIVE_VERTICAL_LOGO_LG) {
+            setVerticalLogoFade(0);
+            return;
+        }
+        const heroRoot = bannerAreaRef.current?.closest('.home-five-hero');
+        if (!heroRoot) {
+            setVerticalLogoFade(0);
+            return;
+        }
+        const rect = heroRoot.getBoundingClientRect();
+        const viewportH = window.innerHeight || 1;
+        const visibleH = Math.max(0, Math.min(rect.bottom, viewportH) - Math.max(rect.top, 0));
+        const visibilityRatio = visibleH / Math.max(rect.height, 1);
+        const remapped = Math.max(0, Math.min(1, visibilityRatio / HOME_FIVE_VERTICAL_LOGO_FADE_EASE));
+        const eased = remapped * remapped * (3 - 2 * remapped);
+        setVerticalLogoFade(eased);
+    }, []);
+
     useLayoutEffect(() => {
         updateVerticalLogoLeft();
+        updateVerticalLogoFade();
         const slot = heroImageSlotRef.current;
         const banner = bannerAreaRef.current;
+        let fadeRaf = 0;
+        const scheduleVerticalLogoFade = () => {
+            if (fadeRaf) return;
+            fadeRaf = window.requestAnimationFrame(() => {
+                fadeRaf = 0;
+                updateVerticalLogoFade();
+            });
+        };
         const ro = new ResizeObserver(() => {
             window.requestAnimationFrame(updateVerticalLogoLeft);
+            scheduleVerticalLogoFade();
         });
         if (slot) {
             ro.observe(slot);
@@ -68,25 +99,19 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
             ro.observe(banner);
         }
         window.addEventListener('resize', updateVerticalLogoLeft);
-
-        const heroRoot = banner?.closest('.home-five-hero');
-        let io;
-        if (heroRoot) {
-            io = new IntersectionObserver(
-                ([entry]) => {
-                    setVerticalHeroInView(entry.isIntersecting);
-                },
-                { root: null, threshold: 0 },
-            );
-            io.observe(heroRoot);
-        }
+        window.addEventListener('resize', scheduleVerticalLogoFade);
+        window.addEventListener('scroll', scheduleVerticalLogoFade, { passive: true });
 
         return () => {
             ro.disconnect();
             window.removeEventListener('resize', updateVerticalLogoLeft);
-            io?.disconnect();
+            window.removeEventListener('resize', scheduleVerticalLogoFade);
+            window.removeEventListener('scroll', scheduleVerticalLogoFade);
+            if (fadeRaf) {
+                window.cancelAnimationFrame(fadeRaf);
+            }
         };
-    }, [updateVerticalLogoLeft, i18n.language, titleLine1, titleLine2]);
+    }, [updateVerticalLogoLeft, updateVerticalLogoFade, i18n.language, titleLine1, titleLine2]);
 
     useEffect(() => {
         if (typeof window === 'undefined') return undefined;
@@ -101,8 +126,8 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
         setVerticalBrandPortalReady(true);
     }, []);
 
-    const verticalLogoPlaced = verticalLogoLeft != null && verticalHeroInView;
-    const langDockedInHero = verticalLogoPlaced && isWideHeroChrome;
+    const verticalLogoPlaced = verticalLogoLeft != null && verticalLogoFade > 0.02;
+    const langDockedInHero = verticalLogoLeft != null && isWideHeroChrome && verticalLogoFade > 0.12;
 
     useEffect(() => {
         if (typeof onLangHeroDockedChange !== 'function') return undefined;
@@ -117,7 +142,13 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                     ? 'home-five-hero-vertical-brand home-five-hero-vertical-brand--placed'
                     : 'home-five-hero-vertical-brand'
             }
-            style={verticalLogoLeft != null ? { left: `${verticalLogoLeft}px` } : undefined}
+            style={{
+                ...(verticalLogoLeft != null ? { left: `${verticalLogoLeft}px` } : {}),
+                '--home-five-vertical-logo-fade': verticalLogoFade,
+                opacity: verticalLogoFade,
+                transform: `translate3d(0, ${(1 - verticalLogoFade) * 14}px, 0)`,
+                pointerEvents: verticalLogoFade > 0.05 ? 'auto' : 'none',
+            }}
             onMouseEnter={onChromePeekEnter}
             onMouseLeave={onChromePeekLeave}
             onFocusCapture={onChromePeekEnter}
