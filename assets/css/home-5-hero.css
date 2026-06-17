@@ -472,6 +472,16 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
   color: rgba(43, 43, 43, 0.92);
 }
 
+.ms-main .ms-page-content .home-five-editorial-grid__value strong {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  font-style: inherit;
+  font-weight: 600;
+}
+
 /*
  * Home 5: barra fija = .main-header__layout. Su ::before (del theme) anima opacity con fluidez;
  * interpolar background-color en hsla() con variables suele verse a tirones en algunos navegadores.

@@ -1,18 +1,21 @@
 {
   "homeFive": {
     "banner": {
-      "titleLine1": "Donde el lenguaje se convierte en comprensión.",
-      "titleLine2": "",
-      "gridValue": "Cada palabra que elegimos es una decisión cuidada: traducimos ideas, intenciones y matices para que tu mensaje llegue tan claro en otro idioma como en el original.",
+      "titleLine1": "El lenguaje es un sistema en",
+      "titleLine2": "constante evolución.",
+      "gridValues": {
+        "meaning": "En la naturaleza, el micelio interconecta ecosistemas enteros; en nuestro cerebro, las neuronas crean redes biológicas de comunicación. Ambas estructuras dependen de conexiones invisibles para transferir información vital. <strong>La traducción funciona bajo el mismo principio.</strong>",
+        "care": "Como traductora, conecto realidades permitiendo que el mensaje fluya con total precisión entre idiomas, culturas y organizaciones. Optimizo los procesos con el uso de la tecnología sin perder la sensibilidad, el criterio y la empatía humana."
+      },
       "labels": {
-        "meaning": "Sentido",
-        "care": "Cuidado"
+        "meaning": "TRADUCCIÓN",
+        "care": "SERVICIOS"
       },
       "verticalLogoAlt": "Georgina Robledo"
     },
     "reviews": {
       "subTitle": "RESEÑAS EN GOOGLE",
-      "titleLine1": "Lo que dicen nuestros clientes",
+      "titleLine1": "Clientes felices.",
       "titleLine2": "",
       "readMore": "Leer más",
       "showLess": "Ver menos",

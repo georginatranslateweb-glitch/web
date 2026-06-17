@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
 
 import LanguageSwitcher from '../LanguageSwitcher';
 import enHome from '../../locales/en/home.json';
 import esHome from '../../locales/es/home.json';
+import { SSR_I18N_LANG, useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
 
 const HOME_FIVE_VERTICAL_LOGO_LG = 992;
 /** Idioma junto a la hamburguesa del hero (mismo breakpoint que muestra el bloque vertical) */
@@ -22,13 +22,48 @@ function homeFiveBannerDefaults(lang) {
     return bundle.homeFive.banner;
 }
 
+/** Permite <strong> en copy del JSON (contenido propio, no input de usuario). */
+function BannerGridValue({ html }) {
+    return (
+        <div
+            className="home-five-editorial-grid__value"
+            dangerouslySetInnerHTML={{ __html: html }}
+        />
+    );
+}
+
 const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDockedChange }) => {
-    const { t, i18n } = useTranslation('home');
-    const { t: tHeader } = useTranslation('header');
-    const d = homeFiveBannerDefaults(i18n.resolvedLanguage || i18n.language);
-    const titleLine1 = t('homeFive.banner.titleLine1', { defaultValue: d.titleLine1 });
-    const titleLine2Raw = t('homeFive.banner.titleLine2', { defaultValue: d.titleLine2 || '' });
+    const { t, i18n, hydrated } = useHydrationSafeTranslation('home');
+    const { t: tHeader } = useHydrationSafeTranslation('header');
+
+    const lang = hydrated
+        ? (i18n.resolvedLanguage || i18n.language)
+        : SSR_I18N_LANG;
+
+    const defaults = useMemo(() => homeFiveBannerDefaults(lang), [lang]);
+    const ssrDefaults = useMemo(() => homeFiveBannerDefaults(SSR_I18N_LANG), []);
+
+    const tx = useCallback(
+        (key, fallback) => {
+            if (!hydrated) {
+                return fallback ?? key;
+            }
+            return t(key, { defaultValue: fallback });
+        },
+        [t, hydrated],
+    );
+
+    const titleLine1 = tx('homeFive.banner.titleLine1', defaults.titleLine1);
+    const titleLine2Raw = tx('homeFive.banner.titleLine2', defaults.titleLine2 || '');
     const titleLine2 = typeof titleLine2Raw === 'string' ? titleLine2Raw.trim() : '';
+    const gridMeaning = tx('homeFive.banner.gridValues.meaning', defaults.gridValues.meaning);
+    const gridCare = tx('homeFive.banner.gridValues.care', defaults.gridValues.care);
+    const labelMeaning = tx('homeFive.banner.labels.meaning', defaults.labels.meaning);
+    const labelCare = tx('homeFive.banner.labels.care', defaults.labels.care);
+    const verticalLogoAlt = tx(
+        'homeFive.banner.verticalLogoAlt',
+        hydrated ? defaults.verticalLogoAlt : ssrDefaults.verticalLogoAlt,
+    );
 
     const heroImageSlotRef = useRef(null);
     const bannerAreaRef = useRef(null);
@@ -178,7 +213,7 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                 <button
                     type="button"
                     className="home-five-hero-vertical-logo"
-                    aria-label={`${t('homeFive.banner.verticalLogoAlt', { defaultValue: d.verticalLogoAlt || 'Georgina Robledo' })} — ${tHeader('toggleMenu')}`}
+                    aria-label={`${verticalLogoAlt} — ${tHeader('toggleMenu')}`}
                 >
                     <Image
                         className="home-five-hero-vertical-logo__img"
@@ -231,12 +266,12 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                             <div className="row g-0 gx-3 gy-2 gy-lg-0 align-items-start">
                                                 <div className="col-12 col-lg-4 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.meaning', { defaultValue: d.labels.meaning })}</div>
+                                                        <div className="home-five-editorial-grid__label">{labelMeaning}</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-lg-8 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue', { defaultValue: d.gridValue })}</div>
+                                                        <BannerGridValue html={gridMeaning} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,12 +281,12 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                             <div className="row g-0 gx-3 gy-2 gy-lg-0 align-items-start">
                                                 <div className="col-12 col-lg-4 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__label">{t('homeFive.banner.labels.care', { defaultValue: d.labels.care })}</div>
+                                                        <div className="home-five-editorial-grid__label">{labelCare}</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-lg-8 home-five-editorial-split__cell">
                                                     <div className="home-five-editorial-grid__item">
-                                                        <div className="home-five-editorial-grid__value">{t('homeFive.banner.gridValue', { defaultValue: d.gridValue })}</div>
+                                                        <BannerGridValue html={gridCare} />
                                                     </div>
                                                 </div>
                                             </div>
