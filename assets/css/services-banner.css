@@ -1,4 +1,121 @@
+/* Services accordion */
+.team-rules-area.service-accordion {
+  padding: 24px 0;
+}
+
+body.page-services .services-hero-block + .team-rules-area.service-accordion {
+  padding-top: 56px;
+}
+
+body.page-services .team-rules-area.service-accordion + .team-rules-area.service-accordion {
+  padding-top: 8px;
+}
+
+body.page-services .team-rules-area.service-accordion:last-of-type {
+  padding-bottom: 72px;
+}
+
+.team-rules-area.service-accordion .team-rules-area-inner .border-line {
+  margin-bottom: 12px;
+}
+
+.team-rules-area.service-accordion .team-rules-area-inner .top .title {
+  font-size: 48px;
+  line-height: 1.15;
+}
+
+@media (max-width: 1024px) {
+  .team-rules-area.service-accordion .team-rules-area-inner .top .title {
+    font-size: 1.5em;
+    line-height: 1.35em;
+  }
+}
+
+.service-accordion .service-accordion__trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  text-align: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+.service-accordion:not(.is-open) .service-accordion__trigger.top {
+  margin-bottom: 0;
+}
+
+.service-accordion .service-accordion__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.service-accordion .service-accordion__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-heading, #c64227);
+  transition: transform 0.35s ease;
+}
+
+.service-accordion.is-open .service-accordion__icon {
+  transform: rotate(180deg);
+}
+
+.service-accordion .service-accordion__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s ease;
+}
+
+.service-accordion.is-open .service-accordion__body {
+  grid-template-rows: 1fr;
+}
+
+.service-accordion .service-accordion__body-inner {
+  overflow: hidden;
+}
+
+.service-accordion.is-open {
+  padding-bottom: 48px;
+}
+
+.service-accordion.is-open .service-accordion__body-inner {
+  padding-bottom: 32px;
+}
+
+.service-accordion.is-open .service-accordion__trigger.top {
+  margin-bottom: 80px;
+}
+
+@media (max-width: 767px) {
+  .service-accordion .service-accordion__title-row {
+    align-items: flex-start;
+  }
+
+  .service-accordion .service-accordion__icon {
+    margin-top: 0.35rem;
+  }
+}
+
 /* Services: énfasis en listas sin cambiar la tipografía del párrafo */
+.team-rules-area .team-rules-area-inner .content ul {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.team-rules-area .team-rules-area-inner .content ul li {
+  color: #797979;
+  line-height: 28px;
+}
+
 .team-rules-area .team-rules-area-inner .content .services-list__label {
   font-family: inherit;
   font-size: inherit;
