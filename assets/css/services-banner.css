@@ -1,3 +1,14 @@
+/* Services: énfasis en listas sin cambiar la tipografía del párrafo */
+.team-rules-area .team-rules-area-inner .content .services-list__label {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  font-style: inherit;
+  font-weight: 600;
+}
+
 /* Services banner CTA — mismo estilo que .btn-footer del footer */
 .ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .bottom .btn-footer {
   font-family: "Apple Garamond", var(--font-highlight, Georgia, "Times New Roman", serif);
