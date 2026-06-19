@@ -223,6 +223,8 @@ body.page-home-5 > .home-five-hero-vertical-brand,
   /* Ancho del logo vertical (PNG); hamburguesa = ⅓ de este valor */
   --home-five-vertical-logo-w: clamp(2.125rem, 4vw, 4.25rem);
   --home-five-hamburger-line-gap: 6px;
+  /* Logo vertical 5px a la izquierda del borde de la hamburguesa */
+  --home-five-vertical-logo-hamburger-offset: 5px;
   --home-five-vertical-logo-fade: 1;
 
   position: fixed;
@@ -254,7 +256,7 @@ body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand-
 .home-five-hero-vertical-brand .home-five-hero-vertical-brand__stack {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.625rem;
   width: max-content;
   min-width: var(--home-five-vertical-logo-w);
@@ -268,7 +270,7 @@ body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand-
   display: none;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--home-five-hero-controls-gap);
   width: max-content;
   min-width: 100%;
@@ -279,7 +281,7 @@ body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand-
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: auto;
   min-width: 0;
   flex-shrink: 0;
@@ -371,7 +373,7 @@ button.home-five-hero-vertical-logo {
   background: transparent;
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 calc(-1 * var(--home-five-vertical-logo-hamburger-offset, 5px));
   cursor: pointer;
   font: inherit;
   color: inherit;
@@ -403,7 +405,7 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
   .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
   }
 }
