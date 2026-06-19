@@ -31,13 +31,11 @@ const Contact = () => {
                                         <div className="row contact">
                                             <ul className="col-lg-6 phone">
                                                 <li className="tag">{tx('page.phoneLabel')}</li>
-                                                <li>+99 (0)1047011888</li>
-                                                <li>+99 (0)1310011444</li>
+                                                <li>+61423915231</li>
                                             </ul>
                                             <ul className="col-lg-6 email">
                                                 <li className="tag">{tx('page.emailLabel')}</li>
-                                                <li>info@madsparrow.com</li>
-                                                <li>contact@most.com</li>
+                                                <li>hello@georginatranslates.com</li>
                                             </ul>
                                         </div>
                                     </div>

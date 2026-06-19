@@ -72,7 +72,7 @@ const Footer = (props) => {
                                 <div className="social-wrapper">
                                     <div className="content">
                                         <h3 className="platform">WhatsApp</h3>
-                                        <a href="https://wa.me/61423915231" className="link">61423915231</a>
+                                        <a href="https://wa.me/61423915231" className="link">+61423915231</a>
                                     </div>
                                     <div className="social">
                                         <a href="https://wa.me/61423915231" className="icon" aria-label="WhatsApp"><i className="socicon-whatsapp"></i></a>
