@@ -44,8 +44,8 @@
     "name": "Nombre completo",
     "email": "Correo electrónico",
     "phone": "Teléfono",
-    "serviceType": "Tipo de servicio",
-    "documentType": "Tipo de documento",
+    "serviceType": "Seleccionar servicio:",
+    "documentType": "TIPO DE DOCUMENTO:",
     "languageFrom": "Idioma (desde)",
     "languageTo": "Idioma (hacia)",
     "urgency": "Urgencia",
@@ -58,23 +58,19 @@
     "phone": "+61 ...",
     "languageFrom": "ej. Español",
     "languageTo": "ej. Inglés",
-    "comments": "Plazo, requisitos de certificación, contexto..."
+    "comments": "Indique la cantidad de documentos y páginas."
   },
   "serviceType": {
     "placeholder": "Seleccionar servicio",
     "translation": "Traducción",
-    "interpretation": "Interpretación",
-    "certification": "Certificación NAATI"
+    "naatiTranslation": "Traducción NAATI",
+    "proofreading": "Corrección",
+    "localisation": "Localización"
   },
   "documentType": {
     "placeholder": "Seleccionar tipo de documento",
-    "legal": "Legal",
-    "medical": "Médico",
-    "academic": "Académico",
-    "immigration": "Inmigración",
-    "business": "Empresarial",
-    "personal": "Personal",
-    "other": "Otro"
+    "migration": "Migración",
+    "migraciones": "Migraciones"
   },
   "urgency": {
     "placeholder": "Seleccionar urgencia",

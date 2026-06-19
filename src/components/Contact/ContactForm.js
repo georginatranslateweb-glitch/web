@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { contactDefaults, resolveContactDefault } from '../../i18n/contactDefaults';
+import React, { useCallback, useRef, useState } from 'react';
+import { useContactTranslation } from '../../i18n/contactDefaults';
 import {
   formatBytes,
   MAX_FILES,
@@ -32,19 +31,7 @@ function translateValidationError(tx, error) {
 }
 
 const ContactForm = () => {
-  const { t, i18n } = useTranslation('contact');
-  const defaults = useMemo(
-    () => contactDefaults(i18n.resolvedLanguage || i18n.language),
-    [i18n.resolvedLanguage, i18n.language],
-  );
-  const tx = useCallback(
-    (key, options) =>
-      t(key, {
-        ...options,
-        defaultValue: resolveContactDefault(defaults, key, options),
-      }),
-    [t, defaults],
-  );
+  const { tx } = useContactTranslation();
   const [form, setForm] = useState(INITIAL_FORM);
   const [files, setFiles] = useState([]);
   const [errors, setErrors] = useState({});
@@ -258,12 +245,12 @@ const ContactForm = () => {
       >
         {globalErrorKey && (
           <div className="quote-form__alert quote-form__alert--error" role="alert">
-            {t(`errors.${globalErrorKey}`)}
+            {tx(`errors.${globalErrorKey}`)}
           </div>
         )}
 
         <fieldset className="quote-form__fieldset" disabled={isLoading}>
-          <legend className="quote-form__legend">{t('sections.personal')}</legend>
+          <legend className="quote-form__legend">{tx('sections.personal')}</legend>
           <div className="row">
             <div className="form-group col-12 col-md-6">
               <label htmlFor="quote-name">
@@ -347,8 +334,9 @@ const ContactForm = () => {
               >
                 <option value="">{tx('serviceType.placeholder')}</option>
                 <option value="translation">{tx('serviceType.translation')}</option>
-                <option value="interpretation">{tx('serviceType.interpretation')}</option>
-                <option value="certification">{tx('serviceType.certification')}</option>
+                <option value="naati_translation">{tx('serviceType.naatiTranslation')}</option>
+                <option value="proofreading">{tx('serviceType.proofreading')}</option>
+                <option value="localisation">{tx('serviceType.localisation')}</option>
               </select>
               {errors.serviceType && (
                 <span className="quote-form__error" role="alert">
@@ -370,13 +358,8 @@ const ContactForm = () => {
                 required
               >
                 <option value="">{tx('documentType.placeholder')}</option>
-                <option value="legal">{tx('documentType.legal')}</option>
-                <option value="medical">{tx('documentType.medical')}</option>
-                <option value="academic">{tx('documentType.academic')}</option>
-                <option value="immigration">{tx('documentType.immigration')}</option>
-                <option value="business">{tx('documentType.business')}</option>
-                <option value="personal">{tx('documentType.personal')}</option>
-                <option value="other">{tx('documentType.other')}</option>
+                <option value="migration">{tx('documentType.migration')}</option>
+                <option value="migraciones">{tx('documentType.migraciones')}</option>
               </select>
               {errors.documentType && (
                 <span className="quote-form__error" role="alert">

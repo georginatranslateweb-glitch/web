@@ -1,5 +1,8 @@
+import { useCallback, useMemo } from 'react';
+
 import enContact from '../locales/en/contact.json';
 import esContact from '../locales/es/contact.json';
+import { SSR_I18N_LANG, useHydrationSafeTranslation } from './useHydrationSafeTranslation';
 
 export function contactDefaults(lang) {
   const code = String(lang || 'en').toLowerCase().split('-')[0];
@@ -34,4 +37,31 @@ export function resolveContactDefault(defaults, key, options = {}) {
     return interpolate(value, options);
   }
   return undefined;
+}
+
+/** SSR-safe contact translations (aligned with Footer pattern). */
+export function useContactTranslation() {
+  const { t, i18n, hydrated } = useHydrationSafeTranslation('contact');
+  const defaults = useMemo(
+    () => contactDefaults(
+      hydrated
+        ? (i18n.resolvedLanguage || i18n.language)
+        : SSR_I18N_LANG,
+    ),
+    [hydrated, i18n.resolvedLanguage, i18n.language],
+  );
+  const tx = useCallback(
+    (key, options) => {
+      const fallback = resolveContactDefault(defaults, key, options);
+      if (!hydrated) {
+        return fallback ?? resolveContactDefault(contactDefaults(SSR_I18N_LANG), key, options) ?? key;
+      }
+      return t(key, {
+        ...options,
+        defaultValue: fallback,
+      });
+    },
+    [t, defaults, hydrated],
+  );
+  return { t, tx, i18n, hydrated };
 }

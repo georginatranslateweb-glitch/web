@@ -44,8 +44,8 @@
     "name": "Full name",
     "email": "Email",
     "phone": "Phone",
-    "serviceType": "Service type",
-    "documentType": "Document type",
+    "serviceType": "Select service:",
+    "documentType": "DOCUMENT TYPE:",
     "languageFrom": "Language (from)",
     "languageTo": "Language (to)",
     "urgency": "Urgency",
@@ -58,23 +58,19 @@
     "phone": "+61 ...",
     "languageFrom": "e.g. Spanish",
     "languageTo": "e.g. English",
-    "comments": "Deadline, certification requirements, context..."
+    "comments": "Please specify the amount of documents, pages."
   },
   "serviceType": {
     "placeholder": "Select service",
     "translation": "Translation",
-    "interpretation": "Interpretation",
-    "certification": "NAATI Certification"
+    "naatiTranslation": "NAATI translation",
+    "proofreading": "Proofreading",
+    "localisation": "Localisation"
   },
   "documentType": {
     "placeholder": "Select document type",
-    "legal": "Legal",
-    "medical": "Medical",
-    "academic": "Academic",
-    "immigration": "Immigration",
-    "business": "Business",
-    "personal": "Personal",
-    "other": "Other"
+    "migration": "Migration",
+    "migraciones": "Migraciones"
   },
   "urgency": {
     "placeholder": "Select urgency",

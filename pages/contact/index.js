@@ -1,26 +1,13 @@
-import React, { useCallback, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 
 import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
 import Footer from '../../src/components/Footer';
-import { contactDefaults, resolveContactDefault } from '../../src/i18n/contactDefaults';
+import { useContactTranslation } from '../../src/i18n/contactDefaults';
 import ContactForm from '../../src/components/Contact/ContactForm';
 
 const Contact = () => {
-    const { t, i18n } = useTranslation('contact');
-    const defaults = useMemo(
-        () => contactDefaults(i18n.resolvedLanguage || i18n.language),
-        [i18n.resolvedLanguage, i18n.language],
-    );
-    const tx = useCallback(
-        (key, options) =>
-            t(key, {
-                ...options,
-                defaultValue: resolveContactDefault(defaults, key, options),
-            }),
-        [t, defaults],
-    );
+    const { tx } = useContactTranslation();
 
     return (
         <>
