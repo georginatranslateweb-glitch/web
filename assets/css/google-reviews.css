@@ -4,7 +4,7 @@ body.page-home-5 .ms-main .testimonial-area.google-reviews {
   position: relative;
   z-index: 2;
   background: transparent;
-  padding-top: 0;
+  padding-top: clamp(4rem, 10vw, 7rem);
 }
 
 /* Desktop home-5: mismos gutters que el banner hero (logo rojo + bloque vertical/idioma) */
