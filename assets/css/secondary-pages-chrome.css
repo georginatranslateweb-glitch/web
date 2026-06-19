@@ -1,0 +1,28 @@
+/*
+ * About / Services / Contact — gutters laterales alineados con el chrome fijo:
+ * logo secundario (izq.) + language switcher del header (der.).
+ * Mismo criterio que home-5; el logo fijo desktop aparece desde 1024px.
+ */
+body:has(.ms-header-two--secondary-logo-abs) {
+  --ms-chrome-offset: 25px;
+  --ms-chrome-logo-w: 130px;
+  --ms-chrome-gap: 1rem;
+  --ms-chrome-inset-left: calc(
+    var(--ms-chrome-offset) + var(--ms-chrome-logo-w) + var(--ms-chrome-gap)
+  );
+  /* Huella del bloque idioma en .main-header--widgets (top / action) */
+  --ms-chrome-inset-right: calc(var(--ms-chrome-offset) + 5.5rem + var(--ms-chrome-gap));
+}
+
+@media (min-width: 1024px) {
+  body:has(.ms-header-two--secondary-logo-abs) .ms-main .ms-page-content.about-page > .container,
+  body:has(.ms-header-two--secondary-logo-abs) .ms-main .ms-page-content .contact-area.contact > .container,
+  body:has(.ms-header-two--secondary-logo-abs) .ms-main .ms-page-content .services-banner.banner-area > .container,
+  body:has(.ms-header-two--secondary-logo-abs) .ms-main .ms-page-content .team-rules-area.service-accordion > .container {
+    padding-left: var(--ms-chrome-inset-left);
+    padding-right: var(--ms-chrome-inset-right);
+    max-width: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
