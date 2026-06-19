@@ -16,8 +16,13 @@
                 height: max-content;
                 top: 80px;
 
+                > span,
+                .about-hero-image,
                 img {
-                    width: 100%;
+                    display: block !important;
+                    width: 100% !important;
+                    max-width: 100%;
+                    height: auto !important;
                     box-shadow: 0px 24px 50px 0px rgba(0, 0, 0, .28);
                 }
             }

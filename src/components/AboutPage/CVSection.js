@@ -11,7 +11,6 @@ const HowItWorksTimeline = dynamic(() => import('./HowItWorksTimeline'), {
     ssr: false,
 });
 
-import CVImg from "../../../public/images/portfolio/personal-cv.jpg";
 import clientImg1 from "../../../public/images/clients/logo-partner-1.png";
 import clientImg2 from "../../../public/images/clients/logo-partner-2.png";
 import clientImg3 from "../../../public/images/clients/logo-partner-3.png";
@@ -41,7 +40,16 @@ const HomeCV = () => {
                     <div className="row">
                         <div className="col-lg-5">
                             <div className="image-left-side">
-                                <Image src={CVImg} alt={t('heroImageAlt')} />
+                                <Image
+                                    className="about-hero-image"
+                                    src="/images/about/about-georgina.webp"
+                                    width={1200}
+                                    height={1600}
+                                    alt={t('heroImageAlt')}
+                                    priority
+                                    unoptimized
+                                    sizes="(min-width: 992px) 42vw, 100vw"
+                                />
                             </div>
                         </div>
                         <div className="col-lg-7">

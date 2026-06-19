@@ -11499,8 +11499,13 @@ body.index-two[data-footer-effect=on] {
   top: 80px;
 }
 
+.ms-main .ms-page-content .personal-cv-area .image-left-side > span,
+.ms-main .ms-page-content .personal-cv-area .image-left-side .about-hero-image,
 .ms-main .ms-page-content .personal-cv-area .image-left-side img {
-  width: 100%;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
   box-shadow: 0px 24px 50px 0px rgba(0, 0, 0, 0.28);
 }
 
