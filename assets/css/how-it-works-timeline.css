@@ -12,7 +12,7 @@
   gap: clamp(0.5rem, 1.2vw, 0.85rem);
 }
 
-.ms-main .ms-page-content .personal-cv-area .right-side-content > p,
+.ms-main .ms-page-content .personal-cv-area .right-side-content>p,
 .ms-main .ms-page-content .personal-cv-area .right-side-content p.desc,
 .ms-main .ms-page-content .personal-cv-area .right-side-content .ms-sb--text {
   font-family: var(--font-primary, 'Red Hat Display', system-ui, sans-serif);
@@ -163,13 +163,11 @@
 }
 
 .ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__line {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--timeline-line) 12%,
-    var(--timeline-line) 88%,
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      transparent,
+      var(--timeline-line) 12%,
+      var(--timeline-line) 88%,
+      transparent);
 }
 
 @media (max-width: 767px) {
@@ -178,11 +176,49 @@
     padding-bottom: clamp(3rem, 7vw, 4.5rem);
   }
 
-  .ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__step + .how-it-works-timeline__step {
+  .ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__step+.how-it-works-timeline__step {
     padding-top: 0;
   }
 
   .ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__step .how-it-works-timeline__content {
     margin-top: clamp(-1.5rem, -4vw, -1rem);
   }
+}
+
+.ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__cta .btn-footer {
+  font-family: "Apple Garamond", var(--font-highlight, Georgia, "Times New Roman", serif);
+  font-size: 18px;
+  color: var(--color-heading, #c64227);
+  border: 1px solid var(--color-heading, #c64227);
+  border-radius: 0;
+  font-weight: 400;
+  position: relative;
+  white-space: nowrap;
+  padding: 10px 26px;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  outline-color: transparent;
+  box-shadow: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  vertical-align: middle;
+  display: inline-block;
+  width: auto;
+  transition: all 0.4s;
+}
+
+.ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__cta .btn-footer i {
+  margin-left: 5px;
+}
+
+.ms-main .ms-page-content .personal-cv-area .pricing-area .how-it-works-timeline__cta .btn-footer:hover {
+  border-color: #a33520;
+  color: #a33520;
 }

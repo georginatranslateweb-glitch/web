@@ -1,8 +1,11 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
+import Link from 'next/link';
+import { useHydrationSafeTranslation, SSR_I18N_LANG } from '../../i18n/useHydrationSafeTranslation';
 import { buildHowItWorksSteps } from './howItWorksSteps';
+import enAbout from '../../locales/en/about.json';
+import esAbout from '../../locales/es/about.json';
 
 const HowItWorksTimeline = dynamic(() => import('./HowItWorksTimeline'), {
     ssr: false,
@@ -20,8 +23,16 @@ import clientImg8 from "../../../public/images/clients/logo-partner-8.png";
 import clientImg9 from "../../../public/images/clients/logo-partner-9.png";
 
 const HomeCV = () => {
-    const { t } = useHydrationSafeTranslation('about');
+    const { t, i18n, hydrated } = useHydrationSafeTranslation('about');
     const howItWorksSteps = buildHowItWorksSteps(t);
+    const lang = hydrated
+        ? (i18n.resolvedLanguage || i18n.language || SSR_I18N_LANG)
+        : SSR_I18N_LANG;
+    const getQuoteCta = (lang.startsWith('es') ? esAbout : enAbout).getQuoteCta;
+    const introParagraphs = t('intro')
+        .split(/<br\s*\/?>/i)
+        .map((part) => part.trim())
+        .filter(Boolean);
 
     return (
         <>
@@ -46,7 +57,11 @@ const HomeCV = () => {
                                         <span className="cate-color">{t('heroRole')}</span>
                                     </em>
                                 </p>
-                                <p className="desc">{t('intro')}</p>
+                                <div className="about-intro">
+                                    {introParagraphs.map((paragraph, index) => (
+                                        <p key={index}>{paragraph}</p>
+                                    ))}
+                                </div>
                                 <div className="services-area">
                                     <h2 className="services-title">{t('servicesTitle')}</h2>
                                     <div className="services-items">
@@ -75,14 +90,6 @@ const HomeCV = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-lg-6 col-md-6 col-sm-6">
-                                                <div className="ms-sb">
-                                                    <div className="ms-sb--inner">
-                                                        <h3 className="how-it-works-timeline__title">{t('service4Title')}</h3>
-                                                        <p className="ms-sb--text">{t('service4Text')}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -92,6 +99,11 @@ const HomeCV = () => {
                                         steps={howItWorksSteps}
                                         logoAlt={t('timelineLogoAlt')}
                                     />
+                                    <div className="how-it-works-timeline__cta">
+                                        <Link href="/contact" className="btn-footer">
+                                            {getQuoteCta} <i className="fas fa-arrow-right"></i>
+                                        </Link>
+                                    </div>
 
                                 </div>
 

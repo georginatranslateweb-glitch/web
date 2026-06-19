@@ -44,7 +44,9 @@ function TimelineStepContent({ title, description, align }) {
   return (
     <div className={`how-it-works-timeline__content ${contentAlign}`}>
       <h3 className="how-it-works-timeline__title">{title}</h3>
-      <p className="how-it-works-timeline__description">{description}</p>
+      {description ? (
+        <p className="how-it-works-timeline__description">{description}</p>
+      ) : null}
     </div>
   );
 }

@@ -11530,6 +11530,18 @@ body.index-two[data-footer-effect=on] {
   margin-bottom: 50px;
 }
 
+.ms-main .ms-page-content .personal-cv-area .right-side-content .about-intro {
+  margin-bottom: 50px;
+}
+
+.ms-main .ms-page-content .personal-cv-area .right-side-content .about-intro p {
+  margin-bottom: 1em;
+}
+
+.ms-main .ms-page-content .personal-cv-area .right-side-content .about-intro p:last-child {
+  margin-bottom: 0;
+}
+
 .ms-main .ms-page-content .personal-cv-area .right-side-content .services-items .ms-sb--text {
   font-family: var(--font-primary, 'Red Hat Display', system-ui, sans-serif);
   font-size: clamp(0.88rem, 1.6vw, 1rem);
