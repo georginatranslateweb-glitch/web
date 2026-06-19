@@ -643,21 +643,23 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 }
 
 /*
- * Móvil: columna imagen oculta (BannerSection d-none d-lg-block); la fila hero solo lleva el título.
- * Centrado vertical en el viewport descontando el alto del header fijo.
+ * Móvil: columna imagen oculta; título arriba y bloque editorial abajo (space-between en el alto útil).
  */
 @media (max-width: 991.98px) {
   body.page-home-5 {
-    /* Misma referencia que .main-header__layout.top (padding-top×2 + logo 50px + padding-bottom del inner) */
+    /* Huella del .ms-mobile-drawer-logo (top + alto + respiro) — misma referencia que mobile-header-drawer.css */
+    --home-five-mobile-logo-top: max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem));
+    --home-five-mobile-logo-width: clamp(96px, 26vw, 120px);
+    --home-five-mobile-logo-height: calc(var(--home-five-mobile-logo-width) * (166 / 252));
+    --home-five-mobile-logo-gap: clamp(0.75rem, 2.5vw, 1.25rem);
     --home-five-hero-header-offset: calc(
-      2 * max(env(safe-area-inset-top, 0px), clamp(1.25rem, 4.5vw, 2rem))
-      + 50px
-      + clamp(0.3125rem, 1.25vw, 0.5rem)
+      var(--home-five-mobile-logo-top) + var(--home-five-mobile-logo-height) + var(--home-five-mobile-logo-gap)
     );
   }
 
   .ms-main .ms-page-content .home-five-hero {
-    height: auto;
+    height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
     min-height: 100dvh;
   }
@@ -665,11 +667,13 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
   .ms-main .ms-page-content .home-five-hero .banner-area {
     box-sizing: border-box;
     justify-content: flex-start;
-    height: auto;
+    height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
     min-height: 100dvh;
-    max-height: none;
-    padding-top: 0;
+    max-height: 100dvh;
+    padding-top: var(--home-five-hero-header-offset);
+    padding-bottom: clamp(1.25rem, 5vw, 2rem);
     overflow: visible;
   }
 
@@ -681,15 +685,15 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    padding-top: clamp(3.5rem, 14vw, 6.5rem) !important;
+    padding-bottom: clamp(1rem, 4vw, 1.5rem) !important;
     padding-left: clamp(1rem, 5vw, 1.5rem) !important;
     padding-right: clamp(1rem, 5vw, 1.5rem) !important;
     flex: 1 1 auto;
-    height: auto;
-    min-height: min(100dvh, 100vh);
-    justify-content: flex-start;
-    align-items: stretch;
+    height: 100%;
+    min-height: 0;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
   }
 
@@ -698,10 +702,16 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     max-height: none;
     min-height: 0;
+    padding-bottom: 0;
     justify-content: center;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .left-side-content .heading-title.home-five-banner-editorial__title {
+    font-size: clamp(2.75rem, 10vw, 3.5rem);
+    line-height: 1.2;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
@@ -713,7 +723,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .home-five-editorial-split {
     justify-content: center;
-    padding-top: clamp(1.25rem, 4vw, 2rem);
+    padding-top: 0;
   }
 }
 

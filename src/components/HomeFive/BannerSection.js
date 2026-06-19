@@ -254,7 +254,8 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                         {titleLine1}
                                         {titleLine2 ? (
                                             <>
-                                                <br />
+                                                <br className="d-none d-lg-block" aria-hidden="true" />
+                                                <span className="d-inline d-lg-none"> </span>
                                                 {titleLine2}
                                             </>
                                         ) : null}
