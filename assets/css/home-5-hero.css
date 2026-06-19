@@ -4,8 +4,11 @@
   position: relative;
   /* Hero/parallax: 1 viewport exacto */
   height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   padding-bottom: 0;
+  align-items: stretch;
   /* Área fuera del recuadro rojo (columna izquierda / márgenes) */
   background-color: var(--color-bg);
 }
@@ -16,6 +19,10 @@
  */
 .ms-main .ms-page-content .home-five-hero {
   --home-five-banner-pad-y: 56px;
+  --home-five-banner-hero-row-pad-bottom: clamp(4rem, 10vw, 7rem);
+  /* Desktop grande: reparto 80/20 del alto útil del banner */
+  --home-five-banner-hero-row-share: 80%;
+  --home-five-banner-second-row-share: 20%;
 }
 
 /* Capa del tema conservada; sin imagen full-bleed (la foto va solo en .home-five-bg-slot) */
@@ -42,15 +49,10 @@
 .ms-main .ms-page-content .home-five-hero .home-five-bg-slot {
   position: relative;
   z-index: 0;
-  min-height: min(72vh, 1200px);
+  min-height: 0;
   width: 100%;
   margin-right: 0;
-  /*
-    El banner tiene padding vertical (para que el texto respire).
-    La imagen, en cambio, debe arrancar en el top del viewport.
-    Subimos la “ventana” con margin-top negativo y compensamos el contenido con padding-top.
-  */
-  margin-top: calc((var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px)) * -1);
+  margin-top: 0;
   padding: 0;
   border-radius: 0;
   overflow: hidden;
@@ -65,15 +67,39 @@
   background-attachment: fixed;
 }
 
-/* Antes: padding en .home-five-bg-slot__content (vacío). Solo desktop: compensa el margin-top negativo del slot */
+/* Desktop: foto pegada al top del viewport; respiro solo en la columna del título */
 @media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
+    position: relative;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row>[class*="col-"]:last-child {
+    position: relative;
+    align-self: stretch;
+    padding-top: 0 !important;
+    min-height: 100%;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-hero-image-column,
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-bg-slot {
-    /* Menos margen hacia la columna del título (izquierda); derecha/arriba/abajo algo más suaves */
+    position: absolute;
+    inset: 0;
+    top: 0;
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row .home-five-bg-slot {
     padding-left: 0;
     padding-right: clamp(0.75rem, 2vw, 1.25rem);
-    /* Pegado a la fila editorial (segunda row): sin banda bajo la foto */
     padding-bottom: 0;
-    padding-top: calc(clamp(0.75rem, 2vw, 1.25rem) + var(--home-five-banner-pad-y) + var(--main-header-height-md, 0px));
+    padding-top: 0;
+    box-sizing: border-box;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row>[class*="col-"]:first-child {
+    padding-top: var(--home-five-banner-pad-y);
     box-sizing: border-box;
   }
 }
@@ -88,14 +114,17 @@
   z-index: 1;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   max-height: 100vh;
+  max-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   margin: 0 !important;
   box-sizing: border-box;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area>.container {
@@ -122,8 +151,7 @@
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner {
   width: 100%;
-  /* Recupera el espaciado original del template (style.css: 90px 0) */
-  padding: var(--home-five-banner-pad-y) 0 !important;
+  padding: 0 !important;
   margin: 0 !important;
   flex: 1 1 auto;
   display: flex;
@@ -133,12 +161,23 @@
   box-sizing: border-box;
 }
 
-/* Reparto fijo del alto útil del banner: hero un poco más bajo para menos banda celeste bajo la foto */
+/*
+ * Reparto vertical: fila 1 crece hasta 80%; fila 2 mínimo 20% en desktop ancho
+ * pero puede superar el 20% si el contenido editorial lo necesita.
+ */
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
-  flex: 0 0 65%;
+  flex: 1 1 0;
   min-height: 0;
-  max-height: 100%;
+  max-height: none;
   align-items: stretch;
+  padding-bottom: var(--home-five-banner-hero-row-pad-bottom);
+  box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
+    max-height: var(--home-five-banner-hero-row-share);
+  }
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row>[class*="col-"] {
@@ -379,18 +418,35 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
-  flex: 0 0 35%;
+  flex: 0 0 auto;
   width: 100%;
   min-height: 0;
-  max-height: 26%;
-  padding-top: 5rem;
-  overflow-y: auto;
+  max-height: none;
+  padding-top: 0;
+  overflow: visible;
+}
+
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
+    /* Piso del 20% en pantallas grandes; crece si el copy necesita más */
+    min-height: var(--home-five-banner-second-row-share);
+  }
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row>[class*="col-"] {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  overflow: visible;
+}
+
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row .home-five-editorial-grid {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow: visible;
+    justify-content: flex-start;
+  }
 }
 
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row>[class*="col-"]:first-child {
@@ -499,8 +555,14 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
 /*
  * Home 5: barra fija = .main-header__layout. Su ::before (del theme) anima opacity con fluidez;
  * interpolar background-color en hsla() con variables suele verse a tirones en algunos navegadores.
+ *
+ * El placeholder .main-header no debe reservar alto en el flow: el hero arranca en top:0 y la barra
+ * fija flota encima (misma idea que page-template-page-fullpage-slider).
  */
-body.page-home-5[data-menu=fixed] .main-header {
+body.page-home-5[data-menu=fixed] .main-header,
+body.page-home-5[data-menu=sticky] .main-header {
+  height: 0 !important;
+  min-height: 0 !important;
   background-color: transparent;
 }
 
@@ -595,26 +657,27 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
   }
 
   .ms-main .ms-page-content .home-five-hero {
-    height: 100vh;
-    height: 100dvh;
+    height: auto;
+    min-height: 100vh;
     min-height: 100dvh;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area {
     box-sizing: border-box;
-    justify-content: center;
-    height: 100vh;
-    height: 100dvh;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 100vh;
     min-height: 100dvh;
-    max-height: 100dvh;
-    padding-top: var(--home-five-hero-header-offset);
+    max-height: none;
+    padding-top: 0;
+    overflow: visible;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area > .container {
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     height: auto;
     min-height: 0;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner {
@@ -622,11 +685,11 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
     padding-bottom: 0 !important;
     padding-left: clamp(1rem, 5vw, 1.5rem) !important;
     padding-right: clamp(1rem, 5vw, 1.5rem) !important;
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     height: auto;
-    min-height: 0;
-    justify-content: center;
-    align-items: center;
+    min-height: min(100dvh, 100vh);
+    justify-content: flex-start;
+    align-items: stretch;
     text-align: center;
   }
 
@@ -635,8 +698,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
-    /* flex-grow: 0 — si crece, el título queda arriba y el bloque editorial abajo */
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     max-height: none;
     min-height: 0;
     justify-content: center;
@@ -644,6 +706,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-second-row {
     flex: 0 0 auto;
+    min-height: 0;
     max-height: none;
     padding-top: 0;
   }
