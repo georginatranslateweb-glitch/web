@@ -12,6 +12,8 @@ const HOME_FIVE_VERTICAL_LOGO_LG = 992;
 const HOME_FIVE_HERO_CHROME_LANG_MQ = '(min-width: 992px)';
 /** Espacio entre el borde derecho de la foto y el logo (px), mismo criterio que antes */
 const HOME_FIVE_VERTICAL_LOGO_GAP_PX = 25;
+/** Reserva mínima a la derecha del viewport para el bloque vertical (px) */
+const HOME_FIVE_VERTICAL_BRAND_RESERVE_PX = 130;
 /** Suavizado del fade del logo vertical al salir del hero (desktop) */
 const HOME_FIVE_VERTICAL_LOGO_FADE_EASE = 0.72;
 
@@ -83,12 +85,19 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
             setVerticalLogoLeft(null);
             return;
         }
+
         const sr = el.getBoundingClientRect();
         if (sr.width < 2 || sr.height < 2) {
             setVerticalLogoLeft(null);
             return;
         }
-        setVerticalLogoLeft(Math.round(sr.right + HOME_FIVE_VERTICAL_LOGO_GAP_PX));
+
+        const rawLeft = Math.round(sr.right + HOME_FIVE_VERTICAL_LOGO_GAP_PX);
+        const maxLeft = Math.max(
+            0,
+            window.innerWidth - HOME_FIVE_VERTICAL_BRAND_RESERVE_PX,
+        );
+        setVerticalLogoLeft(Math.min(rawLeft, maxLeft));
     }, []);
 
     const updateVerticalLogoFade = useCallback(() => {

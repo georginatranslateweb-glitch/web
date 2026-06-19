@@ -107,6 +107,19 @@
   box-sizing: border-box;
 }
 
+/*
+ * Desktop: gutters laterales = huella del logo rojo (izq.) y del bloque vertical + idioma (der.).
+ * Valores CSS fijos (sin JS) para evitar feedback con la posición del logo vertical.
+ */
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-hero .banner-area>.container {
+    padding-left: var(--home-five-chrome-inset-left);
+    padding-right: var(--home-five-chrome-inset-right);
+    max-width: none;
+    width: 100%;
+  }
+}
+
 .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner {
   width: 100%;
   /* Recupera el espaciado original del template (style.css: 90px 0) */
@@ -198,50 +211,51 @@ body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand-
   transition: visibility 0s linear 0s;
 }
 
-/* Columna: hamburguesa centrada encima del logo vertical (mismo ancho) */
+/* Columna: controles + logo vertical; ancho = max(logo, fila hamburguesa+idioma) */
 .home-five-hero-vertical-brand .home-five-hero-vertical-brand__stack {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.625rem;
-  width: var(--home-five-vertical-logo-w);
+  width: max-content;
+  min-width: var(--home-five-vertical-logo-w);
   flex-shrink: 0;
 }
 
-/* Fila: hamburguesa centrada en el eje del logo vertical; idioma a la derecha con gap fijo (sin centrar el par) */
+/* Fila: hamburguesa + idioma en flex (huella estable, sin overflow absolute) */
 .home-five-hero-vertical-brand .home-five-hero-vertical-brand__controls-row {
   --home-five-hero-controls-gap: 0.75rem;
 
-  position: relative;
   display: none;
-  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--home-five-hero-controls-gap);
+  width: max-content;
+  min-width: 100%;
   min-height: 2.75rem;
 }
 
 .home-five-hero-vertical-brand .home-five-hero-vertical-brand__chrome-hamburger {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
   min-width: 0;
-  z-index: 2;
+  flex-shrink: 0;
 }
 
 .home-five-hero-vertical-brand .home-five-hero-vertical-brand__lang.ms-lang-dropdown {
-  position: absolute;
-  left: calc(50% + (var(--home-five-vertical-logo-w) / 6) + var(--home-five-hero-controls-gap));
-  top: 50%;
-  /* Quitar right/top del theme (.ms-lang-dropdown) o el bloque se estira y rompe clics y el menú */
+  position: relative;
+  top: auto;
   right: auto;
+  left: auto;
   inset-inline-end: auto;
-  transform: translateY(-50%);
+  transform: none;
   width: max-content;
   max-width: none;
-  z-index: 2;
+  flex-shrink: 0;
   margin-left: 0;
 }
 
@@ -344,7 +358,7 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
   }
 
   .home-five-hero-vertical-brand .home-five-hero-vertical-brand__controls-row {
-    display: block;
+    display: flex;
   }
 
   .home-five-hero-vertical-brand .home-five-hero-desktop-hamburger {
@@ -643,6 +657,17 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 /* Home-5: barra siempre en modo “compacto” (antes ligado al scroll); sin ms-header-chrome-deferred en la implementación actual. */
 body.page-home-5 {
   background-color: var(--color-bg);
+  /* Huella del logo rojo fijo (.ms-mobile-drawer-logo @ 1024px+) */
+  --home-five-chrome-offset: 25px;
+  --home-five-chrome-logo-w: 120px;
+  --home-five-chrome-gap: 1rem;
+  --home-five-chrome-inset-left: calc(
+    var(--home-five-chrome-offset) + var(--home-five-chrome-logo-w) + var(--home-five-chrome-gap)
+  );
+  /* Logo vertical + fila hamburguesa/idioma + respiro */
+  --home-five-chrome-inset-right: calc(
+    clamp(2.125rem, 4vw, 4.25rem) + 6.5rem + var(--home-five-chrome-gap)
+  );
 }
 
 body.page-home-5 .main-header {

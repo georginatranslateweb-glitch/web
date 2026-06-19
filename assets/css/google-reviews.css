@@ -7,8 +7,14 @@ body.page-home-5 .ms-main .testimonial-area.google-reviews {
   padding-top: 0;
 }
 
-body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
-  padding-right: clamp(3.5rem, 9vw, 6.5rem);
+/* Desktop home-5: mismos gutters que el banner hero (logo rojo + bloque vertical/idioma) */
+@media (min-width: 992px) {
+  body.page-home-5 .ms-main .testimonial-area.google-reviews .container {
+    padding-left: var(--home-five-chrome-inset-left);
+    padding-right: var(--home-five-chrome-inset-right);
+    max-width: none;
+    width: 100%;
+  }
 }
 
 /* Label: mismo estilo que Sentido / Cuidado, en minúsculas */
