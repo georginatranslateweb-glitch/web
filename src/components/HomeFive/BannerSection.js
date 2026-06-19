@@ -3,9 +3,11 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 
 import LanguageSwitcher from '../LanguageSwitcher';
+import ImagePreviewCarouselDots from '../common/ImagePreviewCarouselDots';
 import enHome from '../../locales/en/home.json';
 import esHome from '../../locales/es/home.json';
 import { SSR_I18N_LANG, useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
+import { useHeroImageCarousel } from './ParallaxSection';
 
 const HOME_FIVE_VERTICAL_LOGO_LG = 992;
 /** Idioma junto a la hamburguesa del hero (mismo breakpoint que muestra el bloque vertical) */
@@ -66,6 +68,8 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
         'homeFive.banner.verticalLogoAlt',
         hydrated ? defaults.verticalLogoAlt : ssrDefaults.verticalLogoAlt,
     );
+
+    const heroImageCarousel = useHeroImageCarousel();
 
     const heroImageSlotRef = useRef(null);
     const bannerAreaRef = useRef(null);
@@ -261,8 +265,42 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                 <div className="home-five-hero-image-column">
                                     <div
                                         ref={heroImageSlotRef}
-                                        className="right-side-content home-five-bg-slot"
-                                    />
+                                        className={
+                                            heroImageCarousel?.canAdvance
+                                                ? 'right-side-content home-five-bg-slot home-five-bg-slot--carousel'
+                                                : 'right-side-content home-five-bg-slot'
+                                        }
+                                        role={heroImageCarousel?.canAdvance ? 'button' : undefined}
+                                        tabIndex={heroImageCarousel?.canAdvance ? 0 : undefined}
+                                        aria-label={
+                                            heroImageCarousel?.canAdvance
+                                                ? `Banner ${(heroImageCarousel.index ?? 0) + 1} de ${heroImageCarousel.total}. Clic para siguiente imagen.`
+                                                : undefined
+                                        }
+                                        onClick={
+                                            heroImageCarousel?.canAdvance
+                                                ? heroImageCarousel.advance
+                                                : undefined
+                                        }
+                                        onKeyDown={
+                                            heroImageCarousel?.canAdvance
+                                                ? (event) => {
+                                                    if (event.key === 'Enter' || event.key === ' ') {
+                                                        event.preventDefault();
+                                                        heroImageCarousel.advance();
+                                                    }
+                                                }
+                                                : undefined
+                                        }
+                                    >
+                                        {heroImageCarousel?.canAdvance ? (
+                                            <ImagePreviewCarouselDots
+                                                index={heroImageCarousel.index}
+                                                total={heroImageCarousel.total}
+                                                className="home-five-bg-slot__dots"
+                                            />
+                                        ) : null}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -270,7 +308,7 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                         <div className="row home-five-banner-second-row gx-0">
                             <div className="col-12 home-five-editorial-grid-col">
                                 <div className="home-five-editorial-grid">
-                                    <div className="row home-five-editorial-split g-0 gx-lg-3 gy-3 gy-lg-0 align-items-start">
+                                    <div className="row home-five-editorial-split g-0 gx-lg-0 gy-3 gy-lg-0 align-items-start">
                                         <div className="col-12 col-lg-6 home-five-editorial-split__group">
                                             <div className="row g-0 gx-3 gy-2 gy-lg-0 align-items-start">
                                                 <div className="col-12 col-lg-4 home-five-editorial-split__cell">

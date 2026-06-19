@@ -4,8 +4,22 @@ import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
 import Footer from '../../src/components/Footer';
 import MsHeroParallax from '../../src/components/common/MsHeroParallax';
+import ImagePreviewCarouselDots from '../../src/components/common/ImagePreviewCarouselDots';
 import ServicesBanner from '../../src/components/ServicesPage/ServicesBanner';
 import ServiceSection from '../../src/components/ServicesPage/ServiceSection';
+import { useClickImageCarousel } from '../../src/hooks/useClickImageCarousel';
+
+const SERVICES_HERO_IMAGES = [
+    '/images/services/services-1.jpg',
+    '/images/services/services-2.jpg',
+    '/images/services/services-3.jpg',
+    '/images/services/services-4.jpg',
+    '/images/services/services-5.jpg',
+    '/images/services/services-6.jpg',
+    '/images/services/services-7.jpg',
+    '/images/services/services-8.jpg',
+    '/images/services/services-9.jpg',
+];
 
 const SERVICE = {
     title: 'Our Services',
@@ -14,6 +28,8 @@ const SERVICE = {
 };
 
 const Services = () => {
+    const servicesHeroCarousel = useClickImageCarousel(SERVICES_HERO_IMAGES);
+
     useLayoutEffect(() => {
         document.body.classList.add('page-services');
         return () => document.body.classList.remove('page-services');
@@ -26,9 +42,54 @@ const Services = () => {
 
             <main className="ms-main">
                 <div className="ms-page-content">
-                    <div className="services-hero-block">
-                        <MsHeroParallax className="project single services-hero" speed={0.7} type="scroll" />
+                    <div
+                        className={
+                            servicesHeroCarousel.canAdvance
+                                ? 'services-hero-block services-hero-block--carousel'
+                                : 'services-hero-block'
+                        }
+                        style={{ '--services-hero-bg': `url(${servicesHeroCarousel.src})` }}
+                        role={servicesHeroCarousel.canAdvance ? 'button' : undefined}
+                        tabIndex={servicesHeroCarousel.canAdvance ? 0 : undefined}
+                        aria-label={
+                            servicesHeroCarousel.canAdvance
+                                ? `Banner ${servicesHeroCarousel.index + 1} de ${servicesHeroCarousel.total}. Clic para siguiente imagen.`
+                                : undefined
+                        }
+                        onClick={
+                            servicesHeroCarousel.canAdvance
+                                ? (event) => {
+                                    if (event.target.closest('a, button, input, textarea, select')) {
+                                        return;
+                                    }
+                                    servicesHeroCarousel.advance();
+                                }
+                                : undefined
+                        }
+                        onKeyDown={
+                            servicesHeroCarousel.canAdvance
+                                ? (event) => {
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        event.preventDefault();
+                                        servicesHeroCarousel.advance();
+                                    }
+                                }
+                                : undefined
+                        }
+                    >
+                        <MsHeroParallax
+                            className="project single services-hero"
+                            speed={0.7}
+                            type="scroll"
+                        />
                         <ServicesBanner title={SERVICE.title} description={SERVICE.description} />
+                        {servicesHeroCarousel.canAdvance ? (
+                            <ImagePreviewCarouselDots
+                                index={servicesHeroCarousel.index}
+                                total={servicesHeroCarousel.total}
+                                className="services-hero-block__dots"
+                            />
+                        ) : null}
                     </div>
 
                     <ServiceSection headingTitle="Our Services" title="NAATI-Certified Translations.">

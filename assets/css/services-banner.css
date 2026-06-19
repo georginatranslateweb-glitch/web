@@ -220,7 +220,7 @@ body.page-services .main-header .main-header__layout::after {
 }
 
 .ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single .jarallax-img {
-  background-image: url(/images/services/service-banner.jpg) !important;
+  background-image: var(--services-hero-bg, url(/images/services/services-1.jpg)) !important;
   background-size: cover;
   background-position: center;
 }
@@ -306,4 +306,69 @@ body.page-services .services-hero-block {
     max-width: 100%;
     padding-top: clamp(0.5rem, 2vw, 0.75rem);
   }
+}
+
+/* Preview carrusel: clic para rotar imágenes de banner (home + services) */
+.image-preview-carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.image-preview-carousel-dots__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.image-preview-carousel-dots__dot.is-active {
+  background: #fff;
+  transform: scale(1.15);
+}
+
+.image-preview-carousel-dots--counter {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.image-preview-carousel-dots__counter {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-main .ms-page-content .home-five-hero .home-five-bg-slot--carousel {
+  cursor: pointer;
+}
+
+.ms-main .ms-page-content .home-five-hero .home-five-bg-slot__dots {
+  bottom: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+body.page-services .services-hero-block--carousel {
+  cursor: pointer;
+}
+
+body.page-services .services-hero-block--carousel a,
+body.page-services .services-hero-block--carousel button {
+  cursor: pointer;
+}
+
+body.page-services .services-hero-block__dots {
+  bottom: clamp(1rem, 3vw, 1.75rem);
 }

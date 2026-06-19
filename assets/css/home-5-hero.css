@@ -43,8 +43,7 @@
 }
 
 /*
- * Recuadro tipo ventana: la foto es viewport-fixed pero solo se ve dentro de esta caja
- * (misma técnica que un “fixed bg” recortado a la columna derecha).
+ * Recuadro del hero: cover dentro del slot visible; el excedente queda recortado (overflow hidden).
  */
 .ms-main .ms-page-content .home-five-hero .home-five-bg-slot {
   position: relative;
@@ -57,14 +56,13 @@
   border-radius: 0;
   overflow: hidden;
   isolation: isolate;
-  background-color: transparent;
+  background-color: var(--color-bg);
   background-image: var(--home-five-hero-bg,
-      url(/images/bg/home-bg.jpg));
-  /* Un poco más arriba que center: recorta la franja plana celeste típica bajo el agua en esta foto */
-  background-position: center 38%;
+      url(/images/bg/banner-1.jpg));
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 /* Desktop: foto pegada al top del viewport; respiro solo en la columna del título */
@@ -511,7 +509,7 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
   }
 
   .ms-main .ms-page-content .home-five-editorial-split__group:last-child {
-    padding-left: var(--home-five-editorial-split-gap);
+    padding-left: 0;
   }
 }
 
