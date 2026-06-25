@@ -155,25 +155,29 @@
 
             .desc {
                 line-height: 28px;
-                margin-bottom: 36px;
+                margin-bottom: 20px;
             }
         }
 
         .contact {
             @media (max-width: 991px) {
-                margin-bottom: 40px;
+                margin-bottom: 24px;
+
+                > ul.phone {
+                    margin-bottom: 12px;
+                }
             }
 
             li {
                 list-style-type: none;
                 color: #797979;
                 font-size: 18px;
-                line-height: 36px;
+                line-height: 1.35;
 
                 &.tag {
                     font-size: 18px;
                     font-weight: 700;
-                    margin-bottom: 15px;
+                    margin-bottom: 4px;
                     color: unset;
                 }
             }

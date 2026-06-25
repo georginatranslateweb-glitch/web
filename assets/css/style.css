@@ -20907,12 +20907,16 @@ Clients logo
 
 .contact-area .contact-area-inner .content .desc {
   line-height: 28px;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 991px) {
   .contact-area .contact-area-inner .contact {
-    margin-bottom: 40px;
+    margin-bottom: 24px;
+  }
+
+  .contact-area .contact-area-inner .contact > ul.phone {
+    margin-bottom: 12px;
   }
 }
 
@@ -20920,13 +20924,13 @@ Clients logo
   list-style-type: none;
   color: #797979;
   font-size: 18px;
-  line-height: 36px;
+  line-height: 1.35;
 }
 
 .contact-area .contact-area-inner .contact li.tag {
   font-size: 18px;
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 4px;
   color: unset;
 }
 
