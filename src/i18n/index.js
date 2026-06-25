@@ -15,8 +15,10 @@ import enContact from '../locales/en/contact.json';
 import esContact from '../locales/es/contact.json';
 import enFooter from '../locales/en/footer.json';
 import esFooter from '../locales/es/footer.json';
+import enServices from '../locales/en/services.json';
+import esServices from '../locales/es/services.json';
 
-const namespaces = ['common', 'navigation', 'header', 'home', 'about', 'contact', 'footer'];
+const namespaces = ['common', 'navigation', 'header', 'home', 'about', 'contact', 'services', 'footer'];
 
 const resources = {
   en: {
@@ -26,6 +28,7 @@ const resources = {
     home: enHome,
     about: enAbout,
     contact: enContact,
+    services: enServices,
     footer: enFooter,
   },
   es: {
@@ -35,6 +38,7 @@ const resources = {
     home: esHome,
     about: esAbout,
     contact: esContact,
+    services: esServices,
     footer: esFooter,
   },
 };

@@ -1,0 +1,111 @@
+{
+  "hero": {
+    "title": "Mis servicios",
+    "description": "Desde traducciones certificadas hasta localización y revisión, ayudo a personas y marcas a comunicarse con claridad y confianza entre el inglés y el español.",
+    "ctaLabel": "Necesito una traducción"
+  },
+  "carouselAriaLabel": "Banner {{current}} de {{total}}. Clic para siguiente imagen.",
+  "common": {
+    "serviceDesc": "Servicio de traducción",
+    "headingService": "Servicio",
+    "headingOurServices": "Nuestros servicios",
+    "whatItIs": "Qué es",
+    "whoIsItFor": "Para quién es",
+    "whyItMatters": "Por qué importa",
+    "howItWorks": "Cómo funciona",
+    "whatIDo": "Qué hago"
+  },
+  "naati": {
+    "title": "Traducciones Certificadas NAATI",
+    "whatItIsTitle": "¿Qué es?",
+    "whatItIsParagraph": "Traducciones certificadas de español a inglés para fines migratorios, legales, académicos y oficiales en toda Australia.",
+    "whatItIsItems": [
+      {
+        "label": "Documentos de visa e inmigración:",
+        "text": "evidencia y documentos personales para solicitudes ante el Departamento de Asuntos Internos (Home Affairs)"
+      },
+      {
+        "label": "Documentos civiles:",
+        "text": "certificados de nacimiento, matrimonio y defunción"
+      },
+      {
+        "label": "Documentos académicos:",
+        "text": "certificados, diplomas y títulos para estudios o evaluación de habilidades"
+      },
+      {
+        "label": "Documentos legales y oficiales:",
+        "text": "contratos, declaraciones juradas y otros documentos oficiales"
+      }
+    ],
+    "whoIsItForTitle": "¿Para quién es?",
+    "whoIsItForParagraph": "Migrantes y solicitantes de visa, estudiantes internacionales, profesionales que buscan el reconocimiento de sus títulos, y cualquier persona que necesite que un documento oficial en español sea aceptado por una autoridad, institución, entidad o empleador en Australia.",
+    "whyItMattersTitle": "¿Por qué es importante?",
+    "whyItMattersParagraph1": "NAATI (National Accreditation Authority for Translators and Interpreters) es la autoridad nacional de certificación para traductores e intérpretes en Australia. Las traducciones realizadas por un profesional certificado son comúnmente requeridas y aceptadas por el departamento de migración, universidades y agencias gubernamentales de todo el país.",
+    "whyItMattersParagraph2": "Contar con este aval previene retrasos costosos, rechazos en sus trámites o malentendidos legales, garantizando que sus documentos oficiales, académicos o profesionales sean válidos y precisos ante cualquier entidad australiana.",
+    "howItWorksTitle": "¿Cómo funciona el proceso?",
+    "howItWorksSteps": [
+      "Complete el formulario y envíe sus documentos",
+      "Cuénteme sobre su proyecto",
+      "Reciba un presupuesto detallado + plazo de entrega",
+      "Confirme el presupuesto y realice el pago",
+      "Reciba su proyecto"
+    ]
+  },
+  "localisation": {
+    "title": "Localización",
+    "whatItIsTitle": "¿Qué es?",
+    "whatItIsParagraph": "Localizar es adaptar el mensaje al contexto de su público. Ajusto su contenido para que no solo sea preciso, sino que respete los matices culturales y mantenga el tono exacto que su audiencia necesita escuchar.",
+    "whoIsItForTitle": "¿Para quién es?",
+    "whoIsItForParagraph": "Marcas, agencias, empresas y entidades que buscan comunicarse con éxito tanto en inglés como en español.",
+    "whyItMattersTitle": "¿Por qué es importante?",
+    "whyItMattersParagraph": "Una traducción literal puede ser correcta y, aun así, no transmitir el mensaje correcto. El tono, el humor, los modismos y las referencias culturales no siempre se traducen bien, y un error puede confundir a su audiencia o afectar la credibilidad de su marca. Una buena localización genera una conexión real, haciendo que su mensaje se entienda tal como fue pensado para cada tipo de audiencia.",
+    "whatIDoTitle": "¿Qué hago?",
+    "whatIDoItems": [
+      {
+        "label": "Contenido digital:",
+        "text": "sitios web, aplicaciones y textos UX,"
+      },
+      {
+        "label": "Marketing y marcas:",
+        "text": "campañas y comunicación de marca,"
+      },
+      {
+        "label": "Redes sociales:",
+        "text": "publicaciones adaptadas al público relevante, y"
+      },
+      {
+        "label": "Revisión cultural:",
+        "text": "control de matices y precisión lingüística."
+      }
+    ]
+  },
+  "proofreading": {
+    "title": "Revisión",
+    "whatItIsTitle": "¿Qué es?",
+    "whatItIsParagraph": "Una revisión exhaustiva de sus textos o traducciones que ajusta el tono, la fluidez y la coherencia, detectando los matices que los correctores automáticos no pasan por alto.",
+    "whoIsItForTitle": "¿Para quién es?",
+    "whoIsItForParagraph": "Particulares, estudiantes, empresas y colegas traductores que necesitan que su documento final quede impecable.",
+    "whyItMattersTitle": "¿Por qué es importante?",
+    "whyItMattersParagraph1": "Una buena revisión hace mucho más que corregir errores: protege su credibilidad.",
+    "whyItMattersParagraph2": "Un solo error pasado por alto en un documento importante puede cambiar su significado, afectar la confianza del lector o incluso provocar el rechazo de un trámite. Una revisión profesional final le da la seguridad de que su documento está listo para ser leído o publicado.",
+    "whatIDoTitle": "¿Qué hago?",
+    "whatIDoItems": [
+      {
+        "label": "Revisión de traducciones:",
+        "text": "Control de sentido, precisión y fluidez."
+      },
+      {
+        "label": "Edición y corrección:",
+        "text": "Corrección de estilo, ortografía y gramática."
+      },
+      {
+        "label": "Control de calidad:",
+        "text": "Revisión final antes de publicar o entregar."
+      },
+      {
+        "label": "Formato y consistencia:",
+        "text": "Control de formato para que todo se vea impecable."
+      }
+    ]
+  }
+}

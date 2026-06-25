@@ -31,5 +31,5 @@ export function useHydrationSafeTranslation(ns, options) {
     [mounted, i18nReady, ssrT, t],
   );
 
-  return { t: safeT, i18n, hydrated: mounted && i18nReady };
+  return { t: safeT, i18n, hydrated: mounted && i18nReady, mounted };
 }

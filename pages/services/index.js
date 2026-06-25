@@ -8,6 +8,7 @@ import ImagePreviewCarouselDots from '../../src/components/common/ImagePreviewCa
 import ServicesBanner from '../../src/components/ServicesPage/ServicesBanner';
 import ServiceSection from '../../src/components/ServicesPage/ServiceSection';
 import { useClickImageCarousel } from '../../src/hooks/useClickImageCarousel';
+import { useServicesTranslation } from '../../src/i18n/servicesDefaults';
 
 const SERVICES_HERO_IMAGES = [
     '/images/services/services-1.jpg',
@@ -21,14 +22,14 @@ const SERVICES_HERO_IMAGES = [
     '/images/services/services-9.jpg',
 ];
 
-const SERVICE = {
-    title: 'Our Services',
-    description:
-        'Globally morph real-time e-business with optimal users. Dramatically extend high-payoff infomediaries through integrated experiences.',
-};
-
 const Services = () => {
+    const { tx } = useServicesTranslation();
     const servicesHeroCarousel = useClickImageCarousel(SERVICES_HERO_IMAGES);
+
+    const naatiWhatItIsItems = tx('naati.whatItIsItems') || [];
+    const naatiHowItWorksSteps = tx('naati.howItWorksSteps') || [];
+    const localisationWhatIDoItems = tx('localisation.whatIDoItems') || [];
+    const proofreadingWhatIDoItems = tx('proofreading.whatIDoItems') || [];
 
     useLayoutEffect(() => {
         document.body.classList.add('page-services');
@@ -53,7 +54,10 @@ const Services = () => {
                         tabIndex={servicesHeroCarousel.canAdvance ? 0 : undefined}
                         aria-label={
                             servicesHeroCarousel.canAdvance
-                                ? `Banner ${servicesHeroCarousel.index + 1} de ${servicesHeroCarousel.total}. Clic para siguiente imagen.`
+                                ? tx('carouselAriaLabel', {
+                                    current: servicesHeroCarousel.index + 1,
+                                    total: servicesHeroCarousel.total,
+                                })
                                 : undefined
                         }
                         onClick={
@@ -82,7 +86,11 @@ const Services = () => {
                             speed={0.7}
                             type="scroll"
                         />
-                        <ServicesBanner title={SERVICE.title} description={SERVICE.description} />
+                        <ServicesBanner
+                            title={tx('hero.title')}
+                            description={tx('hero.description')}
+                            ctaLabel={tx('hero.ctaLabel')}
+                        />
                         {servicesHeroCarousel.canAdvance ? (
                             <ImagePreviewCarouselDots
                                 index={servicesHeroCarousel.index}
@@ -92,7 +100,7 @@ const Services = () => {
                         ) : null}
                     </div>
 
-                    <ServiceSection headingTitle="Our Services" title="NAATI-Certified Translations.">
+                    <ServiceSection headingTitle={tx('common.headingService')} title={tx('naati.title')}>
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -100,9 +108,17 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Spanish to English</h2>
-                                            <p>Professional certified Spanish to English translations for migration, legal, academic, and official purposes across Australia.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('naati.whatItIsTitle')}</h2>
+                                            <p>{tx('naati.whatItIsParagraph')}</p>
+                                            <ul>
+                                                {naatiWhatItIsItems.map((item) => (
+                                                    <li key={item.label}>
+                                                        <span className="services-list__label">{item.label}</span>{' '}
+                                                        {item.text}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -110,9 +126,9 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Why it Matters</h2>
-                                            <p>NAATI (National Accreditation Authority for Translators and Interpreters) is Australia's national certification body for language professionals. NAATI-certified translations are widely recognised and accepted by the Department of Home Affairs, universities, professional bodies, government agencies, employers, and other organisations across Australia.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('naati.whoIsItForTitle')}</h2>
+                                            <p>{tx('naati.whoIsItForParagraph')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -124,9 +140,10 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Communication</h2>
-                                            <p>Appropriately parallel task cutting-edge mindshare rather than B2B catalysts for change. Efficiently myocardinate collaborative niche markets without excellent web-readiness.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('naati.whyItMattersTitle')}</h2>
+                                            <p>{tx('naati.whyItMattersParagraph1')}</p>
+                                            <p>{tx('naati.whyItMattersParagraph2')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -134,9 +151,13 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Who is it for</h2>
-                                            <p>Whether you are applying for a visa, enrolling in studies, registering a qualification, or completing an official process, a certified translation helps ensure your documents meet Australian requirements and that your information is communicated accurately, clearly, and professionally.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('naati.howItWorksTitle')}</h2>
+                                            <ul>
+                                                {naatiHowItWorksSteps.map((step) => (
+                                                    <li key={step}>{step}</li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +166,7 @@ const Services = () => {
                         </div>
                     </ServiceSection>
 
-                    <ServiceSection headingTitle="Our Services" title="Localisation Services">
+                    <ServiceSection headingTitle={tx('common.headingOurServices')} title={tx('localisation.title')}>
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -153,9 +174,9 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Why it Matters</h2>
-                                            <p>Localisation goes beyond words. Because successful communication depends on true cultural connection, I adapt your content so it respects context, carries the right tone, and resonates naturally with your target audience.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('localisation.whatItIsTitle')}</h2>
+                                            <p>{tx('localisation.whatItIsParagraph')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -163,14 +184,9 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">What I do</h2>
-                                            <ul>
-                                                <li><span className="services-list__label">Digital Content:</span> Websites, apps, and UX copy.</li>
-                                                <li><span className="services-list__label">Marketing & brands:</span> Campaigns and brand communication</li>
-                                                <li><span className="services-list__label">Social media:</span> Engaging, culturally relevant posts</li>
-                                                <li><span className="services-list__label">Cultural review:</span> Nuance and linguistic checks</li>
-                                            </ul>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('localisation.whoIsItForTitle')}</h2>
+                                            <p>{tx('localisation.whoIsItForParagraph')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -182,9 +198,9 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Who is it for</h2>
-                                            <p>Brands, agencies, businesses and entities looking to communicate successfully across English and Spanish-speaking markets.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('localisation.whyItMattersTitle')}</h2>
+                                            <p>{tx('localisation.whyItMattersParagraph')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -192,9 +208,16 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service <br /> (No.04)</p>
-                                            <h2 className="sub-title">Honesty</h2>
-                                            <p>Monotonectally parallel task cross-unit e-tailers without performance based platforms. Phosfluorescently unleash market-driven niche markets via flexible functionalities.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('localisation.whatIDoTitle')}</h2>
+                                            <ul>
+                                                {localisationWhatIDoItems.map((item) => (
+                                                    <li key={item.label}>
+                                                        <span className="services-list__label">{item.label}</span>{' '}
+                                                        {item.text}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +226,7 @@ const Services = () => {
                         </div>
                     </ServiceSection>
 
-                    <ServiceSection headingTitle="Our Services" title="Proofreading">
+                    <ServiceSection headingTitle={tx('common.headingOurServices')} title={tx('proofreading.title')}>
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -211,9 +234,9 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Why it Matters</h2>
-                                            <p>A careful review does more than fix typos. It protects your credibility. I refine your translated or written content to ensure perfect tone, flow, and consistency, catching the critical nuances that automated grammar checkers miss.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('proofreading.whatItIsTitle')}</h2>
+                                            <p>{tx('proofreading.whatItIsParagraph')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -221,14 +244,9 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">What I do</h2>
-                                            <ul>
-                                                <li><span className="services-list__label">Translation review:</span> Double-checking accuracy and flow.</li>
-                                                <li><span className="services-list__label">Editing & Proofreading:</span> Polishing grammar, spelling, and style.</li>
-                                                <li><span className="services-list__label">Quality assurance checks:</span> Final checks before publishing or submitting.</li>
-                                                <li><span className="services-list__label">Formatting and consistency review:</span> Ensuring a clean, uniform look.</li>
-                                            </ul>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('proofreading.whoIsItForTitle')}</h2>
+                                            <p>{tx('proofreading.whoIsItForParagraph')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -240,9 +258,10 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service</p>
-                                            <h2 className="sub-title">Who is it for</h2>
-                                            <p>Individuals, students, businesses, and fellow translators who need a flawless final document.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('proofreading.whyItMattersTitle')}</h2>
+                                            <p>{tx('proofreading.whyItMattersParagraph1')}</p>
+                                            <p>{tx('proofreading.whyItMattersParagraph2')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -250,9 +269,16 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">Translation Service <br /> (No.04)</p>
-                                            <h2 className="sub-title">Honesty</h2>
-                                            <p>Monotonectally parallel task cross-unit e-tailers without performance based platforms. Phosfluorescently unleash market-driven niche markets via flexible functionalities.</p>
+                                            <p className="desc">{tx('common.serviceDesc')}</p>
+                                            <h2 className="sub-title">{tx('proofreading.whatIDoTitle')}</h2>
+                                            <ul>
+                                                {proofreadingWhatIDoItems.map((item) => (
+                                                    <li key={item.label}>
+                                                        <span className="services-list__label">{item.label}</span>{' '}
+                                                        {item.text}
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

@@ -2,10 +2,8 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useHydrationSafeTranslation, SSR_I18N_LANG } from '../../i18n/useHydrationSafeTranslation';
+import { useAboutTranslation } from '../../i18n/aboutDefaults';
 import { buildHowItWorksSteps } from './howItWorksSteps';
-import enAbout from '../../locales/en/about.json';
-import esAbout from '../../locales/es/about.json';
 
 const HowItWorksTimeline = dynamic(() => import('./HowItWorksTimeline'), {
     ssr: false,
@@ -22,13 +20,9 @@ import clientImg8 from "../../../public/images/clients/logo-partner-8.png";
 import clientImg9 from "../../../public/images/clients/logo-partner-9.png";
 
 const HomeCV = () => {
-    const { t, i18n, hydrated } = useHydrationSafeTranslation('about');
-    const howItWorksSteps = buildHowItWorksSteps(t);
-    const lang = hydrated
-        ? (i18n.resolvedLanguage || i18n.language || SSR_I18N_LANG)
-        : SSR_I18N_LANG;
-    const getQuoteCta = (lang.startsWith('es') ? esAbout : enAbout).getQuoteCta;
-    const introParagraphs = t('intro')
+    const { tx, defaults } = useAboutTranslation();
+    const howItWorksSteps = buildHowItWorksSteps(tx);
+    const introParagraphs = tx('intro')
         .split(/<br\s*\/?>/i)
         .map((part) => part.trim())
         .filter(Boolean);
@@ -45,7 +39,7 @@ const HomeCV = () => {
                                     src="/images/about/about-georgina.webp"
                                     width={1200}
                                     height={1600}
-                                    alt={t('heroImageAlt')}
+                                    alt={tx('heroImageAlt')}
                                     priority
                                     unoptimized
                                     sizes="(min-width: 992px) 42vw, 100vw"
@@ -54,15 +48,27 @@ const HomeCV = () => {
                         </div>
                         <div className="col-lg-7">
                             <div className="right-side-content">
-                                <h1 className="heading-title">{t('heroName')}</h1>
+                                <h1 className="heading-title">{tx('heroName')}</h1>
                                 <p>
 
                                     <em>
-                                        <span className="cate-color">{t('heroYears')}&nbsp;</span>
+                                        <span className="cate-color">{tx('heroYears')}&nbsp;</span>
                                         <span> /</span>&nbsp; &nbsp;
-                                        <span className="cate-color">{t('heroLocation')}&nbsp;</span> &nbsp;
+                                        <span className="cate-color">{tx('heroLocation')}&nbsp;</span> &nbsp;
                                         <span>/</span>&nbsp; &nbsp;
-                                        <span className="cate-color">{t('heroRole')}</span>
+                                        <span className="cate-color">{tx('heroRole')}</span>
+                                        {defaults.heroRole2 ? (
+                                            <>
+                                                &nbsp;<span>/</span>&nbsp; &nbsp;
+                                                <span className="cate-color">{tx('heroRole2')}</span>
+                                            </>
+                                        ) : null}
+                                        {defaults.heroRole3 ? (
+                                            <>
+                                                &nbsp;<span>/</span>&nbsp; &nbsp;
+                                                <span className="cate-color">{tx('heroRole3')}</span>
+                                            </>
+                                        ) : null}
                                     </em>
                                 </p>
                                 <div className="about-intro">
@@ -71,30 +77,30 @@ const HomeCV = () => {
                                     ))}
                                 </div>
                                 <div className="services-area">
-                                    <h2 className="services-title">{t('servicesTitle')}</h2>
+                                    <h2 className="services-title">{tx('servicesTitle')}</h2>
                                     <div className="services-items">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb">
                                                     <div className="ms-sb--inner">
-                                                        <h3 className="how-it-works-timeline__title">{t('service1Title')}</h3>
-                                                        <p className="ms-sb--text">{t('service1Text')}</p>
+                                                        <h3 className="how-it-works-timeline__title">{tx('service1Title')}</h3>
+                                                        <p className="ms-sb--text">{tx('service1Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb">
                                                     <div className="ms-sb--inner">
-                                                        <h3 className="how-it-works-timeline__title">{t('service2Title')}</h3>
-                                                        <p className="ms-sb--text">{t('service2Text')}</p>
+                                                        <h3 className="how-it-works-timeline__title">{tx('service2Title')}</h3>
+                                                        <p className="ms-sb--text">{tx('service2Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6 col-sm-6">
                                                 <div className="ms-sb">
                                                     <div className="ms-sb--inner">
-                                                        <h3 className="how-it-works-timeline__title">{t('service3Title')}</h3>
-                                                        <p className="ms-sb--text">{t('service3Text')}</p>
+                                                        <h3 className="how-it-works-timeline__title">{tx('service3Title')}</h3>
+                                                        <p className="ms-sb--text">{tx('service3Text')}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,14 +108,14 @@ const HomeCV = () => {
                                     </div>
                                 </div>
                                 <div className="pricing-area">
-                                    <h2 className="services-title">{t('pricingHowTitle')}</h2>
+                                    <h2 className="services-title">{tx('pricingHowTitle')}</h2>
                                     <HowItWorksTimeline
                                         steps={howItWorksSteps}
-                                        logoAlt={t('timelineLogoAlt')}
+                                        logoAlt={tx('timelineLogoAlt')}
                                     />
                                     <div className="how-it-works-timeline__cta">
                                         <Link href="/contact" className="btn-footer">
-                                            {getQuoteCta} <i className="fas fa-arrow-right"></i>
+                                            {defaults.getQuoteCta} <i className="fas fa-arrow-right"></i>
                                         </Link>
                                     </div>
 
