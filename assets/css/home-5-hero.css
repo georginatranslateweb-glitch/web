@@ -106,6 +106,8 @@
 .ms-main .ms-page-content .home-five-hero .banner-area {
   --home-five-banner-title-color: var(--color-heading, #c64227);
   --home-five-editorial-split-gap: clamp(1.25rem, 3vw, 2.5rem);
+  --home-five-editorial-label-gap: 0.375rem;
+  --home-five-editorial-label-pad-right: 1rem;
 
   position: sticky;
   top: 0;
@@ -215,9 +217,9 @@
 /*
  * Marca hero: portal a body (body > …) + fallback en .home-five-hero (SSR / primer commit).
  */
-body > .home-five-hero-vertical-brand,
-body.page-home-5 > .home-five-hero-vertical-brand,
-.ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand {
+body>.home-five-hero-vertical-brand,
+body.page-home-5>.home-five-hero-vertical-brand,
+.ms-main .ms-page-content .home-five-hero>.home-five-hero-vertical-brand {
   /* Ancho del logo vertical (PNG); hamburguesa = ⅓ de este valor */
   --home-five-vertical-logo-w: clamp(2.125rem, 4vw, 4.25rem);
   --home-five-hamburger-line-gap: 6px;
@@ -243,9 +245,9 @@ body.page-home-5 > .home-five-hero-vertical-brand,
   width: fit-content;
 }
 
-body > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
-body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
-.ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed {
+body>.home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
+body.page-home-5>.home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed,
+.ms-main .ms-page-content .home-five-hero>.home-five-hero-vertical-brand.home-five-hero-vertical-brand--placed {
   visibility: visible;
   transition: visibility 0s linear 0s;
 }
@@ -307,8 +309,9 @@ body.page-home-5 > .home-five-hero-vertical-brand.home-five-hero-vertical-brand-
 }
 
 @media (min-width: 992px) {
+
   /* Sin LanguageSwitcher en el header: no reservar hueco en la fila del inner */
-  body.page-home-5 .main-header .main-header__inner > .main-header--widgets:empty {
+  body.page-home-5 .main-header .main-header__inner>.main-header--widgets:empty {
     display: none;
   }
 }
@@ -380,8 +383,8 @@ button.home-five-hero-vertical-logo {
 }
 
 .ms-main .ms-page-content .home-five-hero .home-five-hero-vertical-logo__img,
-body > .home-five-hero-vertical-brand .home-five-hero-vertical-logo__img,
-body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo__img {
+body>.home-five-hero-vertical-brand .home-five-hero-vertical-logo__img,
+body.page-home-5>.home-five-hero-vertical-brand .home-five-hero-vertical-logo__img {
   width: var(--home-five-vertical-logo-w, clamp(2.125rem, 4vw, 4.25rem));
   height: auto;
   max-height: min(44vh, 26rem);
@@ -390,9 +393,10 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
 }
 
 @media (min-width: 992px) {
-  body > .home-five-hero-vertical-brand,
-  body.page-home-5 > .home-five-hero-vertical-brand,
-  .ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand {
+
+  body>.home-five-hero-vertical-brand,
+  body.page-home-5>.home-five-hero-vertical-brand,
+  .ms-main .ms-page-content .home-five-hero>.home-five-hero-vertical-brand {
     display: block;
   }
 
@@ -410,9 +414,10 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
 
 /* Móvil / layouts estrechos: sin bloque aunque el markup exista en otras variantes */
 @media (max-width: 768px) {
-  body > .home-five-hero-vertical-brand,
-  body.page-home-5 > .home-five-hero-vertical-brand,
-  .ms-main .ms-page-content .home-five-hero > .home-five-hero-vertical-brand {
+
+  body>.home-five-hero-vertical-brand,
+  body.page-home-5>.home-five-hero-vertical-brand,
+  .ms-main .ms-page-content .home-five-hero>.home-five-hero-vertical-brand {
     display: none !important;
   }
 }
@@ -503,6 +508,22 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
   min-width: 0;
 }
 
+.ms-main .ms-page-content .home-five-editorial-split__pair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-editorial-split__pair {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--home-five-editorial-label-gap);
+    row-gap: 0;
+    align-items: start;
+  }
+}
+
 @media (min-width: 992px) {
   .ms-main .ms-page-content .home-five-editorial-split__group:first-child {
     padding-right: var(--home-five-editorial-split-gap);
@@ -536,9 +557,16 @@ body.page-home-5 > .home-five-hero-vertical-brand .home-five-hero-vertical-logo_
   margin-bottom: 6px;
 }
 
+@media (min-width: 992px) {
+  .ms-main .ms-page-content .home-five-editorial-grid__label {
+    padding-right: var(--home-five-editorial-label-pad-right);
+    margin-bottom: 0;
+  }
+}
+
 .ms-main .ms-page-content .home-five-editorial-grid__value {
-  font-size: 0.95rem;
-  line-height: 1.35;
+  font-size: 1.25 rem;
+  line-height: 1.4;
   color: rgba(43, 43, 43, 0.92);
 }
 
@@ -652,9 +680,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
     --home-five-mobile-logo-width: clamp(96px, 26vw, 120px);
     --home-five-mobile-logo-height: calc(var(--home-five-mobile-logo-width) * (166 / 252));
     --home-five-mobile-logo-gap: clamp(0.75rem, 2.5vw, 1.25rem);
-    --home-five-hero-header-offset: calc(
-      var(--home-five-mobile-logo-top) + var(--home-five-mobile-logo-height) + var(--home-five-mobile-logo-gap)
-    );
+    --home-five-hero-header-offset: calc(var(--home-five-mobile-logo-top) + var(--home-five-mobile-logo-height) + var(--home-five-mobile-logo-gap));
   }
 
   .ms-main .ms-page-content .home-five-hero {
@@ -677,7 +703,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
     overflow: visible;
   }
 
-  .ms-main .ms-page-content .home-five-hero .banner-area > .container {
+  .ms-main .ms-page-content .home-five-hero .banner-area>.container {
     flex: 1 1 auto;
     height: auto;
     min-height: 0;
@@ -734,13 +760,9 @@ body.page-home-5 {
   --home-five-chrome-offset: 25px;
   --home-five-chrome-logo-w: 120px;
   --home-five-chrome-gap: 1rem;
-  --home-five-chrome-inset-left: calc(
-    var(--home-five-chrome-offset) + var(--home-five-chrome-logo-w) + var(--home-five-chrome-gap)
-  );
+  --home-five-chrome-inset-left: calc(var(--home-five-chrome-offset) + var(--home-five-chrome-logo-w) + var(--home-five-chrome-gap));
   /* Logo vertical + fila hamburguesa/idioma + respiro */
-  --home-five-chrome-inset-right: calc(
-    clamp(2.125rem, 4vw, 4.25rem) + 6.5rem + var(--home-five-chrome-gap)
-  );
+  --home-five-chrome-inset-right: calc(clamp(2.125rem, 4vw, 4.25rem) + 6.5rem + var(--home-five-chrome-gap));
 }
 
 body.page-home-5 .main-header {

@@ -311,13 +311,13 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                 <div className="home-five-editorial-grid">
                                     <div className="row home-five-editorial-split g-0 gx-lg-0 gy-3 gy-lg-0 align-items-start">
                                         <div className="col-12 col-lg-6 home-five-editorial-split__group">
-                                            <div className="row g-0 gx-3 gy-2 gy-lg-0 align-items-start">
-                                                <div className="col-12 col-lg-4 home-five-editorial-split__cell">
+                                            <div className="home-five-editorial-split__pair">
+                                                <div className="home-five-editorial-split__cell home-five-editorial-split__cell--label">
                                                     <div className="home-five-editorial-grid__item">
                                                         <div className="home-five-editorial-grid__label">{labelMeaning}</div>
                                                     </div>
                                                 </div>
-                                                <div className="col-12 col-lg-8 home-five-editorial-split__cell">
+                                                <div className="home-five-editorial-split__cell home-five-editorial-split__cell--value">
                                                     <div className="home-five-editorial-grid__item">
                                                         <BannerGridValue html={gridMeaning} />
                                                     </div>
@@ -326,13 +326,13 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                         </div>
 
                                         <div className="col-12 col-lg-6 home-five-editorial-split__group">
-                                            <div className="row g-0 gx-3 gy-2 gy-lg-0 align-items-start">
-                                                <div className="col-12 col-lg-4 home-five-editorial-split__cell">
+                                            <div className="home-five-editorial-split__pair">
+                                                <div className="home-five-editorial-split__cell home-five-editorial-split__cell--label">
                                                     <div className="home-five-editorial-grid__item">
                                                         <div className="home-five-editorial-grid__label">{labelCare}</div>
                                                     </div>
                                                 </div>
-                                                <div className="col-12 col-lg-8 home-five-editorial-split__cell">
+                                                <div className="home-five-editorial-split__cell home-five-editorial-split__cell--value">
                                                     <div className="home-five-editorial-grid__item">
                                                         <BannerGridValue html={gridCare} />
                                                     </div>
