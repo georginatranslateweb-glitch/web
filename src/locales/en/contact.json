@@ -22,7 +22,7 @@
     "emailInvalid": "Enter a valid email address.",
     "phoneInvalid": "Enter a valid phone number.",
     "serviceTypeRequired": "Select a service type.",
-    "documentTypeRequired": "Select a document type.",
+    "documentTypeRequired": "Select a translation purpose.",
     "languageFromRequired": "Enter the source language.",
     "languageToRequired": "Enter the target language.",
     "languagesMustDiffer": "Source and target languages must be different.",
@@ -36,20 +36,20 @@
     "totalSizeExceeded": "Total size exceeds {{maxSize}}. Remove a file or choose smaller documents."
   },
   "sections": {
-    "personal": "Personal information",
+    "personal": "Personal Information",
     "service": "Service details",
     "documents": "Documents"
   },
   "fields": {
-    "name": "Full name",
+    "name": "Full Name",
     "email": "Email",
     "phone": "Phone",
-    "serviceType": "Select service:",
-    "documentType": "DOCUMENT TYPE:",
+    "serviceType": "Select Service:",
+    "documentType": "Translation Purpose:",
     "languageFrom": "Language (from)",
     "languageTo": "Language (to)",
     "urgency": "Urgency",
-    "comments": "Additional comments",
+    "comments": "Additional Comments",
     "requiredMark": "*"
   },
   "placeholders": {
@@ -63,14 +63,17 @@
   "serviceType": {
     "placeholder": "Select service",
     "translation": "Translation",
-    "naatiTranslation": "NAATI translation",
+    "naatiTranslation": "NAATI Translation",
     "proofreading": "Proofreading",
     "localisation": "Localisation"
   },
   "documentType": {
-    "placeholder": "Select document type",
+    "placeholder": "Select translation purpose",
     "migration": "Migration",
-    "migraciones": "Migraciones"
+    "legal": "Legal",
+    "academic": "Academic",
+    "business": "Business",
+    "other": "Other"
   },
   "urgency": {
     "placeholder": "Select urgency",

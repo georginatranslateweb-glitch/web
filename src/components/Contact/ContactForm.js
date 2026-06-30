@@ -359,7 +359,10 @@ const ContactForm = () => {
               >
                 <option value="">{tx('documentType.placeholder')}</option>
                 <option value="migration">{tx('documentType.migration')}</option>
-                <option value="migraciones">{tx('documentType.migraciones')}</option>
+                <option value="legal">{tx('documentType.legal')}</option>
+                <option value="academic">{tx('documentType.academic')}</option>
+                <option value="business">{tx('documentType.business')}</option>
+                <option value="other">{tx('documentType.other')}</option>
               </select>
               {errors.documentType && (
                 <span className="quote-form__error" role="alert">
@@ -423,9 +426,9 @@ const ContactForm = () => {
                 required
               >
                 <option value="">{tx('urgency.placeholder')}</option>
-                <option value="standard">{tx('urgency.standard')}</option>
-                <option value="urgent">{tx('urgency.urgent')}</option>
                 <option value="express">{tx('urgency.express')}</option>
+                <option value="urgent">{tx('urgency.urgent')}</option>
+                <option value="standard">{tx('urgency.standard')}</option>
               </select>
               {errors.urgency && (
                 <span className="quote-form__error" role="alert">
