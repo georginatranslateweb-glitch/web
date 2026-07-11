@@ -40,8 +40,7 @@ const HomeCV = () => {
                                 className="image-left-side"
                                 variants={fadeUp}
                                 initial="hidden"
-                                whileInView="visible"
-                                viewport={VIEWPORT_ONCE}
+                                animate="visible"
                             >
                                 <Image
                                     className="about-hero-image"
@@ -56,42 +55,48 @@ const HomeCV = () => {
                             </motion.div>
                         </div>
                         <div className="col-lg-7">
-                            <motion.div
-                                className="right-side-content"
-                                variants={staggerContainer(0.1)}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={VIEWPORT_ONCE}
-                            >
-                                <motion.h1 className="heading-title" variants={staggerItem}>{tx('heroName')}</motion.h1>
-                                <motion.p variants={staggerItem}>
+                            <div className="right-side-content">
+                                <motion.div
+                                    variants={staggerContainer(0.1)}
+                                    initial="hidden"
+                                    animate="visible"
+                                >
+                                    <motion.h1 className="heading-title" variants={staggerItem}>{tx('heroName')}</motion.h1>
+                                    <motion.p variants={staggerItem}>
 
-                                    <em>
-                                        <span className="cate-color">{tx('heroYears')}&nbsp;</span>
-                                        <span> /</span>&nbsp; &nbsp;
-                                        <span className="cate-color">{tx('heroLocation')}&nbsp;</span> &nbsp;
-                                        <span>/</span>&nbsp; &nbsp;
-                                        <span className="cate-color">{tx('heroRole')}</span>
-                                        {defaults.heroRole2 ? (
-                                            <>
-                                                &nbsp;<span>/</span>&nbsp; &nbsp;
-                                                <span className="cate-color">{tx('heroRole2')}</span>
-                                            </>
-                                        ) : null}
-                                        {defaults.heroRole3 ? (
-                                            <>
-                                                &nbsp;<span>/</span>&nbsp; &nbsp;
-                                                <span className="cate-color">{tx('heroRole3')}</span>
-                                            </>
-                                        ) : null}
-                                    </em>
-                                </motion.p>
-                                <motion.div className="about-intro" variants={staggerItem}>
-                                    {introParagraphs.map((paragraph, index) => (
-                                        <p key={index}>{paragraph}</p>
-                                    ))}
+                                        <em>
+                                            <span className="cate-color">{tx('heroYears')}&nbsp;</span>
+                                            <span> /</span>&nbsp; &nbsp;
+                                            <span className="cate-color">{tx('heroLocation')}&nbsp;</span> &nbsp;
+                                            <span>/</span>&nbsp; &nbsp;
+                                            <span className="cate-color">{tx('heroRole')}</span>
+                                            {defaults.heroRole2 ? (
+                                                <>
+                                                    &nbsp;<span>/</span>&nbsp; &nbsp;
+                                                    <span className="cate-color">{tx('heroRole2')}</span>
+                                                </>
+                                            ) : null}
+                                            {defaults.heroRole3 ? (
+                                                <>
+                                                    &nbsp;<span>/</span>&nbsp; &nbsp;
+                                                    <span className="cate-color">{tx('heroRole3')}</span>
+                                                </>
+                                            ) : null}
+                                        </em>
+                                    </motion.p>
+                                    <motion.div className="about-intro" variants={staggerItem}>
+                                        {introParagraphs.map((paragraph, index) => (
+                                            <p key={index}>{paragraph}</p>
+                                        ))}
+                                    </motion.div>
                                 </motion.div>
-                                <motion.div className="services-area" variants={staggerItem}>
+                                <motion.div
+                                    className="services-area"
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={VIEWPORT_ONCE}
+                                >
                                     <h2 className="services-title">{tx('servicesTitle')}</h2>
                                     <div className="services-items">
                                         <div className="row">
@@ -122,7 +127,13 @@ const HomeCV = () => {
                                         </div>
                                     </div>
                                 </motion.div>
-                                <motion.div className="pricing-area" variants={staggerItem}>
+                                <motion.div
+                                    className="pricing-area"
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={VIEWPORT_ONCE}
+                                >
                                     <h2 className="services-title">{tx('pricingHowTitle')}</h2>
                                     <HowItWorksTimeline
                                         steps={howItWorksSteps}
@@ -135,8 +146,7 @@ const HomeCV = () => {
                                     </div>
 
                                 </motion.div>
-
-                            </motion.div>
+                            </div>
                         </div>
                     </div>
                 </div>
