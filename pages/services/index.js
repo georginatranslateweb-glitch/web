@@ -4,27 +4,14 @@ import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
 import Footer from '../../src/components/Footer';
 import MsHeroParallax from '../../src/components/common/MsHeroParallax';
-import ImagePreviewCarouselDots from '../../src/components/common/ImagePreviewCarouselDots';
 import ServicesBanner from '../../src/components/ServicesPage/ServicesBanner';
 import ServiceSection from '../../src/components/ServicesPage/ServiceSection';
-import { useClickImageCarousel } from '../../src/hooks/useClickImageCarousel';
 import { useServicesTranslation } from '../../src/i18n/servicesDefaults';
 
-const SERVICES_HERO_IMAGES = [
-    '/images/services/services-1.jpg',
-    '/images/services/services-2.jpg',
-    '/images/services/services-3.jpg',
-    '/images/services/services-4.jpg',
-    '/images/services/services-5.jpg',
-    '/images/services/services-6.jpg',
-    '/images/services/services-7.jpg',
-    '/images/services/services-8.jpg',
-    '/images/services/services-9.jpg',
-];
+const SERVICES_HERO_IMAGE = '/images/services/services-7.jpg';
 
 const Services = () => {
     const { tx } = useServicesTranslation();
-    const servicesHeroCarousel = useClickImageCarousel(SERVICES_HERO_IMAGES);
 
     const naatiWhatItIsItems = tx('naati.whatItIsItems') || [];
     const naatiHowItWorksSteps = tx('naati.howItWorksSteps') || [];
@@ -44,42 +31,8 @@ const Services = () => {
             <main className="ms-main">
                 <div className="ms-page-content">
                     <div
-                        className={
-                            servicesHeroCarousel.canAdvance
-                                ? 'services-hero-block services-hero-block--carousel'
-                                : 'services-hero-block'
-                        }
-                        style={{ '--services-hero-bg': `url(${servicesHeroCarousel.src})` }}
-                        role={servicesHeroCarousel.canAdvance ? 'button' : undefined}
-                        tabIndex={servicesHeroCarousel.canAdvance ? 0 : undefined}
-                        aria-label={
-                            servicesHeroCarousel.canAdvance
-                                ? tx('carouselAriaLabel', {
-                                    current: servicesHeroCarousel.index + 1,
-                                    total: servicesHeroCarousel.total,
-                                })
-                                : undefined
-                        }
-                        onClick={
-                            servicesHeroCarousel.canAdvance
-                                ? (event) => {
-                                    if (event.target.closest('a, button, input, textarea, select')) {
-                                        return;
-                                    }
-                                    servicesHeroCarousel.advance();
-                                }
-                                : undefined
-                        }
-                        onKeyDown={
-                            servicesHeroCarousel.canAdvance
-                                ? (event) => {
-                                    if (event.key === 'Enter' || event.key === ' ') {
-                                        event.preventDefault();
-                                        servicesHeroCarousel.advance();
-                                    }
-                                }
-                                : undefined
-                        }
+                        className="services-hero-block"
+                        style={{ '--services-hero-bg': `url(${SERVICES_HERO_IMAGE})` }}
                     >
                         <MsHeroParallax
                             className="project single services-hero"
@@ -91,13 +44,6 @@ const Services = () => {
                             description={tx('hero.description')}
                             ctaLabel={tx('hero.ctaLabel')}
                         />
-                        {servicesHeroCarousel.canAdvance ? (
-                            <ImagePreviewCarouselDots
-                                index={servicesHeroCarousel.index}
-                                total={servicesHeroCarousel.total}
-                                className="services-hero-block__dots"
-                            />
-                        ) : null}
                     </div>
 
                     <ServiceSection headingTitle={tx('common.headingService')} title={tx('naati.title')}>
