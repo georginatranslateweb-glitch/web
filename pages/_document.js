@@ -5,12 +5,10 @@ const FAVICON_VERSION = '20260522'
 
 const faviconHref = (path) => `${path}?v=${FAVICON_VERSION}`
 
-const SITE_URL = 'https://georginatranslates.com'
+const SITE_URL = 'https://www.georginatranslates.com'
 const SITE_TITLE = 'Georgina Robledo - Translation Services'
 const SITE_DESCRIPTION = 'Georgina Robledo - Professional translation services.'
-/** Subir al cambiar la imagen de previsualización (evita caché de WhatsApp/redes). */
-const SHARE_IMAGE_VERSION = '20260711c'
-const SHARE_IMAGE = `${SITE_URL}/images/logo/share-preview.png?v=${SHARE_IMAGE_VERSION}`
+const SHARE_IMAGE = `${SITE_URL}/images/logo/share-preview.png`
 
 export default function Document() {
   return (
