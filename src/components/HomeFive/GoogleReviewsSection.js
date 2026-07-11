@@ -42,7 +42,6 @@ const HomeFiveGoogleReviews = () => {
       titleLine2={tx('titleLine2')}
       readMoreLabel={tx('readMore')}
       showLessLabel={tx('showLess')}
-      retryLabel={tx('retry')}
     />
   );
 };

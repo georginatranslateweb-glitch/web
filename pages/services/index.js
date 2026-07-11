@@ -8,7 +8,9 @@ import ServicesBanner from '../../src/components/ServicesPage/ServicesBanner';
 import ServiceSection from '../../src/components/ServicesPage/ServiceSection';
 import { useServicesTranslation } from '../../src/i18n/servicesDefaults';
 
-const SERVICES_HERO_IMAGE = '/images/services/services-7.jpg';
+const SERVICES_HERO_IMAGE = '/images/services/services-7-768.webp';
+const SERVICES_HERO_IMAGE_MD = '/images/services/services-7-1200.webp';
+const SERVICES_HERO_IMAGE_LG = '/images/services/services-7.webp';
 
 const Services = () => {
     const { tx } = useServicesTranslation();
@@ -32,7 +34,11 @@ const Services = () => {
                 <div className="ms-page-content">
                     <div
                         className="services-hero-block"
-                        style={{ '--services-hero-bg': `url(${SERVICES_HERO_IMAGE})` }}
+                        style={{
+                            '--services-hero-bg': `url(${SERVICES_HERO_IMAGE})`,
+                            '--services-hero-bg-md': `url(${SERVICES_HERO_IMAGE_MD})`,
+                            '--services-hero-bg-lg': `url(${SERVICES_HERO_IMAGE_LG})`,
+                        }}
                     >
                         <MsHeroParallax
                             className="project single services-hero"

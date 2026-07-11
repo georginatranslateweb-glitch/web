@@ -2346,7 +2346,7 @@ iframe {
   --font-primary-capital-letter: 1;
   --font-weight-light: 400;
   --font-weight-bold: 700;
-  --font-primary: "Red Hat Display", system-ui, -apple-system, sans-serif;
+  --font-primary: var(--font-red-hat-display, "Red Hat Display"), system-ui, -apple-system, sans-serif;
   --font-highlight: "Apple Garamond", Georgia, "Times New Roman", serif;
   --font-heading: var(--font-highlight);
   --color-heading: #c64227;

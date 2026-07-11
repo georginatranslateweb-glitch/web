@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { staggerContainer, staggerItem, VIEWPORT_ONCE } from '../motion/variants';
+import ArrowIcon from '../icons/ArrowIcon';
 
 const ServicesBanner = ({
     title = 'Our Services',
@@ -32,7 +33,7 @@ const ServicesBanner = ({
                                 <p className="desc">{description}</p>
                                 <div className="bottom">
                                     <Link href={ctaHref} className="btn-footer">
-                                        {ctaLabel} <i className="fas fa-arrow-right"></i>
+                                        {ctaLabel} <ArrowIcon />
                                     </Link>
                                     <div className="ms-s-w services-banner__social">
                                         <a className="ms-s-i s-icon" href="mailto:hello@georginatranslates.com" aria-label="Email">

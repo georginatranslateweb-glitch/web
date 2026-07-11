@@ -22,6 +22,10 @@ export default function Document() {
         <link rel="icon" href={faviconHref('/favicon-32x32.png')} type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href={faviconHref('/apple-touch-icon.png')} />
 
+        <link rel="preload" href="/images/bg/banner-1-768.webp" as="image" type="image/webp" media="(max-width: 767px)" fetchPriority="high" />
+        <link rel="preload" href="/images/bg/banner-1-1200.webp" as="image" type="image/webp" media="(min-width: 768px) and (max-width: 1399px)" fetchPriority="high" />
+        <link rel="preload" href="/images/bg/banner-1.webp" as="image" type="image/webp" media="(min-width: 1400px)" fetchPriority="high" />
+
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={SITE_TITLE} />
         <meta property="og:title" content={SITE_TITLE} />

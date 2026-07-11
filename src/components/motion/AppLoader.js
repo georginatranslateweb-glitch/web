@@ -5,15 +5,11 @@ import { EASE_OUT } from './variants';
 
 /**
  * Full-screen brand loader shown on the first load AND on every subsequent
- * page navigation.
- *
- * The mark scales UP as it fades in (0.92 → 1) and, symmetrically, scales
- * DOWN as it fades out (1 → 0.92) so entrance and exit mirror each other.
- * A subtle float + opacity pulse keep it feeling calm. It stays for at least
- * MIN_VISIBLE_MS and honours prefers-reduced-motion.
+ * page navigation. Never waits on fonts or other async resources — only React
+ * mount + a short minimum animation window (500–800ms).
  */
-const FALLBACK_MS = 2500;
-const MIN_VISIBLE_MS = 1100;
+const FALLBACK_MS = 800;
+const MIN_VISIBLE_MS = 500;
 
 const AppLoader = ({ label = 'Loading' }) => {
   const [ready, setReady] = useState(false);
@@ -22,8 +18,6 @@ const AppLoader = ({ label = 'Loading' }) => {
   const startRef = useRef(Date.now());
   const finishedRef = useRef(false);
 
-  // Reveal the page once it has settled, keeping the loader on screen for a
-  // minimum duration so the transition never flickers.
   const finish = useCallback(() => {
     if (finishedRef.current) return;
     finishedRef.current = true;
@@ -31,26 +25,18 @@ const AppLoader = ({ label = 'Loading' }) => {
     window.setTimeout(() => setReady(true), remaining);
   }, []);
 
-  // Show the loader again for a fresh load cycle.
   const beginLoading = useCallback(() => {
     finishedRef.current = false;
     startRef.current = Date.now();
     setReady(false);
   }, []);
 
-  // First load: wait for fonts, then reveal.
   useEffect(() => {
-    const fontsReady =
-      typeof document !== 'undefined' && document.fonts
-        ? document.fonts.ready
-        : Promise.resolve();
-
-    Promise.resolve(fontsReady).then(() => requestAnimationFrame(finish));
+    requestAnimationFrame(finish);
     const fallback = window.setTimeout(finish, FALLBACK_MS);
     return () => window.clearTimeout(fallback);
   }, [finish]);
 
-  // Every navigation: show the loader on start, hide once the route is ready.
   useEffect(() => {
     const events = router?.events;
     if (!events) return undefined;
@@ -98,14 +84,14 @@ const AppLoader = ({ label = 'Loading' }) => {
           aria-live="polite"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: EASE_OUT }}
+          transition={{ duration: 0.45, ease: EASE_OUT }}
         >
           <motion.div
             className="app-loader__mark"
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.06, transition: { duration: 1, ease: EASE_OUT } }}
-            transition={{ duration: 1.1, ease: EASE_OUT }}
+            exit={{ opacity: 0, scale: 1.06, transition: { duration: 0.45, ease: EASE_OUT } }}
+            transition={{ duration: 0.5, ease: EASE_OUT }}
           >
             <motion.div
               className="app-loader__float"

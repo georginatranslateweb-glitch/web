@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useAboutTranslation } from '../../i18n/aboutDefaults';
 import { buildHowItWorksSteps } from './howItWorksSteps';
 import { fadeUp, staggerContainer, staggerItem, VIEWPORT_ONCE } from '../motion/variants';
+import ArrowIcon from '../icons/ArrowIcon';
 
 const HowItWorksTimeline = dynamic(() => import('./HowItWorksTimeline'), {
     ssr: false,
@@ -129,7 +130,7 @@ const HomeCV = () => {
                                     />
                                     <div className="how-it-works-timeline__cta">
                                         <Link href="/contact" className="btn-footer">
-                                            {defaults.getQuoteCta} <i className="fas fa-arrow-right"></i>
+                                            {defaults.getQuoteCta} <ArrowIcon />
                                         </Link>
                                     </div>
 

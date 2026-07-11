@@ -4,42 +4,49 @@ import { MotionConfig } from 'framer-motion';
 
 import i18n from '../src/i18n';
 import AppLoader from '../src/components/motion/AppLoader';
-
-import SwiperCore, { Navigation, Pagination, Parallax } from 'swiper';
-
-import HomeFive from '../src/components/HomeFive';
-import About from '../pages/about';
-import Service from './services';
-import Contact from '../pages/contact';
-import ErrorPage from '../pages/404';
+import { redHatDisplay } from '../src/lib/fonts';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery/dist/jquery.min.js';
 
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
-import 'swiper/scss/scrollbar';
-import 'swiper/scss/parallax';
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import '../assets/css/socicon.css';
+import '../assets/css/fonts-custom.css';
+import '../assets/css/style.css';
+import '../assets/css/language-switcher.css';
+import '../assets/css/mobile-header-drawer.css';
+import '../assets/css/tailwind.css';
+import '../assets/css/premium-motion.css';
+import '../assets/css/home-5-hero.css';
 
-import "../assets/css/socicon.css";
-import "../assets/css/fonts-custom.css";
-import "../assets/css/style.css";
-import "../assets/css/home-5-hero.css";
-import "../assets/css/language-switcher.css";
-import "../assets/css/mobile-header-drawer.css";
-import "../assets/css/tailwind.css";
-import "../assets/css/how-it-works-timeline.css";
-import "jarallax/dist/jarallax.min.css";
-import "../assets/css/project-single-hero.css";
-import "../assets/css/services-banner.css";
-import "../assets/css/google-reviews.css";
-import "../assets/css/secondary-pages-chrome.css";
-import "../assets/css/premium-motion.css";
+const loadedRouteStyles = new Set();
 
+function loadRouteStyles(pathname) {
+  if (loadedRouteStyles.has(pathname)) return;
+  loadedRouteStyles.add(pathname);
 
-SwiperCore.use([Navigation, Pagination, Parallax]);
+  switch (pathname) {
+    case '/':
+      void import('../assets/css/google-reviews.css');
+      void import('swiper/scss');
+      void import('swiper/scss/navigation');
+      void import('swiper/scss/pagination');
+      break;
+    case '/services':
+      void import('../assets/css/project-single-hero.css');
+      void import('../assets/css/services-banner.css');
+      void import('../assets/css/secondary-pages-chrome.css');
+      void import('jarallax/dist/jarallax.min.css');
+      break;
+    case '/about':
+      void import('../assets/css/secondary-pages-chrome.css');
+      void import('../assets/css/how-it-works-timeline.css');
+      break;
+    case '/contact':
+      void import('../assets/css/secondary-pages-chrome.css');
+      break;
+    default:
+      break;
+  }
+}
 
 function I18nPersistedLanguage() {
   useEffect(() => {
@@ -69,35 +76,26 @@ function HtmlLangSync() {
   return null;
 }
 
-function Layout() {
+function RouteStyles() {
   const router = useRouter();
 
-  if (router.pathname === '/') {
-    return <HomeFive />;
-  }
-  if (router.pathname === '/about') {
-    return <About />;
-  }
-  if (router.pathname === '/services') {
-    return <Service />;
-  }
-  if (router.pathname === '/contact') {
-    return <Contact />;
-  }
-  if (router.pathname === '/404') {
-    return <ErrorPage />;
-  }
+  useEffect(() => {
+    loadRouteStyles(router.pathname);
+  }, [router.pathname]);
 
-  return <ErrorPage />;
+  return null;
 }
 
-export default function App() {
+export default function App({ Component, pageProps }) {
   return (
-    <MotionConfig reducedMotion="user">
-      <I18nPersistedLanguage />
-      <HtmlLangSync />
-      <AppLoader label="Loading Georgina Robledo Translation Services" />
-      <Layout />
-    </MotionConfig>
+    <div className={`${redHatDisplay.className} ${redHatDisplay.variable}`}>
+      <MotionConfig reducedMotion="user">
+        <I18nPersistedLanguage />
+        <HtmlLangSync />
+        <RouteStyles />
+        <AppLoader label="Loading Georgina Robledo Translation Services" />
+        <Component {...pageProps} />
+      </MotionConfig>
+    </div>
   );
 }

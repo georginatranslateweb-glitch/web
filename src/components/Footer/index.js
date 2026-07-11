@@ -7,6 +7,7 @@ import { EASE_OUT, fadeUp, staggerContainer, staggerItem, VIEWPORT_ONCE } from '
 import '../../i18n';
 import { useHydrationSafeTranslation, SSR_I18N_LANG } from '../../i18n/useHydrationSafeTranslation';
 import { footerDefaults, resolveFooterDefault } from '../../i18n/footerDefaults';
+import ArrowIcon from '../icons/ArrowIcon';
 
 const Footer = (props) => {
     const { footerClass } = props;
@@ -65,7 +66,7 @@ const Footer = (props) => {
                             <span className="font-highlight" suppressHydrationWarning>{tx('ctaHighlight')}</span>{' '}
                             <Link href="/contact" className="btn-footer">
                                 <span suppressHydrationWarning>{tx('ctaButton')}</span>{' '}
-                                <i className="fas fa-arrow-right"></i>
+                                <ArrowIcon />
                             </Link>
                         </h1>
                     </motion.div>

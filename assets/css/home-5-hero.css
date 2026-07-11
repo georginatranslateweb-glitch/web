@@ -57,12 +57,23 @@
   overflow: hidden;
   isolation: isolate;
   background-color: var(--color-bg);
-  background-image: var(--home-five-hero-bg,
-      url(/images/bg/banner-1.jpg));
+  background-image: var(--home-five-hero-bg, url(/images/bg/banner-1-768.webp));
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: scroll;
+}
+
+@media (min-width: 768px) {
+  .ms-main .ms-page-content .home-five-hero .home-five-bg-slot {
+    background-image: var(--home-five-hero-bg, url(/images/bg/banner-1-1200.webp));
+  }
+}
+
+@media (min-width: 1400px) {
+  .ms-main .ms-page-content .home-five-hero .home-five-bg-slot {
+    background-image: var(--home-five-hero-bg, url(/images/bg/banner-1.webp));
+  }
 }
 
 /* Desktop: foto pegada al top del viewport; respiro solo en la columna del título */

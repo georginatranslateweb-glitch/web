@@ -1,4 +1,5 @@
 import React from 'react';
+import StarIcon from '../icons/StarIcon';
 
 const StarRating = ({ rating = 0, maxStars = 5, className = '' }) => {
   const safeRating = Math.max(0, Math.min(maxStars, Number(rating) || 0));
@@ -15,7 +16,7 @@ const StarRating = ({ rating = 0, maxStars = 5, className = '' }) => {
 
         return (
           <span key={starNumber} className={isFilled ? 'google-reviews__star google-reviews__star--filled' : 'google-reviews__star'}>
-            <i className={isFilled ? 'fas fa-star' : 'fal fa-star'} aria-hidden="true" />
+            <StarIcon filled={isFilled} />
           </span>
         );
       })}

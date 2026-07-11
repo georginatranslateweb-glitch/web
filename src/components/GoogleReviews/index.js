@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import fallbackData from '../../../data/google-reviews-fallback.json';
 import { filterAndSortReviews } from '../../../lib/google-reviews/normalize';
 import GoogleReviewsCarousel from './GoogleReviewsCarousel';
-import GoogleReviewsSkeleton from './GoogleReviewsSkeleton';
 import { fadeUp, staggerContainer, staggerItem, VIEWPORT_ONCE } from '../motion/variants';
 
 const DEFAULT_AUTO_REFRESH = 5 * 60 * 1000;
 const DEFAULT_MAX_REVIEWS = 9;
+const RETRY_DELAY_MS = 30 * 1000;
 
 const GoogleReviews = ({
   maxReviews = DEFAULT_MAX_REVIEWS,
@@ -22,32 +22,20 @@ const GoogleReviews = ({
   titleLine2 = 'Clients About Us',
   readMoreLabel = 'Read more',
   showLessLabel = 'Show less',
-  retryLabel = 'Try again',
   language = 'en',
-  useFallbackOnError = false,
 }) => {
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const getFallbackReviews = useCallback(
+    () => filterAndSortReviews(fallbackData.reviews, { showOnlyHighRated, maxReviews }),
+    [maxReviews, showOnlyHighRated],
+  );
 
-  const applyFallback = useCallback(() => {
-    const filtered = filterAndSortReviews(fallbackData.reviews, {
-      showOnlyHighRated,
-      maxReviews,
-    });
-    setReviews(filtered);
-  }, [maxReviews, showOnlyHighRated]);
+  const [reviews, setReviews] = useState(() => getFallbackReviews());
+  const retryTimerRef = useRef(null);
 
   const fetchReviews = useCallback(async () => {
     if (Array.isArray(manualReviews) && manualReviews.length > 0) {
-      const filtered = filterAndSortReviews(manualReviews, {
-        showOnlyHighRated,
-        maxReviews,
-      });
-      setReviews(filtered);
-      setError(null);
-      setLoading(false);
-      return;
+      setReviews(filterAndSortReviews(manualReviews, { showOnlyHighRated, maxReviews }));
+      return true;
     }
 
     try {
@@ -61,111 +49,109 @@ const GoogleReviews = ({
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        if (useFallbackOnError) {
-          applyFallback();
-          setError(data.message || null);
-        } else {
-          setReviews([]);
-          setError(data.message || 'Unable to load reviews.');
-        }
-        return;
+        setReviews(getFallbackReviews());
+        return false;
       }
 
-      setReviews(data.reviews || []);
-      setError(null);
-    } catch (err) {
-      if (useFallbackOnError) {
-        applyFallback();
-        setError(err.message || null);
+      const nextReviews = data.reviews || [];
+      if (nextReviews.length > 0) {
+        setReviews(nextReviews);
       } else {
-        setReviews([]);
-        setError(err.message || 'Unable to load reviews.');
+        setReviews(getFallbackReviews());
       }
-    } finally {
-      setLoading(false);
+      return true;
+    } catch {
+      setReviews(getFallbackReviews());
+      return false;
     }
-  }, [
-    applyFallback,
-    language,
-    manualReviews,
-    maxReviews,
-    showOnlyHighRated,
-    useFallbackOnError,
-  ]);
+  }, [getFallbackReviews, language, manualReviews, maxReviews, showOnlyHighRated]);
+
+  const scheduleSilentRetry = useCallback(() => {
+    if (retryTimerRef.current) return;
+    retryTimerRef.current = window.setTimeout(async () => {
+      retryTimerRef.current = null;
+      const ok = await fetchReviews();
+      if (!ok) {
+        scheduleSilentRetry();
+      }
+    }, RETRY_DELAY_MS);
+  }, [fetchReviews]);
 
   useEffect(() => {
-    setLoading(true);
-    fetchReviews();
-  }, [fetchReviews]);
+    let cancelled = false;
+
+    (async () => {
+      const ok = await fetchReviews();
+      if (!cancelled && !ok) {
+        scheduleSilentRetry();
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      if (retryTimerRef.current) {
+        window.clearTimeout(retryTimerRef.current);
+        retryTimerRef.current = null;
+      }
+    };
+  }, [fetchReviews, scheduleSilentRetry]);
 
   useEffect(() => {
     if (!autoRefresh || autoRefresh <= 0 || (manualReviews && manualReviews.length > 0)) {
       return undefined;
     }
 
-    const intervalId = setInterval(fetchReviews, autoRefresh);
-    return () => clearInterval(intervalId);
-  }, [autoRefresh, fetchReviews, manualReviews]);
+    const intervalId = setInterval(async () => {
+      const ok = await fetchReviews();
+      if (!ok) {
+        scheduleSilentRetry();
+      }
+    }, autoRefresh);
 
-  const skeletonCount = 3;
+    return () => clearInterval(intervalId);
+  }, [autoRefresh, fetchReviews, manualReviews, scheduleSilentRetry]);
+
+  const visibleReviews = useMemo(
+    () => (reviews.length > 0 ? reviews : getFallbackReviews()),
+    [getFallbackReviews, reviews],
+  );
 
   return (
-    <>
-      <div className={`testimonial-area google-reviews${className ? ` ${className}` : ''}`}>
-        <div className="container">
-          <motion.div
-            variants={staggerContainer(0.14)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={VIEWPORT_ONCE}
-          >
-            <motion.p className="google-reviews__label" variants={staggerItem} suppressHydrationWarning>{subTitle}</motion.p>
-            <motion.h2 className="google-reviews__title heading-title home-five-banner-editorial__title" variants={staggerItem} suppressHydrationWarning>
-              {titleLine1}
-              {titleLine2 ? (
-                <>
-                  <br />
-                  {titleLine2}
-                </>
-              ) : null}
-            </motion.h2>
-          </motion.div>
+    <div className={`testimonial-area google-reviews${className ? ` ${className}` : ''}`}>
+      <div className="container">
+        <motion.div
+          variants={staggerContainer(0.14)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          <motion.p className="google-reviews__label" variants={staggerItem} suppressHydrationWarning>{subTitle}</motion.p>
+          <motion.h2 className="google-reviews__title heading-title home-five-banner-editorial__title" variants={staggerItem} suppressHydrationWarning>
+            {titleLine1}
+            {titleLine2 ? (
+              <>
+                <br />
+                {titleLine2}
+              </>
+            ) : null}
+          </motion.h2>
+        </motion.div>
 
-          {loading && <GoogleReviewsSkeleton count={skeletonCount} />}
-
-          {!loading && error && reviews.length === 0 && (
-            <div className="testimonial-item">
-              <div className="row">
-                <div className="col-12">
-                  <div className="testimonial-wraper google-reviews__error" role="alert">
-                    <p className="content">{error}</p>
-                    <button type="button" className="google-reviews__expand-btn" onClick={fetchReviews}>
-                      {retryLabel}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {!loading && reviews.length > 0 && (
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={VIEWPORT_ONCE}
-            >
-              <GoogleReviewsCarousel
-                reviews={reviews}
-                privacyMode={privacyMode}
-                readMoreLabel={readMoreLabel}
-                showLessLabel={showLessLabel}
-              />
-            </motion.div>
-          )}
-        </div>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          <GoogleReviewsCarousel
+            reviews={visibleReviews}
+            privacyMode={privacyMode}
+            readMoreLabel={readMoreLabel}
+            showLessLabel={showLessLabel}
+          />
+        </motion.div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -220,9 +220,21 @@ body.page-services .main-header .main-header__layout::after {
 }
 
 .ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single .jarallax-img {
-  background-image: var(--services-hero-bg, url(/images/services/services-1.jpg)) !important;
+  background-image: var(--services-hero-bg, url(/images/services/services-7-768.webp)) !important;
   background-size: cover;
   background-position: center;
+}
+
+@media (min-width: 768px) {
+  .ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single .jarallax-img {
+    background-image: var(--services-hero-bg-md, var(--services-hero-bg, url(/images/services/services-7-1200.webp))) !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single .jarallax-img {
+    background-image: var(--services-hero-bg-lg, var(--services-hero-bg-md, url(/images/services/services-7.webp))) !important;
+  }
 }
 
 /* Mismo beige del sitio (--color-bg), semitransparente */

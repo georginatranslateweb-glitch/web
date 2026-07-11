@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
-
 /**
- * Red Hat Display — cuerpo (ver --font-primary en style.css).
+ * Red Hat Display — loaded via next/font in _app.js (--font-red-hat-display).
+ * Cuerpo: ver --font-primary en style.css.
  *
  * Apple Garamond — titulares (h1–h6, --font-heading), resaltados (em, strong, mark, .font-highlight).
  * Los archivos “Italic” del diseño se declaran como estilo normal donde aplica.

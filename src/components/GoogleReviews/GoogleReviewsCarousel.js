@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 
 import ReviewCard from './ReviewCard';
+import ArrowIcon from '../icons/ArrowIcon';
 
 const CAROUSEL_SPEED_MS = 600;
 
@@ -63,14 +64,14 @@ const GoogleReviewsCarousel = ({
           className="ms-rb-btn-prev google-reviews__btn-prev"
           aria-label="Previous reviews"
         >
-          <i className="fal fa-arrow-left" aria-hidden="true" />
+          <ArrowIcon direction="left" />
         </button>
         <button
           type="button"
           className="ms-rb-btn-next google-reviews__btn-next"
           aria-label="Next reviews"
         >
-          <i className="fal fa-arrow-right" aria-hidden="true" />
+          <ArrowIcon direction="right" />
         </button>
       </div>
 
