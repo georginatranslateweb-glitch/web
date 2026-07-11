@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, VIEWPORT_ONCE } from '../motion/variants';
 
 const ServiceSection = ({ headingTitle, title, children }) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className={`team-rules-area service-accordion${open ? ' is-open' : ''}`}>
+        <motion.div
+            className={`team-rules-area service-accordion${open ? ' is-open' : ''}`}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_ONCE}
+        >
             <div className="container">
                 <div className="team-rules-area-inner">
                     <div className="border-line"></div>
@@ -41,7 +49,7 @@ const ServiceSection = ({ headingTitle, title, children }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

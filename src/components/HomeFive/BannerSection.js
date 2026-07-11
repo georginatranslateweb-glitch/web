@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
+import { imageReveal, staggerContainer, staggerItem } from '../motion/variants';
 import LanguageSwitcher from '../LanguageSwitcher';
 import enHome from '../../locales/en/home.json';
 import esHome from '../../locales/es/home.json';
@@ -230,7 +232,7 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                         width={1286}
                         height={4169}
                         alt=""
-                            sizes="(min-width: 1400px) 92px, (min-width: 992px) 7vw, 0px"
+                        sizes="(min-width: 1400px) 92px, (min-width: 992px) 7vw, 0px"
                         unoptimized
                     />
                 </button>
@@ -242,11 +244,17 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
         <>
             <div ref={bannerAreaRef} className="banner-area home-five-banner-editorial">
                 <div className="container">
-                    <div className="banner-inner">
+                    <motion.div
+                        className="banner-inner"
+                        variants={staggerContainer(0.14)}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
                         <div className="row justify-content-center align-items-stretch gx-0 gy-4 gy-lg-0 home-five-banner-hero-row">
                             <div className="col-12 col-lg-6">
                                 <div className="left-side-content">
-                                    <h2 className="heading-title home-five-banner-editorial__title">
+                                    <motion.h2 className="heading-title home-five-banner-editorial__title" variants={staggerItem}>
                                         {titleLine1}
                                         {titleLine2 ? (
                                             <>
@@ -255,14 +263,15 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                                 {titleLine2}
                                             </>
                                         ) : null}
-                                    </h2>
+                                    </motion.h2>
                                 </div>
                             </div>
                             <div className="col-lg-6 d-none d-lg-block">
                                 <div className="home-five-hero-image-column">
-                                    <div
+                                    <motion.div
                                         ref={heroImageSlotRef}
                                         className="right-side-content home-five-bg-slot"
+                                        variants={imageReveal}
                                     />
                                 </div>
                             </div>
@@ -272,7 +281,7 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                             <div className="col-12 home-five-editorial-grid-col">
                                 <div className="home-five-editorial-grid">
                                     <div className="row home-five-editorial-split g-0 gx-lg-0 gy-3 gy-lg-0 align-items-start">
-                                        <div className="col-12 col-lg-6 home-five-editorial-split__group">
+                                        <motion.div className="col-12 col-lg-6 home-five-editorial-split__group" variants={staggerItem}>
                                             <div className="home-five-editorial-split__pair">
                                                 <div className="home-five-editorial-split__cell home-five-editorial-split__cell--label">
                                                     <div className="home-five-editorial-grid__item">
@@ -285,9 +294,9 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </motion.div>
 
-                                        <div className="col-12 col-lg-6 home-five-editorial-split__group">
+                                        <motion.div className="col-12 col-lg-6 home-five-editorial-split__group" variants={staggerItem}>
                                             <div className="home-five-editorial-split__pair">
                                                 <div className="home-five-editorial-split__cell home-five-editorial-split__cell--label">
                                                     <div className="home-five-editorial-grid__item">
@@ -300,12 +309,12 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             {verticalBrandPortalReady && typeof document !== 'undefined'

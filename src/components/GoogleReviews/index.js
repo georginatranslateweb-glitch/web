@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 import fallbackData from '../../../data/google-reviews-fallback.json';
 import { filterAndSortReviews } from '../../../lib/google-reviews/normalize';
 import GoogleReviewsCarousel from './GoogleReviewsCarousel';
 import GoogleReviewsSkeleton from './GoogleReviewsSkeleton';
+import { fadeUp, staggerContainer, staggerItem, VIEWPORT_ONCE } from '../motion/variants';
 
 const DEFAULT_AUTO_REFRESH = 5 * 60 * 1000;
 const DEFAULT_MAX_REVIEWS = 9;
@@ -111,16 +113,23 @@ const GoogleReviews = ({
     <>
       <div className={`testimonial-area google-reviews${className ? ` ${className}` : ''}`}>
         <div className="container">
-          <p className="google-reviews__label" suppressHydrationWarning>{subTitle}</p>
-          <h2 className="google-reviews__title heading-title home-five-banner-editorial__title" suppressHydrationWarning>
-            {titleLine1}
-            {titleLine2 ? (
-              <>
-                <br />
-                {titleLine2}
-              </>
-            ) : null}
-          </h2>
+          <motion.div
+            variants={staggerContainer(0.14)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_ONCE}
+          >
+            <motion.p className="google-reviews__label" variants={staggerItem} suppressHydrationWarning>{subTitle}</motion.p>
+            <motion.h2 className="google-reviews__title heading-title home-five-banner-editorial__title" variants={staggerItem} suppressHydrationWarning>
+              {titleLine1}
+              {titleLine2 ? (
+                <>
+                  <br />
+                  {titleLine2}
+                </>
+              ) : null}
+            </motion.h2>
+          </motion.div>
 
           {loading && <GoogleReviewsSkeleton count={skeletonCount} />}
 
@@ -140,12 +149,19 @@ const GoogleReviews = ({
           )}
 
           {!loading && reviews.length > 0 && (
-            <GoogleReviewsCarousel
-              reviews={reviews}
-              privacyMode={privacyMode}
-              readMoreLabel={readMoreLabel}
-              showLessLabel={showLessLabel}
-            />
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT_ONCE}
+            >
+              <GoogleReviewsCarousel
+                reviews={reviews}
+                privacyMode={privacyMode}
+                readMoreLabel={readMoreLabel}
+                showLessLabel={showLessLabel}
+              />
+            </motion.div>
           )}
         </div>
       </div>

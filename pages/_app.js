@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { MotionConfig } from 'framer-motion';
 
 import i18n from '../src/i18n';
+import AppLoader from '../src/components/motion/AppLoader';
 
 import SwiperCore, { Navigation, Pagination, Parallax } from 'swiper';
 
@@ -34,6 +36,7 @@ import "../assets/css/project-single-hero.css";
 import "../assets/css/services-banner.css";
 import "../assets/css/google-reviews.css";
 import "../assets/css/secondary-pages-chrome.css";
+import "../assets/css/premium-motion.css";
 
 
 SwiperCore.use([Navigation, Pagination, Parallax]);
@@ -90,10 +93,11 @@ function Layout() {
 
 export default function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <I18nPersistedLanguage />
       <HtmlLangSync />
+      <AppLoader label="Loading Georgina Robledo Translation Services" />
       <Layout />
-    </>
+    </MotionConfig>
   );
 }

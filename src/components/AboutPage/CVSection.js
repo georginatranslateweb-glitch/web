@@ -2,8 +2,10 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useAboutTranslation } from '../../i18n/aboutDefaults';
 import { buildHowItWorksSteps } from './howItWorksSteps';
+import { fadeUp, staggerContainer, staggerItem, VIEWPORT_ONCE } from '../motion/variants';
 
 const HowItWorksTimeline = dynamic(() => import('./HowItWorksTimeline'), {
     ssr: false,
@@ -33,7 +35,13 @@ const HomeCV = () => {
                 <div className="personal-cv-area">
                     <div className="row">
                         <div className="col-lg-5">
-                            <div className="image-left-side">
+                            <motion.div
+                                className="image-left-side"
+                                variants={fadeUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={VIEWPORT_ONCE}
+                            >
                                 <Image
                                     className="about-hero-image"
                                     src="/images/about/about-georgina.webp"
@@ -44,12 +52,18 @@ const HomeCV = () => {
                                     unoptimized
                                     sizes="(min-width: 992px) 42vw, 100vw"
                                 />
-                            </div>
+                            </motion.div>
                         </div>
                         <div className="col-lg-7">
-                            <div className="right-side-content">
-                                <h1 className="heading-title">{tx('heroName')}</h1>
-                                <p>
+                            <motion.div
+                                className="right-side-content"
+                                variants={staggerContainer(0.1)}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={VIEWPORT_ONCE}
+                            >
+                                <motion.h1 className="heading-title" variants={staggerItem}>{tx('heroName')}</motion.h1>
+                                <motion.p variants={staggerItem}>
 
                                     <em>
                                         <span className="cate-color">{tx('heroYears')}&nbsp;</span>
@@ -70,13 +84,13 @@ const HomeCV = () => {
                                             </>
                                         ) : null}
                                     </em>
-                                </p>
-                                <div className="about-intro">
+                                </motion.p>
+                                <motion.div className="about-intro" variants={staggerItem}>
                                     {introParagraphs.map((paragraph, index) => (
                                         <p key={index}>{paragraph}</p>
                                     ))}
-                                </div>
-                                <div className="services-area">
+                                </motion.div>
+                                <motion.div className="services-area" variants={staggerItem}>
                                     <h2 className="services-title">{tx('servicesTitle')}</h2>
                                     <div className="services-items">
                                         <div className="row">
@@ -106,8 +120,8 @@ const HomeCV = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="pricing-area">
+                                </motion.div>
+                                <motion.div className="pricing-area" variants={staggerItem}>
                                     <h2 className="services-title">{tx('pricingHowTitle')}</h2>
                                     <HowItWorksTimeline
                                         steps={howItWorksSteps}
@@ -119,9 +133,9 @@ const HomeCV = () => {
                                         </Link>
                                     </div>
 
-                                </div>
+                                </motion.div>
 
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>

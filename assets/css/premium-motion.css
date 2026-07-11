@@ -1,0 +1,51 @@
+/* =========================================================================
+   Premium motion layer: brand loader + smooth scrolling.
+   Additive only — no layout, colour identity or spacing is changed.
+   ========================================================================= */
+
+:root {
+  --ms-brand: #c64227;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* App loader ------------------------------------------------------------- */
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ms-brand);
+  -webkit-tap-highlight-color: transparent;
+  will-change: opacity;
+}
+
+.app-loader__float {
+  will-change: transform, opacity;
+}
+
+.app-loader__logo {
+  display: block;
+  width: clamp(120px, 30vw, 220px);
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.app-loader__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,7 +1,9 @@
 
 import React, { useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import ScrollToTop from '../ScrollTop';
+import { EASE_OUT, fadeUp, staggerContainer, staggerItem, VIEWPORT_ONCE } from '../motion/variants';
 import '../../i18n';
 import { useHydrationSafeTranslation, SSR_I18N_LANG } from '../../i18n/useHydrationSafeTranslation';
 import { footerDefaults, resolveFooterDefault } from '../../i18n/footerDefaults';
@@ -37,16 +39,28 @@ const Footer = (props) => {
     return (
         <>
             <footer className={footerClass ? footerClass : 'ms-footer ms-footer--template'}>
-                <div className="footer-logo-watermark" aria-hidden="true">
+                <motion.div
+                    className="footer-logo-watermark"
+                    aria-hidden="true"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.9, ease: EASE_OUT }}
+                >
                     <div className="footer-logo-watermark__pivot">
                         <img
                             src="/images/logo/logo-red-footer.png"
                             alt=""
                         />
                     </div>
-                </div>
+                </motion.div>
                 <section className="container footer-container" data-parallax="on">
-                    <div className="footer-title text-center">
+                    <motion.div
+                        className="footer-title text-center"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={VIEWPORT_ONCE}
+                    >
                         <h1>
                             <span className="font-highlight" suppressHydrationWarning>{tx('ctaHighlight')}</span>{' '}
                             <Link href="/contact" className="btn-footer">
@@ -54,10 +68,16 @@ const Footer = (props) => {
                                 <i className="fas fa-arrow-right"></i>
                             </Link>
                         </h1>
-                    </div>
+                    </motion.div>
                     <div className="social-area">
-                        <div className="row area-inner">
-                            <div className="col-lg-3 col-md-6 col-sm-2 col-2">
+                        <motion.div
+                            className="row area-inner"
+                            variants={staggerContainer(0.1)}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={VIEWPORT_ONCE}
+                        >
+                            <motion.div className="col-lg-3 col-md-6 col-sm-2 col-2" variants={staggerItem}>
                                 <div className="social-wrapper">
                                     <div className="content">
                                         <h3 className="platform">Email</h3>
@@ -67,8 +87,8 @@ const Footer = (props) => {
                                         <a href="mailto:hello@georginatranslates.com" className="icon" aria-label="Email"><i className="socicon-mail"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6 col-sm-2 col-2">
+                            </motion.div>
+                            <motion.div className="col-lg-3 col-md-6 col-sm-2 col-2" variants={staggerItem}>
                                 <div className="social-wrapper">
                                     <div className="content">
                                         <h3 className="platform">WhatsApp</h3>
@@ -78,8 +98,8 @@ const Footer = (props) => {
                                         <a href="https://wa.me/61423915231" className="icon" aria-label="WhatsApp"><i className="socicon-whatsapp"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6 col-sm-2 col-2">
+                            </motion.div>
+                            <motion.div className="col-lg-3 col-md-6 col-sm-2 col-2" variants={staggerItem}>
                                 <div className="social-wrapper">
                                     <div className="content">
                                         <h3 className="platform">Instagram</h3>
@@ -89,8 +109,8 @@ const Footer = (props) => {
                                         <a href="https://www.instagram.com/georginatranslates" className="icon" aria-label="Instagram"><i className="socicon-instagram"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6 col-sm-2 col-2">
+                            </motion.div>
+                            <motion.div className="col-lg-3 col-md-6 col-sm-2 col-2" variants={staggerItem}>
                                 <div className="social-wrapper">
                                     <div className="content">
                                         <h3 className="platform">LinkedIn</h3>
@@ -100,10 +120,16 @@ const Footer = (props) => {
                                         <a href="https://www.linkedin.com/in/georgina-robledo/" className="icon" aria-label="LinkedIn"><i className="socicon-linkedin"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
                     </div>
-                    <div className="copyright-area">
+                    <motion.div
+                        className="copyright-area"
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={VIEWPORT_ONCE}
+                    >
                         <div className="left-side">
 
                         </div>
@@ -116,7 +142,7 @@ const Footer = (props) => {
                                 {tx('copyrightStudio')}
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
                 </section>
             </footer >
             <ScrollToTop />

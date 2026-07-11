@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { staggerContainer, staggerItem, VIEWPORT_ONCE } from '../motion/variants';
 
 const ServicesBanner = ({
     title = 'Our Services',
@@ -10,17 +12,23 @@ const ServicesBanner = ({
     return (
         <div className="banner-area services-banner">
             <div className="container">
-                <div className="banner-inner">
+                <motion.div
+                    className="banner-inner"
+                    variants={staggerContainer(0.12)}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={VIEWPORT_ONCE}
+                >
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
-                            <div className="left-side-content">
+                            <motion.div className="left-side-content" variants={staggerItem}>
                                 <h2 className="heading-title" style={{ textTransform: 'none' }}>
                                     {title}
                                 </h2>
-                            </div>
+                            </motion.div>
                         </div>
                         <div className="col-lg-6">
-                            <div className="right-side-content">
+                            <motion.div className="right-side-content" variants={staggerItem}>
                                 <p className="desc">{description}</p>
                                 <div className="bottom">
                                     <Link href={ctaHref} className="btn-footer">
@@ -41,10 +49,10 @@ const ServicesBanner = ({
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
     );
