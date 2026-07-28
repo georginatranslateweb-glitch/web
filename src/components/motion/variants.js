@@ -26,11 +26,28 @@ export const TRAVEL = 26;
 export const REVEAL_DELAY = 0.35;
 
 /**
- * Viewport config for scroll reveals: only once, and only after a good chunk
- * of the element is on screen. Combined with REVEAL_DELAY the animation
- * clearly plays while the visitor is looking at the element.
+ * Viewport config for scroll reveals: only once, triggered as soon as the
+ * element crosses into the viewport.
+ *
+ * IMPORTANT: this must be height-independent. A fractional `amount` (e.g. 0.3)
+ * maps to an IntersectionObserver threshold that requires that fraction of the
+ * element to be visible *at the same time*. For any section taller than the
+ * viewport the maximum visible fraction is viewportHeight / elementHeight, so a
+ * 0.3 threshold is only satisfiable within a narrow band of scroll positions —
+ * and impossible once the element is taller than ~3.3× the viewport. When the
+ * observer's first sample lands outside that band the reveal never fires and the
+ * section stays stuck at opacity:0 until something re-samples it (a refresh or a
+ * differently-timed scroll). That is the "only shows after refresh" bug.
+ *
+ * A negative bottom `margin` is not a safe alternative either: it permanently
+ * excludes the bottom of the viewport, so elements pinned there (e.g. the fixed
+ * footer's copyright row) would never trigger.
+ *
+ * `amount: 'some'` reveals as soon as ANY part of the element enters the
+ * viewport. It is height-independent and has no excluded zone, so every section
+ * reveals reliably on the first visit regardless of its height or position.
  */
-export const VIEWPORT_ONCE = { once: true, amount: 0.3 };
+export const VIEWPORT_ONCE = { once: true, amount: 'some' };
 
 export const fadeIn = {
   hidden: { opacity: 0 },
