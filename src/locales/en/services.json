@@ -2,22 +2,25 @@
   "hero": {
     "title": "My Services",
     "description": "From certified translations to localisation and proofreading, I help individuals and brands communicate clearly and confidently across English and Spanish.",
-    "ctaLabel": "Need a Translation"
+    "ctaLabel": "Need a translation?"
   },
   "carouselAriaLabel": "Banner {{current}} of {{total}}. Click for next image.",
   "common": {
     "serviceDesc": "Translation Service",
-    "headingService": "Service",
-    "headingOurServices": "Our Services",
-    "whatItIs": "What it is",
-    "whoIsItFor": "Who is it for",
+    "headingService": "Service No.1",
+    "headingService1": "Service No. 1",
+    "headingService2": "Service No. 2",
+    "headingService3": "Service No. 3",
+    "headingOurServices": "My services",
+    "whatItIs": "What it is:",
+    "whoIsItFor": "Who it is for",
     "whyItMatters": "Why it matters",
     "howItWorks": "How it works",
     "whatIDo": "What I do"
   },
   "naati": {
     "title": "NAATI Certified Translations",
-    "whatItIsTitle": "What is it?",
+    "whatItIsTitle": "What it is:",
     "whatItIsParagraph": "Professional certified Spanish to English translations for migration, legal, academic, and official purposes across Australia.",
     "whatItIsItems": [
       {
@@ -37,12 +40,12 @@
         "text": "contracts, payslips, employment contracts, and other official paperwork."
       }
     ],
-    "whoIsItForTitle": "Who is it for?",
+    "whoIsItForTitle": "Who it is for:",
     "whoIsItForParagraph": "Migrants and visa applicants, international students, skilled professionals seeking qualification recognition, and anyone who needs an official Spanish document accepted by an Australian authority, institution, entity or employer.",
-    "whyItMattersTitle": "Why it matters",
+    "whyItMattersTitle": "Why it matters:",
     "whyItMattersParagraph1": "NAATI (National Accreditation Authority for Translators and Interpreters) is Australia's national certification body for language professionals. NAATI-certified translations are widely recognised and accepted by the Department of Home Affairs, universities, professional bodies, government agencies, employers, and other organisations across Australia.",
     "whyItMattersParagraph2": "Whether you are applying for a visa, enrolling in studies, registering a qualification, or completing an official process, a certified translation helps ensure your documents meet Australian requirements and that your information is communicated accurately, clearly, and professionally.",
-    "howItWorksTitle": "How it works",
+    "howItWorksTitle": "How it works:",
     "howItWorksSteps": [
       "Complete the form and send your documents",
       "Tell me about your project",
@@ -53,25 +56,25 @@
   },
   "localisation": {
     "title": "Localisation",
-    "whatItIsTitle": "What is it?",
-    "whatItIsParagraph": "Localisation means adapting your message to your audience's context. I adjust your content so it is not only accurate, but also respects cultural nuances and keeps the exact tone your audience needs to hear.",
-    "whoIsItForTitle": "Who is it for?",
-    "whoIsItForParagraph": "Brands, agencies, businesses and entities looking to communicate successfully in both English and Spanish.",
-    "whyItMattersTitle": "Why does it matter?",
-    "whyItMattersParagraph": "A literal translation can be correct and still fail to convey the right message. Tone, humour, idioms and cultural references do not always translate well, and a misstep can confuse your audience or damage your brand's credibility. Good localisation creates a real connection, so your message is understood as it was intended for each audience.",
-    "whatIDoTitle": "What I do",
+    "whatItIsTitle": "What it is:",
+    "whatItIsParagraph": "Localisation goes beyond words. Because successful communication depends on true cultural connection, I adapt your content so it respects context, carries the right tone, and resonates naturally with your target audience.",
+    "whoIsItForTitle": "Who it is for:",
+    "whoIsItForParagraph": "Brands, agencies, businesses and entities looking to communicate successfully across English and Spanish-speaking markets.",
+    "whyItMattersTitle": "Why it matters:",
+    "whyItMattersParagraph": "A word-for-word translation can be accurate and still miss the mark. Tone, humour, idioms, and cultural references don't always carry across languages, and getting them wrong can confuse your audience or damage your brand's credibility. Effective localisation builds genuine connection, helping your message land the way it was intended in every market you reach.",
+    "whatIDoTitle": "Areas I work on:",
     "whatIDoItems": [
       {
         "label": "Digital content:",
-        "text": "websites, apps and UX copy,"
+        "text": "websites, apps and UX copy"
       },
       {
         "label": "Marketing & brands:",
-        "text": "campaigns and brand communication,"
+        "text": "campaigns and brand communication"
       },
       {
         "label": "Social media:",
-        "text": "posts tailored to the relevant audience, and"
+        "text": "posts tailored to the relevant audience"
       },
       {
         "label": "Cultural review:",
@@ -81,30 +84,30 @@
   },
   "proofreading": {
     "title": "Proofreading",
-    "whatItIsTitle": "What is it?",
+    "whatItIsTitle": "What it is:",
     "whatItIsParagraph": "A thorough review of your texts or translations that adjusts tone, flow and consistency, catching nuances that automated checkers overlook.",
-    "whoIsItForTitle": "Who is it for?",
-    "whoIsItForParagraph": "Individuals, students, businesses and fellow translators who need their final document to be flawless.",
-    "whyItMattersTitle": "Why does it matter?",
-    "whyItMattersParagraph1": "A good review does much more than correcting errors: it protects your credibility.",
-    "whyItMattersParagraph2": "A single overlooked error in an important document can change its meaning, affect the reader's confidence or even cause the rejection of a process. A final professional review gives you the confidence that your document is ready to be read or published.",
-    "whatIDoTitle": "What I do",
+    "whoIsItForTitle": "Who it is for:",
+    "whoIsItForParagraph": "Individuals, students, businesses, and fellow translators who need a flawless final document.",
+    "whyItMattersTitle": "Why it matters:",
+    "whyItMattersParagraph1": "A careful review does more than fix typos, it protects your credibility. A single overlooked error in an important document can change its meaning, undermine trust, or even cause a submission to be rejected. A final, expert check gives you the confidence that your document is ready to be read or published.",
+    "whyItMattersParagraph2": "",
+    "whatIDoTitle": "What I do:",
     "whatIDoItems": [
       {
         "label": "Translation review:",
-        "text": "Checking meaning, accuracy and flow."
+        "text": "Double-checking accuracy and flow"
       },
       {
         "label": "Editing & proofreading:",
-        "text": "Style, spelling and grammar corrections."
+        "text": "Polishing grammar, spelling, and style"
       },
       {
-        "label": "Quality assurance:",
-        "text": "Final review before publishing or delivery."
+        "label": "Quality assurance checks:",
+        "text": "Final checks before publishing or submitting"
       },
       {
-        "label": "Formatting & consistency:",
-        "text": "Format checks so everything looks impeccable."
+        "label": "Formatting & consistency review:",
+        "text": "Ensuring a clean, uniform look."
       }
     ]
   }

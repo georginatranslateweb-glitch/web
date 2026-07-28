@@ -52,7 +52,7 @@ const Services = () => {
                         />
                     </div>
 
-                    <ServiceSection headingTitle={tx('common.headingService')} title={tx('naati.title')}>
+                    <ServiceSection headingTitle={tx('common.headingService1')} title={tx('naati.title')}>
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -118,7 +118,7 @@ const Services = () => {
                         </div>
                     </ServiceSection>
 
-                    <ServiceSection headingTitle={tx('common.headingOurServices')} title={tx('localisation.title')}>
+                    <ServiceSection headingTitle={tx('common.headingService2')} title={tx('localisation.title')}>
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -178,7 +178,7 @@ const Services = () => {
                         </div>
                     </ServiceSection>
 
-                    <ServiceSection headingTitle={tx('common.headingOurServices')} title={tx('proofreading.title')}>
+                    <ServiceSection headingTitle={tx('common.headingService3')} title={tx('proofreading.title')}>
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
