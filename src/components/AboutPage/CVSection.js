@@ -132,6 +132,13 @@ const HomeCV = () => {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className="col-lg-6 col-md-6 col-sm-6">
+                                                <div className="about-services-cta">
+                                                    <Link href="/services" className="btn-footer">
+                                                        {tx('moreAboutServicesCta')} <ArrowIcon />
+                                                    </Link>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </motion.div>

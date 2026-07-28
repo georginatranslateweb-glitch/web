@@ -226,6 +226,44 @@
   margin-top: clamp(1.5rem, 3vw, 2.25rem);
 }
 
+.ms-main .ms-page-content .about-services-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 120px;
+}
+
+.ms-main .ms-page-content .about-services-cta .btn-footer {
+  font-family: "Apple Garamond", var(--font-highlight, Georgia, "Times New Roman", serif);
+  font-size: 18px;
+  color: var(--color-heading, #c64227);
+  border: 1px solid var(--color-heading, #c64227);
+  border-radius: 0;
+  font-weight: 400;
+  position: relative;
+  white-space: nowrap;
+  padding: 10px 26px;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  outline-color: transparent;
+  box-shadow: none;
+  vertical-align: middle;
+  display: inline-block;
+  width: auto;
+  transition: all 0.4s;
+}
+
+.ms-main .ms-page-content .about-services-cta .btn-footer i {
+  margin-left: 5px;
+}
+
+.ms-main .ms-page-content .about-services-cta .btn-footer:hover {
+  border-color: #a33520;
+  color: #a33520;
+}
+
 .ms-main .ms-page-content .services-talk-cta .btn-footer {
   font-family: "Apple Garamond", var(--font-highlight, Georgia, "Times New Roman", serif);
   font-size: 18px;
