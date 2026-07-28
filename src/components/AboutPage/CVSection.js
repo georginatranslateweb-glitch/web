@@ -65,10 +65,18 @@ const HomeCV = () => {
                                     <motion.p variants={staggerItem}>
 
                                         <em>
-                                            <span className="cate-color">{tx('heroYears')}&nbsp;</span>
-                                            <span> /</span>&nbsp; &nbsp;
-                                            <span className="cate-color">{tx('heroLocation')}&nbsp;</span> &nbsp;
-                                            <span>/</span>&nbsp; &nbsp;
+                                            {defaults.heroYears ? (
+                                                <>
+                                                    <span className="cate-color">{tx('heroYears')}&nbsp;</span>
+                                                    <span> /</span>&nbsp; &nbsp;
+                                                </>
+                                            ) : null}
+                                            {defaults.heroLocation ? (
+                                                <>
+                                                    <span className="cate-color">{tx('heroLocation')}&nbsp;</span> &nbsp;
+                                                    <span>/</span>&nbsp; &nbsp;
+                                                </>
+                                            ) : null}
                                             <span className="cate-color">{tx('heroRole')}</span>
                                             {defaults.heroRole2 ? (
                                                 <>
