@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useHydrationSafeTranslation } from '../../i18n/useHydrationSafeTranslation';
+import { lockScroll, unlockScroll } from '../../lib/scrollLock';
 
 import MenuItems from './MenuItems';
 import LanguageSwitcher from '../LanguageSwitcher';
@@ -188,11 +189,8 @@ const HeaderTwo = (props) => {
 
   useEffect(() => {
     if (!menuOpen) return undefined;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = prevOverflow;
-    };
+    lockScroll();
+    return () => unlockScroll();
   }, [menuOpen]);
 
   useEffect(() => {
@@ -228,13 +226,14 @@ const HeaderTwo = (props) => {
     !menuOpen &&
     (onChromePeekBridgeEnter || onChromePeekBridgeLeave);
 
+  // `!isNarrowViewport` es el complemento exacto de NARROW_HEADER_MQ (>= 1024px)
+  // y arranca igual en servidor y cliente, evitando leer window durante el render.
   const peekDesktopUsesActionLayout =
     !alwaysScrolled &&
-    typeof window !== 'undefined' &&
+    !isNarrowViewport &&
     !!deferNavUntilScroll &&
     !isVisible &&
     !menuOpen &&
-    window.matchMedia('(min-width: 1024px)').matches &&
     (!!chromePeek || !!layoutHoverMirrorFromFixedLogo);
 
   const layoutIsAction =

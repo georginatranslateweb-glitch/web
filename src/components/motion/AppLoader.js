@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { EASE_OUT } from './variants';
+import { lockScroll, unlockScroll } from '../../lib/scrollLock';
 
 /**
  * Full-screen brand loader shown on the first load AND on every subsequent
@@ -10,6 +11,11 @@ import { EASE_OUT } from './variants';
  */
 const FALLBACK_MS = 800;
 const MIN_VISIBLE_MS = 500;
+/**
+ * Tope absoluto: aunque se pierda un evento de navegación (routeChangeComplete
+ * que no llega), el loader se cierra igual y nunca deja el scroll bloqueado.
+ */
+const HARD_MAX_MS = 4000;
 
 const AppLoader = ({ label = 'Loading' }) => {
   const [ready, setReady] = useState(false);
@@ -45,9 +51,12 @@ const AppLoader = ({ label = 'Loading' }) => {
     const handleStart = () => {
       window.clearTimeout(fallback);
       beginLoading();
+      // Red de seguridad: si el "complete" nunca llega, cerramos igual.
+      fallback = window.setTimeout(finish, HARD_MAX_MS);
     };
     const handleDone = () => {
       requestAnimationFrame(finish);
+      window.clearTimeout(fallback);
       fallback = window.setTimeout(finish, FALLBACK_MS);
     };
 
@@ -65,12 +74,8 @@ const AppLoader = ({ label = 'Loading' }) => {
 
   useEffect(() => {
     if (ready) return undefined;
-    const { style } = document.body;
-    const previous = style.overflow;
-    style.overflow = 'hidden';
-    return () => {
-      style.overflow = previous;
-    };
+    lockScroll();
+    return () => unlockScroll();
   }, [ready]);
 
   return (
