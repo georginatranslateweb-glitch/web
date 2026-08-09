@@ -34,6 +34,7 @@ function loadRouteStyles(pathname) {
       void import('../assets/css/project-single-hero.css');
       void import('../assets/css/services-banner.css');
       void import('../assets/css/secondary-pages-chrome.css');
+      void import('../assets/css/how-it-works-timeline.css');
       void import('jarallax/dist/jarallax.min.css');
       break;
     case '/about':

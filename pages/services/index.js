@@ -1,4 +1,7 @@
 import React, { useLayoutEffect } from 'react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 import HeaderTwo from '../../src/components/Header/HeaderTwo';
 import SecondaryFixedLogo from '../../src/components/Header/SecondaryFixedLogo';
@@ -7,7 +10,15 @@ import MsHeroParallax from '../../src/components/common/MsHeroParallax';
 import ServicesBanner from '../../src/components/ServicesPage/ServicesBanner';
 import ServiceSection from '../../src/components/ServicesPage/ServiceSection';
 import { useServicesTranslation } from '../../src/i18n/servicesDefaults';
+import { useAboutTranslation } from '../../src/i18n/aboutDefaults';
+import { buildHowItWorksSteps } from '../../src/components/AboutPage/howItWorksSteps';
+import { fadeUp, VIEWPORT_ONCE } from '../../src/components/motion/variants';
 import ArrowIcon from '../../src/components/icons/ArrowIcon';
+
+const HowItWorksTimeline = dynamic(
+    () => import('../../src/components/AboutPage/HowItWorksTimeline'),
+    { ssr: false },
+);
 
 const SERVICES_HERO_IMAGE = '/images/services/services-7-768.webp';
 const SERVICES_HERO_IMAGE_MD = '/images/services/services-7-1200.webp';
@@ -15,7 +26,9 @@ const SERVICES_HERO_IMAGE_LG = '/images/services/services-7.webp';
 
 const Services = () => {
     const { tx } = useServicesTranslation();
+    const { tx: txAbout, defaults: aboutDefaults } = useAboutTranslation();
 
+    const howItWorksSteps = buildHowItWorksSteps(txAbout);
     const naatiWhatItIsItems = tx('naati.whatItIsItems') || [];
     const naatiHowItWorksSteps = tx('naati.howItWorksSteps') || [];
     const localisationWhatIDoItems = tx('localisation.whatIDoItems') || [];
@@ -50,10 +63,12 @@ const Services = () => {
                             title={tx('hero.title')}
                             description={tx('hero.description')}
                             ctaLabel={tx('hero.ctaLabel')}
-                        />
-                    </div>
-
-                    <ServiceSection headingTitle={tx('common.headingService1')} title={tx('naati.title')}>
+                        >
+                            <ServiceSection
+                                flush
+                                headingTitle={tx('common.headingService1')}
+                                title={tx('naati.title')}
+                            >
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -129,7 +144,11 @@ const Services = () => {
                         </div>
                     </ServiceSection>
 
-                    <ServiceSection headingTitle={tx('common.headingService2')} title={tx('localisation.title')}>
+                    <ServiceSection
+                                flush
+                                headingTitle={tx('common.headingService2')}
+                                title={tx('localisation.title')}
+                            >
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -199,7 +218,11 @@ const Services = () => {
                         </div>
                     </ServiceSection>
 
-                    <ServiceSection headingTitle={tx('common.headingService3')} title={tx('proofreading.title')}>
+                    <ServiceSection
+                                flush
+                                headingTitle={tx('common.headingService3')}
+                                title={tx('proofreading.title')}
+                            >
                         <div className="middle">
                             <div className="row">
                                 <div className="col-lg-4"></div>
@@ -268,7 +291,32 @@ const Services = () => {
                                 <div className="col-lg-4"></div>
                             </div>
                         </div>
-                    </ServiceSection>
+                            </ServiceSection>
+                        </ServicesBanner>
+                    </div>
+
+                    <div className="container">
+                        <motion.div
+                            className="pricing-area how-it-works-section"
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={VIEWPORT_ONCE}
+                        >
+                            <h2 className="heading-title" style={{ textTransform: 'none' }}>
+                                {txAbout('pricingHowTitle')}
+                            </h2>
+                            <HowItWorksTimeline
+                                steps={howItWorksSteps}
+                                logoAlt={txAbout('timelineLogoAlt')}
+                            />
+                            <div className="how-it-works-timeline__cta">
+                                <Link href="/contact" className="btn-footer">
+                                    {aboutDefaults.getQuoteCta} <ArrowIcon />
+                                </Link>
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </main>
 

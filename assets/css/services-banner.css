@@ -3,6 +3,21 @@
   padding: 24px 0;
 }
 
+/* Acordeón flush dentro del banner: misma alineación izquierda que "Mis servicios" */
+.services-banner .service-accordion--flush {
+  width: 100%;
+}
+
+.services-banner .service-accordion--flush .team-rules-area-inner .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.services-banner .service-accordion--flush .team-rules-area-inner .row > [class*="col-"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 body.page-services .services-hero-block + .team-rules-area.service-accordion {
   padding-top: 56px;
 }
@@ -247,12 +262,18 @@ body.page-services .main-header .main-header__layout::after {
   border-bottom-color: transparent;
 }
 
-/* Services: texto sobre la imagen del hero */
+/* Services: banner (título + acordeón) define la altura; la imagen queda de fondo */
 .ms-main .ms-page-content .services-hero-block {
   position: relative;
+  min-height: 100vh;
 }
 
 .ms-main .ms-page-content .services-hero-block .ms-hero.services-hero.project.single {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  height: 100% !important;
+  min-height: 100%;
   background-color: transparent;
 }
 
@@ -274,19 +295,21 @@ body.page-services .main-header .main-header__layout::after {
   }
 }
 
-/* Mismo beige del sitio (--color-bg), semitransparente */
+/* Mismo beige del sitio (--color-bg), semitransparente — relative para que el acordeón se vea completo */
 .ms-main .ms-page-content .services-hero-block .services-banner.banner-area {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 2;
   background-color: hsla(48, 33%, 89%, 0.92);
 }
 
-/* Services banner: espacio superior del texto */
+/* Services banner: espacio superior del texto + espacio inferior para el acordeón */
 .ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner {
   padding-top: 140px;
+  padding-bottom: 72px;
+}
+
+.ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner .left-side-content .heading-title {
+  padding-bottom: 40px;
 }
 
 /* Services: sin scroll horizontal por redes + jarallax */
