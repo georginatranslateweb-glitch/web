@@ -1,6 +1,6 @@
 /* Services accordion */
 .team-rules-area.service-accordion {
-  padding: 24px 0;
+  padding: 16px 0;
 }
 
 /* Acordeón flush dentro del banner: misma alineación izquierda que "Mis servicios" */
@@ -27,7 +27,7 @@ body.page-services .team-rules-area.service-accordion + .team-rules-area.service
 }
 
 body.page-services .team-rules-area.service-accordion:last-of-type {
-  padding-bottom: 72px;
+  padding-bottom: 0;
 }
 
 .team-rules-area.service-accordion .team-rules-area-inner .border-line {
@@ -35,7 +35,7 @@ body.page-services .team-rules-area.service-accordion:last-of-type {
 }
 
 .team-rules-area.service-accordion .team-rules-area-inner .top .title {
-  font-size: 48px;
+  font-size: 30px;
   line-height: 1.15;
 }
 
@@ -320,7 +320,7 @@ body.page-services .main-header .main-header__layout::after {
 /* Services banner: espacio superior del texto + espacio inferior para el acordeón */
 .ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner {
   padding-top: 140px;
-  padding-bottom: 72px;
+  padding-bottom: 40px;
 }
 
 .ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner .left-side-content .heading-title {
