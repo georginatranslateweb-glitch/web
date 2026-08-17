@@ -76,7 +76,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('naati.whatItIsTitle')}</h2>
                                             <p>{tx('naati.whatItIsParagraph')}</p>
                                             <ul>
@@ -94,7 +93,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('naati.whoIsItForTitle')}</h2>
                                             <p>{tx('naati.whoIsItForParagraph')}</p>
                                         </div>
@@ -108,7 +106,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('naati.whyItMattersTitle')}</h2>
                                             <p>{tx('naati.whyItMattersParagraph1')}</p>
                                             <p>{tx('naati.whyItMattersParagraph2')}</p>
@@ -119,7 +116,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('naati.howItWorksTitle')}</h2>
                                             <ul>
                                                 {naatiHowItWorksSteps.map((step) => (
@@ -156,7 +152,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('localisation.whatItIsTitle')}</h2>
                                             <p>{tx('localisation.whatItIsParagraph')}</p>
                                         </div>
@@ -166,7 +161,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('localisation.whoIsItForTitle')}</h2>
                                             <p>{tx('localisation.whoIsItForParagraph')}</p>
                                         </div>
@@ -180,7 +174,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('localisation.whyItMattersTitle')}</h2>
                                             <p>{tx('localisation.whyItMattersParagraph')}</p>
                                         </div>
@@ -190,7 +183,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('localisation.whatIDoTitle')}</h2>
                                             <ul>
                                                 {localisationWhatIDoItems.map((item) => (
@@ -230,7 +222,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('proofreading.whatItIsTitle')}</h2>
                                             <p>{tx('proofreading.whatItIsParagraph')}</p>
                                         </div>
@@ -240,7 +231,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('proofreading.whoIsItForTitle')}</h2>
                                             <p>{tx('proofreading.whoIsItForParagraph')}</p>
                                         </div>
@@ -254,7 +244,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('proofreading.whyItMattersTitle')}</h2>
                                             <p>{tx('proofreading.whyItMattersParagraph1')}</p>
                                             <p>{tx('proofreading.whyItMattersParagraph2')}</p>
@@ -265,7 +254,6 @@ const Services = () => {
                                     <div className="inner">
                                         <div className="border-line"></div>
                                         <div className="content">
-                                            <p className="desc">{tx('common.serviceDesc')}</p>
                                             <h2 className="sub-title">{tx('proofreading.whatIDoTitle')}</h2>
                                             <ul>
                                                 {proofreadingWhatIDoItems.map((item) => (
