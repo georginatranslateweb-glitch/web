@@ -58,7 +58,7 @@
     "phone": "+61 ...",
     "languageFrom": "e.g. Spanish",
     "languageTo": "e.g. English",
-    "comments": "Please specify the amount of documents, pages."
+    "comments": ""
   },
   "serviceType": {
     "placeholder": "Select service",

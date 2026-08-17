@@ -118,6 +118,21 @@ body.page-services .team-rules-area.service-accordion:last-of-type {
   .service-accordion .service-accordion__icon {
     margin-top: 0.35rem;
   }
+
+  /* Solo mobile: ocultar “Servicio N.º 1/2/3” */
+  .service-accordion .service-accordion__trigger .col-lg-4 .heading-title {
+    display: none;
+  }
+
+  .service-accordion .service-accordion__trigger .col-lg-4 {
+    display: none;
+  }
+
+  .service-accordion .service-accordion__trigger .col-lg-8 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
 }
 
 /* Services: énfasis en listas sin cambiar la tipografía del párrafo */
@@ -348,7 +363,11 @@ body.page-services .services-hero-block {
 
   .ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner {
     padding-top: calc(var(--services-banner-mobile-header-height) + var(--services-banner-mobile-gap));
-    padding-bottom: clamp(2.5rem, 8vw, 4rem);
+    padding-bottom: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  body.page-services .services-banner .team-rules-area.service-accordion:last-of-type {
+    padding-bottom: 16px;
   }
 }
 
@@ -356,7 +375,8 @@ body.page-services .services-hero-block {
   .ms-main .ms-page-content .services-hero-block .services-banner.banner-area .banner-inner .left-side-content .heading-title {
     padding-right: 0;
     padding-top: clamp(0.75rem, 3vw, 1.25rem);
-    margin-bottom: clamp(0.75rem, 3vw, 1.25rem);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .ms-main .ms-page-content .services-banner.banner-area .banner-inner .right-side-content .desc {

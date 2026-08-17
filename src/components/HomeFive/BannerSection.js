@@ -252,7 +252,7 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                         viewport={{ once: true }}
                     >
                         <div className="row justify-content-center align-items-stretch gx-0 gy-4 gy-lg-0 home-five-banner-hero-row">
-                            <div className="col-12 col-lg-6">
+                            <div className="col-12 col-lg-6 home-five-banner-hero-row__title-col">
                                 <div className="left-side-content">
                                     <motion.h2 className="heading-title home-five-banner-editorial__title" variants={staggerItem}>
                                         {titleLine1}
@@ -312,6 +312,17 @@ const HomeFiveBanner = ({ onChromePeekEnter, onChromePeekLeave, onLangHeroDocked
                                         </motion.div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        {/* Mobile: imagen debajo de las dos columnas escritas */}
+                        <div className="row d-lg-none home-five-banner-mobile-image-row gx-0">
+                            <div className="col-12 home-five-banner-hero-row__mobile-image-col">
+                                <motion.div
+                                    className="home-five-bg-slot home-five-bg-slot--mobile"
+                                    variants={imageReveal}
+                                    aria-hidden="true"
+                                />
                             </div>
                         </div>
                     </motion.div>

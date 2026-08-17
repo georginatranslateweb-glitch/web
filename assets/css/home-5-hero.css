@@ -682,7 +682,8 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
 }
 
 /*
- * Móvil: columna imagen oculta; título arriba y bloque editorial abajo (space-between en el alto útil).
+ * Móvil: header + título + imagen = primer viewport (100dvh).
+ * El bloque editorial queda debajo, al hacer scroll.
  */
 @media (max-width: 991.98px) {
   body.page-home-5 {
@@ -692,45 +693,42 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
     --home-five-mobile-logo-height: calc(var(--home-five-mobile-logo-width) * (166 / 252));
     --home-five-mobile-logo-gap: clamp(0.75rem, 2.5vw, 1.25rem);
     --home-five-hero-header-offset: calc(var(--home-five-mobile-logo-top) + var(--home-five-mobile-logo-height) + var(--home-five-mobile-logo-gap));
+    --home-five-mobile-title-gap: clamp(1rem, 4vw, 1.5rem);
   }
 
   .ms-main .ms-page-content .home-five-hero {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: auto;
+    min-height: 0;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area {
     box-sizing: border-box;
     justify-content: flex-start;
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
-    max-height: 100dvh;
-    padding-top: var(--home-five-hero-header-offset);
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-top: 0;
     padding-bottom: clamp(1.25rem, 5vw, 2rem);
     overflow: visible;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area>.container {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     height: auto;
     min-height: 0;
     justify-content: flex-start;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner {
-    padding-top: clamp(3.5rem, 14vw, 6.5rem) !important;
-    padding-bottom: clamp(1rem, 4vw, 1.5rem) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     padding-left: clamp(1rem, 5vw, 1.5rem) !important;
     padding-right: clamp(1rem, 5vw, 1.5rem) !important;
-    flex: 1 1 auto;
-    height: 100%;
+    flex: 0 0 auto;
+    height: auto;
     min-height: 0;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: stretch;
     text-align: center;
   }
 
@@ -738,12 +736,51 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
     width: 100%;
   }
 
+  /* Móvil: el título arranca bajo el header; la imagen va al final (debajo de las dos columnas) */
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row {
     flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     max-height: none;
     min-height: 0;
+    height: auto;
+    margin: 0;
+    padding-top: var(--home-five-hero-header-offset);
     padding-bottom: 0;
-    justify-content: center;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-hero-row>.home-five-banner-hero-row__title-col {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+
+  /* Fila de imagen en móvil: queda debajo del bloque editorial (dos columnas) */
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-mobile-image-row {
+    flex: 0 0 auto;
+    margin: 0;
+    padding-top: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner>.home-five-banner-mobile-image-row>.home-five-banner-hero-row__mobile-image-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .ms-main .ms-page-content .home-five-hero .home-five-bg-slot--mobile {
+    width: 100%;
+    min-height: clamp(18rem, 55vh, 30rem);
+    height: auto;
+    margin: 0;
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .left-side-content .heading-title.home-five-banner-editorial__title {
@@ -755,7 +792,7 @@ body.page-home-5 .main-header.show-bg .main-header__layout::after {
     flex: 0 0 auto;
     min-height: 0;
     max-height: none;
-    padding-top: 0;
+    padding-top: clamp(2rem, 8vw, 3.5rem);
   }
 
   .ms-main .ms-page-content .home-five-hero .banner-area .banner-inner .home-five-editorial-split {
